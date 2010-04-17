@@ -1,0 +1,40 @@
+8
+
+dir
+56
+https://svn2.assembla.com/svn/hwMod_calculator/Programm/test_bif/prj
+https://svn2.assembla.com/svn/hwMod_calculator
+
+
+
+2010-04-16T11:22:09.969748Z
+56
+bif
+
+
+svn:special svn:externals svn:needs-lock
+
+create_project.tcl
+file
+
+
+
+
+2010-04-16T11:15:34.000000Z
+b7846ab74bce57385a1c66843489fc43
+2010-04-16T11:22:09.969748Z
+56
+bif
+
+create_project.cmd
+file
+
+
+
+
+2010-04-16T11:15:34.000000Z
+6757cb0e6cf47085cf9dccb120f37c06
+2010-04-16T11:22:09.969748Z
+56
+bif
+

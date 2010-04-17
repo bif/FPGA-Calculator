@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src
+END
+debounce_fsm_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/debounce_fsm_ent.vhd
+END
+led_pkg.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/led_pkg.vhd
+END
+led_arc_beh.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/led_arc_beh.vhd
+END
+top_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/top_ent.vhd
+END
+led_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/led_ent.vhd
+END
+sync_pkg.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/sync_pkg.vhd
+END
+debounce_arc_struct.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/debounce_arc_struct.vhd
+END
+sync_arc_beh.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/sync_arc_beh.vhd
+END
+sync_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/sync_ent.vhd
+END
+counter_arc_beh.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/counter_arc_beh.vhd
+END
+debounce_pkg.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/debounce_pkg.vhd
+END
+counter_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/counter_ent.vhd
+END
+math_pkg.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/math_pkg.vhd
+END
+debounce_ent.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/debounce_ent.vhd
+END
+top_arc_struct.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/top_arc_struct.vhd
+END
+debounce_fsm_arc_beh.vhd
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/hwMod_calculator/!svn/ver/56/Programm/test_bif/src/debounce_fsm_arc_beh.vhd
+END
