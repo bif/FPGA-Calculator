@@ -52,8 +52,10 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/math_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/led_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/led_ent.vhd
-	set_global_assignment -name VHDL_FILE ../src/led_pkg.vhd
-	
+	set_global_assignment -name VHDL_FILE ../src/led_pkg.vhd	
+	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_pkg.vhd
+	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_arc_struct.vhd
+	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_ent.vhd
 
 
 	# used ip cores
@@ -84,7 +86,7 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../../textmode_vga/src/video_memory_beh.vhd
 	set_global_assignment -name VHDL_FILE ../../textmode_vga/src/video_memory.vhd
 	set_global_assignment -name VHDL_FILE ../../pll/pll.vhd
-	set_global_assignment -name VHDL_FILE ../../pll/pll_inst.vhd
+	#set_global_assignment -name VHDL_FILE ../../pll/pll_inst.vhd
 
 	# end used ip cores
 
