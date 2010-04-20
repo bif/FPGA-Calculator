@@ -4,7 +4,7 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2008 Altera Corporation
+Copyright (C) 1991-2009 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -38,29 +38,29 @@ applicable agreement for further details.
 		(line (pt 240 64)(pt 208 64)(line_width 1))
 	)
 	(drawing
-		(text "Cyclone II" (rect 183 145 227 157)(font "Arial" ))
-		(text "inclk0 frequency: 25.000 MHz" (rect 50 59 175 71)(font "Arial" ))
+		(text "Stratix" (rect 209 145 236 157)(font "Arial" ))
+		(text "inclk0 frequency: 33.000 MHz" (rect 50 59 175 71)(font "Arial" ))
 		(text "Operation Mode: Normal" (rect 50 73 151 85)(font "Arial" ))
 		(text "Clk " (rect 51 96 68 108)(font "Arial" ))
 		(text "Ratio" (rect 73 96 95 108)(font "Arial" ))
-		(text "Ph (dg)" (rect 100 96 130 108)(font "Arial" ))
-		(text "DC (%)" (rect 135 96 166 108)(font "Arial" ))
+		(text "Ph (dg)" (rect 101 96 131 108)(font "Arial" ))
+		(text "DC (%)" (rect 136 96 167 108)(font "Arial" ))
 		(text "c0" (rect 54 111 64 123)(font "Arial" ))
-		(text "4/1" (rect 78 111 91 123)(font "Arial" ))
-		(text "0.00" (rect 106 111 124 123)(font "Arial" ))
-		(text "50.00" (rect 139 111 162 123)(font "Arial" ))
+		(text "25/33" (rect 73 111 96 123)(font "Arial" ))
+		(text "0.00" (rect 107 111 125 123)(font "Arial" ))
+		(text "50.00" (rect 140 111 163 123)(font "Arial" ))
 		(line (pt 0 0)(pt 241 0)(line_width 1))
 		(line (pt 241 0)(pt 241 161)(line_width 1))
 		(line (pt 0 161)(pt 241 161)(line_width 1))
 		(line (pt 0 0)(pt 0 161)(line_width 1))
-		(line (pt 48 94)(pt 168 94)(line_width 1))
-		(line (pt 48 108)(pt 168 108)(line_width 1))
-		(line (pt 48 123)(pt 168 123)(line_width 1))
+		(line (pt 48 94)(pt 169 94)(line_width 1))
+		(line (pt 48 108)(pt 169 108)(line_width 1))
+		(line (pt 48 123)(pt 169 123)(line_width 1))
 		(line (pt 48 94)(pt 48 123)(line_width 1))
 		(line (pt 70 94)(pt 70 123)(line_width 3))
-		(line (pt 97 94)(pt 97 123)(line_width 3))
-		(line (pt 132 94)(pt 132 123)(line_width 3))
-		(line (pt 167 94)(pt 167 123)(line_width 1))
+		(line (pt 98 94)(pt 98 123)(line_width 3))
+		(line (pt 133 94)(pt 133 123)(line_width 3))
+		(line (pt 168 94)(pt 168 123)(line_width 1))
 		(line (pt 40 48)(pt 208 48)(line_width 1))
 		(line (pt 208 48)(pt 208 144)(line_width 1))
 		(line (pt 40 144)(pt 208 144)(line_width 1))

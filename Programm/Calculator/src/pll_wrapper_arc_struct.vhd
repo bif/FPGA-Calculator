@@ -11,14 +11,14 @@ begin
 	pll_inst : pll 
 	port map	
 	(
-		inclk0 <= sys_clk_sig,	-- in
+		inclk0 => sys_clk_sig,	-- in
 		c0 => pll_clk_sig		-- out
 	);
 
 	pll_wrapper_inst : pll_wrapper
 	port map
 	(
-		sys_clk <= sys_clk_sig,
+		sys_clk => sys_clk_sig,
 		pll_clk => pll_clk_sig
 	);
 
