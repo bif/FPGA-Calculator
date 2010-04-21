@@ -115,7 +115,7 @@ begin
     generic map
     (
       RESET_VALUE => BTN_A_RESET_VALUE,
-    	SIGN => x"00000061"
+			SIGN => x"FFFFFF61"
 		)
     port map
     (
