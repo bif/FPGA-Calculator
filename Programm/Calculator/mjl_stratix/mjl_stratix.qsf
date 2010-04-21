@@ -18,7 +18,7 @@
 #
 # Quartus II
 # Version 9.1 Build 222 10/21/2009 SJ Full Version
-# Date created = 18:22:44  April 21, 2010
+# Date created = 18:46:28  April 21, 2010
 #
 # -------------------------------------------------------------------------- #
 #
@@ -40,7 +40,7 @@ set_global_assignment -name FAMILY Stratix
 set_global_assignment -name DEVICE EP1S25F672C6
 set_global_assignment -name TOP_LEVEL_ENTITY calculator_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:22:44  APRIL 21, 2010"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:46:28  APRIL 21, 2010"
 set_global_assignment -name LAST_QUARTUS_VERSION 9.1
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
@@ -65,6 +65,8 @@ set_global_assignment -name VHDL_FILE ../src/math_pkg.vhd
 set_global_assignment -name VHDL_FILE ../src/pll_wrapper_pkg.vhd
 set_global_assignment -name VHDL_FILE ../src/pll_wrapper_arc_struct.vhd
 set_global_assignment -name VHDL_FILE ../src/pll_wrapper_ent.vhd
+set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
+set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
 set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
 set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd

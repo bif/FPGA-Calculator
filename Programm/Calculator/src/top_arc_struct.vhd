@@ -21,8 +21,9 @@ architecture struct of calculator_top is
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-	signal ps2_new_data_sig, new_ascii_sig : std_logic;
+	signal ps2_clk, ps2_data, ps2_new_data_sig, new_ascii_sig : std_logic;
 	signal ps2_data_sig, ascii_sign_sig : std_logic_vector(7 downto 0);
+
 
 component main is
 	generic
@@ -121,7 +122,7 @@ begin
 		(
 			CLK_FREQ => CLK_FREQ,
 			SYNC_STAGES => SYNC_STAGES
-		);
+		)
 		port map
 		(
 			sys_clk => sys_clk,
@@ -135,8 +136,8 @@ begin
 	scancode_handler_inst : scancode_handler
 		generic map
 		(
-			RESET_VALUE => RES_N_DEFAULT_VALUE,
-		);
+			RESET_VALUE => RES_N_DEFAULT_VALUE
+		)
 		port map
 		(
 			sys_clk => sys_clk,
@@ -164,5 +165,8 @@ begin
 			vga_command => command_sig,
 			vga_command_data => command_data_sig
 	);
+
+	ps2_clk <= ps2_clk;
+	ps2_data <= ps2_data;
 
 end architecture struct;
