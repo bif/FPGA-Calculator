@@ -50,13 +50,11 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/top_arc_struct.vhd
 	set_global_assignment -name VHDL_FILE ../src/top_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/math_pkg.vhd
-	set_global_assignment -name VHDL_FILE ../src/led_arc_beh.vhd
-	set_global_assignment -name VHDL_FILE ../src/led_ent.vhd
-	set_global_assignment -name VHDL_FILE ../src/led_pkg.vhd	
 	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_arc_struct.vhd
 	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_ent.vhd
-
+	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd

@@ -2,7 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.debounce_pkg.all;
 use work.sync_pkg.all;
-use work.led_pkg.all;
 use work.textmode_vga_platform_dependent_pkg.all;
 use work.textmode_vga_component_pkg.all;
 use work.pll_wrapper_pkg.all;
@@ -24,6 +23,22 @@ architecture struct of calculator_top is
 --  signal g_sig : std_logic_vector(GREEN_BITS - 1 downto 0);
 --  signal b_sig : std_logic_vector(BLUE_BITS - 1 downto 0);
 
+component main is
+	generic
+  (
+    RESET_VALUE : std_logic;
+		SIGN : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
+
+  );
+  port
+  (
+    sys_clk : in std_logic;
+    sys_res_n : in std_logic;
+    sense : in std_logic;
+		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
+  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
+	);
+end component main;
 
 begin
 
@@ -59,30 +74,20 @@ begin
       data_out => btn_a_sync
     );
 
-  led_inst_a : led
+  main_inst : main
     generic map
     (
-      RESET_VALUE => BTN_A_RESET_VALUE
-    )
+      RESET_VALUE => BTN_A_RESET_VALUE,
+    	SIGN => x"00000061"
+		)
     port map
     (
       sys_clk => sys_clk,
       sys_res_n => sys_res_n_sync,
       sense => btn_a_sync,
-			led_on_off => led_a
+			vga_command => command_sig,
+			vga_command_data => command_data_sig
 	);
-	led_inst_b : led
-    generic map
-    (
-      RESET_VALUE => BTN_A_RESET_VALUE
-    )
-    port map
-    (
-      sys_clk => sys_clk,
-      sys_res_n => sys_res_n_sync,
-      sense => btn_a_sync,
-			led_on_off => led_b
-		);
 
 	pll_wrapper_inst : pll_wrapper
 		port map
