@@ -23,12 +23,14 @@ architecture struct of calculator_top is
 --  signal g_sig : std_logic_vector(GREEN_BITS - 1 downto 0);
 --  signal b_sig : std_logic_vector(BLUE_BITS - 1 downto 0);
 
+
 component main is
 	generic
   (
     RESET_VALUE : std_logic;
-		SIGN : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
-
+		COMMAND_SIZE : integer;
+		COLOR_SIZE : integer;
+		CHAR_SIZE : integer
   );
   port
   (
@@ -115,7 +117,9 @@ begin
     generic map
     (
       RESET_VALUE => BTN_A_RESET_VALUE,
-			SIGN => x"FFFFFF61"
+			COMMAND_SIZE =>	COMMAND_SIZE,
+			COLOR_SIZE => COLOR_SIZE,
+			CHAR_SIZE	=> CHAR_SIZE	
 		)
     port map
     (
