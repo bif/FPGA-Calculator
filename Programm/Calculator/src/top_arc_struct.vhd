@@ -16,7 +16,7 @@ architecture struct of calculator_top is
 	constant COLOR_SIZE : integer := 8;
 	constant CHAR_SIZE : integer := 8;
 	
-	signal sys_res_n_sync, btn_a_sync, vga_free, pll_clk_sig : std_logic;
+	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 --	signal r_sig : std_logic_vector(RED_BITS - 1 downto 0);
@@ -35,6 +35,7 @@ component main is
     sys_clk : in std_logic;
     sys_res_n : in std_logic;
     sense : in std_logic;
+		vga_free : in std_logic;
 		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
   	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
 	);
@@ -74,21 +75,6 @@ begin
       data_out => btn_a_sync
     );
 
-  main_inst : main
-    generic map
-    (
-      RESET_VALUE => BTN_A_RESET_VALUE,
-    	SIGN => x"00000061"
-		)
-    port map
-    (
-      sys_clk => sys_clk,
-      sys_res_n => sys_res_n_sync,
-      sense => btn_a_sync,
-			vga_command => command_sig,
-			vga_command_data => command_data_sig
-	);
-
 	pll_wrapper_inst : pll_wrapper
 		port map
 		(
@@ -109,7 +95,7 @@ begin
 			sys_res_n => sys_res_n_sync,
       command => command_sig,
       command_data => command_data_sig,
-      free => vga_free,
+      free => vga_free_sig,
       vga_clk => pll_clk_sig,
 			vga_res_n => sys_res_n_sync,
       vsync_n => vga_vsync_n,
@@ -124,5 +110,21 @@ begin
 			b(0) => vga_b0,
 			b(1) => vga_b1
 		);
+
+  main_inst : main
+    generic map
+    (
+      RESET_VALUE => BTN_A_RESET_VALUE,
+    	SIGN => x"00000061"
+		)
+    port map
+    (
+      sys_clk => sys_clk,
+      sys_res_n => sys_res_n_sync,
+      sense => btn_a_sync,
+			vga_free => vga_free_sig,
+			vga_command => command_sig,
+			vga_command_data => command_data_sig
+	);
 
 end architecture struct;
