@@ -94,8 +94,6 @@ if {$make_assignments} {
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
 	set_location_assignment PIN_A3 -to btn_a
-#	set_location_assignment PIN_A6 -to led_a
-#	set_location_assignment PIN_A7 -to led_b
 	set_location_assignment PIN_E22 -to	vga_r0
 	set_location_assignment PIN_T4 -to vga_r1
 	set_location_assignment PIN_T7 -to vga_r2
@@ -106,7 +104,8 @@ if {$make_assignments} {
  	set_location_assignment PIN_T6 -to vga_b1
  	set_location_assignment PIN_F1 -to vga_hsync_n
  	set_location_assignment PIN_F2 -to vga_vsync_n
-
+	set_location_assignment PIN_E21 -to ps2_data
+	set_location_assignment PIN_Y26 -to ps2_clk
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk

@@ -5,6 +5,8 @@ use work.sync_pkg.all;
 use work.textmode_vga_platform_dependent_pkg.all;
 use work.textmode_vga_component_pkg.all;
 use work.pll_wrapper_pkg.all;
+use work.ps2_keyboard_controller_pkg.all;
+use work.scancode_handler_pkg.all;
 
 architecture struct of calculator_top is
 	constant CLK_FREQ : integer := 33330000;
@@ -19,10 +21,8 @@ architecture struct of calculator_top is
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
---	signal r_sig : std_logic_vector(RED_BITS - 1 downto 0);
---  signal g_sig : std_logic_vector(GREEN_BITS - 1 downto 0);
---  signal b_sig : std_logic_vector(BLUE_BITS - 1 downto 0);
-
+	signal ps2_new_data_sig, new_ascii_sig : std_logic;
+	signal ps2_data_sig, ascii_sign_sig : std_logic_vector(7 downto 0);
 
 component main is
 	generic
@@ -39,7 +39,10 @@ component main is
     sense : in std_logic;
 		vga_free : in std_logic;
 		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
+  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
+		new_ascii : in std_logic;
+		ascii_sign : in std_logic_vector(7 downto 0)
+
 	);
 end component main;
 
@@ -113,10 +116,41 @@ begin
 			b(1) => vga_b1
 		);
 
+	ps2_inst : ps2_keyboard_controller
+		generic map
+		(
+			CLK_FREQ => CLK_FREQ,
+			SYNC_STAGES => SYNC_STAGES
+		);
+		port map
+		(
+			sys_clk => sys_clk,
+			sys_res_n => sys_res_n_sync,
+			ps2_clk => ps2_clk,
+			ps2_data => ps2_data,
+			new_data => ps2_new_data_sig,
+			data => ps2_data_sig
+		);
+
+	scancode_handler_inst : scancode_handler
+		generic map
+		(
+			RESET_VALUE => RES_N_DEFAULT_VALUE,
+		);
+		port map
+		(
+			sys_clk => sys_clk,
+			sys_res_n => sys_res_n_sync,
+			new_data => ps2_new_data_sig,
+			data => ps2_data_sig,
+			new_ascii => new_ascii_sig,
+			ascii_sign => ascii_sign_sig
+		);
+
   main_inst : main
     generic map
     (
-      RESET_VALUE => BTN_A_RESET_VALUE,
+      RESET_VALUE => RES_N_DEFAULT_VALUE,
 			COMMAND_SIZE =>	COMMAND_SIZE,
 			COLOR_SIZE => COLOR_SIZE,
 			CHAR_SIZE	=> CHAR_SIZE	
