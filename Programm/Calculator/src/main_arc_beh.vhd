@@ -22,15 +22,15 @@ begin
 		end if;
   end process;
   
-  process(sense, sense_old, vga_free, new_ascii)
+  process(sense, sense_old, vga_free, new_ascii_in, ascii_sign_in)
   begin
     sense_old_next <= sense;
 		vga_command_next <= COMMAND_NOP;
 		vga_command_data_next <= DEFAULT_VGA_DATA;
 
-		if new_ascii = '1' then
+		if new_ascii_in = '1' then
 			vga_command_next <= COMMAND_SET_CHAR;
-			vga_command_data_next(7 downto 0) <= ascii_sign;
+			vga_command_data_next(7 downto 0) <= ascii_sign_in;
 		end if;
 
     if sense_old /= sense and sense = '0' and vga_free = '1' then	--sense = '0' ... weil button low aktiv

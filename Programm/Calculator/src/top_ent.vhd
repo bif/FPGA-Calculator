@@ -17,6 +17,7 @@ entity calculator_top is
 		vga_b1 : out std_logic;
 		vga_hsync_n : out std_logic;
 		vga_vsync_n : out std_logic
+		
 --		led_a : out std_logic;
 --		led_b : out std_logic
 	);
