@@ -21,9 +21,8 @@ architecture struct of calculator_top is
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-	signal ps2_clk, ps2_data, ps2_new_data_sig, new_ascii_sig : std_logic;
-	signal ps2_data_sig, ascii_sign_sig : std_logic_vector(7 downto 0);
-
+	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
+	signal ps2_new_data_sig, new_ascii_sig : std_logic;
 
 component main is
 	generic
@@ -169,8 +168,5 @@ begin
 
 	);
 
-	-- werden Daten asynchron übernommen?
-	ps2_clk <= ps2_clk;
-	ps2_data <= ps2_data;
 
 end architecture struct;

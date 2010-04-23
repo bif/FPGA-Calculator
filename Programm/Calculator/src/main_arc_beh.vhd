@@ -30,6 +30,7 @@ begin
 
 		if new_ascii_in = '1' then
 			vga_command_next <= COMMAND_SET_CHAR;
+			vga_command_data_next(31 downto 8) <= x"FFFFFF";
 			vga_command_data_next(7 downto 0) <= ascii_sign_in;
 		end if;
 
