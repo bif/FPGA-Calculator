@@ -55,7 +55,7 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/pll_wrapper_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
-#	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.tvhd
+	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
 
@@ -87,8 +87,6 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../../textmode_vga/src/video_memory_beh.vhd
 	set_global_assignment -name VHDL_FILE ../../textmode_vga/src/video_memory.vhd
 	set_global_assignment -name VHDL_FILE ../../pll/pll.vhd
-	#set_global_assignment -name VHDL_FILE ../../pll/pll_inst.vhd
-
 	# end used ip cores
 
 	#********************************************************************************************

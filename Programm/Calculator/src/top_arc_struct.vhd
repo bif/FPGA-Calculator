@@ -40,10 +40,7 @@ component main is
     sense : in std_logic;
 		vga_free : in std_logic;
 		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-		new_ascii : in std_logic;
-		ascii_sign : in std_logic_vector(7 downto 0)
-
+  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0)
 	);
 end component main;
 
@@ -166,6 +163,7 @@ begin
 			vga_command_data => command_data_sig
 	);
 
+	-- werden Daten asynchron übernommen?
 	ps2_clk <= ps2_clk;
 	ps2_data <= ps2_data;
 
