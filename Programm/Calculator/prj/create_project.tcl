@@ -107,6 +107,10 @@ if {$make_assignments} {
  	set_location_assignment PIN_F2 -to vga_vsync_n
 	set_location_assignment PIN_E21 -to ps2_data
 	set_location_assignment PIN_Y26 -to ps2_clk
+
+	# hari
+        set_location_assignment PIN_D22 -to uart_txd
+        #set_location_assignment PIN_D23 -to uart_rxd
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
