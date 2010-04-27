@@ -56,8 +56,12 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
-	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
-	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+#	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
+#	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
+
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
@@ -94,7 +98,7 @@ if {$make_assignments} {
 	#********************************************************************************************
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
-	set_location_assignment PIN_A3 -to btn_a
+#	set_location_assignment PIN_A3 -to btn_a
 	set_location_assignment PIN_E22 -to	vga_r0
 	set_location_assignment PIN_T4 -to vga_r1
 	set_location_assignment PIN_T7 -to vga_r2
@@ -109,7 +113,7 @@ if {$make_assignments} {
 	set_location_assignment PIN_Y26 -to ps2_clk
 
 	# hari
-        set_location_assignment PIN_D22 -to uart_txd
+#        set_location_assignment PIN_D22 -to uart_txd
         #set_location_assignment PIN_D23 -to uart_rxd
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
