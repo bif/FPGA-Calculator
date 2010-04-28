@@ -61,6 +61,10 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
+#leds only for debug
+#	set_global_assignment -name VHDL_FILE ../../led/led_arc_beh.vhd
+#	set_global_assignment -name VHDL_FILE ../../led/led_ent.vhd
+#	set_global_assignment -name VHDL_FILE ../../led/led_pkg.vhd
 
 
 	# used ip cores
@@ -98,7 +102,7 @@ if {$make_assignments} {
 	#********************************************************************************************
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
-#	set_location_assignment PIN_A3 -to btn_a
+#	set_location_assignment PIN_A6 -to led_a
 	set_location_assignment PIN_E22 -to	vga_r0
 	set_location_assignment PIN_T4 -to vga_r1
 	set_location_assignment PIN_T7 -to vga_r2

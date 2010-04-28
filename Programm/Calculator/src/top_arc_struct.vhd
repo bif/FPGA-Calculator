@@ -165,7 +165,7 @@ begin
 			vga_command_data => command_data_sig,
 			new_ascii_in => new_ascii_sig,
 			ascii_sign_in => ascii_sign_sig
-
+--			led_a => led_a
 	);
 
 

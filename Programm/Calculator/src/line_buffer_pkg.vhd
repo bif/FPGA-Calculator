@@ -14,6 +14,7 @@ package line_buffer_pkg is
 --  	);
   	port
   	(
+--			led_a: out std_logic;
 			sys_clk : in std_logic;
 			sys_res_n : in std_logic;
 --			address : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
