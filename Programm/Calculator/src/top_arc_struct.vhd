@@ -13,7 +13,7 @@ architecture struct of calculator_top is
 	constant TIMEOUT : time := 1 ms;
 	constant RES_N_DEFAULT_VALUE : std_logic := '1';
 	constant SYNC_STAGES : integer := 2;
-	constant BTN_A_RESET_VALUE : std_logic := '1';
+	constant BTN_A_RESET_VALUE : std_logic := '0';	-- changed from 1 --> 0
 	constant COMMAND_SIZE : integer := 8;
 	constant COLOR_SIZE : integer := 8;
 	constant CHAR_SIZE : integer := 8;
@@ -23,6 +23,9 @@ architecture struct of calculator_top is
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal ps2_new_data_sig, new_ascii_sig : std_logic;
+
+	signal uart_top_txd_sig : std_logic;
+	signal start_transmit_sig : std_logic := '0';
 
 component main is
 	generic
@@ -45,6 +48,17 @@ component main is
 	);
 
 end component main;
+
+component uart is
+port
+(
+	sys_clk:        in std_logic;
+	sys_res_n:      in std_logic;
+	start_transmit: in std_logic;
+	uart_inst_txd:  out std_logic
+);
+end component uart;
+
 
 begin
 
@@ -168,5 +182,16 @@ begin
 
 	);
 
+	uart_inst : uart
+        port map
+        (
+                uart_inst_txd => uart_top_txd_sig,
+		start_transmit => btn_a_sync,
+		sys_res_n => sys_res_n,
+                sys_clk  => sys_clk
+        );
+
+
+	uart_txd <= uart_top_txd_sig;
 
 end architecture struct;

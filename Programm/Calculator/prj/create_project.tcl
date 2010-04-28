@@ -59,6 +59,18 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
 
+	# hari added
+        set_global_assignment -name VHDL_FILE ../src/uart.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/baudrate.vhd
+        set_global_assignment -name VHDL_FILE ../src/baudrate_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
+        #set_global_assignment -name VHDL_FILE ../src/uart_recv.vhd
+        #set_global_assignment -name VHDL_FILE ../src/uart_recv_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/memory.vhd
+        set_global_assignment -name VHDL_FILE ../src/memory_beh.vhd
+
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_pkg.vhd 
