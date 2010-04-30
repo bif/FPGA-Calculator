@@ -1,4 +1,3 @@
-
 %\begin{tiny}\end{tiny}
 \documentclass[12pt,a4paper,titlepage,oneside]{article}
 \usepackage{spec_calculator}
@@ -7,17 +6,17 @@
 
 \title{Calculator}
 %TODO: for final Version
-%\group{
-%	\groupnr	18
-%} 
-%\author{
-%	\begin{tabbing}
-%    	\hspace*{4cm} \= \kill
-%		Harald Glanzer,	\> \matrnr 0727156 {\small harald.glanzer@gmail.com} \\
-%		\hspace*{4cm} \= \kill
-%		Stefan Simhandl,	\> \matrnr 0725240 {\small e0725240@student.tuwien.ac.at} \\
-%	\end{tabbing}
-%}
+\group{
+	\groupnr	18
+} 
+\author{
+	\begin{tabbing}
+    	\hspace*{4cm} \= \kill
+		Harald Glanzer,	\> \matrnr 0727156 {\small harald.glanzer@gmail.com} \\
+		\hspace*{4cm} \= \kill
+		Stefan Simhandl,	\> \matrnr 0725240 {\small e0725240@student.tuwien.ac.at} \\
+	\end{tabbing}
+}
 
 
 \begin{document}
@@ -456,12 +455,33 @@ Hardware spezifisches zu den Schnittstellen, + Logische Implementierung
 
 \subsubsection{RS232-Schnittstelle}
 
-In Abbildung~\ref{fig:rs232statemachine} ist die Statemachine des RS232 Moduls zu sehen, Abbildung~\ref{fig:entity_rs232} zeigt seine Ein- und Ausgänge (Entity). Ihre Funktionalität wird im Folgenden beschrieben. \\
-Wenn das Board neu gestartet wurde werden zuerst die Buffer für Sende/Empfangsroutinen initialisiert. Danach muss die Empfangsroutine aktiviert werden. Dazu muss ein Baudrategenerator gestartet werden, welcher, sobald ein START-Bit erkannt wurde(wechsel von IDLE/negativer Spannungspegl = logische HIGH auf positiven Pegel), immer möglichst genau in der Mitte der zu empfangenden Bits den aktuellen logischen Pegel auf der RX-Leitung  einliest und in einen Buffer speichert(LSB wird immer als erstes gesendet). Danach muss noch ein gültiges STOP-Bit gelesen werden(negativer Spannungspegel). Jetzt muss noch geprüft werden ob dieses eingelesene Byte mit dem Triggerzeichen(bei uns 's') übereinstimmt. Falls ja wird in die Senderoutine gewechselt. Weiters wird in die Senderoutine gewechselt wenn das Signal 'pushbutton' aktiviert wird(Taste muss entprellt werden). Während eines Sendevorgangs können keine Zeichen eingelesen werden, diese Routine 'blockiert' also.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart.png} 
+	\caption{Entity der UART Hauptinstanz}
+	\label{fig:entity_rs232}
+\end{figure}
 
-In der Senderoutine wird nun der Ringbuffer, in dem die letzten 50 Berechhnungen samt jeweiligen Ergebnissen gespeichert sind, zeilenweise ausgelesen. Diese Zeilen werden Zeichenweise übertragen. Dies geschieht analog zur Empfangsroutine: die TX-Leitung wird von IDLE(logisch HIGH, negativer Spannungspegel) für die Dauer eines Bits auf den positiven Spannungspegel(=START-Bit, logisch LOW) gezogen. Danach wird das zu sendende Zeichen bitweise (LSB wieder zuerst) auf die Datenleitung gelegt, und der Frame mit einem Stop-Bit(negativer Spannungspegel) abgeschlossen). 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart_rx.png} 
+	\caption{Entity der UART-Empfangsinsanz}
+	\label{fig:entity_rs232_rx}
+\end{figure}
 
-Eine Zeile ist mittels Newline, ASCII 0x0A abgeschlossen. Wir haben beschlossen, sobald ein Sendevorgang angestossen wurde, immer den gesamten Ringbuffer(also alle 50 Zeilen zu je max. 70 Zeichen) zu senden. Der Ringbuffer wird nach einem Reset mit Newlines initialisiert. Somit wird beim Senden für eine leere Zeile auch das Newline gesendet. 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart_tx.png} 
+	\caption{Entity der UART-Sendeinstanz}
+	\label{fig:entity_rs232_tx}
+\end{figure}
+
+In Abbildung~\ref{fig:rs232statemachine} ist die Statemachine des RS232 Moduls zu sehen, Abbildung~\ref{fig:entity_rs232} zeigt Ein- und Ausgänge der Hauptinstanz. Die UART-Funktionalität ist modular aufgebaut, zusätzlich zur UART-Hauptinstanz gibt es die Unterinstanzen UART\_RX~\ref{fig:entity_rs232_rx} und UART\_TX~\ref{fig:entity_rs232_tx} . Die Funktionalität wird im Folgenden beschrieben. \\
+Wenn das Board neu gestartet wurde werden zuerst die Buffer für Sende/Empfangsroutinen initialisiert. Danach muss die Empfangsroutine aktiviert werden. Dazu muss ein Baudrategenerator gestartet werden, welcher, sobald ein START-Bit erkannt wurde(wechsel von IDLE/negativer Spannungspegl = logische HIGH auf positiven Pegel), immer möglichst genau in der Mitte der zu empfangenden Bits den aktuellen logischen Pegel auf der RX-Leitung  einliest und in einen Buffer speichert(LSB wird immer als erstes gesendet). Danach muss noch ein gültiges STOP-Bit gelesen werden(negativer Spannungspegel). Jetzt muss noch geprüft werden ob dieses eingelesene Byte mit dem Triggerzeichen(bei uns 's') übereinstimmt. Falls ja wird die Main-Instanz per Signal verständigt dass das Triggerzeichen empfangen wurde. Gleiches gilt wenn das Signal für den 'pushbutton' aktiviert wird(Taste muss entprellt werden). Während eines Sendevorgangs können keine Zeichen eingelesen werden, diese Routine 'blockiert' also.
+Wenn also ein Sendevorgang angestossen wurde versorgt die Main-Instanz das UART-Modul(und in weiterer Folge das UART-TX-Modul) mit den einzelnen Bytes aus der Memory-Instanz(wo die fertigen Berechnungen gespeichert werden). Dazu kopiert zuerst die Main-Instanz das 1. zu sendende Byte in 'byte\_out' und setzt das Steuersignal 'more\_data' auf HIGH(dieses bleibt HIGH solange Bytes zu senden sind). UART\_TX setzt nun das Signal 'tx\_busy' und schreibt das Byte auf die Serielle Schnittstelle, sobald die Leitung wieder auf IDLE gesetzt wurde wird 'tx\_busy' auf LOW gesetzt. Dies ist das Zeichen für die Main-Instanz, das nächste Zeichen aus dem Speicher zu holen usw.  
+
+
+Eine Zeile wird mittels Newline 0x0A und Carriage Return 0x0D abgeschlossen, diese Sonderzeichen sind nicht im Speicher sondern müssen von der Main-Instanz extra eingefügt werden. Weiters haben wir beschlossen, sobald ein Sendevorgang angestossen wurde, immer den gesamten Ringbuffer(also alle 50 Zeilen zu je max. 80 Zeichen) zu senden, egal wieviele Berechnungen bisher gespeichert wurden.
 
 \begin{figure}[!ht]
 	\centering
@@ -470,12 +490,7 @@ Eine Zeile ist mittels Newline, ASCII 0x0A abgeschlossen. Wir haben beschlossen,
 	\label{fig:rs232statemachine}
 \end{figure}
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.3]{figures/entity_rs232.png} 
-	\caption{Entity des RS232 Moduls}
-	\label{fig:entity_rs232}
-\end{figure}
+
 
 \subsubsection{PS/2-Schnittstelle}
 
