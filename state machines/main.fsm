@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.51" author="Qfsm">
+  <machine nummooreout="0" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="Main statemachine" arrowtype="1" numbits="3" statefontweight="50" statefont="Helvetica" numin="1" transfontsize="8" transfontweight="50" type="2" numout="0" initialstate="0">
+    <outputnames_moore></outputnames_moore>
+    <inputnames>i_0</inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="133" endx="101" xpos="41" endy="133"/>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="133" code="0" xpos="141" linewidth="1">Init Linebuffer       Init Ringbuffer      Init Signals</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="132.5" code="3" xpos="307.0833333333333" linewidth="1">Scancode</state>
+    <state pencolor="0" endstate="0" radius="43" description="" moore_outputs="" ypos="133.75" code="4" xpos="502.7777777777778" linewidth="1">Parser/Calculator</state>
+    <state pencolor="0" endstate="0" radius="43" description="" moore_outputs="" ypos="245.9722222222222" code="2" xpos="308.0555555555555" linewidth="1">RS232 RX</state>
+    <state pencolor="0" endstate="0" radius="43" description="" moore_outputs="" ypos="248.0555555555555" code="1" xpos="509.3055555555555" linewidth="1">RS232 TX</state>
+    <transition c1x="71.07543043499317" c2y="33.93788484843176" c1y="35.47792777453648" description="" straight="1" type="2" ypos="95.5677004935243" endx="154.2594398005024" xpos="126.8995406579254" endy="95.26159441395473" c2x="208.7251603298023">
+      <from>0</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0">not Start</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="209.6858505702471" c2y="131.9138916281435" c1y="131.9092061394343" description="" straight="1" type="2" ypos="131.9045206507251" endx="267.0875592136722" xpos="180.9849962485344" endy="131.9185771168527" c2x="238.3867048919596">
+      <from>0</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="384.0537918943048" c2y="119.6012807245777" c1y="119.6576297124641" description="" straight="1" type="2" ypos="119.7139787003504" endx="462.191868454039" xpos="344.9847536144376" endy="119.5449317366914" c2x="423.1228301741719">
+      <from>3</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0">start_calc</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="423.1281239387643" c2y="148.8263400078812" c1y="149.2146323190903" description="" straight="1" type="2" ypos="149.6029246302995" endx="343.770914823786" xpos="462.8067284962535" endy="148.4380476966721" c2x="383.4495193812752">
+      <from>4</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0">calc_ready</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="388.217253071732" c2y="226.7055332743396" c1y="226.580548329834" description="" straight="1" type="2" ypos="226.4555633853284" endx="471.9090612003991" xpos="346.3713490073985" endy="226.8305182188451" c2x="430.0631571360656">
+      <from>2</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0">tx_trigger</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="428.9744451928874" c2y="267.1433993817583" c1y="267.1009520001592" description="" straight="1" type="2" ypos="267.0585046185602" endx="345.4585251412414" xpos="470.7324052187104" endy="267.1858467633575" c2x="387.2164851670644">
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0">tx_completed</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

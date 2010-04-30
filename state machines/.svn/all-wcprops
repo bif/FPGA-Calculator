@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/hwMod_calculator/!svn/ver/47/state%20machines
+END
+rs232.fsm
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/hwMod_calculator/!svn/ver/37/state%20machines/rs232.fsm
+END
+scancode2buffer.fsm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/hwMod_calculator/!svn/ver/37/state%20machines/scancode2buffer.fsm
+END
+parser.fsm
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/hwMod_calculator/!svn/ver/26/state%20machines/parser.fsm
+END
+main.fsm
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/hwMod_calculator/!svn/ver/47/state%20machines/main.fsm
+END
+Calculator.fsm
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/hwMod_calculator/!svn/ver/34/state%20machines/Calculator.fsm
+END

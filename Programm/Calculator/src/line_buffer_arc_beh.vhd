@@ -13,17 +13,17 @@ architecture beh of line_buffer is
 --  type RAM_TYPE is array (0 to (2 ** ADDR_WIDTH) – 1) of RAM_ENTRY_TYPE;
 --  signal ram : RAM_TYPE := (others => x”00”);
 	type LINEBUFFER_FSM_STATE_TYPE is
-    (CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
+    (CLEAR_SCREEN, CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
   signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-	signal col_cnt, col_cnt_next  : std_logic_vector(7 downto 0);
+	signal count, count_next  : std_logic_vector(7 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
 
 
 begin
 
-	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, col_cnt)
+	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count)
   begin
     
 		lb_fsm_state_next <= lb_fsm_state;
@@ -31,6 +31,15 @@ begin
 
     case lb_fsm_state is
 		
+			when CLEAR_SCREEN =>
+				if count < x"1F" then 	
+					if vga_free = '0' then
+						lb_fsm_state_next <= WAIT_STATE;
+						save_next_state_next <= CLEAR_SCREEN; 
+					end if;
+				else
+					lb_fsm_state_next <= CHECK_ASCII;
+				end if;
 			when CHECK_ASCII =>
 				if new_ascii_in = '1' then
 					case ascii_sign_in is
@@ -39,7 +48,7 @@ begin
 							lb_fsm_state_next <= ENTER_1;
 						-- BKSP
 						when x"08" =>
-							if col_cnt /= x"00" then
+							if count /= x"00" then
 								lb_fsm_state_next <= BKSP_1;
 							end if;
 						-- other value
@@ -83,16 +92,38 @@ begin
   end process next_state;
 
 
-	output : process(lb_fsm_state, col_cnt, ascii_sign_in, vga_free, once)
+	output : process(lb_fsm_state, count, ascii_sign_in, vga_free, once)
 	
 	begin
 	--	start_calc <= '0';
 		vga_command_next <= COMMAND_NOP;
 		vga_command_data_next <= DEFAULT_VGA_DATA;
-		col_cnt_next <= col_cnt;
+		count_next <= count;
 		once_next <= once;
 
 		case lb_fsm_state is
+			when CLEAR_SCREEN =>
+				if vga_free = '1' then
+					if count = x"00" then
+						vga_command_next <= COMMAND_SET_CURSOR_LINE;
+					 	vga_command_data_next(7 downto 0) <= x"1E";
+						count_next <= (count + '1');
+					else
+--						if vga_free = '1' then
+							if count <= x"3C" then 	
+								vga_command_next <= COMMAND_SET_CHAR;
+								vga_command_data_next(7 downto 0) <= x"0A";  
+								count_next <= (count + '1');
+							else
+								vga_command_next <= COMMAND_SET_CURSOR_LINE;
+							 	vga_command_data_next(7 downto 0) <= x"00";
+								count_next <= x"00";
+							end if;
+--						end if;
+					end if;
+				end if;
+			when CHECK_ASCII =>
+				once_next <= '0';	
 			when ENTER_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
@@ -102,13 +133,13 @@ begin
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					vga_command_data_next(7 downto 0) <= x"0A"; 
-					col_cnt_next <= x"00"; 
+					count_next <= x"00"; 
 --				start_calc <= '1';
 				end if;
 			when BKSP_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (col_cnt - '1');
+					vga_command_data_next(7 downto 0) <= (count - '1');
 				end if;
 			when BKSP_2 =>
 				if vga_free = '1' then
@@ -118,9 +149,9 @@ begin
 			when BKSP_3 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (col_cnt - '1');	
+					vga_command_data_next(7 downto 0) <= (count - '1');	
 					if once = '0' then	
-						col_cnt_next <= (col_cnt - '1');
+						count_next <= (count - '1');
 					end if;
 					once_next <= '1';
 				end if;
@@ -130,12 +161,10 @@ begin
 					vga_command_data_next(31 downto 8) <= x"FFFFFF";
 					vga_command_data_next(7 downto 0) <= ascii_sign_in;
 					if once = '0' then	
-						col_cnt_next <= (col_cnt + '1');
+						count_next <= (count + '1');
 					end if;
 					once_next <= '1';
 				end if;
-			when CHECK_ASCII =>
-				once_next <= '0';	
 			when others =>
 				null;
 		end case;
@@ -152,14 +181,16 @@ begin
 --    end if;
 --  end process memory_io;
 
+
 	sync : process(sys_clk, sys_res_n)
   begin
+
     if sys_res_n = '0' then
-      lb_fsm_state <= CHECK_ASCII;
-			col_cnt <= (others => '0');	-- x"00"
+      lb_fsm_state <= CLEAR_SCREEN;
+			count <= (others => '0');	-- x"00"
     elsif rising_edge(sys_clk) then
 			lb_fsm_state <= lb_fsm_state_next;
-			col_cnt <= col_cnt_next;
+			count <= count_next;
 			save_next_state <= save_next_state_next;
 			vga_command <= vga_command_next;
 			vga_command_data <= vga_command_data_next;

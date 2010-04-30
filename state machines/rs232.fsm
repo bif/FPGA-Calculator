@@ -1,0 +1,128 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.51" author="Qfsm">
+  <machine nummooreout="0" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="harald glanzer" description="modul zum senden des ringbuffers per software uart(rs232)&#xa;" version="" name="send_rs232" arrowtype="1" numbits="4" statefontweight="50" statefont="Helvetica" numin="1" transfontsize="8" transfontweight="50" type="2" numout="0" initialstate="11">
+    <outputnames_moore></outputnames_moore>
+    <inputnames>i_0</inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="96" endx="107" xpos="47" endy="96"/>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="351.6666666666666" code="1" xpos="603.3333333333334" linewidth="1">send STARTBIT</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="353.3333333333333" code="2" xpos="776.6666666666666" linewidth="1">send CharByte</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="355" code="3" xpos="945.8333333333334" linewidth="1">Send STOPBIT</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="347" code="4" xpos="190" linewidth="1">Get Line from    Ringbuffer</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="521" code="5" xpos="382" linewidth="1">Line Finished      INC Linecounter</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="350.8333333333333" code="6" xpos="380" linewidth="1">READ Char</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="96" code="11" xpos="147" linewidth="1">Init</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="97.16666666666666" code="9" xpos="349.3333333333333" linewidth="1">Get Databit</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="99.16666666666666" code="10" xpos="511.3333333333333" linewidth="1">Get Stopbit</state>
+    <state pencolor="0" endstate="0" radius="40" description="" moore_outputs="" ypos="100.8333333333333" code="0" xpos="700.8333333333333" linewidth="1">Decode</state>
+    <transition c1x="674.4392047112129" c2y="352.3767867416644" c1y="352.5962022140713" description="" straight="1" type="2" ypos="352.815617686478" endx="736.6839564880925" xpos="643.3168288227735" endy="352.1573712692576" c2x="705.561580599653">
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="846.3938873541583" c2y="353.7594775608329" c1y="353.6613460776207" description="" straight="1" type="2" ypos="353.5632145944087" endx="905.8496498749054" xpos="816.6660060937849" endy="353.8576090440449" c2x="876.1217686145319">
+      <from>2</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="840.8772480875842" c2y="284.9727384332551" c1y="284.5209189169492" description="" straight="0" type="2" ypos="323.7652476222788" endx="401.2868618087339" xpos="920.8455314311562" endy="316.9678713648931" c2x="500.9804248489282">
+      <from>3</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0">char!='\n'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="748.4751461996623" c2y="469.0592116153741" c1y="422.6211580817359" description="" straight="1" type="2" ypos="376.1831045480975" endx="421.61969092711" xpos="911.9028738359383" endy="515.4972651490125" c2x="585.0474185633859">
+      <from>3</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0">char=='\n'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="266.7001250883384" c2y="347.7309625871945" c1y="347.4784738405722" description="" straight="1" type="2" ypos="347.2259850939498" endx="340.1016520067706" xpos="229.9993616291224" endy="347.9834513338169" c2x="303.4008885475546">
+      <from>4</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0">lineCounter &lt; 50</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="117.4995270495567" c2y="214.8114288557239" c1y="250.6950497710806" description="" straight="0" type="2" ypos="316.0909498189906" endx="129.1114561800017" xpos="164.6104230655994" endy="131.7770876399966" c2x="102.4739962824125">
+      <from>4</from>
+      <to>11</to>
+      <inputs default="0" any="0" invert="0">lineCounter==50</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="307.2694472598071" c2y="415.6492475371447" c1y="454.9063572891898" description="" straight="1" type="2" ypos="494.1634670412349" endx="217.1312041093227" xpos="352.3385688350493" endy="376.3921377850995" c2x="262.2003256845649">
+      <from>5</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="467.7774972222076" c2y="351.4500503249235" c1y="351.2334339831803" description="" straight="1" type="2" ypos="351.0168176414372" endx="563.3333333333334" xpos="419.9995791666447" endy="351.6666666666666" c2x="515.5554152777703">
+      <from>6</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="227.773548823482" c2y="96.69222863802483" c1y="96.74871728600591" description="" straight="1" type="2" ypos="96.805205933987" endx="309.3368570277379" xpos="186.9918947213541" endy="96.63573999004375" c2x="268.5552029256099">
+      <from>11</from>
+      <to>9</to>
+      <inputs default="0" any="0" invert="0">Startbit</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="189.8276491253582" c2y="241.1524077944807" c1y="200.0141668703097" description="" straight="0" type="2" ypos="136" endx="185.1867452992305" xpos="147.0000010810811" endy="307.2906487186517" c2x="201.5071966717538">
+      <from>11</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0">Pushbutton_pressed</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="75.23110059754698" c2y="-4.33377133896856" c1y="-0.1728915992473361" description="" straight="1" type="2" ypos="58.84298740146732" endx="159.5384237326012" xpos="132.1893141700837" endy="58.01595163359042" c2x="212.8265472959016">
+      <from>11</from>
+      <to>11</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="416.6693477913492" c2y="97.87828944526622" c1y="97.8795639843041" description="" straight="1" type="2" ypos="97.88083852334198" endx="471.3541287597454" xpos="389.3269573071511" endy="97.87701490622834" c2x="444.0117382755473">
+      <from>9</from>
+      <to>10</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="268.5016236920387" c2y="148.2726603485771" c1y="143.654432673434" description="" straight="0" type="2" ypos="126.0546623727223" endx="169.0154905265881" xpos="321.6659571641533" endy="129.3963796971125" c2x="224.9789191596762">
+      <from>9</from>
+      <to>11</to>
+      <inputs default="0" any="0" invert="0">Timing_Error</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="413.3653458497602" c2y="192.0481636110831" c1y="198.6550964165458" description="" straight="1" type="2" ypos="135.3676665668189" endx="333.8642662833064" xpos="361.1943453739887" endy="134.0544419398079" c2x="275.8656429001456">
+      <from>9</from>
+      <to>9</to>
+      <inputs default="0" any="0" invert="0">bitCounter&lt;8</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="587.8350037725955" c2y="99.68285833447688" c1y="99.82203509605871" description="" straight="1" type="2" ypos="99.96121185764056" endx="660.8541287597454" xpos="551.3254412790207" endy="99.54368157289503" c2x="624.3445662661705">
+      <from>10</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0">bitCounter=8</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="413.7906778926448" c2y="235.339155471279" c1y="225.2170970383072" description="" straight="0" type="2" ypos="138.4636447347235" endx="156.4087575865485" xpos="503.8669075004025" endy="134.8776964425307" c2x="252.6019414835128">
+      <from>10</from>
+      <to>11</to>
+      <inputs default="0" any="0" invert="0">Timing_Error</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="481.0354685197354" c2y="29.25002061770259" c1y="24.62023637747231" description="" straight="0" type="2" ypos="73.15711880390873" endx="180.8654619684402" xpos="671.9538051287163" endy="74.71313819126617" c2x="369.1171319107545">
+      <from>0</from>
+      <to>11</to>
+      <inputs default="0" any="0" invert="0"></inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="520.8058265969569" c2y="258.8849761724928" c1y="192.1720355923594" description="" straight="1" type="2" ypos="125.459095012226" endx="223.7927630221691" xpos="669.3123583843508" endy="325.5979167526262" c2x="372.299294809563">
+      <from>0</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0">Databyte='0x73'</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>
