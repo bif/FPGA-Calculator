@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.1.19)  25 MAR 2010 19:33
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.1.19)  30 APR 2010 19:36
 entering extended mode
  %&-line parsing enabled.
 **spec_calculator.tex
@@ -523,99 +523,101 @@ Underfull \hbox (badness 7631) in paragraph at lines 215--216
 ie dem Parser/Calculator-Modul zu-sam-men,
  []
 
-[7 <./figures/rs232Trace.png>] [8 <./figures/mod_view.png> <./figures/mainSM.pn
-g (PNG copy)>]
-Underfull \hbox (badness 1158) in paragraph at lines 229--230
-[]\T1/ptm/m/n/12 Zu be-ach-ten ist der Son-der-fall <BACKSPACE>, By-te-se-quenz
- 0xF0-0x66:
- []
+[7 <./figures/rs232Trace.png>]
+<figures/scancode.png, id=196, 481.04718pt x 243.91125pt>
+File: figures/scancode.png Graphic file (type png)
 
-[9] <figures/entity_parser.png, id=212, 633.36626pt x 263.98625pt>
+<use figures/scancode.png> [8 <./figures/mod_view.png> <./figures/mainSM.png (P
+NG copy)>] <figures/entity_parser.png, id=206, 633.36626pt x 263.98625pt>
 File: figures/entity_parser.png Graphic file (type png)
 
 <use figures/entity_parser.png>
-<figures/parser.png, id=213, 458.46281pt x 261.97874pt>
+<figures/parser.png, id=207, 458.46281pt x 261.97874pt>
 File: figures/parser.png Graphic file (type png)
 
-<use figures/parser.png> [10 <./figures/entity_parser.png> <./figures/parser.pn
-g (PNG copy)>] [11] [12]
-<figures/vier_puffer.png, id=234, 449.68pt x 126.4725pt>
+<use figures/parser.png> [9 <./figures/scancode.png (PNG copy)>] [10 <./figures
+/entity_parser.png> <./figures/parser.png (PNG copy)>] [11]
+<figures/vier_puffer.png, id=227, 449.68pt x 126.4725pt>
 File: figures/vier_puffer.png Graphic file (type png)
 
 <use figures/vier_puffer.png>
-<figures/Calculator.png, id=235, 608.2725pt x 342.5297pt>
+<figures/Calculator.png, id=228, 608.2725pt x 342.5297pt>
 File: figures/Calculator.png Graphic file (type png)
 
 <use figures/Calculator.png>
-<figures/entity_calculator.png, id=236, 583.17876pt x 401.5pt>
+<figures/entity_calculator.png, id=229, 583.17876pt x 401.5pt>
 File: figures/entity_calculator.png Graphic file (type png)
 
-<use figures/entity_calculator.png> [13 <./figures/vier_puffer.png> <./figures/
-Calculator.png (PNG copy)>]
-Underfull \hbox (badness 1424) in paragraph at lines 341--343
+<use figures/entity_calculator.png> [12] [13 <./figures/vier_puffer.png> <./fig
+ures/Calculator.png (PNG copy)> <./figures/entity_calculator.png>]
+Underfull \hbox (badness 1424) in paragraph at lines 348--350
 \T1/ptm/m/n/12 Wenn das Mo-dul im Zu-stand MA-NA-GE CALC ist kann es mit Hil-
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 341--343
+Underfull \hbox (badness 1072) in paragraph at lines 348--350
 \T1/ptm/m/n/12 fe des Par-sers einen neu-en Ope-ra-tor und Ope-ran-den an-for-d
 ern (Si-gnal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--351
+Underfull \hbox (badness 10000) in paragraph at lines 357--358
 
  []
 
-[14 <./figures/entity_calculator.png>] [15] [16]
+[14] [15] [16]
 <figures/entity_speicher.png, id=268, 561.09625pt x 263.98625pt>
 File: figures/entity_speicher.png Graphic file (type png)
 
-<use figures/entity_speicher.png>
-<figures/entity_puffer.png, id=270, 519.9425pt x 263.98625pt>
+<use figures/entity_speicher.png> [17 <./figures/entity_speicher.png>]
+<figures/line_buffer.png, id=277, 713.66624pt x 525.46312pt>
+File: figures/line_buffer.png Graphic file (type png)
+
+<use figures/line_buffer.png>
+<figures/entity_puffer.png, id=278, 519.9425pt x 263.98625pt>
 File: figures/entity_puffer.png Graphic file (type png)
 
-<use figures/entity_puffer.png> [17] [18 <./figures/entity_speicher.png> <./fig
-ures/entity_puffer.png>] <figures/rs232SM.png, id=288, 993.7125pt x 566.115pt>
+<use figures/entity_puffer.png> [18] [19 <./figures/line_buffer.png (PNG copy)>
+ <./figures/entity_puffer.png>]
+<figures/rs232SM.png, id=295, 993.7125pt x 566.115pt>
 File: figures/rs232SM.png Graphic file (type png)
 
 <use figures/rs232SM.png>
-<figures/entity_rs232.png, id=289, 484.81125pt x 263.98625pt>
+<figures/entity_rs232.png, id=296, 484.81125pt x 263.98625pt>
 File: figures/entity_rs232.png Graphic file (type png)
 
-<use figures/entity_rs232.png> [19 <./figures/rs232SM.png (PNG copy)> <./figure
-s/entity_rs232.png>] <figures/entity_ps2.png, id=296, 469.755pt x 263.98625pt>
+<use figures/entity_rs232.png>
+<figures/entity_ps2.png, id=298, 469.755pt x 263.98625pt>
 File: figures/entity_ps2.png Graphic file (type png)
 
-<use figures/entity_ps2.png>
-<figures/entity_vga.png, id=298, 510.90875pt x 263.98625pt>
+<use figures/entity_ps2.png> [20 <./figures/rs232SM.png (PNG copy)> <./figures/
+entity_rs232.png>] <figures/entity_vga.png, id=306, 510.90875pt x 263.98625pt>
 File: figures/entity_vga.png Graphic file (type png)
 
-<use figures/entity_vga.png>
-<figures/scancode.png, id=299, 1422.31375pt x 786.94pt>
-File: figures/scancode.png Graphic file (type png)
+<use figures/entity_vga.png> [21 <./figures/entity_ps2.png> <./figures/entity_v
+ga.png>] [22] (./spec_calculator.aux)
 
-<use figures/scancode.png> [20 <./figures/entity_ps2.png>] [21 <./figures/entit
-y_vga.png>] [22 <./figures/scancode.png (PNG copy)>] (./spec_calculator.aux) ) 
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4983 strings out of 95070
- 67424 string characters out of 1182680
- 124630 words of memory out of 1500000
- 8003 multiletter control sequences out of 10000+50000
+ 4990 strings out of 95070
+ 67570 string characters out of 1182680
+ 124682 words of memory out of 1500000
+ 8008 multiletter control sequences out of 10000+50000
  35962 words of font info for 44 fonts, out of 1200000 for 2000
  28 hyphenation exceptions out of 8191
- 33i,12n,51p,1594b,461s stack positions out of 5000i,500n,6000p,200000b,5000s
-{
-/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/
-fonts/type1/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky
-/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/
-share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf-texlive/f
-onts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/urw/time
-s/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/s
-hare/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
-Output written on spec_calculator.pdf (23 pages, 596377 bytes).
+ 33i,12n,51p,1001b,459s stack positions out of 5000i,500n,6000p,200000b,5000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
+ve/fonts/type1/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/blue
+sky/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr12.pfb></u
+sr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf-texliv
+e/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></us
+r/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
+Output written on spec_calculator.pdf (23 pages, 710631 bytes).
 PDF statistics:
- 362 PDF objects out of 1000 (max. 8388607)
- 75 named destinations out of 1000 (max. 131072)
- 305 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 364 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 131072)
+ 310 words of extra memory for PDF output out of 10000 (max. 10000000)
 

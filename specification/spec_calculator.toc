@@ -13,14 +13,14 @@
 \contentsline {subsection}{\numberline {3.2}Scancode Handler}{9}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Parser (Scancode Handler Puffer einlesen \& interpretieren)}{9}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Calculator}{12}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Addition}{17}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.1}Addition}{16}{subsubsection.3.4.1}
 \contentsline {subsubsection}{\numberline {3.4.2}Subtraktion}{17}{subsubsection.3.4.2}
 \contentsline {subsubsection}{\numberline {3.4.3}Multiplikation}{17}{subsubsection.3.4.3}
 \contentsline {subsubsection}{\numberline {3.4.4}Division}{17}{subsubsection.3.4.4}
 \contentsline {subsection}{\numberline {3.5}Ringpuffer}{17}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Line Buffer}{17}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.6}Line Buffer}{18}{subsection.3.6}
 \contentsline {subsection}{\numberline {3.7}Externe Schnittstellen}{18}{subsection.3.7}
 \contentsline {subsubsection}{\numberline {3.7.1}RS232-Schnittstelle}{18}{subsubsection.3.7.1}
 \contentsline {subsubsection}{\numberline {3.7.2}PS/2-Schnittstelle}{20}{subsubsection.3.7.2}
-\contentsline {subsubsection}{\numberline {3.7.3}VGA-Schnittstelle}{20}{subsubsection.3.7.3}
-\contentsline {section}{\numberline {4}Testf\IeC {\"a}lle}{21}{section.4}
+\contentsline {subsubsection}{\numberline {3.7.3}VGA-Schnittstelle}{21}{subsubsection.3.7.3}
+\contentsline {section}{\numberline {4}Testf\IeC {\"a}lle}{22}{section.4}

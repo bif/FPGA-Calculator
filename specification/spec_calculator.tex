@@ -131,7 +131,7 @@ KP 9 & 7D & F0,7D \\
 Prinzipiell müsste also die Logik, welche die ankommenden Scancodes auswertet und auf die den gedrückten Tasten entsprechenden ASCII-Werte mappt zuerst auf einen WAIT-Code warten und dürfte erst bei Erhalt des zugehörigen BREAK-Codes das entsprechende Zeichen abspeichern. Über die Zeitdifferenz zwischen WAIT - und BREAK-Code und einer frei zu wählenden Tastenwiederholungsrate könnte die Anzahl der zu speichernden Zeichen bestimmt werden. Damit würde die zugehörige State-Machine allerdings komplexer als notwendig werden. Wir haben uns deshalb dazu entschlossen, nur die BREAK-Code-Sequenzen der gewünschten Zeichen zu detektieren, und alle anderen ankommenden Codes zu ignorieren. Daraus ergibt sich natürlich 1. dass das Zeichen erst erkannt wird wenn die entsprechende Taste wieder losgelassen wird, und 2. dass - egal wie lange die Taste gedrückt wurde, immer nur ein einzelnes Zeichen erkannt wird. 
 Sobald ein neues Zeichen erkannt wurde muss dieses natürlich in einem entsprechenden Buffer abgespeichert werden. Sobald ein <ENTER> - Zeichen erkannt wurde oder die maximale Eingabelänge erreicht wurde wird die Eingabe abgeschlossen.
 
-Abbildung\ref{fig:ps2sm}  zeigt die Funktionalität.
+Abbildung\ref{fig:scan}  zeigt die Funktionalität.
 
 \subsubsection{Datenausgabe}
 
@@ -222,14 +222,21 @@ Das RS232 - Modul ist standardmässig im RX-Modus - wird das gültige Triggerzei
 
 \subsection{Scancode Handler}
 
-In Abbildung\ref{fig:ps2sm}  ist die Funktionalität des Scancode-Moduls abgebildet:
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.4]{figures/scancode.png} 
+	\caption{Statemachine für das Scancode Handler Modul}
+	\label{fig:scan}
+\end{figure}
 
-Zuerst werden die verwendeten Buffer und Signale resettet/initialisiert. Danach wird in 'INIT / WAIT 0xXXXX new\_data' auf eine steigende Flanke von $new\_data$ gewartet, wenn diese auftritt wird im Status 'WAIT 0xXXXX clk' auf eine positivie Clock-Flanke gewartet. Tritt diese auf liegt ein neuer  Scancode an der 8-Bit-Variable $data$ an und kann von unserem Modul in einen temporären Buffer eingelesen werden. Dieser 1. Scancode wird in 'READ Scancode' geprüft(siehe Tabelle~\ref{tab:scan_codes}, falls ungültig wird das Zeichen verworfen und zurück in  'INIT / WAIT 0xXXXX new\_data' gewechselt. Andernfalls wird entweder in den oberen(Scancode war ein 0xF0 oder in den unteren Teil(Scancode war ein 0xF0) der Statemachine verzweigt. Nun folgt ein bzw. 2 weitere derartige READ-Zyklen wie gerade beschrieben. Ist die resultierende Bytesequenz letzendlich gültig wird in den State 'WR CHAR INC PTR' gewchselt. Hier wird per Lookup-Table die Bytesequenz auf den zugehörigen ASCII-Code gemappt und diese in den Speicher geschrieben und der zugehörige Zeiger erhöht. Zum Speichern der Eingabe wird von uns das Array $Line\_buffer$ verwendet - dies ist ein CHAR-Array mit 70 Elementen(70 erlaubte Eingabezeichen), zusätzlich wird noch der Zeiger $Line\_ptr$ benötigt, welcher immer auf die nächste freie Stelle von $Line\_buffer$ zeigt. Ausserdem wird vom Scancode-Modul die VGA-Ausgabe der \textbf{eingegebenen} Zeichen realisiert: das aktuelle Zeichen wird per $COMMAND\_SET\_CHARACTER$ an die aktuelle Position des VGA-Speichers geschrieben.
 
-Zu beachten ist der Sonderfall <BACKSPACE>, Bytesequenz 0xF0-0x66: wird diese erkannt muss der $Line\_ptr$ dekrementiert und das letzte geschriebene Zeichen per <SPACE> im VGA-Buffer überschrieben werden. Dazu wird $COMMAND\_SET\_CURSOR\_COLUMN$ in Verbindung mit $LINE\_ptr$ verwendet.  
+In Abbildung\ref{fig:scan}  ist die Funktionalität des Scancode-Moduls abgebildet:
 
-War das eingegebene Zeichen <ENTER> oder wurden bereits 70 andere gültige Zeichen eingegeben, ist die Eingabe abgeschlossen und das Parser/Calculator - Modul wird per Signal benachrichtigt dass eine neuen Line zur Berechnung bereitsteht. Der Zustand wird erst verlassen wenn die Berechnung vom Parser/Calculator abgeschlossen wurde - danach beginnt ein neuer Programmzyklus.
-Werden noch weitere Eingaben erwartet wird wieder in den Zustand 'INIT / WAIT 0xXXXX new\_data' gewechselt und auf eine neue Breakcode-Sequenz gewartet.
+Zuerst werden die verwendeten Puffer und Signale resettet/initialisiert. Danach wird in 'READY' auf eine steigende Flanke von $data\_new$ gewartet. Wenn diese auftritt wird überprüft ob das empfangene Byte hexadezimal gleich F0 oder E0 ist. Ist es gleich F0 wird sofort in den Zwischenzustand 'WAIT\_NEXT\_DATA' gewechselt. Da wir die Breakcodes der Zeichen auswerten, ist im Zustand 'E\_0' das nächste eingelesene Byte, hexadezimal immer F0. Dieses wird bei der nächsten steigenden Flanke von $data\_new$ einfach ignoriert und ebenfalls in den Zustand 'WAIT\_NEXT\_DATA' gewechselt.
+Diesen Zustand haben wir eingefürht da es möglich ist, dass das nächste Zeichen vom PS2 Modul noch nicht zur Verfügung steht obwohl bereits die steigende Flanke von $data\_new$ erkannt wird.
+Nur wenn das eingelesene Byte nicht F0 ist, wird in den Zustand 'CONVERT' gewechselt und das entsprechende Ascii Zeichen am Ausgang bereit gestellt sowie der Port $new\_ascii$ gesetzt. Dadurch wird signalisiert, dass ein neues Zeichen eingelesen wurde und zur weiterverarbeitung bereit steht.  
+
+
 \subsection{Parser (Scancode Handler Puffer einlesen \& interpretieren)}
 
 Abbildung~\ref{fig:parser} zeigt eine Statemachine für den Parser, in Abbildung~\ref{fig:entity_parser} sind die Ein- und Ausgänge des Moduls dargestellt (Entity). Der Parser wird vom Calculatormodul verwendet um den mathematischen Ausdruck welchen der Scancodehandler in einem Puffer (70 Zeichen Puffer) in Form von Ascii Zeichen zur Verfügung stellt auszuwerten und zu interpretieren. \\
@@ -421,7 +428,19 @@ Im Ringpuffer (siehe Abbildung~\ref{fig:entity_ring}) werden die letzten 50 gül
 
 \subsection{Line Buffer}
 
-Im Line Buffer (siehe Abbildung~\ref{fig:entity_buffer}) wird die aktuelle Rechnung zwischengespeichert. Zum schreiben auf den Puffer muss das 'write\_puffer' Signal aktiviert werden. Zusätzlich muss am Address Port (Signal'address\_puffer') die gewünschte Adresse sowie am Dateneingang (Signalbus 'input\_puffer') das zu speichernde Byte angelegt werden.
+Der Line Buffer ist dafür zuständig die aktuell eingegebene Rechnung zwischen zu speichern. Dafür wird das Memory Modul (für die eigentliche Zwischenspeicherung) sowie das PS2 Modul und das Scancode Handler Modul (für die Eigabe der Zeichen) verwendet. Eine weitere Aufgabe des Line Buffers ist es, die eingelesenen Zeichen mit Hilfe des VGA Moduls am Bildschirm darzustellen. Die dafür benötigte Statemachine ist in Abbildung ~\ref{fig:fsm_lb} dargestellt. 
+
+Um die Zeichen ENTER und BACKSPACE richtig darzustellen, müssen dem VGA Modul mehr als nur ein Zeichen übergeben werden (ENTER: linefeed und nextline, BKSP: Cursorposition um eins verrigern, Leerzeichen schreiben und Cursorposition wieder um eins verringern). Wenn für das Schreiben eines Zeichens mehr als ein VGA Befehl benötigt wird braucht man einen Zwischenzustand (WAIT\_STATE), da das VGA Modul eine gewisse Zeit braucht um ein Zeichen auf dem Bildschirm abzubilden.
+Da bei einem Reset der VGA Speicher nicht gelöscht wird, haben wir zusätzlich noch den Zustand CLEAR\_SCREEN eingeführ. In diesem Zustand wird 30 mal ein nextline Befehl dem VGA Modul übergeben um bei einem Reset den Bildschirm zu leeren. Danach wird in den eigentlichen Startzustand CHECK\_ASCII gewechselt.
+Die Ein- und Ausgänge des Moduls sind in Abbildung~\ref{fig:entity_buffer} zu finden. 
+Mit Dem Signal 'read\_ready' signalisiert der Line Buffer das eine Eingabe abgeschlossen ist und zur weiterverarbeitung (Berechnung) bereit steht. Durch den Eingangsport 'enable' kann der Linebuffer abgeschaltet werden. Dies ist wichtig, da während der Auswertung des einglesenen Ausdrucks dieser nicht verändert werden darf. Erst wenn die Berechnung abgeschlossen ist, darf der Line Buffer wieder Zeichen einlesen. Sobald der Port 'enable' auf 1 gesetzt wird, wird der Speicher mit Leerzeichen überschrieben und der Linebuffer kehrt in den Zustand 'CHECK\_ASCII' zurück.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.40]{figures/line_buffer.png} 
+	\caption{State Machine Line Buffer}
+	\label{fig:fsm_lb}
+\end{figure}
 
 \begin{figure}[!ht]
 	\centering
@@ -483,13 +502,6 @@ Siehe auch Kapitel 'Scancode - Handler' bzw. 'Calculator'.
 	\includegraphics[scale=0.3]{figures/entity_vga.png} 
 	\caption{Entity des VGA Moduls}
 	\label{fig:entity_vga}
-\end{figure}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.4 ,angle=90]{figures/scancode.png} 
-	\caption{Statemachine für das PS/2-Scancode-Modul }
-	\label{fig:ps2sm}
 \end{figure}
 
 \section{Testfälle}
