@@ -211,13 +211,13 @@ Baudrate  & Teiler\\
 	\label{fig:mainSM}
 \end{figure}
 
-Das Programm setzt sich aus dem Scancode-Handler-Modul, dem RS232-Modul(Senden und Empfangen), einem Ringbuffer, einem Buffermodul($Line\_buffer$) sowie dem Parser/Calculator-Modul zusammen, siehe Abbildung~\ref{fig:mainSM}. 
+Das Programm setzt sich aus dem Scancode-Handler-Modul, dem RS232-Modul(Senden und Empfangen), einem Ringbuffer Modul, einem Line Buffer Modul, Memory Modul sowie dem Parser/Calculator-Modul zusammen, siehe Abbildung~\ref{fig:mainSM}. 
+Die beiden Puffer instanzieren dabei das Modul Memory.
 
-Beim Einschalten wird ein Reset/Init sämtlicher verwendeter Speicher durchgeführt. Danach beginnt die Programmausführung mit dem Scancode-Modul, parallel dazu schaltet das RS232-Modul in Empfangsmodus - diese 2 Module werden laufen also parallel ab.
+Beim Einschalten wird ein Reset/Init sämmtlicher verwendeter Speicher durchgeführt. Danach beginnt die Programmausführung mit dem Scancode-Modul, parallel dazu schaltet das RS232-Modul in Empfangsmodus - diese 2 Module werden laufen also parallel ab.
 
-Das Scancode-Modul kümmert sich um das Einlesen von Usereingaben und wechselt in das Parser/Calculator-Modul sobald die Eingabe abgeschlossen ist. Die Ausgabe auf den Monitor erfolgt in beiden Modulen: Eingaben werden von ersterem und das Ergebnis bzw. etwaige Fehlermeldungen werden von zweiterem ausgegeben. Dieses Modul benötigt die 2 zur Verfügung gestellten Module 'VGA' sowie 'PS/2'. Eine genauere Beschreibung ist in den nachfolgenden Kapiteln zu finden.
+Die Main ist die zentrale Steuereinheit des gesammten Programms. Sie aktiviert bzw. deaktiviert (Signal 'enable') den Line Buffer sowie das Calculator Modul. Der Zugriff auf die beiden Speicherbereiche (Lien Buffer und Ringbuffer) sowie die Kommunikation mit dem RS232 Modul wird ebenfalls vom Main Modul geregelt.
 
-Das RS232 - Modul ist standardmässig im RX-Modus - wird das gültige Triggerzeichen 's' gelesen wird in den TX-Modus gewechselt, der Ringbuffer gesendet und zurück in den RX-Modus gewechselt. Genauere Beschreibung: siehe unten.
 
 \subsection{Scancode Handler}
 
