@@ -19,8 +19,8 @@ architecture struct of calculator_top is
 	constant COMMAND_SIZE : integer := 8;
 	constant COLOR_SIZE : integer := 8;
 	constant CHAR_SIZE : integer := 8;
-	constant DATA_WIDTH : integer := 8;
-	constant ADDR_WIDTH : integer := 7;
+	constant LB_DATA_WIDTH : integer := 8;
+	constant LB_ADDR_WIDTH : integer := 7;
 	
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
@@ -160,8 +160,8 @@ begin
 	sp_ram_inst : sp_ram
 		generic map
 	  (
-			ADDR_WIDTH => ADDR_WIDTH,
-			DATA_WIDTH => DATA_WIDTH
+			ADDR_WIDTH => LB_ADDR_WIDTH,
+			DATA_WIDTH => LB_DATA_WIDTH
 		)
 		port map
  		(
@@ -175,8 +175,8 @@ begin
   line_buffer_inst : line_buffer
 		generic map
 	  (
-			ADDR_WIDTH => ADDR_WIDTH,
-			DATA_WIDTH => DATA_WIDTH
+			ADDR_WIDTH => LB_ADDR_WIDTH,
+			DATA_WIDTH => LB_DATA_WIDTH
 		)
 
 		port map
