@@ -53,7 +53,9 @@ begin
 							end if;
 						-- other value
 						when others =>	
-							lb_fsm_state_next <= SAVE_VALUE;	
+							if count < x"50" then
+								lb_fsm_state_next <= SAVE_VALUE;	
+							end if;
 					end case;
 				end if;
  	    when ENTER_1 => 
@@ -100,6 +102,10 @@ begin
 		vga_command_data_next <= DEFAULT_VGA_DATA;
 		count_next <= count;
 		once_next <= once;
+		wr_enable_next <= '0';
+		lb_data_next <= x"00";
+		lb_addr_next <= count;
+
 
 		case lb_fsm_state is
 			when CLEAR_SCREEN =>
@@ -142,7 +148,7 @@ begin
 			when BKSP_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (count - '1');
+					vga_command_data_next(6 downto 0) <= (count - '1');
 				end if;
 			when BKSP_2 =>
 				if vga_free = '1' then
@@ -152,7 +158,7 @@ begin
 			when BKSP_3 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (count - '1');	
+					vga_command_data_next(6 downto 0) <= (count - '1');	
 					if once = '0' then	
 						count_next <= (count - '1');
 					end if;
@@ -164,7 +170,12 @@ begin
 					vga_command_data_next(31 downto 8) <= x"FFFFFF";
 					vga_command_data_next(7 downto 0) <= ascii_sign_in;
 					if once = '0' then	
+						wr_enable_next <= '1';
+						lb_data_next <= ascii_sign_in;
+						lb_addr_next <= count;
 						count_next <= (count + '1');
+					else					
+						wr_enable_next <= '0';
 					end if;
 					once_next <= '1';
 				end if;
@@ -187,6 +198,9 @@ begin
 			vga_command <= vga_command_next;
 			vga_command_data <= vga_command_data_next;
 			once <= once_next;
+			wr_enable <= wr_enable_next;
+			lb_data <= lb_data_next;
+			lb_addr <= lb_addr_next;
 		end if;
 	end process sync;
 
