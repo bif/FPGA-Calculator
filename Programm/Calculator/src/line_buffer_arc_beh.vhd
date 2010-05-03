@@ -32,7 +32,7 @@ begin
     case lb_fsm_state is
 		
 			when CLEAR_SCREEN =>
-				if count < x"1F" then 	
+				if count <= x"3C" then 	
 					if vga_free = '0' then
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= CLEAR_SCREEN; 
