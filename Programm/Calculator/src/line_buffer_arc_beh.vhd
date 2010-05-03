@@ -4,14 +4,10 @@ use ieee.numeric_std.all;
 use work.textmode_vga_pkg.all;
 use ieee.std_logic_unsigned.all;
 
-
 architecture beh of line_buffer is
 	constant DEFAULT_VGA_DATA : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0) := x"00000000";
 
 
---  subtype RAM_ENTRY_TYPE is std_logic_vector(DATA_WIDTH - 1 downto 0);
---  type RAM_TYPE is array (0 to (2 ** ADDR_WIDTH) – 1) of RAM_ENTRY_TYPE;
---  signal ram : RAM_TYPE := (others => x”00”);
 	type LINEBUFFER_FSM_STATE_TYPE is
     (CLEAR_SCREEN, CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
   signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
@@ -19,6 +15,7 @@ architecture beh of line_buffer is
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal count, count_next  : std_logic_vector(7 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
+
 
 
 begin
@@ -109,17 +106,15 @@ begin
 					 	vga_command_data_next(7 downto 0) <= x"1E";
 						count_next <= (count + '1');
 					else
---						if vga_free = '1' then
-							if count <= x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess imm 2 mal aufgerufen wird
-								vga_command_next <= COMMAND_SET_CHAR;
-								vga_command_data_next(7 downto 0) <= x"0A";  
-								count_next <= (count + '1');
-							else
-								vga_command_next <= COMMAND_SET_CURSOR_LINE;
-							 	vga_command_data_next(7 downto 0) <= x"00";
-								count_next <= x"00";
-							end if;
---						end if;
+						if count <= x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess imm 2 mal aufgerufen wird
+							vga_command_next <= COMMAND_SET_CHAR;
+							vga_command_data_next(7 downto 0) <= x"0A";  
+							count_next <= (count + '1');
+						else
+							vga_command_next <= COMMAND_SET_CURSOR_LINE;
+						 	vga_command_data_next(7 downto 0) <= x"00";
+							count_next <= x"00";
+						end if;
 					end if;
 				end if;
 			when CHECK_ASCII =>
@@ -169,17 +164,6 @@ begin
 				null;
 		end case;
 	end process output;
-
-
---	memory_io : process(sys_clk)
---	begin
---	  if rising_edge(sys_clk) then
---      data_out <= ram(to_integer(unsigned(address)));
---      if wr = ‘1’ then
---        ram(to_integer(unsigned(address))) <= data_in;
---      end if;
---    end if;
---  end process memory_io;
 
 
 	sync : process(sys_clk, sys_res_n)

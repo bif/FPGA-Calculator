@@ -8,6 +8,7 @@ use work.pll_wrapper_pkg.all;
 use work.ps2_keyboard_controller_pkg.all;
 use work.scancode_handler_pkg.all;
 use work.line_buffer_pkg.all;
+use work.sp_ram_pkg.all;
 
 architecture struct of calculator_top is
 	constant CLK_FREQ : integer := 33330000;
@@ -148,15 +149,24 @@ begin
 			ascii_sign => ascii_sign_sig
 		);
 
+
+	sp_ram_inst : sp_ram
+		generic map
+	  (
+			ADDR_WIDTH => 7,
+			DATA_WIDTH => 8
+		)
+		port map
+ 		(
+			clk      : in std_logic;
+			address : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
+			data_out : out std_logic_vector(DATA_WIDTH - 1 downto 0);
+			wr       : in std_logic;
+			data_in : in std_logic_vector(DATA_WIDTH - 1 downto 0)
+ 		);
+
   line_buffer_inst : line_buffer
---    generic map
---    (
---      RESET_VALUE => RES_N_DEFAULT_VALUE,
---			COMMAND_SIZE =>	COMMAND_SIZE,
---			COLOR_SIZE => COLOR_SIZE,
---			CHAR_SIZE	=> CHAR_SIZE	
---		)
-    port map
+		port map
     (
       sys_clk => sys_clk,
       sys_res_n => sys_res_n_sync,
@@ -165,8 +175,7 @@ begin
 			vga_command_data => command_data_sig,
 			new_ascii_in => new_ascii_sig,
 			ascii_sign_in => ascii_sign_sig
---			led_a => led_a
-	);
+		);
 
 
 end architecture struct;
