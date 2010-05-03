@@ -66,8 +66,6 @@ if {$make_assignments} {
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
-        set_global_assignment -name VHDL_FILE ../src/memory.vhd
-        set_global_assignment -name VHDL_FILE ../src/memory_beh.vhd
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
