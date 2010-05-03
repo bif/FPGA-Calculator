@@ -19,14 +19,16 @@ architecture struct of calculator_top is
 	constant COMMAND_SIZE : integer := 8;
 	constant COLOR_SIZE : integer := 8;
 	constant CHAR_SIZE : integer := 8;
+	constant DATA_WIDTH : integer := 8;
+	constant ADDR_WIDTH : integer := 7;
 	
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal ps2_new_data_sig, new_ascii_sig : std_logic;
-	signal lb_addr_sig : std_logic_vector(6 downto 0);
-	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(7 downto 0);
+	signal lb_addr_sig : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig : std_logic;
 
 
@@ -155,12 +157,11 @@ begin
 			ascii_sign => ascii_sign_sig
 		);
 
-
 	sp_ram_inst : sp_ram
 		generic map
 	  (
-			ADDR_WIDTH => 7,
-			DATA_WIDTH => 8
+			ADDR_WIDTH => ADDR_WIDTH,
+			DATA_WIDTH => DATA_WIDTH
 		)
 		port map
  		(
@@ -172,6 +173,12 @@ begin
  		);
 
   line_buffer_inst : line_buffer
+		generic map
+	  (
+			ADDR_WIDTH => ADDR_WIDTH,
+			DATA_WIDTH => DATA_WIDTH
+		)
+
 		port map
     (
       sys_clk => sys_clk,

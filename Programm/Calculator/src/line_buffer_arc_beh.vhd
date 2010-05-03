@@ -13,8 +13,11 @@ architecture beh of line_buffer is
   signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-	signal count, count_next  : std_logic_vector(7 downto 0);
+	signal count, count_next  : std_logic_vector(6 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
+	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
+	signal wr_enable_next : std_logic;
 
 
 
@@ -107,6 +110,11 @@ begin
 						count_next <= (count + '1');
 					else
 						if count <= x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess imm 2 mal aufgerufen wird
+--							if count <= x"" then
+--								wr_enable_next <= '1';
+--							lb_data_next <= x"00";
+--								lb_addr_next <= srl count 1;
+--							end if;
 							vga_command_next <= COMMAND_SET_CHAR;
 							vga_command_data_next(7 downto 0) <= x"0A";  
 							count_next <= (count + '1');
