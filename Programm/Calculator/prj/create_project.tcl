@@ -61,10 +61,9 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
-#leds only for debug
-#	set_global_assignment -name VHDL_FILE ../../led/led_arc_beh.vhd
-#	set_global_assignment -name VHDL_FILE ../../led/led_ent.vhd
-#	set_global_assignment -name VHDL_FILE ../../led/led_pkg.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
 
 
 	# used ip cores

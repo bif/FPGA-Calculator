@@ -27,8 +27,8 @@ architecture struct of calculator_top is
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal ps2_new_data_sig, new_ascii_sig : std_logic;
-	signal lb_addr_sig : std_logic_vector(ADDR_WIDTH - 1 downto 0);
-	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(DATA_WIDTH - 1  downto 0);
+	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
+	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig : std_logic;
 
 
@@ -178,7 +178,6 @@ begin
 			ADDR_WIDTH => LB_ADDR_WIDTH,
 			DATA_WIDTH => LB_DATA_WIDTH
 		)
-
 		port map
     (
       sys_clk => sys_clk,

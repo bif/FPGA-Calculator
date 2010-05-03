@@ -13,7 +13,7 @@ architecture beh of line_buffer is
   signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-	signal count, count_next  : std_logic_vector(6 downto 0);
+	signal count, count_next  : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
 	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
@@ -121,7 +121,7 @@ begin
 						else
 							vga_command_next <= COMMAND_SET_CURSOR_LINE;
 						 	vga_command_data_next(7 downto 0) <= x"00";
-							count_next <= x"00";
+							count_next <= (others => '0');
 						end if;
 					end if;
 				end if;
@@ -136,7 +136,7 @@ begin
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					vga_command_data_next(7 downto 0) <= x"0A"; 
-					count_next <= x"00"; 
+					count_next <= (others => '0'); 
 --				start_calc <= '1';
 				end if;
 			when BKSP_1 =>

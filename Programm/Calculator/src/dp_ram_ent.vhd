@@ -5,8 +5,8 @@ use ieee.numeric_std.all;
 entity dp_ram is
   generic
   (
-		ADDR_WIDTH : integer range 1 to integer‘high;
-		DATA_WIDTH : integer range 1 to integer‘high
+		ADDR_WIDTH : integer range 1 to integer'high;
+		DATA_WIDTH : integer range 1 to integer'high
   );
   port
   (

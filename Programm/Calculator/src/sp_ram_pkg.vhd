@@ -7,8 +7,8 @@ package sp_ram_pkg is
 	component sp_ram is
   generic
   (
-     ADDR_WIDTH : integer range 1 to integer‘high;
-     DATA_WIDTH : integer range 1 to integer‘high
+     ADDR_WIDTH : integer range 1 to integer'high;
+     DATA_WIDTH : integer range 1 to integer'high
   );
   port
   (

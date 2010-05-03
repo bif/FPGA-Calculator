@@ -7,8 +7,8 @@ use work.textmode_vga_pkg.all;
 entity line_buffer is
    generic
   (
-     ADDR_WIDTH : integer range 1 to integer‘high;
-     DATA_WIDTH : integer range 1 to integer‘high
+     ADDR_WIDTH : integer range 1 to integer'high;
+     DATA_WIDTH : integer range 1 to integer'high
   );
 	port
   (
