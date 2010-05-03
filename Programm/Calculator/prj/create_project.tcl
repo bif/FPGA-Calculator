@@ -62,12 +62,10 @@ if {$make_assignments} {
 	# hari added
         set_global_assignment -name VHDL_FILE ../src/uart.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
-        set_global_assignment -name VHDL_FILE ../src/baudrate.vhd
-        set_global_assignment -name VHDL_FILE ../src/baudrate_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
-        #set_global_assignment -name VHDL_FILE ../src/uart_recv.vhd
-        #set_global_assignment -name VHDL_FILE ../src/uart_recv_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/memory.vhd
         set_global_assignment -name VHDL_FILE ../src/memory_beh.vhd
 
@@ -121,8 +119,8 @@ if {$make_assignments} {
 	set_location_assignment PIN_Y26 -to ps2_clk
 
 	# hari
-        set_location_assignment PIN_D22 -to uart_txd
-        #set_location_assignment PIN_D23 -to uart_rxd
+        set_location_assignment PIN_D22 -to uart_tx
+        set_location_assignment PIN_D23 -to uart_rx
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
