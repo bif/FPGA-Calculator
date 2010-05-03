@@ -25,6 +25,12 @@ architecture struct of calculator_top is
   signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal ps2_new_data_sig, new_ascii_sig : std_logic;
+	signal lb_addr_sig : std_logic_vector(6 downto 0);
+	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(7 downto 0);
+	signal lb_wr_sig : std_logic;
+
+
+
 
 --component main is
 --	generic
@@ -158,11 +164,11 @@ begin
 		)
 		port map
  		(
-			clk      : in std_logic;
-			address : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
-			data_out : out std_logic_vector(DATA_WIDTH - 1 downto 0);
-			wr       : in std_logic;
-			data_in : in std_logic_vector(DATA_WIDTH - 1 downto 0)
+			clk => sys_clk,
+			address => lb_addr_sig,
+			data_out => lb_data_out_sig,
+			wr => lb_wr_sig,
+			data_in => lb_data_in_sig
  		);
 
   line_buffer_inst : line_buffer
@@ -174,7 +180,10 @@ begin
 			vga_command => command_sig,
 			vga_command_data => command_data_sig,
 			new_ascii_in => new_ascii_sig,
-			ascii_sign_in => ascii_sign_sig
+			ascii_sign_in => ascii_sign_sig,
+			wr_enable => lb_wr_sig,
+			lb_addr => lb_addr_sig,
+			lb_data => lb_data_in_sig
 		);
 
 

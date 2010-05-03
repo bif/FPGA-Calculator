@@ -5,22 +5,14 @@ use work.textmode_vga_pkg.all;
 
 
 entity line_buffer is
---  generic
---  (
---		RESET_VALUE : std_logic;
---		ADDR_WIDTH : integer range 1 to integer‘high;
---		DATA_WIDTH : integer range 1 to integer‘high
---  );
   port
   (
 
---		led_a : out std_logic;
 		sys_clk : in std_logic;
     sys_res_n : in std_logic;
---		address : in std_logic_vector(6 downto 0);
---    data_out : out std_logic_vector(DATA_WIDTH - 1 downto 0);
---    wr       : in std_logic;
---    data_in : in std_logic_vector(DATA_WIDTH - 1 downto 0);
+		lb_addr : out std_logic_vector(6 downto 0);
+   	lb_data : out std_logic_vector(7 downto 0);
+   	wr_enable : out std_logic;
 		vga_free : in std_logic;
 		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
   	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
