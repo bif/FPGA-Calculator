@@ -5,64 +5,53 @@
     <outputnames_moore>s_out7,s_out6,s_out5,s_out4,s_out3,s_out2,s_out1,s_out0</outputnames_moore>
     <inputnames>i_7,i_6,i_5,i_4,i_3,i_2,i_1,i_0</inputnames>
     <outputnames>o_7,o_6,o_5,o_4,o_3,o_2,o_1,o_0</outputnames>
-    <itransition ypos="43,2" endx="398,4299269691296" xpos="352,8" endy="70,87027431502167" />
-    <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="105,6" code="0" xpos="434,4" linewidth="1" >CLEAR               SCREEN</state>
+    <itransition ypos="17,60000000000001" endx="438,0299269691296" xpos="392,4" endy="45,27027431502168" />
+    <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="80" code="0" xpos="474" linewidth="1" >CLEAR               SCREEN</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="629,6" code="1" xpos="704" linewidth="1" >ENTER_2</state>
     <state pencolor="0" radius="50" description="" finalstate="1" moore_outputs="" ypos="129" code="5" xpos="703" linewidth="1" >CHECK          ASCII</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="294,8" code="6" xpos="699,1999999999999" linewidth="1" >ENTER_1</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="295" code="4" xpos="973" linewidth="1" >BKSP_1</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="462" code="7" xpos="978" linewidth="1" >BKSP_2</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="634" code="8" xpos="983,5999999999999" linewidth="1" >BKSP_3</state>
-    <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="302" code="9" xpos="404" linewidth="1" >SAVE_VALUE</state>
+    <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="277" code="9" xpos="402" linewidth="1" >SAVE_VALUE</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="460,8" code="11" xpos="703,1999999999999" linewidth="1" >WAIT               STATE</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="375,6" code="2" xpos="1162,8" linewidth="1" >WAIT               STATE</state>
     <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="558" code="10" xpos="1153,2" linewidth="1" >WAIT               STATE</state>
-    <transition c1x="377,032894621494" c2y="91,59183217808612" c1y="222,2576839324842" description="" straight="1" type="1" ypos="143,2288347353439" endx="384,9904614838651" xpos="401,4747696065741" endy="113,2614296069717" c2x="305,15692964699" >
-      <from>0</from>
-      <to>0</to>
-      <inputs default="0" any="0" invert="0" >count&lt;60</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="542,3050510654039" c2y="105,3402416695987" c1y="104,0411631141952" description="" straight="1" type="1" ypos="102,7420845587918" endx="658,2786404500042" xpos="484,3182563731037" endy="106,6393202250021" c2x="600,2918457577041" >
+    <state pencolor="0" radius="50" description="" finalstate="0" moore_outputs="" ypos="372" code="3" xpos="857" linewidth="1" >DISABLE</state>
+    <transition c1x="572,7050510654038" c2y="87,80690833626534" c1y="77,97449644752857" description="" straight="0" type="1" ypos="77,14208455879181" endx="658,2786404500042" xpos="523,9182563731038" endy="106,6393202250021" c2x="614,4918457577041" >
       <from>0</from>
       <to>5</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
+      <inputs default="0" any="0" invert="0" >count>=60</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="538,8334389087649" c2y="271,9463676111693" c1y="645,1412189394169" description="" straight="0" type="1" ypos="630,7360702676648" endx="673,4745002807891" xpos="654,0129082227529" endy="169,3515162829215" c2x="548,6539695947771" >
+    <transition c1x="551,3744920070573" c2y="252,888974145198" c1y="601,6616912744681" description="" straight="0" type="1" ypos="616,5204723350512" endx="659,1052213542807" xpos="655,7410530982924" endy="152,9426065340287" c2x="535,7591909490578" >
       <from>1</from>
       <to>5</to>
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="811,2978932903701" c2y="705,3236871012091" c1y="556,2027105715181" description="" straight="1" type="1" ypos="613,0132310940176" endx="750,795031900744" xpos="751,1686240763872" endy="647,2132049726436" c2x="809,6689321030462" >
-      <from>1</from>
-      <to>1</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="701,4985978203438" c2y="222,8662534042491" c1y="200,9325068084982" description="" straight="1" type="1" ypos="178,9987602127473" endx="699,2000013513513" xpos="702,6478960548399" endy="244,8" c2x="700,3492995858473" >
+    <transition c1x="701,4985978203437" c2y="222,8662534042491" c1y="200,9325068084982" description="" straight="1" type="1" ypos="178,9987602127473" endx="699,2000013513513" xpos="702,6478960548399" endy="244,8" c2x="700,3492995858475" >
       <from>5</from>
       <to>6</to>
-      <inputs default="0" any="0" invert="0" >ascii_sign=ENTER</inputs>
+      <inputs default="0" any="0" invert="0" >ascii_sign=ENTER&amp;6enable=1</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="756,6401691436923" c2y="138,9040604398232" c1y="10,58238199391074" description="" straight="1" type="1" ypos="90,34633147587049" endx="752,1418349739623" xpos="734,7158305839012" endy="119,7761149512882" c2x="832,622180149866" >
-      <from>5</from>
-      <to>5</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="839,9709469255677" c2y="192,5158914015763" c1y="139,49617291906" description="" straight="0" type="1" ypos="139,4764544365437" endx="950,132599368962" xpos="751,8901207038705" endy="250,5356098840927" c2x="911,0517731472647" >
-      <from>5</from>
-      <to>4</to>
-      <inputs default="0" any="0" invert="0" >ascii_sign=BKSP</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="556,6978874762842" c2y="189,1284912291255" c1y="155,9550688938633" description="" straight="0" type="1" ypos="144,5010299915459" endx="440,4768602070043" xpos="655,4635080259261" endy="267,8029435559335" c2x="490,3556198286811" >
+    <transition c1x="560,1003984960918" c2y="156,4280898771657" c1y="136,6234745559664" description="" straight="0" type="1" ypos="122,6684056621031" endx="413,3256747330139" xpos="653,4025110198075" endy="228,2995986480402" c2x="483,681294561695" >
       <from>5</from>
       <to>9</to>
-      <inputs default="0" any="0" invert="0" >ascii_sign=([0:9]or'+'or'-'or'*'or'/')</inputs>
+      <inputs default="0" any="0" invert="0" >ascii_sign=([0:9]or'+'or'-'or'*'or'/')&amp;&amp;enable=1</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="835,3162620784444" c2y="166,617437258395" c1y="105,5726167061559" description="" straight="0" type="1" ypos="104,0764437870959" endx="976,1850077112668" xpos="746,3453151528768" endy="245,1015458568187" c2x="979,2367808585316" >
+      <from>5</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0" >ascii_sign=BKSP&amp;&amp;enable=1</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="802,698425095072" c2y="255,3721653421435" c1y="191,4153891303269" description="" straight="0" type="1" ypos="163,2337730832024" endx="840,5739687529364" xpos="739,4424036046994" endy="324,7751601646921" c2x="829,5284153383809" >
+      <from>5</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0" >enable=0</inputs>
       <outputs></outputs>
     </transition>
     <transition c1x="697,6393341464815" c2y="388,9024730814203" c1y="366,8263614076871" description="" straight="1" type="1" ypos="344,7502497339539" endx="698,9778461656908" xpos="696,9700781368769" endy="410,9785847551535" c2x="698,3085901560862" >
@@ -71,94 +60,52 @@
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="808,4117702512242" c2y="373,3069159234724" c1y="224,2819935151751" description="" straight="1" type="1" ypos="279,4734316955272" endx="745,5101027536008" xpos="746,7930278928366" endy="313,6513761553614" c2x="802,8178756401849" >
-      <from>6</from>
-      <to>6</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="1051,186701761444" c2y="344,4119015353323" c1y="329,477791496217" description="" straight="1" type="1" ypos="314,5436814571017" endx="1115,515670034757" xpos="1019,022217624788" endy="359,3460115744476" c2x="1083,3511858981" >
+    <transition c1x="1051,186701761444" c2y="344,4119015353323" c1y="329,477791496217" description="" straight="1" type="1" ypos="314,5436814571017" endx="1115,515670034757" xpos="1019,022217624788" endy="359,3460115744476" c2x="1083,351185898101" >
       <from>4</from>
       <to>2</to>
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="1036,678880925352" c2y="316,0754531328799" c1y="181,6642151653115" description="" straight="1" type="1" ypos="259,2335944383875" endx="1022,755363627099" xpos="1007,939436646893" endy="290,0599807353506" c2x="1101,28026066096" >
-      <from>4</from>
-      <to>4</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="1052,711941569246" c2y="512,9531458273412" c1y="499,4899392127941" description="" straight="1" type="1" ypos="486,0267325982471" endx="1114,438250724136" xpos="1021,848786991801" endy="526,4163524418883" c2x="1083,575096146691" >
+    <transition c1x="1052,711941569246" c2y="512,9531458273412" c1y="499,4899392127942" description="" straight="1" type="1" ypos="486,0267325982471" endx="1114,438250724136" xpos="1021,848786991801" endy="526,4163524418883" c2x="1083,575096146691" >
       <from>7</from>
       <to>10</to>
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="899,5658643656144" c2y="352,8377747325359" c1y="358,3270220004904" description="" straight="1" type="1" ypos="415,6766711438846" endx="993,3599845613475" xpos="959,1811476522031" endy="414,4177462253503" c2x="1048,594678090175" >
-      <from>7</from>
-      <to>7</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="832,9277160554794" c2y="255,7953425994721" c1y="496,0484669635518" description="" straight="0" type="1" ypos="604,3015913276316" endx="741,6320020384231" xpos="943,3755730640074" endy="160,7422182353923" c2x="868,8798590469512" >
+    <transition c1x="895,9277160554794" c2y="533,6003694521664" c1y="555,0484669635518" description="" straight="0" type="1" ypos="604,3015913276316" endx="872,4252349018718" xpos="943,3755730640074" endy="419,5611409474381" c2x="888,7625704586359" >
       <from>8</from>
-      <to>5</to>
+      <to>3</to>
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="904,8330070051663" c2y="524,6114081863191" c1y="530,5796885783463" description="" straight="1" type="1" ypos="587,73740473958" endx="998,8069493758112" xpos="964,6323359432278" endy="586,3686165361376" c2x="1053,843405249318" >
-      <from>8</from>
-      <to>8</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="481,1906404398563" c2y="410,3115097743298" c1y="406,602127265581" description="" straight="1" type="1" ypos="348,5447323308218" endx="388,0729561831482" xpos="422,2643886361453" endy="349,395456272264" c2x="332,1069067962349" >
-      <from>9</from>
-      <to>9</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="538,2787352961484" c2y="208,8181421333501" c1y="270,3623589398267" description="" straight="0" type="1" ypos="294,2949823730857" endx="660,6555005573466" xpos="453,4027600784505" endy="155,5884066267824" c2x="608,2102110711928" >
+    <transition c1x="536,2787352961484" c2y="198,6023285369066" c1y="245,3623589398267" description="" straight="0" type="1" ypos="269,2949823730857" endx="655,2357054654327" xpos="451,4027600784505" endy="143,7841864035565" c2x="601,4459165366255" >
       <from>9</from>
       <to>5</to>
       <inputs default="0" any="0" invert="0" >vga_free=0</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="705,218628129954" c2y="556,6436304888751" c1y="533,6872609777503" description="" straight="1" type="1" ypos="510,7308914666255" endx="704,0000010775863" xpos="705,8279416561379" endy="579,6" c2x="704,6093146037701" >
+    <transition c1x="705,218628129954" c2y="556,6436304888751" c1y="533,6872609777504" description="" straight="1" type="1" ypos="510,7308914666255" endx="704,0000010775863" xpos="705,8279416561379" endy="579,6" c2x="704,6093146037701" >
       <from>11</from>
       <to>1</to>
       <inputs default="0" any="0" invert="0" >vga_free=1</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="808,3221604375743" c2y="533,4245026412633" c1y="384,3190782944082" description="" straight="1" type="1" ypos="442,8510460345565" endx="750,4865759728526" xpos="749,8672803101529" endy="477,0474531162158" c2x="811,0224541369242" >
-      <from>11</from>
-      <to>11</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="1087,264084170253" c2y="432,9417503586801" c1y="414,8591104734576" description="" straight="1" type="1" ypos="396,7764705882353" endx="1026,780487804878" xpos="1117,505882352941" endy="451,0243902439024" c2x="1057,022285987566" >
+    <transition c1x="1087,264084170253" c2y="432,9417503586801" c1y="414,8591104734577" description="" straight="1" type="1" ypos="396,7764705882353" endx="1026,780487804878" xpos="1117,505882352941" endy="451,0243902439024" c2x="1057,022285987566" >
       <from>2</from>
       <to>7</to>
       <inputs default="0" any="0" invert="0" >vga_free=1</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="1077,908015520921" c2y="262,1540980334694" c1y="277,1451830980129" description="" straight="1" type="1" ypos="330,572418181771" endx="1175,091316385458" xpos="1141,062546708441" endy="327,1343055191346" c2x="1226,28249622534" >
-      <from>2</from>
-      <to>2</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
-      <outputs></outputs>
-    </transition>
-    <transition c1x="1082,572126679244" c2y="608,7604410498866" c1y="593,6035281332978" description="" straight="1" type="1" ypos="578,446615216709" endx="1032,572852162833" xpos="1107,57176393745" endy="623,9173539664754" c2x="1057,572489421038" >
+    <transition c1x="1082,572126679244" c2y="608,7604410498866" c1y="593,6035281332978" description="" straight="1" type="1" ypos="578,446615216709" endx="1032,572852162833" xpos="1107,57176393745" endy="623,9173539664754" c2x="1057,572489421039" >
       <from>10</from>
       <to>8</to>
       <inputs default="0" any="0" invert="0" >vga_free=1</inputs>
       <outputs></outputs>
     </transition>
-    <transition c1x="1088,704535374086" c2y="458,7892164939964" c1y="445,1269073574775" description="" straight="1" type="1" ypos="509,6462731368676" endx="1174,533517623682" xpos="1140,475335036018" endy="512,7796392561928" c2x="1237,207264186646" >
-      <from>10</from>
-      <to>10</to>
-      <inputs default="0" any="0" invert="0" >else</inputs>
+    <transition c1x="884,8712822017816" c2y="164,7698075229957" c1y="240,5396150459914" description="" straight="0" type="1" ypos="326,3094225689871" endx="753" xpos="877,3069233026724" endy="129" c2x="854,4356411008908" >
+      <from>3</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0" >enable=1</inputs>
       <outputs></outputs>
     </transition>
   </machine>

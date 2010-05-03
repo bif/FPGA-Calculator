@@ -1,4 +1,3 @@
-
 %\begin{tiny}\end{tiny}
 \documentclass[12pt,a4paper,titlepage,oneside]{article}
 \usepackage{spec_calculator}
@@ -7,17 +6,17 @@
 
 \title{Calculator}
 %TODO: for final Version
-%\group{
-%	\groupnr	18
-%} 
-%\author{
-%	\begin{tabbing}
-%    	\hspace*{4cm} \= \kill
-%		Harald Glanzer,	\> \matrnr 0727156 {\small harald.glanzer@gmail.com} \\
-%		\hspace*{4cm} \= \kill
-%		Stefan Simhandl,	\> \matrnr 0725240 {\small e0725240@student.tuwien.ac.at} \\
-%	\end{tabbing}
-%}
+\group{
+	\groupnr	18
+} 
+\author{
+	\begin{tabbing}
+    	\hspace*{4cm} \= \kill
+		Harald Glanzer,	\> \matrnr 0727156 {\small harald.glanzer@gmail.com} \\
+		\hspace*{4cm} \= \kill
+		Stefan Simhandl,	\> \matrnr 0725240 {\small e0725240@student.tuwien.ac.at} \\
+	\end{tabbing}
+}
 
 
 \begin{document}
@@ -131,7 +130,7 @@ KP 9 & 7D & F0,7D \\
 Prinzipiell müsste also die Logik, welche die ankommenden Scancodes auswertet und auf die den gedrückten Tasten entsprechenden ASCII-Werte mappt zuerst auf einen WAIT-Code warten und dürfte erst bei Erhalt des zugehörigen BREAK-Codes das entsprechende Zeichen abspeichern. Über die Zeitdifferenz zwischen WAIT - und BREAK-Code und einer frei zu wählenden Tastenwiederholungsrate könnte die Anzahl der zu speichernden Zeichen bestimmt werden. Damit würde die zugehörige State-Machine allerdings komplexer als notwendig werden. Wir haben uns deshalb dazu entschlossen, nur die BREAK-Code-Sequenzen der gewünschten Zeichen zu detektieren, und alle anderen ankommenden Codes zu ignorieren. Daraus ergibt sich natürlich 1. dass das Zeichen erst erkannt wird wenn die entsprechende Taste wieder losgelassen wird, und 2. dass - egal wie lange die Taste gedrückt wurde, immer nur ein einzelnes Zeichen erkannt wird. 
 Sobald ein neues Zeichen erkannt wurde muss dieses natürlich in einem entsprechenden Buffer abgespeichert werden. Sobald ein <ENTER> - Zeichen erkannt wurde oder die maximale Eingabelänge erreicht wurde wird die Eingabe abgeschlossen.
 
-Abbildung\ref{fig:ps2sm}  zeigt die Funktionalität.
+Abbildung\ref{fig:scan}  zeigt die Funktionalität.
 
 \subsubsection{Datenausgabe}
 
@@ -212,24 +211,31 @@ Baudrate  & Teiler\\
 	\label{fig:mainSM}
 \end{figure}
 
-Das Programm setzt sich aus dem Scancode-Handler-Modul, dem RS232-Modul(Senden und Empfangen), einem Ringbuffer, einem Buffermodul($Line\_buffer$) sowie dem Parser/Calculator-Modul zusammen, siehe Abbildung~\ref{fig:mainSM}. 
+Das Programm setzt sich aus dem Scancode-Handler-Modul, dem RS232-Modul(Senden und Empfangen), einem Ringbuffer Modul, einem Line Buffer Modul, Memory Modul sowie dem Parser/Calculator-Modul zusammen, siehe Abbildung~\ref{fig:mainSM}. 
+Die beiden Puffer instanzieren dabei das Modul Memory.
 
-Beim Einschalten wird ein Reset/Init sämtlicher verwendeter Speicher durchgeführt. Danach beginnt die Programmausführung mit dem Scancode-Modul, parallel dazu schaltet das RS232-Modul in Empfangsmodus - diese 2 Module werden laufen also parallel ab.
+Beim Einschalten wird ein Reset/Init sämmtlicher verwendeter Speicher durchgeführt. Danach beginnt die Programmausführung mit dem Scancode-Modul, parallel dazu schaltet das RS232-Modul in Empfangsmodus - diese 2 Module werden laufen also parallel ab.
 
-Das Scancode-Modul kümmert sich um das Einlesen von Usereingaben und wechselt in das Parser/Calculator-Modul sobald die Eingabe abgeschlossen ist. Die Ausgabe auf den Monitor erfolgt in beiden Modulen: Eingaben werden von ersterem und das Ergebnis bzw. etwaige Fehlermeldungen werden von zweiterem ausgegeben. Dieses Modul benötigt die 2 zur Verfügung gestellten Module 'VGA' sowie 'PS/2'. Eine genauere Beschreibung ist in den nachfolgenden Kapiteln zu finden.
+Die Main ist die zentrale Steuereinheit des gesammten Programms. Sie aktiviert bzw. deaktiviert (Signal 'enable') den Line Buffer sowie das Calculator Modul. Der Zugriff auf die beiden Speicherbereiche (Lien Buffer und Ringbuffer) sowie die Kommunikation mit dem RS232 Modul wird ebenfalls vom Main Modul geregelt.
 
-Das RS232 - Modul ist standardmässig im RX-Modus - wird das gültige Triggerzeichen 's' gelesen wird in den TX-Modus gewechselt, der Ringbuffer gesendet und zurück in den RX-Modus gewechselt. Genauere Beschreibung: siehe unten.
 
 \subsection{Scancode Handler}
 
-In Abbildung\ref{fig:ps2sm}  ist die Funktionalität des Scancode-Moduls abgebildet:
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.4]{figures/scancode.png} 
+	\caption{Statemachine für das Scancode Handler Modul}
+	\label{fig:scan}
+\end{figure}
 
-Zuerst werden die verwendeten Buffer und Signale resettet/initialisiert. Danach wird in 'INIT / WAIT 0xXXXX new\_data' auf eine steigende Flanke von $new\_data$ gewartet, wenn diese auftritt wird im Status 'WAIT 0xXXXX clk' auf eine positivie Clock-Flanke gewartet. Tritt diese auf liegt ein neuer  Scancode an der 8-Bit-Variable $data$ an und kann von unserem Modul in einen temporären Buffer eingelesen werden. Dieser 1. Scancode wird in 'READ Scancode' geprüft(siehe Tabelle~\ref{tab:scan_codes}, falls ungültig wird das Zeichen verworfen und zurück in  'INIT / WAIT 0xXXXX new\_data' gewechselt. Andernfalls wird entweder in den oberen(Scancode war ein 0xF0 oder in den unteren Teil(Scancode war ein 0xF0) der Statemachine verzweigt. Nun folgt ein bzw. 2 weitere derartige READ-Zyklen wie gerade beschrieben. Ist die resultierende Bytesequenz letzendlich gültig wird in den State 'WR CHAR INC PTR' gewchselt. Hier wird per Lookup-Table die Bytesequenz auf den zugehörigen ASCII-Code gemappt und diese in den Speicher geschrieben und der zugehörige Zeiger erhöht. Zum Speichern der Eingabe wird von uns das Array $Line\_buffer$ verwendet - dies ist ein CHAR-Array mit 70 Elementen(70 erlaubte Eingabezeichen), zusätzlich wird noch der Zeiger $Line\_ptr$ benötigt, welcher immer auf die nächste freie Stelle von $Line\_buffer$ zeigt. Ausserdem wird vom Scancode-Modul die VGA-Ausgabe der \textbf{eingegebenen} Zeichen realisiert: das aktuelle Zeichen wird per $COMMAND\_SET\_CHARACTER$ an die aktuelle Position des VGA-Speichers geschrieben.
 
-Zu beachten ist der Sonderfall <BACKSPACE>, Bytesequenz 0xF0-0x66: wird diese erkannt muss der $Line\_ptr$ dekrementiert und das letzte geschriebene Zeichen per <SPACE> im VGA-Buffer überschrieben werden. Dazu wird $COMMAND\_SET\_CURSOR\_COLUMN$ in Verbindung mit $LINE\_ptr$ verwendet.  
+In Abbildung\ref{fig:scan}  ist die Funktionalität des Scancode-Moduls abgebildet:
 
-War das eingegebene Zeichen <ENTER> oder wurden bereits 70 andere gültige Zeichen eingegeben, ist die Eingabe abgeschlossen und das Parser/Calculator - Modul wird per Signal benachrichtigt dass eine neuen Line zur Berechnung bereitsteht. Der Zustand wird erst verlassen wenn die Berechnung vom Parser/Calculator abgeschlossen wurde - danach beginnt ein neuer Programmzyklus.
-Werden noch weitere Eingaben erwartet wird wieder in den Zustand 'INIT / WAIT 0xXXXX new\_data' gewechselt und auf eine neue Breakcode-Sequenz gewartet.
+Zuerst werden die verwendeten Puffer und Signale resettet/initialisiert. Danach wird in 'READY' auf eine steigende Flanke von $data\_new$ gewartet. Wenn diese auftritt wird überprüft ob das empfangene Byte hexadezimal gleich F0 oder E0 ist. Ist es gleich F0 wird sofort in den Zwischenzustand 'WAIT\_NEXT\_DATA' gewechselt. Da wir die Breakcodes der Zeichen auswerten, ist im Zustand 'E\_0' das nächste eingelesene Byte, hexadezimal immer F0. Dieses wird bei der nächsten steigenden Flanke von $data\_new$ einfach ignoriert und ebenfalls in den Zustand 'WAIT\_NEXT\_DATA' gewechselt.
+Diesen Zustand haben wir eingefürht da es möglich ist, dass das nächste Zeichen vom PS2 Modul noch nicht zur Verfügung steht obwohl bereits die steigende Flanke von $data\_new$ erkannt wird.
+Nur wenn das eingelesene Byte nicht F0 ist, wird in den Zustand 'CONVERT' gewechselt und das entsprechende Ascii Zeichen am Ausgang bereit gestellt sowie der Port $new\_ascii$ gesetzt. Dadurch wird signalisiert, dass ein neues Zeichen eingelesen wurde und zur weiterverarbeitung bereit steht.  
+
+
 \subsection{Parser (Scancode Handler Puffer einlesen \& interpretieren)}
 
 Abbildung~\ref{fig:parser} zeigt eine Statemachine für den Parser, in Abbildung~\ref{fig:entity_parser} sind die Ein- und Ausgänge des Moduls dargestellt (Entity). Der Parser wird vom Calculatormodul verwendet um den mathematischen Ausdruck welchen der Scancodehandler in einem Puffer (70 Zeichen Puffer) in Form von Ascii Zeichen zur Verfügung stellt auszuwerten und zu interpretieren. \\
@@ -421,7 +427,19 @@ Im Ringpuffer (siehe Abbildung~\ref{fig:entity_ring}) werden die letzten 50 gül
 
 \subsection{Line Buffer}
 
-Im Line Buffer (siehe Abbildung~\ref{fig:entity_buffer}) wird die aktuelle Rechnung zwischengespeichert. Zum schreiben auf den Puffer muss das 'write\_puffer' Signal aktiviert werden. Zusätzlich muss am Address Port (Signal'address\_puffer') die gewünschte Adresse sowie am Dateneingang (Signalbus 'input\_puffer') das zu speichernde Byte angelegt werden.
+Der Line Buffer ist dafür zuständig die aktuell eingegebene Rechnung zwischen zu speichern. Dafür wird das Memory Modul (für die eigentliche Zwischenspeicherung) sowie das PS2 Modul und das Scancode Handler Modul (für die Eigabe der Zeichen) verwendet. Eine weitere Aufgabe des Line Buffers ist es, die eingelesenen Zeichen mit Hilfe des VGA Moduls am Bildschirm darzustellen. Die dafür benötigte Statemachine ist in Abbildung ~\ref{fig:fsm_lb} dargestellt. 
+
+Um die Zeichen ENTER und BACKSPACE richtig darzustellen, müssen dem VGA Modul mehr als nur ein Zeichen übergeben werden (ENTER: linefeed und nextline, BKSP: Cursorposition um eins verrigern, Leerzeichen schreiben und Cursorposition wieder um eins verringern). Wenn für das Schreiben eines Zeichens mehr als ein VGA Befehl benötigt wird braucht man einen Zwischenzustand (WAIT\_STATE), da das VGA Modul eine gewisse Zeit braucht um ein Zeichen auf dem Bildschirm abzubilden.
+Da bei einem Reset der VGA Speicher nicht gelöscht wird, haben wir zusätzlich noch den Zustand CLEAR\_SCREEN eingeführ. In diesem Zustand wird 30 mal ein nextline Befehl dem VGA Modul übergeben um bei einem Reset den Bildschirm zu leeren. Danach wird in den eigentlichen Startzustand CHECK\_ASCII gewechselt.
+Die Ein- und Ausgänge des Moduls sind in Abbildung~\ref{fig:entity_buffer} zu finden. 
+Mit Dem Signal 'read\_ready' signalisiert der Line Buffer das eine Eingabe abgeschlossen ist und zur weiterverarbeitung (Berechnung) bereit steht. Durch den Eingangsport 'enable' kann der Linebuffer abgeschaltet werden. Dies ist wichtig, da während der Auswertung des einglesenen Ausdrucks dieser nicht verändert werden darf. Erst wenn die Berechnung abgeschlossen ist, darf der Line Buffer wieder Zeichen einlesen. Sobald der Port 'enable' auf 1 gesetzt wird, wird der Speicher mit Leerzeichen überschrieben und der Linebuffer kehrt in den Zustand 'CHECK\_ASCII' zurück.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.40]{figures/line_buffer.png} 
+	\caption{State Machine Line Buffer}
+	\label{fig:fsm_lb}
+\end{figure}
 
 \begin{figure}[!ht]
 	\centering
@@ -437,12 +455,33 @@ Hardware spezifisches zu den Schnittstellen, + Logische Implementierung
 
 \subsubsection{RS232-Schnittstelle}
 
-In Abbildung~\ref{fig:rs232statemachine} ist die Statemachine des RS232 Moduls zu sehen, Abbildung~\ref{fig:entity_rs232} zeigt seine Ein- und Ausgänge (Entity). Ihre Funktionalität wird im Folgenden beschrieben. \\
-Wenn das Board neu gestartet wurde werden zuerst die Buffer für Sende/Empfangsroutinen initialisiert. Danach muss die Empfangsroutine aktiviert werden. Dazu muss ein Baudrategenerator gestartet werden, welcher, sobald ein START-Bit erkannt wurde(wechsel von IDLE/negativer Spannungspegl = logische HIGH auf positiven Pegel), immer möglichst genau in der Mitte der zu empfangenden Bits den aktuellen logischen Pegel auf der RX-Leitung  einliest und in einen Buffer speichert(LSB wird immer als erstes gesendet). Danach muss noch ein gültiges STOP-Bit gelesen werden(negativer Spannungspegel). Jetzt muss noch geprüft werden ob dieses eingelesene Byte mit dem Triggerzeichen(bei uns 's') übereinstimmt. Falls ja wird in die Senderoutine gewechselt. Weiters wird in die Senderoutine gewechselt wenn das Signal 'pushbutton' aktiviert wird(Taste muss entprellt werden). Während eines Sendevorgangs können keine Zeichen eingelesen werden, diese Routine 'blockiert' also.
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart.png} 
+	\caption{Entity der UART Hauptinstanz}
+	\label{fig:entity_rs232}
+\end{figure}
 
-In der Senderoutine wird nun der Ringbuffer, in dem die letzten 50 Berechhnungen samt jeweiligen Ergebnissen gespeichert sind, zeilenweise ausgelesen. Diese Zeilen werden Zeichenweise übertragen. Dies geschieht analog zur Empfangsroutine: die TX-Leitung wird von IDLE(logisch HIGH, negativer Spannungspegel) für die Dauer eines Bits auf den positiven Spannungspegel(=START-Bit, logisch LOW) gezogen. Danach wird das zu sendende Zeichen bitweise (LSB wieder zuerst) auf die Datenleitung gelegt, und der Frame mit einem Stop-Bit(negativer Spannungspegel) abgeschlossen). 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart_rx.png} 
+	\caption{Entity der UART-Empfangsinsanz}
+	\label{fig:entity_rs232_rx}
+\end{figure}
 
-Eine Zeile ist mittels Newline, ASCII 0x0A abgeschlossen. Wir haben beschlossen, sobald ein Sendevorgang angestossen wurde, immer den gesamten Ringbuffer(also alle 50 Zeilen zu je max. 70 Zeichen) zu senden. Der Ringbuffer wird nach einem Reset mit Newlines initialisiert. Somit wird beim Senden für eine leere Zeile auch das Newline gesendet. 
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.3]{figures/uart_tx.png} 
+	\caption{Entity der UART-Sendeinstanz}
+	\label{fig:entity_rs232_tx}
+\end{figure}
+
+In Abbildung~\ref{fig:rs232statemachine} ist die Statemachine des RS232 Moduls zu sehen, Abbildung~\ref{fig:entity_rs232} zeigt Ein- und Ausgänge der Hauptinstanz. Die UART-Funktionalität ist modular aufgebaut, zusätzlich zur UART-Hauptinstanz gibt es die Unterinstanzen UART\_RX~\ref{fig:entity_rs232_rx} und UART\_TX~\ref{fig:entity_rs232_tx} . Die Funktionalität wird im Folgenden beschrieben. \\
+Wenn das Board neu gestartet wurde werden zuerst die Buffer für Sende/Empfangsroutinen initialisiert. Danach muss die Empfangsroutine aktiviert werden. Dazu muss ein Baudrategenerator gestartet werden, welcher, sobald ein START-Bit erkannt wurde(wechsel von IDLE/negativer Spannungspegl = logische HIGH auf positiven Pegel), immer möglichst genau in der Mitte der zu empfangenden Bits den aktuellen logischen Pegel auf der RX-Leitung  einliest und in einen Buffer speichert(LSB wird immer als erstes gesendet). Danach muss noch ein gültiges STOP-Bit gelesen werden(negativer Spannungspegel). Jetzt muss noch geprüft werden ob dieses eingelesene Byte mit dem Triggerzeichen(bei uns 's') übereinstimmt. Falls ja wird die Main-Instanz per Signal verständigt dass das Triggerzeichen empfangen wurde. Gleiches gilt wenn das Signal für den 'pushbutton' aktiviert wird(Taste muss entprellt werden). Während eines Sendevorgangs können keine Zeichen eingelesen werden, diese Routine 'blockiert' also.
+Wenn also ein Sendevorgang angestossen wurde versorgt die Main-Instanz das UART-Modul(und in weiterer Folge das UART-TX-Modul) mit den einzelnen Bytes aus der Memory-Instanz(wo die fertigen Berechnungen gespeichert werden). Dazu kopiert zuerst die Main-Instanz das 1. zu sendende Byte in 'byte\_out' und setzt das Steuersignal 'more\_data' auf HIGH(dieses bleibt HIGH solange Bytes zu senden sind). UART\_TX setzt nun das Signal 'tx\_busy' und schreibt das Byte auf die Serielle Schnittstelle, sobald die Leitung wieder auf IDLE gesetzt wurde wird 'tx\_busy' auf LOW gesetzt. Dies ist das Zeichen für die Main-Instanz, das nächste Zeichen aus dem Speicher zu holen usw.  
+
+
+Eine Zeile wird mittels Newline 0x0A und Carriage Return 0x0D abgeschlossen, diese Sonderzeichen sind nicht im Speicher sondern müssen von der Main-Instanz extra eingefügt werden. Weiters haben wir beschlossen, sobald ein Sendevorgang angestossen wurde, immer den gesamten Ringbuffer(also alle 50 Zeilen zu je max. 80 Zeichen) zu senden, egal wieviele Berechnungen bisher gespeichert wurden.
 
 \begin{figure}[!ht]
 	\centering
@@ -451,12 +490,7 @@ Eine Zeile ist mittels Newline, ASCII 0x0A abgeschlossen. Wir haben beschlossen,
 	\label{fig:rs232statemachine}
 \end{figure}
 
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.3]{figures/entity_rs232.png} 
-	\caption{Entity des RS232 Moduls}
-	\label{fig:entity_rs232}
-\end{figure}
+
 
 \subsubsection{PS/2-Schnittstelle}
 
@@ -483,13 +517,6 @@ Siehe auch Kapitel 'Scancode - Handler' bzw. 'Calculator'.
 	\includegraphics[scale=0.3]{figures/entity_vga.png} 
 	\caption{Entity des VGA Moduls}
 	\label{fig:entity_vga}
-\end{figure}
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[scale=0.4 ,angle=90]{figures/scancode.png} 
-	\caption{Statemachine für das PS/2-Scancode-Modul }
-	\label{fig:ps2sm}
 \end{figure}
 
 \section{Testfälle}
