@@ -23,12 +23,14 @@ architecture sim of main_tb is
 	vga_vsync_n : out std_logic;
 	ps2_clk : inout std_logic;
 	ps2_data : inout std_logic;
-	uart_txd : out  std_logic
+	uart_tx : out  std_logic;
+	uart_rx : in  std_logic
     );
   end component calculator_top;
   
   signal sys_clk, sys_res_n : std_logic;
   signal btn_a : std_logic;
+  signal uart_rx : std_logic;
   signal stop : boolean := false;
 begin
   uut : calculator_top
@@ -36,7 +38,8 @@ begin
     (
       sys_clk => sys_clk,
       sys_res_n => sys_res_n,
-      btn_a => btn_a
+      btn_a => btn_a,
+	uart_rx => uart_rx
     );
     
   process
@@ -44,9 +47,9 @@ begin
     sys_clk <= '0';
     wait for 15 ns;
     sys_clk <= '1';
-    if stop = true then
-      wait;
-    end if;
+  --  if stop = true then
+  --    wait;
+  --  end if;
     wait for 15 ns;
   end process;
   
@@ -54,51 +57,37 @@ begin
   begin
     sys_res_n <= '0';
     btn_a <= '0';
-    wait for 10 us;
-    sys_res_n <= '1';
-    wait for 2 ms;
-    btn_a <= '0';
+    uart_rx <= '1';
     wait for 100 ns;
-    btn_a <= '1';
-    wait for 50 us;
+    sys_res_n <= '1';	-- RESET END
+    wait for 1 ms;
+    btn_a <= '0';	-- btn_a = Log 0
+    wait for 100 ns;
+    btn_a <= '1';	-- btn_a --> HIGH
+    wait for 3 ms;
     btn_a <= '0';
-    wait for 150 us;
-    btn_a <= '1';
-    wait for 25 us;
-    btn_a <= '0';
-    wait for 175 us;
-    btn_a <= '1';
-    wait for 1 us;
-    btn_a <= '0';
-    wait for 2 ms;
-    btn_a <= '1';
-    wait for 100 us;
-    btn_a <= '0';
-    wait for 50 us;
-    btn_a <= '1';
-    wait for 150 us;
-    btn_a <= '0';
-    wait for 25 us;
-    btn_a <= '1';
-    wait for 175 us;
-    btn_a <= '0';
-    wait for 1 us;
-    btn_a <= '1';
-    wait for 2 ms;
-    btn_a <= '0';
-    wait for 100 us;
-    btn_a <= '1';
-    wait for 50 us;
-    btn_a <= '0';
-    wait for 150 us;
-    btn_a <= '1';
-    wait for 25 us;
-    btn_a <= '0';
-    wait for 175 us;
-    btn_a <= '1';
-    wait for 1 us;
-    btn_a <= '0';
-    wait for 2 ms;
+    wait for 2 ms;			-- byte: 01010101
+	uart_rx <= '0';	-- startbit
+    wait for 8730 ns;
+	uart_rx <= '1';	-- data0
+    wait for 8730 ns;
+	uart_rx <= '0'; -- data1
+    wait for 8730 ns;
+	uart_rx <= '1'; -- data2
+    wait for 8730 ns;
+	uart_rx <= '0'; -- data3
+    wait for 8730 ns;
+	uart_rx <= '1'; --data4
+    wait for 8730 ns;
+	uart_rx <= '0'; --data5
+    wait for 8730 ns;
+	uart_rx <= '1'; --data6
+    wait for 8730 ns;
+	uart_rx <= '0'; --data7
+    wait for 8730 ns;
+	uart_rx <= '0'; --stopbit
+    wait for 8730 ns;
+	uart_rx <= '1'; --idle
     stop <= true;
     wait;
   end process;
