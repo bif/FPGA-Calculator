@@ -32,7 +32,7 @@ begin
     case lb_fsm_state is
 		
 			when CLEAR_SCREEN =>
-				if count <= x"3C" then 	
+				if count <= x"3C" then 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess imm 2 mal aufgerufen wird
 					if vga_free = '0' then
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= CLEAR_SCREEN; 
@@ -110,7 +110,7 @@ begin
 						count_next <= (count + '1');
 					else
 --						if vga_free = '1' then
-							if count <= x"3C" then 	
+							if count <= x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess imm 2 mal aufgerufen wird
 								vga_command_next <= COMMAND_SET_CHAR;
 								vga_command_data_next(7 downto 0) <= x"0A";  
 								count_next <= (count + '1');
