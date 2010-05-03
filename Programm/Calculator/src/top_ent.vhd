@@ -19,6 +19,7 @@ entity calculator_top is
 		vga_vsync_n : out std_logic;
 		ps2_clk : inout std_logic;
 		ps2_data : inout std_logic;
-		uart_txd : out  std_logic
+		uart_tx : out  std_logic;
+		uart_rx : in  std_logic
 	);
 end entity calculator_top;

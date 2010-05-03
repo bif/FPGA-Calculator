@@ -20,12 +20,11 @@ architecture struct of calculator_top is
 	
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
+	signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal ps2_data_sig, ps2_data_conect, ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal ps2_new_data_sig, new_ascii_sig : std_logic;
-
-	signal uart_top_txd_sig : std_logic;
-	signal start_transmit_sig : std_logic := '0';
+	signal uart_top_tx_sig	: std_logic;
+	signal uart_top_rx_sig	: std_logic;
 
 component main is
 	generic
@@ -34,31 +33,23 @@ component main is
 		COMMAND_SIZE : integer;
 		COLOR_SIZE : integer;
 		CHAR_SIZE : integer
-  );
-  port
-  (
-    sys_clk : in std_logic;
-    sys_res_n : in std_logic;
-    sense : in std_logic;
+	);
+	port
+	(
+		sys_clk : in std_logic;
+		sys_res_n : in std_logic;
+		sense : in std_logic;
 		vga_free : in std_logic;
 		vga_command : out std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  	vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
+		vga_command_data : out std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 		new_ascii_in : in std_logic;
-		ascii_sign_in : in std_logic_vector(7 downto 0)
+		ascii_sign_in : in std_logic_vector(7 downto 0);
+		uart_main_tx    : out   std_logic;
+		uart_main_rx    : in    std_logic;
+		trigger_main_tx	: out    std_logic
 	);
 
 end component main;
-
-component uart is
-port
-(
-	sys_clk:        in std_logic;
-	sys_res_n:      in std_logic;
-	start_transmit: in std_logic;
-	uart_inst_txd:  out std_logic
-);
-end component uart;
-
 
 begin
 
@@ -169,29 +160,21 @@ begin
 			COLOR_SIZE => COLOR_SIZE,
 			CHAR_SIZE	=> CHAR_SIZE	
 		)
-    port map
-    (
-      sys_clk => sys_clk,
-      sys_res_n => sys_res_n_sync,
-      sense => btn_a_sync,
-			vga_free => vga_free_sig,
-			vga_command => command_sig,
-			vga_command_data => command_data_sig,
-			new_ascii_in => new_ascii_sig,
-			ascii_sign_in => ascii_sign_sig
-
+	port map
+	(
+		sys_clk => sys_clk,
+		sys_res_n => sys_res_n_sync,
+		sense => btn_a_sync,
+		vga_free => vga_free_sig,
+		vga_command => command_sig,
+		vga_command_data => command_data_sig,
+		new_ascii_in => new_ascii_sig,
+		ascii_sign_in => ascii_sign_sig,
+		uart_main_rx	=>	uart_top_rx_sig,
+		uart_main_tx	=>	uart_top_tx_sig
 	);
 
-	uart_inst : uart
-        port map
-        (
-                uart_inst_txd => uart_top_txd_sig,
-		start_transmit => btn_a_sync,
-		sys_res_n => sys_res_n,
-                sys_clk  => sys_clk
-        );
-
-
-	uart_txd <= uart_top_txd_sig;
-
+	uart_tx <= uart_top_tx_sig;
+	uart_top_rx_sig <= uart_rx;
+	
 end architecture struct;
