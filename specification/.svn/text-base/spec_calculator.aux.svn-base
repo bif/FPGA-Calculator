@@ -1,0 +1,77 @@
+\relax 
+\ifx\hyper@anchor\@undefined
+\global \let \oldcontentsline\contentsline
+\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global \let \oldnewlabel\newlabel
+\gdef \newlabel#1#2{\newlabelxx{#1}#2}
+\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\let \contentsline\oldcontentsline
+\let \newlabel\oldnewlabel}
+\else
+\global \let \hyper@last\relax 
+\fi
+
+\@writefile{toc}{\contentsline {section}{\numberline {1}Einleitung - funktionale Beschreibung}{2}{section.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Anforderungen im Detail}{2}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Aritmetische Ausdr\IeC {\"u}cke}{3}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Rechenregeln}{3}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Datentypen}{3}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Userinerface}{3}{subsection.2.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Dateneingabe}{4}{subsubsection.2.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces PS/2 Schnittstelle Timingdiagramm}}{4}{figure.1}}
+\newlabel{fig:ps2timing}{{1}{4}{PS/2 Schnittstelle Timingdiagramm\relax }{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces erlaubte Eingaben plus Scancodes f\IeC {\"u}r MAKE und BREAK}}{5}{table.1}}
+\newlabel{tab:scan_codes}{{1}{5}{erlaubte Eingaben plus Scancodes für MAKE und BREAK\relax }{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Datenausgabe}{5}{subsubsection.2.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Speichern von Rechnungen}{6}{subsection.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}RS232 Schnittstelle}{6}{subsection.2.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Datenframe RS232}}{7}{figure.2}}
+\newlabel{fig:rs232frame}{{2}{7}{Datenframe RS232\relax }{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces m\IeC {\"o}gliche Baudrates}}{7}{table.2}}
+\newlabel{tab:baudrates}{{2}{7}{mögliche Baudrates\relax }{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Detailierte Design Beschreibung der Module}{7}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Main}{7}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Modularer Aufbau der Applikation}}{8}{figure.3}}
+\newlabel{fig:mod_view}{{3}{8}{Modularer Aufbau der Applikation\relax }{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Ben\IeC {\"o}tigte Programmmodule}}{8}{figure.4}}
+\newlabel{fig:mainSM}{{4}{8}{Benötigte Programmmodule\relax }{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Scancode Handler}{9}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Parser (Scancode Handler Puffer einlesen \& interpretieren)}{9}{subsection.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Entity des Parsers}}{10}{figure.5}}
+\newlabel{fig:entity_parser}{{5}{10}{Entity des Parsers\relax }{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Statemachine f\IeC {\"u}r das Modul Parser}}{10}{figure.6}}
+\newlabel{fig:parser}{{6}{10}{Statemachine für das Modul Parser\relax }{figure.6}{}}
+\newlabel{tab:operator_code}{{3.3}{12}{Parser (Scancode Handler Puffer einlesen \& interpretieren)\relax }{figure.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Zuweisung der Bitkombinationen zu den Operatoren}}{12}{table.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Calculator}{12}{subsection.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Puffer die das Calculator Modul verwendet}}{13}{figure.7}}
+\newlabel{fig:vier_puffer}{{7}{13}{Puffer die das Calculator Modul verwendet\relax }{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Statemachine f\IeC {\"u}r das Modul Calculator}}{13}{figure.8}}
+\newlabel{fig:calculator}{{8}{13}{Statemachine für das Modul Calculator\relax }{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Entity des Calculatormodules}}{14}{figure.9}}
+\newlabel{fig:entity_calc}{{9}{14}{Entity des Calculatormodules\relax }{figure.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Addition}{17}{subsubsection.3.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Subtraktion}{17}{subsubsection.3.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}Multiplikation}{17}{subsubsection.3.4.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Division}{17}{subsubsection.3.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Ringpuffer}{17}{subsection.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Line Buffer}{17}{subsection.3.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Entity Ringpuffer}}{18}{figure.10}}
+\newlabel{fig:entity_ring}{{10}{18}{Entity Ringpuffer\relax }{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Entity Line Buffer}}{18}{figure.11}}
+\newlabel{fig:entity_buffer}{{11}{18}{Entity Line Buffer\relax }{figure.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Externe Schnittstellen}{18}{subsection.3.7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}RS232-Schnittstelle}{18}{subsubsection.3.7.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Statemachine f\IeC {\"u}r Sende- und Empfangsroutine}}{19}{figure.12}}
+\newlabel{fig:rs232statemachine}{{12}{19}{Statemachine für Sende- und Empfangsroutine\relax }{figure.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Entity des RS232 Moduls}}{19}{figure.13}}
+\newlabel{fig:entity_rs232}{{13}{19}{Entity des RS232 Moduls\relax }{figure.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}PS/2-Schnittstelle}{20}{subsubsection.3.7.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Entity des PS/2 Moduls}}{20}{figure.14}}
+\newlabel{fig:entity_ps2}{{14}{20}{Entity des PS/2 Moduls\relax }{figure.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.3}VGA-Schnittstelle}{20}{subsubsection.3.7.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Entity des VGA Moduls}}{21}{figure.15}}
+\newlabel{fig:entity_vga}{{15}{21}{Entity des VGA Moduls\relax }{figure.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Testf\IeC {\"a}lle}{21}{section.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Statemachine f\IeC {\"u}r das PS/2-Scancode-Modul }}{22}{figure.16}}
+\newlabel{fig:ps2sm}{{16}{22}{Statemachine für das PS/2-Scancode-Modul \relax }{figure.16}{}}

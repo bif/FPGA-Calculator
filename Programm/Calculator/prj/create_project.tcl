@@ -58,6 +58,13 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
+
 
 	# hari added
         set_global_assignment -name VHDL_FILE ../src/uart.vhd

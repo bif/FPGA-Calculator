@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Einleitung - funktionale Beschreibung}{2}{section.1}
+\contentsline {section}{\numberline {2}Anforderungen im Detail}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Aritmetische Ausdr\IeC {\"u}cke}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Rechenregeln}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Datentypen}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Userinerface}{3}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Dateneingabe}{4}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Datenausgabe}{5}{subsubsection.2.4.2}
+\contentsline {subsection}{\numberline {2.5}Speichern von Rechnungen}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}RS232 Schnittstelle}{6}{subsection.2.6}
+\contentsline {section}{\numberline {3}Detailierte Design Beschreibung der Module}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Main}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Scancode Handler}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Parser (Scancode Handler Puffer einlesen \& interpretieren)}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Calculator}{12}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Addition}{16}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Subtraktion}{16}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Multiplikation}{16}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Division}{17}{subsubsection.3.4.4}
+\contentsline {subsection}{\numberline {3.5}Ringpuffer}{17}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Line Buffer}{17}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Externe Schnittstellen}{18}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}RS232-Schnittstelle}{19}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}PS/2-Schnittstelle}{20}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}VGA-Schnittstelle}{20}{subsubsection.3.7.3}
+\contentsline {section}{\numberline {4}Testf\IeC {\"a}lle}{22}{section.4}

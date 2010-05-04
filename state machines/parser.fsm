@@ -1,0 +1,62 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.52" author="Qfsm" >
+  <machine nummooreout="8" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="Stefan simhandl" description="" version="0" name="Parser" arrowtype="1" numbits="3" statefontweight="50" statefont="Helvetica" numin="8" transfontsize="8" transfontweight="50" type="1" numout="8" initialstate="0" >
+    <outputnames_moore>s_out7,s_out6,s_out5,s_out4,s_out3,s_out2,s_out1,s_out0</outputnames_moore>
+    <inputnames>i_7,i_6,i_5,i_4,i_3,i_2,i_1,i_0</inputnames>
+    <outputnames>o_7,o_6,o_5,o_4,o_3,o_2,o_1,o_0</outputnames>
+    <itransition ypos="197" endx="377,941999621841" xpos="328,8" endy="246,8687266539216" />
+    <state pencolor="0" radius="40" description="" finalstate="1" moore_outputs="" ypos="281" code="0" xpos="398,8" linewidth="1" >READY</state>
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="288,6" code="1" xpos="831,1999999999999" linewidth="1" >READ        BUFFER</state>
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="235" code="5" xpos="613,2" linewidth="1" >CHECK      UNSIGNED</state>
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="385" code="6" xpos="604,8" linewidth="1" >ERROR  </state>
+    <transition c1x="483,4717415958242" c2y="241,3192976446622" c1y="257,2373261195674" description="" straight="1" type="1" ypos="273,1553545944726" endx="574,3687707321989" xpos="438,0232270276369" endy="225,401269169757" c2x="528,9202561640116" >
+      <from>0</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0" >read_next_num&amp;op</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="407,5335602718249" c2y="330,1404366324917" c1y="400,681765215" description="" straight="1" type="1" ypos="320,2880398957144" endx="367,7906005793084" xpos="391,2866837446601" endy="306,2669180464894" c2x="289,3229819205507" >
+      <from>0</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="1" >(read_next_num&amp;op)</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="744,1278444007745" c2y="350,5647928466773" c1y="327,7051657444076" description="" straight="1" type="1" ypos="304,8455386421379" endx="643,0884570919443" xpos="794,6475380551897" endy="373,424419948947" c2x="693,6081507463595" >
+      <from>1</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0" >error==true</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="765,2282422610838" c2y="100,0133915908321" c1y="28,98657828525884" description="" straight="0" type="1" ypos="249,0266630654947" endx="401,1119181706268" xpos="837,0267489964916" endy="241,0668679619" c2x="412,1567057176095" >
+      <from>1</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >end_of_operation</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="803,7517789909426" c2y="108,3807431768971" c1y="135,4910073153092" description="" straight="0" type="1" ypos="251,6590312624029" endx="415,125221650005" xpos="815,8583954969542" endy="244,4830568355152" c2x="448,8749245404493" >
+      <from>1</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >parse_ready</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="698,9474710521141" c2y="267,9465148762147" c1y="255,4511999169096" description="" straight="1" type="1" ypos="242,9558849576044" endx="792,0407832104958" xpos="652,4008149729233" endy="280,4418298355199" c2x="745,4941271313049" >
+      <from>5</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >error==false</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="611,4135064197618" c2y="321,9868914118226" c1y="298,4769950770498" description="" straight="1" type="1" ypos="274,967098742277" endx="611,0846019494052" xpos="611,5779586549401" endy="345,4967877465954" c2x="611,2490541845834" >
+      <from>5</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0" >error==true</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="526,0578922044128" c2y="312,4944795005099" c1y="339,0275696174514" description="" straight="1" type="1" ypos="365,560659734393" endx="438,4911150685468" xpos="569,8412807723458" endy="285,9613893835683" c2x="482,2745036364798" >
+      <from>6</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >error_handling_ready</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

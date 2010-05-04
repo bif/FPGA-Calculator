@@ -1,0 +1,49 @@
+Korrektheit: Enthält die Spezifikation inhaltliche Fehler, widersprüchliche Aussagen oder werden falsche
+Annahmen getroffen? Vergeben Sie eine Note (1-5) und begründen Sie!
+
+	* laut spez. wird das vom PS/2-modul empfangene scancode an den linebuffer. werden
+		tatsächlich zuerst scancodes gespeichert und diese dann erst umgemappt?
+	* physikalische interfaces: "Das VGA -Interface stellt über einen ASCII Code eine Verbindung zu
+		einem Monitor her" - was ist damit gemeint?
+
+
+---------------------------------------------------------------------------------------------------------
+
+Vollständigkeit: Enthält das Spezifikations-Dokument alle wesentlichen Requirements/Module des Designs? 
+Vergeben Sie eine Note (1-5) und begründen Sie!
+
+	* Es fehlt die Spezifizierung der Priorität der Operatoren(Punkt- vor Strichrechnung)
+	* Spezifizierung der erlaubten Eingabezeichen ist nicht vollständig, zb. fehlt die Behandlung
+		des <BACKSPACE>-Zeichens(löschen des letzten eingegebenen zeichens)
+	* PS/2: Behandlung der Scancodes fehlt: werden Breakcodes, Waitcodes oder beides verwendet?
+	* PS/2: Timing des Zugriffs auf die übermittelten Scancodes
+	* wann/wie passiert das mapping von scancode --> ascii?
+	* RS232: welches zeichen wird zum anstossen der Datenübertragung verwendet?
+	* RS232: software-UART: wie funkioniert das senden und empfangen?
+	* KEINERLEI Statemachines - alle Angaben sind SEHR vage formuliert!
+	* welche datentypen werden verwendet? 
+	* wie/wann wird ein eingabe-overflow bemerkt - was passiert dann?
+	* Pushbutton - Sendetrigger fehlt vollständig(Tastenentprellung?)
+	* wie werden die 4 verschiedenen arithmetischen operationen - im speziellen die division - 
+		 implementiert?
+
+nur sehr schwammige angaben, sämtliche abläufe sind so allgemein formuliert dass diese zwar nicht per-se
+falsch sind, die geplante implementierung ist dafür allerdings alles andere als klar.
+
+Note 4
+---------------------------------------------------------------------------------------------------------
+
+Verständlichkeit: Ist das Dokument klar und verständlich geschrieben? Besitzt das Dokument eine
+ordentliche Struktur? Vergeben Sie eine Note (1-5) und begründen Sie!
+
+wegen der sehr oberflächlichen beschreibung gibt es keinerlei verständnisprobleme - allerdings ist hier
+unserer meinung nach der ansatz viel zu sehr 'high-level'.
+Dokument ist sehr schön gegliedert, farbliche Markierung unterstützt die Strukturierung
+
+Note 3
+---------------------------------------------------------------------------------------------------------
+
+Gesamtbeurteilung: Vergeben Sie eine Gesamtnote (1-5) und geben Sie Ihren Kollegen ein kurzes
+Feedback über die Qualität ihres Spezifikations-Dokumentes!
+
+

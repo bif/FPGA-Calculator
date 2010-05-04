@@ -65,7 +65,7 @@ begin
         textmode_vga_h_sm_state_next <= BLACK_PIXEL;
       when BLACK_PIXEL =>
         if char_width_pixel = CHAR_WIDTH - 1 then
-          if char_cnt_int = COLUMN_COUNT - 1 then
+          if char_cnt_int = COLUMN_COUNT then
             textmode_vga_h_sm_state_next <= HFRONT_FIRST;
           else
             textmode_vga_h_sm_state_next <= BLACK_CHAR_NEW;
@@ -81,7 +81,7 @@ begin
         textmode_vga_h_sm_state_next <= PIXEL_CURSOR;
       when PIXEL_FG =>
         if char_width_pixel = CHAR_WIDTH - 1 then
-          if char_cnt_int = COLUMN_COUNT - 1 then
+          if char_cnt_int = COLUMN_COUNT then
             textmode_vga_h_sm_state_next <= HFRONT_FIRST;  
           else
             if (cursor_state = CURSOR_ON or
@@ -104,7 +104,7 @@ begin
         end if;
       when PIXEL_CURSOR =>
         if char_width_pixel = CHAR_WIDTH - 1 then
-          if char_cnt_int = COLUMN_COUNT - 1 then
+          if char_cnt_int = COLUMN_COUNT then
             textmode_vga_h_sm_state_next <= HFRONT_FIRST;  
           else
             if decoded_char(0) = '1' then
@@ -122,7 +122,7 @@ begin
         end if;
       when PIXEL_BG =>
         if char_width_pixel = CHAR_WIDTH - 1 then
-          if char_cnt_int = COLUMN_COUNT - 1 then
+          if char_cnt_int = COLUMN_COUNT then
             textmode_vga_h_sm_state_next <= HFRONT_FIRST;  
           else
             if (cursor_state = CURSOR_ON or

@@ -64,6 +64,7 @@ begin
 						ascii_sign_next <= x"2F"; 
 						new_ascii_next <= '1';
 					end if;
+				-- ENTER: hex ascii 0A ... next line, 0D ... goto x=0
 				when x"5A" =>
 					ascii_sign_next <= x"03"; 
 					new_ascii_next <= '1';
@@ -81,6 +82,7 @@ begin
 				when x"29" =>
 					ascii_sign_next <= x"20"; 
 					new_ascii_next <= '1';
+				-- BKSP
 				when x"66" =>
 					ascii_sign_next <= x"08"; 
 					new_ascii_next <= '1';

@@ -36,8 +36,8 @@ architecture beh of console_sm is
   signal column_int : integer range 0 to COLUMN_COUNT - 1;
   signal column_save, column_save_next : integer range 0 to COLUMN_COUNT - 1;
   signal column_next : integer range 0 to COLUMN_COUNT;
-  signal scroll_int : integer range 0 to COLUMN_COUNT - 1;
-  signal scroll_next : integer range 0 to COLUMN_COUNT;  
+  signal scroll_int : integer range 0 to LINE_COUNT - 1;
+  signal scroll_next : integer range 0 to LINE_COUNT;  
   signal ack_next : std_logic;  
   signal background_color_int, background_color_next : std_logic_vector(RED_BITS + GREEN_BITS + BLUE_BITS - 1 downto 0);
   signal cursor_color_int, cursor_color_next : std_logic_vector(RED_BITS + GREEN_BITS + BLUE_BITS - 1 downto 0);
@@ -67,7 +67,7 @@ begin
             elsif command_data(CHAR_SIZE - 1 downto 0) = CHAR_CARRIAGE_RETURN then
               state_next <= STATE_CARRIAGE_RETURN;
             else
-              if column_int < COLUMN_COUNT - 2 then
+              if column_int < COLUMN_COUNT - 1 then
                 state_next <= STATE_SET_CHAR;
               else
                 if line_int < LINE_COUNT - 1 then
@@ -96,7 +96,7 @@ begin
       when STATE_NEW_LINE_SIMPLE =>
         state_next <= STATE_WAIT_REQ_RELEASE;
       when STATE_NEW_LINE_SCROLL =>
-        if scroll_int < LINE_COUNT then
+        if scroll_int < LINE_COUNT - 1 then
           state_next <= STATE_SCROLL_NEXT;
         else
           state_next <= STATE_SCROLL_TOP;
@@ -108,7 +108,7 @@ begin
       when STATE_SET_CHAR_NEW_LINE_AND_CARRIAGE_RETURN_SIMPLE =>
         state_next <= STATE_WAIT_REQ_RELEASE;
       when STATE_SET_CHAR_NEW_LINE_AND_CARRIAGE_RETURN_SCROLL =>
-        if scroll_int < LINE_COUNT then
+        if scroll_int < LINE_COUNT - 1 then
           state_next <= STATE_SCROLL_NEXT;
         else
           state_next <= STATE_SCROLL_TOP;
