@@ -18,7 +18,7 @@
 #
 # Quartus II
 # Version 9.1 Build 222 10/21/2009 SJ Full Version
-# Date created = 12:04:18  May 03, 2010
+# Date created = 15:26:23  May 04, 2010
 #
 # -------------------------------------------------------------------------- #
 #
@@ -40,7 +40,7 @@ set_global_assignment -name FAMILY Stratix
 set_global_assignment -name DEVICE EP1S25F672C6
 set_global_assignment -name TOP_LEVEL_ENTITY calculator_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:04:18  MAY 03, 2010"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:26:23  MAY 04, 2010"
 set_global_assignment -name LAST_QUARTUS_VERSION 9.1
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
@@ -68,12 +68,20 @@ set_global_assignment -name VHDL_FILE ../src/pll_wrapper_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
 set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
+set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
 set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
 set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
 set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
+set_global_assignment -name VHDL_FILE ../src/uart.vhd
+set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
+set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
+set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
+set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
+set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
 set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
 set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_pkg.vhd
 set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller.vhd
@@ -103,6 +111,7 @@ set_global_assignment -name VHDL_FILE ../../textmode_vga/src/video_memory.vhd
 set_global_assignment -name VHDL_FILE ../../pll/pll.vhd
 set_location_assignment PIN_N3 -to sys_clk
 set_location_assignment PIN_AF17 -to sys_res_n
+set_location_assignment PIN_A3 -to btn_a
 set_location_assignment PIN_E22 -to vga_r0
 set_location_assignment PIN_T4 -to vga_r1
 set_location_assignment PIN_T7 -to vga_r2
@@ -115,6 +124,8 @@ set_location_assignment PIN_F1 -to vga_hsync_n
 set_location_assignment PIN_F2 -to vga_vsync_n
 set_location_assignment PIN_E21 -to ps2_data
 set_location_assignment PIN_Y26 -to ps2_clk
+set_location_assignment PIN_D22 -to uart_tx
+set_location_assignment PIN_D23 -to uart_rx
 set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"

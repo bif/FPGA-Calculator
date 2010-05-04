@@ -53,7 +53,7 @@ begin
 							end if;
 						-- other value
 						when others =>	
-							if count < x"50" then
+							if count < x"46" then
 								lb_fsm_state_next <= SAVE_VALUE;	
 							end if;
 					end case;

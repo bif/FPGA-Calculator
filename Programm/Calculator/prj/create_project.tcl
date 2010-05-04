@@ -56,15 +56,20 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
-#	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
-#	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
-
+        set_global_assignment -name VHDL_FILE ../src/uart.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
+        set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
@@ -101,7 +106,7 @@ if {$make_assignments} {
 	#********************************************************************************************
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
-#	set_location_assignment PIN_A6 -to led_a
+	set_location_assignment PIN_A3 -to btn_a
 	set_location_assignment PIN_E22 -to	vga_r0
 	set_location_assignment PIN_T4 -to vga_r1
 	set_location_assignment PIN_T7 -to vga_r2
@@ -114,10 +119,8 @@ if {$make_assignments} {
  	set_location_assignment PIN_F2 -to vga_vsync_n
 	set_location_assignment PIN_E21 -to ps2_data
 	set_location_assignment PIN_Y26 -to ps2_clk
-
-	# hari
-#        set_location_assignment PIN_D22 -to uart_txd
-        #set_location_assignment PIN_D23 -to uart_rxd
+        set_location_assignment PIN_D22 -to uart_tx
+        set_location_assignment PIN_D23 -to uart_rx
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
