@@ -20,7 +20,7 @@ architecture struct of calculator_top is
 	constant COLOR_SIZE : integer := 8;
 	constant CHAR_SIZE : integer := 8;
 	constant LB_DATA_WIDTH : integer := 8;
-	constant LB_ADDR_WIDTH : integer := 7;
+	constant LB_ADDR_WIDTH : integer := 8;
 	
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
@@ -32,7 +32,7 @@ architecture struct of calculator_top is
 
 	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
-	signal lb_wr_sig : std_logic;
+	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
 
 component main is
 	generic
@@ -185,7 +185,9 @@ begin
 		ascii_sign_in => ascii_sign_sig,
 		wr_enable => lb_wr_sig,
 		lb_addr => lb_addr_sig,
-		lb_data => lb_data_in_sig
+		lb_data => lb_data_in_sig,
+		start_calc => start_calc_sig, 
+		enable => enable_lb_sig
 	);
 	
 	main_inst : main
@@ -204,5 +206,6 @@ begin
 
 	uart_tx <= uart_top_tx_sig;
 	uart_top_rx_sig <= uart_rx;
-	
+	enable_lb_sig <= '1';	
+
 end architecture struct;
