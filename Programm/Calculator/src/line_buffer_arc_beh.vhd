@@ -129,21 +129,22 @@ begin
 		case lb_fsm_state is
 			when CLEAR_SCREEN =>
 				if vga_free = '1' then
-					if count = x"00" then
-						vga_command_next <= COMMAND_SET_CURSOR_LINE;
-					 	vga_command_data_next(7 downto 0) <= x"1E";
-						count_next <= (count + '1');
-					else
-						if count <= x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird
+--FIXME: Curser passt nicht mit cursorposition überein
+--					if count = x"00" then
+--						vga_command_next <= COMMAND_SET_CURSOR_LINE;
+--					 	vga_command_data_next(7 downto 0) <= x"1E";
+--						count_next <= (count + '1');
+--					else
+						if count < x"3C" then 	 	-- 3C = 2*30 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird
 							vga_command_next <= COMMAND_SET_CHAR;
 							vga_command_data_next(7 downto 0) <= x"0A";  
 							count_next <= (count + '1');
 						else	
-							vga_command_next <= COMMAND_SET_CURSOR_LINE;
-						 	vga_command_data_next(7 downto 0) <= x"00";
+--							vga_command_next <= COMMAND_SET_CURSOR_LINE;
+--						 	vga_command_data_next(7 downto 0) <= x"00";
 							count_next <= (others => '0');
 						end if;
-					end if;
+--					end if;
 				end if;
 			when CHECK_ASCII =>
 				once_next <= '0';
