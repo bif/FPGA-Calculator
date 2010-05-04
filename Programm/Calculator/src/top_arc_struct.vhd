@@ -34,6 +34,7 @@ architecture struct of calculator_top is
 	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig : std_logic;
 
+
 component main is
 	generic
 (
