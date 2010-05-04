@@ -1,15 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use work.textmode_vga_pkg.all;
 
 architecture beh of main is
-	constant DEFAULT_VGA_DATA : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0) := x"FFFFFF00";
 
-  signal sense_old, sense_old_next : std_logic;
-  signal btn_a_sig : std_logic;
-	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
-
+	signal sense_old, sense_old_next : std_logic;
+	signal btn_a_sig : std_logic;
 	signal uart_main_tx_sig : std_logic;
 	signal uart_main_rx_sig : std_logic;
 	signal more_tx_data	: std_logic;
@@ -58,8 +53,6 @@ process(sys_clk, sys_res_n)
 	then
 		sense_old <= sense_old_next;
 		tx_busy_main_old <= tx_busy_main_old_next;
-		vga_command <= vga_command_next;
-		vga_command_data <= vga_command_data_next;
 		byte_data <= byte_data_next;
 		line_counter <= line_counter_next;
 		char_counter <= char_counter_next;
@@ -68,22 +61,13 @@ process(sys_clk, sys_res_n)
 	end if;
   end process;
   
-process(sense, sense_old, vga_free, new_ascii_in, ascii_sign_in, line_counter, more_tx_data, trigger_main_tx_sig)
+process(sense, sense_old, line_counter, more_tx_data, trigger_main_tx_sig)
 begin
 	sense_old_next <= sense;
-	vga_command_next <= COMMAND_NOP;
-	vga_command_data_next <= DEFAULT_VGA_DATA;
 	more_tx_data_next <= more_tx_data;
 
-	if new_ascii_in = '1' then
-		vga_command_next <= COMMAND_SET_CHAR;
-		vga_command_data_next(31 downto 8) <= x"FFFFFF";
-		vga_command_data_next(7 downto 0) <= ascii_sign_in;
-	end if;
 	if sense_old /= sense and sense = '0' 
 	then	--sense = '0' ... weil button low aktiv
-		vga_command_next <= COMMAND_SET_CHAR;
-		vga_command_data_next(7 downto 0) <= x"61";
 		more_tx_data_next <= '1';
 	end if;
 

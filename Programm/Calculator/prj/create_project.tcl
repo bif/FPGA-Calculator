@@ -56,23 +56,20 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
-	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
-	# hari added
         set_global_assignment -name VHDL_FILE ../src/uart.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
-=======
->>>>>>> 8864478d5788697769b1c77ba7c046f6311f51fd:Programm/Calculator/prj/create_project.tcl
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
@@ -122,8 +119,6 @@ if {$make_assignments} {
  	set_location_assignment PIN_F2 -to vga_vsync_n
 	set_location_assignment PIN_E21 -to ps2_data
 	set_location_assignment PIN_Y26 -to ps2_clk
-
-	# hari
         set_location_assignment PIN_D22 -to uart_tx
         set_location_assignment PIN_D23 -to uart_rx
 	

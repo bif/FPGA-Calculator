@@ -37,10 +37,7 @@ architecture struct of calculator_top is
 component main is
 	generic
 (
-RESET_VALUE : std_logic;
-		COMMAND_SIZE : integer;
-		COLOR_SIZE : integer;
-		CHAR_SIZE : integer
+		RESET_VALUE : std_logic
 	);
 	port
 	(
@@ -194,10 +191,7 @@ begin
 	main_inst : main
 	generic map
 	(
-		RESET_VALUE => RES_N_DEFAULT_VALUE,
-		COMMAND_SIZE => COMMAND_SIZE,
-		COLOR_SIZE => COLOR_SIZE,
-		CHAR_SIZE       => CHAR_SIZE
+		RESET_VALUE => RES_N_DEFAULT_VALUE
 	)
 	port map
 	(
