@@ -109,7 +109,7 @@ if {$make_assignments} {
 	#********************************************************************************************
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
-#	set_location_assignment PIN_A6 -to led_a
+	set_location_assignment PIN_A3 -to btn_a
 	set_location_assignment PIN_E22 -to	vga_r0
 	set_location_assignment PIN_T4 -to vga_r1
 	set_location_assignment PIN_T7 -to vga_r2
@@ -124,13 +124,8 @@ if {$make_assignments} {
 	set_location_assignment PIN_Y26 -to ps2_clk
 
 	# hari
-<<<<<<< HEAD:Programm/Calculator/prj/create_project.tcl
         set_location_assignment PIN_D22 -to uart_tx
         set_location_assignment PIN_D23 -to uart_rx
-=======
-#        set_location_assignment PIN_D22 -to uart_txd
-        #set_location_assignment PIN_D23 -to uart_rxd
->>>>>>> 8864478d5788697769b1c77ba7c046f6311f51fd:Programm/Calculator/prj/create_project.tcl
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
