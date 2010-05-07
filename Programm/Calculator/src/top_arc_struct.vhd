@@ -153,7 +153,7 @@ begin
 		ascii_sign => ascii_sign_sig
 	);
 
-	sp_ram_inst : sp_ram
+	line_buffer_ram_inst : sp_ram
 	generic map
 	(
 		ADDR_WIDTH => LB_ADDR_WIDTH,
