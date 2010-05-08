@@ -31,7 +31,9 @@ architecture sim of line_buffer_tb is
       ascii_sign_in : in std_logic_vector(7 downto 0);
 			lb_addr : out std_logic_vector(ADDR_WIDTH - 1 downto 0);
    		lb_data : out std_logic_vector(DATA_WIDTH - 1 downto 0);
-   		wr_enable : out std_logic
+   		wr_enable : out std_logic;
+			start_calc : out std_logic;
+	    enable : in std_logic
 		);
   end component line_buffer;
 
@@ -44,7 +46,7 @@ architecture sim of line_buffer_tb is
   signal ascii_sign_sig : std_logic_vector(7 downto 0);
 	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_in_sig : std_logic_vector(LB_DATA_WIDTH - 1 downto 0);
-	signal wr_enable_sig : std_logic;
+	signal wr_enable_sig, enable_sig, start_calc_sig : std_logic;
 
 
 
@@ -71,7 +73,9 @@ begin  -- behav
       ascii_sign_in => ascii_sign_sig,
 			wr_enable => wr_enable_sig,
 			lb_addr => lb_addr_sig,
-			lb_data => lb_data_in_sig
+			lb_data => lb_data_in_sig,
+			start_calc => start_calc_sig,
+			enable => enable_sig
 		);
 
   process
@@ -92,94 +96,80 @@ begin  -- behav
 
 --  process
 --  begin  -- process
---    reset <= '1';
---    wait for 10 * QUARTZ_PERIOD / 2;
---    reset <= not '1';
---    wait for 10 * QUARTZ_PERIOD / 2;
+--  	if vga_free_sig = '1' then
+--			wait for QUARTZ_PLL_PERIOD;
+--			vga_free_sig <= '0';
+--		end if;	
 --	end process;
 
 	process
+		variable i : integer := 1;
+
   begin
     reset <= '0';
-    wait for 10 us;
+    wait for 10 ns;
     reset <= '1';
-    wait for 10 us;
+    wait for 10 ns;
     
 		vga_free_sig <= '1';
-		wait for 100 us;
+		wait for 2.2 us;
     new_ascii_sig <= '1';
 		ascii_sign_sig <= x"31";
     wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
-		wait for 40 us;
+--		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 40 us;
+		wait for 20 ns;
 		vga_free_sig <= '1';
-    wait for 100 us;
+    wait for 200 ns;
     new_ascii_sig <= '1';
 		ascii_sign_sig <= x"32";
     wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
-		wait for 40 us;
+--		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 40 us;
+		wait for 20 ns;
 		vga_free_sig <= '1';
-    wait for 100 us;
+    wait for 200 ns;
     new_ascii_sig <= '1';
 		ascii_sign_sig <= x"03";
-    wait for QUARTZ_PERIOD / 2; 
+		wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
-		wait for 40 us;
+--		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 40 us;
+		wait for 200 ns;
+
+		for i in 1 to 70 loop
+			vga_free_sig <= '1';
+			wait for 200 ns;
+			new_ascii_sig <= '1';
+			ascii_sign_sig <= x"37"; 
+			wait for QUARTZ_PERIOD; 
+			new_ascii_sig <= '0';
+--			wait for 40 ns;
+			vga_free_sig <= '0';
+			wait for 20 ns;
+		end loop;
+
 		vga_free_sig <= '1';
-    wait for 250 us;
-		new_ascii_sig <= '1';
-		ascii_sign_sig <= x"33"; 
-    wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
- 		wait for 40 us;
-		vga_free_sig <= '0';
-		wait for 40 us;
-		vga_free_sig <= '1';
-	  wait for 100 us;
-    new_ascii_sig <= '1';
-		ascii_sign_sig <= x"34";
-    wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
- 		wait for 40 us;
-		vga_free_sig <= '0';
-		wait for 40 us;
-		vga_free_sig <= '1';
-	  wait for 200 us;
+	  wait for 200 ns;
     new_ascii_sig <= '1';
 		ascii_sign_sig <= x"08";
     wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
-		wait for 40 us;
+-- 		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 40 us;
+		wait for 20 ns;
 		vga_free_sig <= '1';
-    wait for 250 us;
+	  wait for 200 ns;
     new_ascii_sig <= '1';
 		ascii_sign_sig <= x"08";
     wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
-		wait for 40 us;
+--		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 40 us;
-		vga_free_sig <= '1';
-    wait for 300 us;
-		new_ascii_sig <= '1';
-		ascii_sign_sig <= x"38";
-    wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
-		wait for 40 us;
-		vga_free_sig <= '0';
-		wait for 40 us;
-		vga_free_sig <= '1';
---    wait for 2 ms;
---    stop <= true;
+		wait for 20 ns;
+
     wait;
   end process;
 end architecture sim;

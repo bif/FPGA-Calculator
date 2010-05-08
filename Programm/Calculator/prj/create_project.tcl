@@ -104,6 +104,24 @@ if {$make_assignments} {
 	#********************************************************************************************
 	# Pin Mapping
 	#********************************************************************************************
+	set_location_assignment PIN_T2 -to seg_b[6]
+	set_location_assignment PIN_AA11 -to seg_b[5]
+	set_location_assignment PIN_R6 -to seg_b[4]
+	set_location_assignment PIN_R4 -to seg_b[3]
+	set_location_assignment PIN_N8 -to seg_b[2]
+	set_location_assignment PIN_Y11 -to seg_b[0]
+	set_location_assignment PIN_N7 -to seg_b[1]
+	set_location_assignment PIN_R23 -to seg_a[6]
+	set_location_assignment PIN_R22 -to seg_a[5]
+	set_location_assignment PIN_R21 -to seg_a[4]
+	set_location_assignment PIN_R20 -to seg_a[3]
+	set_location_assignment PIN_R19 -to seg_a[2]
+	set_location_assignment PIN_R9 -to seg_a[1]
+	set_location_assignment PIN_R8 -to seg_a[0]
+
+
+
+
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
 	set_location_assignment PIN_A3 -to btn_a
