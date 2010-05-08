@@ -4,13 +4,13 @@ use work.parser_pkg.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
-    (READY, ERROR_STATE, CHECK_UNSIGNED, READ_BUFFER);
+    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_NUMBER, READ_BUFFER);
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig : std_logic;
 	signal line_count, line_count_next, start_pos : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
-
+	signal check_unsigned_ready, check_unsigned_ready_next, leading_sign : std_logic;
 
 begin
 
@@ -28,30 +28,82 @@ begin
 				end if;
 			when CHECK_UNSIGNED =>
 				if check_unsigned_ready = '1' and error_sig = '0' then
-					parser_fsm_state_next <= READ_BUFFER;
+					parser_fsm_state_next <= CHECK_NUMBER;
 				elsif check_unsigned_ready = '1' and error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				end if;
 			when ERROR_STATE =>
-
+--TODO:
+				null;	
+			when CHECK_NUMBER =>
+				if number_ok = '1' and error_sig = '0' then
+					parser_fsm_state_next <= READ_BUFFER;
+				elsif number_ok = '1' and error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				end if;
 			when READ_BUFFER =>
 			
 		end case;
   end process next_state;
 
-  output : process(parser_fsm_state)
+  output : process(parser_fsm_state, data)
   begin
-		
+		check_unsigned_ready_next <= '0';
+		leading_sign <= '0';
+		number_ok <= '0';
+
 		case parser_fsm_state is
 			when READY =>
 				start_pos <= line_count;
 			when CHECK_UNSIGNED =>
-				
-				
+--TODO:
+				-- Signal leading_sign ist  asynchron
+				-- da es aber nur im State CHECK UNSIGNED bzw wenn data
+				-- sich ändert gesetzt wird und data sich erst im 
+				-- state READ_BUFFER ändert, kann es zu keinem 
+				-- unkontroolierten Verhalten kommen
+				case data is
+					when x"2D" =>
+						-- "-"
+						leading_sign <= '1';
+						error_sig <= '0';
+						check_unsigned_ready_next <= '1';
+					when x"2B" =>
+						-- "+"
+						leading_sign <= '0';
+						error_sig <= '0';
+						check_unsigned_ready_next <= '1';
+					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
+						leading_sign <= '0';
+						error_sig <= '0';
+						check_unsigned_ready_next <= '1';
+					when others =>
+						error_sig <= '1';
+						check_unsigned_ready_next <= '1';
+				end case;	
+				line_count_next <= (line_count + '1');
 			when ERROR_STATE =>
-
+--TODO:						
+				null;
+			when CHECK_NUMBER =>
+				case data is
+					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
+						error_sig <= '0';
+--					Zeichen speichern
+						i_sign <= atoi(data);
+						number_ok <= '1';
+					when others =>
+						error_sig <= '1';
+						number_ok <= '1';
+				end case;
 			when READ_BUFFER =>
+				case data is
+					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
 
+					when 
+
+				end case;
+				i_sign <= atoi(data);
 				while data 
 		end case;
 
