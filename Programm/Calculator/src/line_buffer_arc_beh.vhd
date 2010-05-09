@@ -173,6 +173,15 @@ begin
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					vga_command_data_next(31 downto 0) <= x"00000060";
+					--Leerzeichen in Linebuffer schreiben
+					if once = '0' then	
+						wr_enable_next <= '1';
+						lb_data_next <= x"20";
+						lb_addr_next <= count;
+					else					
+						wr_enable_next <= '0';
+					end if;
+					once_next <= '1';	
 				end if;
 			when BKSP_3 =>
 				if vga_free = '1' then
