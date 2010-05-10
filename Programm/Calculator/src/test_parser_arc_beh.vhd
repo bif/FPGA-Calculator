@@ -8,7 +8,7 @@ architecture beh of parser is
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig : std_logic;
-	signal start_pos : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal start_pos, pos_end_op: std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
 	signal end_of_op_next, parse_ready_next, read, convert : std_logic;
 	signal operand_next : std_logic_vector(31 downto 0);
@@ -18,10 +18,16 @@ begin
 
   output : process(read_next_n_o, convert) 
 		variable space, leading_sign : std_logic := '0';
-		variable pos_count, tmp, pos_end_op : std_logic_vector(ADDR_WIDTH - 1 downto 0) := start_pos;
+		variable pos_count, tmp : std_logic_vector(ADDR_WIDTH - 1 downto 0) := start_pos;
 		variable operand_tmp : std_logic_vector(31 downto 0);
 
   begin
+		operand_next <= x"00";
+	 	parse_ready_next <= '0';
+		end_of_op_next <= '0';
+		pos_end_op <= (others => '0');
+
+
 		-- 2 while loops to make the design shorter
 		--while loop for finding position of next operator
 		while convert = '0' and error_sig = '0' and parse_ready_next = '0' loop
@@ -62,39 +68,68 @@ begin
  						then
 							error_sig <= '1';
 						end if;
-					end if;
 					-- dedect space
-					if data = x"20" then
+					elsif data = x"20" then
+						if space = '0' then
+							pos_end_op <= (pos_count - '1');
+							-- operand bigger then integer 
+							if (pos_end_op - start_pos > (x"F" others => '0') then
+								error_sig >= '1';
+							end if;
+						end if;
 						space := '1';
-						pos_end_op := pos_count;
-					end if;
-					if error_sig = '0' then
+					else
 						-- operand bigger then integer 
-						if (pos_end_op - start_pos > "0000FFFF" then
+						if (pos_end_op - start_pos > (x"F" others => '0') then
 							error_sig >= '1';
-						end if;		
-						-- dedect operator if no error was dedected
-						case data is
-							-- "+"
-							when x"2B" =>
-								operator_next <= x"00";
-								convert <= '1'; 
-							-- "-"
-							when x"2D" =>
-								operator_next <= x"01";
-								convert <= '1'; 
-							-- "*"
-							when x"2A" =>
-								operator <= x"10";
-								convert <= '1'; 
-							-- "/"
-					 		when x"2F" =>
-								operator_next <= x"11";
-								convert <= '1'; 
-						end case;
-						pos_end_op := (pos_count - '1');		
-					end if;
-				end if; 
+						else
+							-- dedect operator if no error was dedected
+							case data is
+								-- "+"
+								when x"2B" =>
+									if pos_count >= x"45" then
+										error_sig <= '1';
+									else
+										operator_next <= x"00";
+										convert <= '1'; 
+										pos_end_op <= (pos_count - '1');		
+									end if;
+								-- "-"
+								when x"2D" =>
+									if pos_count >= x"45" then
+										error_sig <= '1';
+									else
+										operator_next <= x"01";
+										convert <= '1';  
+										pos_end_op <= (pos_count - '1');
+									end if;
+								-- "*"
+								when x"2A" =>
+									if pos_count >= x"45" then
+										error_sig <= '1';
+									else
+										operator <= x"10";
+										convert <= '1';  
+										pos_end_op <= (pos_count - '1');
+									end if;
+								-- "/"
+								when x"2F" =>
+									if pos_count >= x"45" then
+										error_sig <= '1';
+									else
+										operator_next <= x"11";
+										convert <= '1';  
+										pos_end_op <= (pos_count - '1');
+									end if;
+								when others =>
+									if pos_count >= x"45" then
+										convert <= '1';
+										pos_end_op <= (pos_count - '1');
+									end if;
+							end case;
+						end if;
+					end if; 
+				end if;
 				pos_count := (pos_count + '1');	
 			end if;
 		end loop;
@@ -108,11 +143,15 @@ begin
 				addr_lb <= pos_count;
 				data <= data_in;
 			else
+--TODO: Zahlen 0 bis 9 => mapping & multiplizieren mit der jewieligen Zehnerstelle
 				
 				pos_count := (pos_count + '1');
 				if pos_count > pos_end_op then
 					operand_next <= operand_tmp;
-				 	parse_ready_next <= '1';	
+				 	parse_ready_next <= '1';
+					if pos_count >= x"45" then
+						end_of_op_next <= '1';
+					end if;
 				end if;
 			end if;
 		end loop;
