@@ -14,7 +14,7 @@ architecture beh of line_buffer is
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal count, count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
-	signal reset_count, reset_count_next  : std_logic_vector(7 downto 0);
+	signal reset_count, reset_count_next : std_logic_vector(7 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
 	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
@@ -33,7 +33,7 @@ begin
     case lb_fsm_state is
 		
 			when CLEAR_SCREEN =>
-				if reset_count <= x"78" then 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird
+				if reset_count <= x"F0" then 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird
 					if vga_free = '0' then
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= CLEAR_SCREEN; 
@@ -121,7 +121,7 @@ begin
 		vga_command_next <= COMMAND_NOP;
 		vga_command_data_next <= DEFAULT_VGA_DATA;
 		count_next <= count;
-		reset_count_next <= (reset_count + '1');
+		reset_count_next <= reset_count + 1;
 		once_next <= once;
 		wr_enable_next <= '0';
 		lb_data_next <= x"00";
@@ -136,7 +136,7 @@ begin
 --					 	vga_command_data_next(7 downto 0) <= x"1E";
 --						reset_count_next <= (reset_count + '1');
 --					else
-						if reset_count < x"78" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
+						if reset_count < x"F0" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
 							vga_command_next <= COMMAND_SET_CHAR;
 							vga_command_data_next(7 downto 0) <= x"0A"; 
 							reset_count_next <= (reset_count + '1');

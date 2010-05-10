@@ -10,7 +10,7 @@ architecture beh of parser is
 	signal error_sig : std_logic;
 	signal line_count, line_count_next, start_pos : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal check_unsigned_ready, check_unsigned_ready_next, leading_sign, onec, once_next, end_of_op_next, parse_ready_next : std_logic;
+	signal check_unsigned_ready, check_unsigned_ready_next, leading_sign, onec, once_next, end_of_op_next, parse_ready_next, read : std_logic;
 
 begin
 
@@ -42,6 +42,8 @@ begin
   end process next_state;
 
   output : process(parser_fsm_state, data, once)
+		variable space : std_logic := '0';
+
   begin
 		check_unsigned_ready_next <= '0';
 		leading_sign <= '0';
@@ -49,7 +51,7 @@ begin
 		error_sig <= '0';
 		line_count_next <= line_count;
 		parse_ready_next <= '0';
-
+		space_sig <= '0';
 
 		case parser_fsm_state is
 			when READY =>
@@ -96,14 +98,27 @@ begin
 					end case;
 					once_next <= '1';
 				else
-					while error_sig = '0' and parse_ready_next /= '1' loop
+					while error_sig = '0' and
+				 				(data /= x"2B" or data /= x"2D" or data /= "2A" or data /= x"2F") and
+								read = '1'
+								loop
+						if data = x"20" then
+							space <= '1';
+						end if;
+						if space = '1' and data /= x"20" then
+							error_sig <= '1';
+						end if;
+						
+
+					end loop;
+--					while error_sig = '0' and parse_ready_next /= '1' loop
 						--		TODO : hier Zeichen einlesen und in Integer umwandeln, Leerzeichen erkennen , Operatoren erkennen, Fehler erkennen, parse_ready_next setzten, Zuweisungen am Beginn des Prozesses überdenken => was passiert wenn prozess mehrmals druchlaufen wird? error_sig wird wieder zurück gesetzt , parse_ready_next wird wieder zurückgesetzt,...		
 
-						if line_count = 70 then
-							end_of_op_next <= '1';
-							parse_ready_next <= '1';
-						end if;
-					end loop;
+--						if line_count = 70 then
+--							end_of_op_next <= '1';
+--							parse_ready_next <= '1';
+--						end if;
+--					end loop;
 				end if;
 		end case;
 
@@ -119,7 +134,9 @@ begin
       parser_fsm_state <= READY;
 			line_count <= (other => '0');
 			once <= '0';
-		elsif rising_edge(sys_clk) then
+			read <= '0';
+		elsif (sys_clk'event and sys_clk = '1') then
+			read <= '1';
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
 			check_unsigned_ready <= check_unsigned_ready_next;
@@ -129,6 +146,8 @@ begin
 			once <= once_next;
 			end_of_operation <= end_of_op_next;
 			parse_ready <= parse_ready_next;
+		elsif (sys_clk'event and sys_clk = '0') then
+			read <= '0';
 		end if;
   end process sync;
 end architecture beh;

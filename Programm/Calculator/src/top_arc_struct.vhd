@@ -33,6 +33,10 @@ architecture struct of calculator_top is
 	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
+	signal operand_sig std_logic_vector(31 downto 0);
+	signal operator_sig : std_logic_vector(2 downto 0);
+	signal end_of_op_sig : out std_logic;
+	signal parse_ready_sig : out std_logic
 
 component main is
 	generic
@@ -215,7 +219,28 @@ begin
 		start_calc => start_calc_sig, 
 		enable => enable_lb_sig
 	);
-	
+
+	parser_inst : parser
+  generic map
+	(
+    RESET_VALUE => '0',
+    ADDR_WIDTH => LB_ADDR_WIDTH,
+    DATA_WIDTH => LB_DATA_WIDTH
+  )  
+	port map 
+	(
+		sys_clk => sys_clk,
+		sys_res_n => sys_res_n_sync, 
+		read_next_n_o => read_next_n_o_sig,
+		data_in => lb_data_in_sig, 
+		addr_lb => lb_addr_sig,
+		operand => operand_sig; 
+		operator operator_sig; 
+		end_of_op_sig => end_of_op_sig;
+		parse_ready => parse_ready_sig
+	);
+
+
 	main_inst : main
 	generic map
 	(
@@ -226,8 +251,8 @@ begin
 		sys_clk => sys_clk,
 		sys_res_n => sys_res_n_sync,
 		sense => btn_a_sync,
-		uart_main_rx    =>      uart_top_rx_sig,
-		uart_main_tx    =>      uart_top_tx_sig
+		uart_main_rx => uart_top_rx_sig,
+		uart_main_tx => uart_top_tx_sig
 	);
 
 	uart_tx <= uart_top_tx_sig;

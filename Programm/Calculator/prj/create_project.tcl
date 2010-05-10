@@ -70,6 +70,11 @@ if {$make_assignments} {
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/test_parser_arc_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/parser_ent.vhd
+        set_global_assignment -name VHDL_FILE ../src/parser_pkg.vhd
+
+
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd
@@ -104,6 +109,7 @@ if {$make_assignments} {
 	#********************************************************************************************
 	# Pin Mapping
 	#********************************************************************************************
+	# pin mapping 7 segment
 	set_location_assignment PIN_T2 -to seg_b[6]
 	set_location_assignment PIN_AA11 -to seg_b[5]
 	set_location_assignment PIN_R6 -to seg_b[4]
@@ -121,7 +127,7 @@ if {$make_assignments} {
 
 
 
-
+	#pin mapping Calculator
 	set_location_assignment PIN_N3 -to sys_clk
 	set_location_assignment PIN_AF17 -to sys_res_n
 	set_location_assignment PIN_A3 -to btn_a
