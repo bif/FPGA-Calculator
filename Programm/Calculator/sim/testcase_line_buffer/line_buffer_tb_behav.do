@@ -44,6 +44,17 @@ add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count
 add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count_next
 add wave -noupdate -format Logic /line_buffer_tb/new_ascii_sig
 add wave -noupdate -format Literal -radix ascii /line_buffer_tb/ascii_sign_sig
+add wave -noupdate -format Literal /line_buffer_tb/command_sig
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(7)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(6)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(5)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(4)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(3)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(2)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(1)
+add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(0)
+
+
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ns} 0}
 configure wave -namecolwidth 150

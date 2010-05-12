@@ -11,9 +11,9 @@ Z4 o-quiet -auto_acc_if_foreign -work work
 Z5 n@_opt
 Z6 OE;O;6.5b;42
 T_opt1
-VmhhQTI<U^^bW<O1V`z?c]2
+VKJJYHj?=NKbWlO<M]4;803
 R2
-Z7 =1-0015609eceb2-4be59778-ad5bb-68a7
+Z7 =1-0015609eceb2-4bea7087-72e73-1962
 R4
 Z8 n@_opt1
 R6
@@ -40,7 +40,7 @@ Z24 o-work work
 Z25 tExplicit 1
 Z26 !s100 kX7eLHbJ`VDQ=GLAaPj2j0
 Eline_buffer
-Z27 w1272994388
+Z27 w1273338028
 R10
 R11
 R12
@@ -56,162 +56,158 @@ R24
 R25
 Z31 !s100 ZLe2U1JGlVRj:4Lcz?[S20
 Abeh
-Z32 w1273335873
+Z32 w1273655396
 Z33 DEx4 work 11 line_buffer 0 22 EcQG@QVTn7zYPN5fM=g9`1
-Z34 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
-Z35 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
 R10
 R11
 R12
 R13
-Z36 8../../src/line_buffer_arc_beh.vhd
-Z37 F../../src/line_buffer_arc_beh.vhd
+Z34 8../../src/line_buffer_arc_beh.vhd
+Z35 F../../src/line_buffer_arc_beh.vhd
 l24
-L7
-Z38 VJE<2zP=CTkd=:8W8=8?@^0
+L6
+Z36 V2J:;7<I^7@gWQG>9U`CT[0
 R18
 32
-Z39 Mx6 4 ieee 14 std_logic_1164
-Z40 Mx5 4 ieee 11 numeric_std
-Z41 Mx4 4 work 16 textmode_vga_pkg
-Z42 Mx3 4 work 35 textmode_vga_platform_dependent_pkg
-Z43 Mx2 4 ieee 18 std_logic_unsigned
-Z44 Mx1 4 ieee 15 std_logic_arith
+Z37 Mx4 4 ieee 14 std_logic_1164
+Z38 Mx3 4 ieee 11 numeric_std
+Z39 Mx2 4 work 16 textmode_vga_pkg
+Z40 Mx1 4 work 35 textmode_vga_platform_dependent_pkg
 R24
 R25
-Z45 !s100 >G`7_iFJ0ecTa5amJVZgc2
+Z41 !s100 d`EQ_FIDTeFRoh21U`o5J0
 Pline_buffer_pkg
 R10
 R11
 R12
 R13
-R27
-Z46 8../../src/line_buffer_pkg.vhd
-Z47 F../../src/line_buffer_pkg.vhd
+Z42 w1272994388
+Z43 8../../src/line_buffer_pkg.vhd
+Z44 F../../src/line_buffer_pkg.vhd
 l0
 L7
-Z48 V[Z8an`aW7n2fIn:<AN]`C1
+Z45 V[Z8an`aW7n2fIn:<AN]`C1
 R18
 32
-Z49 Mx4 4 ieee 14 std_logic_1164
-Z50 Mx3 4 ieee 11 numeric_std
-Z51 Mx2 4 work 16 textmode_vga_pkg
-Z52 Mx1 4 work 35 textmode_vga_platform_dependent_pkg
+R37
+R38
+R39
+R40
 R24
 R25
-Z53 !s100 M@:8oAH10zj<@aWg4eN?@2
+Z46 !s100 M@:8oAH10zj<@aWg4eN?@2
 Eline_buffer_tb
-Z54 w1273337711
+Z47 w1273655349
 R10
 R11
 R12
-Z55 DPx4 work 15 line_buffer_pkg 0 22 [Z8an`aW7n2fIn:<AN]`C1
+Z48 DPx4 work 15 line_buffer_pkg 0 22 [Z8an`aW7n2fIn:<AN]`C1
 R13
-Z56 8line_buffer_tb.vhd
-Z57 Fline_buffer_tb.vhd
+Z49 8line_buffer_tb.vhd
+Z50 Fline_buffer_tb.vhd
 l0
 L7
-Z58 V83;K6F5Q^``M`@Oc6>V[l0
+Z51 V83;K6F5Q^``M`@Oc6>V[l0
 R18
 32
 R24
 R25
-Z59 !s100 l2Nl3UQY<NGAz5]9?XWDC2
+Z52 !s100 l2Nl3UQY<NGAz5]9?XWDC2
 Asim
 R10
 R11
 R12
-R55
+R48
 R13
-Z60 DEx4 work 14 line_buffer_tb 0 22 83;K6F5Q^``M`@Oc6>V[l0
+Z53 DEx4 work 14 line_buffer_tb 0 22 83;K6F5Q^``M`@Oc6>V[l0
 l56
 L11
-Z61 VGR8dZ]36_Yd@[Vc<_i@^50
+Z54 VGS<K]BPWLdZ=U9LjO:H:h0
 R18
 32
 R19
-Z62 Mx4 4 work 15 line_buffer_pkg
-R50
-R51
-R52
+Z55 Mx4 4 work 15 line_buffer_pkg
+R38
+R39
+R40
 R24
 R25
-Z63 !s100 QUhP4njcgkI^lDf4RKh:Z2
+Z56 !s100 O:4RLS^6]>K9f5CHkRj7n3
 Pmath_pkg
-Z64 w1269197050
-Z65 8../../../math/src/math_pkg.vhd
-Z66 F../../../math/src/math_pkg.vhd
+Z57 w1269197050
+Z58 8../../../math/src/math_pkg.vhd
+Z59 F../../../math/src/math_pkg.vhd
 l0
 L12
-Z67 Vk9T[AY[;iJ0Z^CT=zZQ^o1
+Z60 Vk9T[AY[;iJ0Z^CT=zZQ^o1
 R18
 32
 b1
 R24
 R25
-Z68 !s100 @ci_Z8I9bdCB4P@C5FXR_1
+Z61 !s100 @ci_Z8I9bdCB4P@C5FXR_1
 Bbody
-Z69 DBx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
+Z62 DBx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
 l0
 L22
-Z70 VBV<bkG4A^@UeEh<[a`0fg2
+Z63 VBV<bkG4A^@UeEh<[a`0fg2
 R18
 32
 R24
 R25
 nbody
-Z71 !s100 FGmaFGOGC:P<5`?0TcPDh3
+Z64 !s100 FGmaFGOGC:P<5`?0TcPDh3
 Ptextmode_vga_component_pkg
-Z72 DPx4 work 8 font_pkg 0 22 <9Smj4DdgfSWL76lVV3U?2
+Z65 DPx4 work 8 font_pkg 0 22 <9Smj4DdgfSWL76lVV3U?2
 R10
 R11
 R9
 R12
 R13
-Z73 w1272872144
-Z74 8../../../textmode_vga/src/textmode_vga_component_pkg.vhd
-Z75 F../../../textmode_vga/src/textmode_vga_component_pkg.vhd
+Z66 w1272872144
+Z67 8../../../textmode_vga/src/textmode_vga_component_pkg.vhd
+Z68 F../../../textmode_vga/src/textmode_vga_component_pkg.vhd
 l0
 L21
-Z76 VMNM1O2SdI54zBfOk2@oF:2
+Z69 VMNM1O2SdI54zBfOk2@oF:2
 R18
 32
-R39
-R40
-Z77 Mx4 4 work 8 math_pkg
+Z70 Mx6 4 ieee 14 std_logic_1164
+Z71 Mx5 4 ieee 11 numeric_std
+Z72 Mx4 4 work 8 math_pkg
 R21
 R22
-Z78 Mx1 4 work 8 font_pkg
+Z73 Mx1 4 work 8 font_pkg
 R24
 R25
-Z79 !s100 1n;cD?V59nUAS2IPI9flK0
+Z74 !s100 1n;cD?V59nUAS2IPI9flK0
 Ptextmode_vga_pkg
 R10
 R13
-Z80 w1269197218
-Z81 8../../../textmode_vga/src/textmode_vga_pkg.vhd
-Z82 F../../../textmode_vga/src/textmode_vga_pkg.vhd
+Z75 w1269197218
+Z76 8../../../textmode_vga/src/textmode_vga_pkg.vhd
+Z77 F../../../textmode_vga/src/textmode_vga_pkg.vhd
 l0
 L44
-Z83 VHTRD5=mzW:=@G4n=m6@E21
+Z78 VHTRD5=mzW:=@G4n=m6@E21
 R18
 32
-Z84 Mx2 4 ieee 14 std_logic_1164
-R52
+Z79 Mx2 4 ieee 14 std_logic_1164
+R40
 R24
 R25
-Z85 !s100 JJKUJR72MGPzk6Ue;832J1
+Z80 !s100 JJKUJR72MGPzk6Ue;832J1
 Ptextmode_vga_platform_dependent_pkg
 R13
-Z86 w1269197638
-Z87 8../../../textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
-Z88 F../../../textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
+Z81 w1269197638
+Z82 8../../../textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
+Z83 F../../../textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
 l0
 L16
-Z89 VaGXfCiS`F@V36QJo30lAh3
+Z84 VaGXfCiS`F@V36QJo30lAh3
 R18
 32
-Z90 Mx1 4 ieee 14 std_logic_1164
+Z85 Mx1 4 ieee 14 std_logic_1164
 R24
 R25
-Z91 !s100 [3d;d=Ak=6g0KSVN4L1CD2
+Z86 !s100 [3d;d=Ak=6g0KSVN4L1CD2

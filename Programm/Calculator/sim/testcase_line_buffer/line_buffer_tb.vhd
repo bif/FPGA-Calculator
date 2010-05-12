@@ -117,7 +117,7 @@ begin  -- behav
 		ascii_sign_sig <= x"31";
     wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
---		wait for 40 ns;
+--	wait for 40 ns;
 		vga_free_sig <= '0';
 		wait for 20 ns;
 		vga_free_sig <= '1';
@@ -138,6 +138,16 @@ begin  -- behav
 --		wait for 40 ns;
 		vga_free_sig <= '0';
 		wait for 200 ns;
+
+
+-- reset
+		reset <= '0';
+    wait for 10 ns;
+    reset <= '1';
+    wait for 10 ns;
+
+
+
 
 		for i in 1 to 70 loop
 			vga_free_sig <= '1';

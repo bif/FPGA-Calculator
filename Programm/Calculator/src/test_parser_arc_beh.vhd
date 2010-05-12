@@ -29,6 +29,26 @@ begin
 
 
 		-- 2 while loops to make the design shorter
+
+		--	while loop for converting operand (ascii to integer) & interpret operator
+		while convert = '1' and pos_count <= pos_end_op and parse_ready_next = '0' loop
+			if read = '0' then
+				addr_lb <= pos_count;
+				data <= data_in;
+			else
+--TODO: Zahlen 0 bis 9 => mapping & multiplizieren mit der jewieligen Zehnerstelle
+				
+				pos_count := (pos_count + '1');
+				if pos_count > pos_end_op then
+					operand_next <= operand_tmp;
+				 	parse_ready_next <= '1';
+					if pos_count >= x"45" then
+						end_of_op_next <= '1';
+					end if;
+				end if;
+			end if;
+		end loop;
+
 		--while loop for finding position of next operator
 		while convert = '0' and error_sig = '0' and parse_ready_next = '0' loop
 			if read = '0' then
@@ -73,15 +93,15 @@ begin
 						if space = '0' then
 							pos_end_op <= (pos_count - '1');
 							-- operand bigger then integer 
-							if (pos_end_op - start_pos > (x"F" others => '0') then
-								error_sig >= '1';
+							if (pos_end_op - start_pos) > (x"F" & (others => '0')) then
+								error_sig <= '1';
 							end if;
 						end if;
 						space := '1';
 					else
 						-- operand bigger then integer 
-						if (pos_end_op - start_pos > (x"F" others => '0') then
-							error_sig >= '1';
+						if (pos_end_op - start_pos) > (x"F" & (others => '0')) then
+							error_sig <= '1';
 						else
 							-- dedect operator if no error was dedected
 							case data is
@@ -136,25 +156,6 @@ begin
 		tmp := pos_count;
 		pos_count := start_pos;
 		start_pos <= tmp; 
-
-		--	while loop for converting operand (ascii to integer) & interpret operator
-		while convert = '1' and  pos_count =< pos_end_op and parse_ready_next = '0' loop
-			if read = '0' then
-				addr_lb <= pos_count;
-				data <= data_in;
-			else
---TODO: Zahlen 0 bis 9 => mapping & multiplizieren mit der jewieligen Zehnerstelle
-				
-				pos_count := (pos_count + '1');
-				if pos_count > pos_end_op then
-					operand_next <= operand_tmp;
-				 	parse_ready_next <= '1';
-					if pos_count >= x"45" then
-						end_of_op_next <= '1';
-					end if;
-				end if;
-			end if;
-		end loop;
 	end process output;
 
 --TODO : extra error prozess ... error_sig unterschiedliche Werte => unterschiedliche Fehlerausgaben ans VGA Modul

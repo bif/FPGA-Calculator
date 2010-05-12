@@ -2,7 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.textmode_vga_pkg.all;
-use ieee.std_logic_unsigned.all;
 
 architecture beh of line_buffer is
 	constant DEFAULT_VGA_DATA : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0) := x"00000000";
@@ -33,7 +32,7 @@ begin
     case lb_fsm_state is
 		
 			when CLEAR_SCREEN =>
-				if reset_count <= x"F0" then 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird
+				if reset_count <= x"78" then 	-- 0x78 = 2*60 + 2... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird + jump  to 0
 					if vga_free = '0' then
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= CLEAR_SCREEN; 
@@ -121,7 +120,7 @@ begin
 		vga_command_next <= COMMAND_NOP;
 		vga_command_data_next <= DEFAULT_VGA_DATA;
 		count_next <= count;
-		reset_count_next <= reset_count + 1;
+		reset_count_next <= reset_count;
 		once_next <= once;
 		wr_enable_next <= '0';
 		lb_data_next <= x"00";
@@ -131,22 +130,15 @@ begin
 
 			when CLEAR_SCREEN =>
 				if vga_free = '1' then
---					if reset_count = x"00" then
---						vga_command_next <= COMMAND_SET_CURSOR_LINE;
---					 	vga_command_data_next(7 downto 0) <= x"1E";
---						reset_count_next <= (reset_count + '1');
---					else
-						if reset_count < x"F0" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
+						if reset_count <= x"78" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
 							vga_command_next <= COMMAND_SET_CHAR;
 							vga_command_data_next(7 downto 0) <= x"0A"; 
-							reset_count_next <= (reset_count + '1');
+							reset_count_next <= std_logic_vector(unsigned(reset_count) + 1);
 						else	
 							vga_command_next <= COMMAND_SET_CURSOR_LINE;
 						 	vga_command_data_next(7 downto 0) <= x"00";
-							reset_count_next <= (others => '0');
+							reset_count_next <= std_logic_vector(unsigned(reset_count) + 1);
 						end if;
---					end if;
---					reset_countr_next <= x"FF";
 				end if;
 			when CHECK_ASCII =>
 				once_next <= '0';
@@ -167,7 +159,7 @@ begin
 			when BKSP_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (count - '1');
+					vga_command_data_next(7 downto 0) <= std_logic_vector(unsigned(count) - 1);
 				end if;
 			when BKSP_2 =>
 				if vga_free = '1' then
@@ -186,9 +178,9 @@ begin
 			when BKSP_3 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
-					vga_command_data_next(7 downto 0) <= (count - '1');	
+					vga_command_data_next(7 downto 0) <= std_logic_vector(unsigned(count) - 1);	
 					if once = '0' then	
-						count_next <= (count - '1');
+						count_next <= std_logic_vector(unsigned(count) - 1);
 					end if;
 					once_next <= '1';
 				end if;
@@ -201,7 +193,7 @@ begin
 						wr_enable_next <= '1';
 						lb_data_next <= ascii_sign_in;
 						lb_addr_next <= count;
-						count_next <= (count + '1');
+						count_next <= std_logic_vector(unsigned(count) + 1);
 					else					
 						wr_enable_next <= '0';
 					end if;
