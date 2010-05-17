@@ -170,10 +170,11 @@ begin
 						wr_enable_next <= '1';
 						lb_data_next <= x"20";
 						lb_addr_next <= count;
+						once_next <= '1';	
 					else					
 						wr_enable_next <= '0';
+						once_next <= '0';	
 					end if;
-					once_next <= '1';	
 				end if;
 			when BKSP_3 =>
 				if vga_free = '1' then
@@ -181,8 +182,10 @@ begin
 					vga_command_data_next(7 downto 0) <= std_logic_vector(unsigned(count) - 1);	
 					if once = '0' then	
 						count_next <= std_logic_vector(unsigned(count) - 1);
+						once_next <= '1';
+					else
+						once_next <= '0';
 					end if;
-					once_next <= '1';
 				end if;
 			when SAVE_VALUE =>
 				if vga_free = '1' then
@@ -194,10 +197,11 @@ begin
 						lb_data_next <= ascii_sign_in;
 						lb_addr_next <= count;
 						count_next <= std_logic_vector(unsigned(count) + 1);
+						once_next <= '1';
 					else					
 						wr_enable_next <= '0';
+						once_next <= '0';
 					end if;
-					once_next <= '1';
 				end if;
 			when others =>
 				null;
