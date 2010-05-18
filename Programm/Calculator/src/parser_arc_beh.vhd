@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 use work.parser_pkg.all;
 
 architecture beh of parser is
@@ -10,11 +11,13 @@ architecture beh of parser is
 	signal error_sig, error_sig_next : std_logic;
 	signal line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal once, once_next, space, space_next, leading_sign, end_of_op_next, parse_ready_next, state_ready, state_ready_next : std_logic;
+	signal operator_next : std_logic_vector(1 downto 0);
+	signal operand_next : std_logic_vector(31 downto 0);
+	signal once, once_next, space, space_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, state_ready, state_ready_next : std_logic;
 
 begin
 
-  next_state : process(parser_fsm_state, read_next_n_o)
+  next_state : process(parser_fsm_state, read_next_n_o, error_sig, )
   begin
     parser_fsm_state_next <= parser_fsm_state;
 
@@ -48,7 +51,7 @@ begin
 
 
 
-  output : process(parser_fsm_state, data, once, space)
+	output : process(parser_fsm_state, data, once, space, line_count, end_pos, leading_sign)
 
   begin
 		leading_sign_next <= leading_sign;
@@ -107,7 +110,7 @@ begin
 							if line_count >= x"45" then
 								error_sig_next <= '1';
 							else
-								operator_next <= x"00";	
+								operator_next <= "00";	
 								if space = '0' then
 									-- save pos of last number
 									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
@@ -121,7 +124,7 @@ begin
 							if line_count >= x"45" then
 								error_sig_next <= '1';
 							else
-								operator_next <= x"01";	
+								operator_next <= "01";	
 								if space = '0' then
 									-- save pos of last number
 									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
@@ -135,7 +138,7 @@ begin
 							if line_count >= x"45" then
 								error_sig_next <= '1';
 							else
-								operator_next <= x"10";	
+								operator_next <= "10";	
 								if space = '0' then
 									-- save pos of last number
 									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
@@ -149,7 +152,7 @@ begin
 							if line_count >= x"45" then
 								error_sig_next <= '1';
 							else
-								operator_next <= x"11";	
+								operator_next <= "11";	
 								if space = '0' then
 									-- save pos of last number
 									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
@@ -205,10 +208,10 @@ begin
   begin
     if sys_res_n = '0' then
       parser_fsm_state <= READY;
-			line_count <= (other => '0');
+			line_count <= (others => '0');
 			space <= '0';
 		elsif (sys_clk'event and sys_clk = '1') then
-			sapce <= space_next;
+			space <= space_next;
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
 			once <= once_next;

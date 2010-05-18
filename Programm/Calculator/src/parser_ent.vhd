@@ -17,7 +17,7 @@ entity parser is
 		data_in : in std_logic_vector(DATA_WIDTH - 1 downto 0);
 		addr_lb : out std_logic_vector(ADDR_WIDTH - 1 downto 0);
 		operand : out std_logic_vector(31 downto 0);
-		operator : out std_logic_vector(2 downto 0);
+		operator : out std_logic_vector(1 downto 0);
 		end_of_operation : out std_logic;
 		parse_ready : out std_logic
 	);

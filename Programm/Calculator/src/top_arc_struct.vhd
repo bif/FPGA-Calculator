@@ -35,7 +35,7 @@ architecture struct of calculator_top is
 	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
 	signal operand_sig : std_logic_vector(31 downto 0);
-	signal operator_sig : std_logic_vector(2 downto 0);
+	signal operator_sig : std_logic_vector(1 downto 0);
 	signal end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
 
 component main is
