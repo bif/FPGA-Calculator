@@ -9,7 +9,7 @@ use work.ps2_keyboard_controller_pkg.all;
 use work.scancode_handler_pkg.all;
 use work.line_buffer_pkg.all;
 use work.sp_ram_pkg.all;
---use work.parser_pkg.all;
+use work.parser_pkg.all;
 
 architecture struct of calculator_top is
 	constant CLK_FREQ : integer := 33330000;
@@ -34,9 +34,9 @@ architecture struct of calculator_top is
 	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
---	signal operand_sig : std_logic_vector(31 downto 0);
---	signal operator_sig : std_logic_vector(2 downto 0);
---	signal end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
+	signal operand_sig : std_logic_vector(31 downto 0);
+	signal operator_sig : std_logic_vector(2 downto 0);
+	signal end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
 
 component main is
 	generic
@@ -220,25 +220,25 @@ begin
 		enable => enable_lb_sig
 	);
 
---	parser_inst : parser
---  generic map
---	(
---    RESET_VALUE => '0',
---    ADDR_WIDTH => LB_ADDR_WIDTH,
---    DATA_WIDTH => LB_DATA_WIDTH
---  )  
---	port map 
---	(
---		sys_clk => sys_clk,
---		sys_res_n => sys_res_n_sync, 
---		read_next_n_o => read_next_n_o_sig,
---		data_in => lb_data_in_sig, 
---		addr_lb => lb_addr_sig,
---		operand => operand_sig, 
---		operator => operator_sig,
---		end_of_operation => end_of_op_sig,
---		parse_ready => parse_ready_sig
---	);
+	parser_inst : parser
+  generic map
+	(
+    RESET_VALUE => '0',
+    ADDR_WIDTH => LB_ADDR_WIDTH,
+    DATA_WIDTH => LB_DATA_WIDTH
+  )  
+	port map 
+	(
+		sys_clk => sys_clk,
+		sys_res_n => sys_res_n_sync, 
+		read_next_n_o => read_next_n_o_sig,
+		data_in => lb_data_in_sig, 
+		addr_lb => lb_addr_sig,
+		operand => operand_sig, 
+		operator => operator_sig,
+		end_of_operation => end_of_op_sig,
+		parse_ready => parse_ready_sig
+	);
 
 
 	main_inst : main

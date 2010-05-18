@@ -18,12 +18,12 @@
 #
 # Quartus II
 # Version 9.1 Build 222 10/21/2009 SJ Full Version
-# Date created = 10:35:23  May 12, 2010
+# Date created = 18:24:11  May 17, 2010
 #
 # -------------------------------------------------------------------------- #
 
 QUARTUS_VERSION = "9.1"
-DATE = "10:35:23  May 12, 2010"
+DATE = "18:24:11  May 17, 2010"
 
 # Revisions
 

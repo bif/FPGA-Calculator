@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use work.parser_pkg.all;
+use ieee.numeric_std.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
@@ -38,7 +39,7 @@ begin
 			else
 --TODO: Zahlen 0 bis 9 => mapping & multiplizieren mit der jewieligen Zehnerstelle
 				
-				pos_count := (pos_count + '1');
+				pos_count := std_logic_vector(unsigned(pos_count) + 1);
 				if pos_count > pos_end_op then
 					operand_next <= operand_tmp;
 				 	parse_ready_next <= '1';
@@ -73,14 +74,14 @@ begin
 							error_sig <= '1';
 					end case;
 				--check if next sign is number
-				elsif pos_count = (start_pos + '1') then
+				elsif pos_count = std_logic_vector(unsigned(start_pos) + 1) then
 					case data is
 						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
 							null;
 						when others =>
 							error_sig <= '1';
 					end case;
-				elsif pos_count > (start_pos + '1') then
+				elsif pos_count > std_logic_vector(unsigned(start_pos) + 1) then
 					-- if a space was dedected only operator or space must be next
 					if space = '1' then
 						if data /= x"20" and 
@@ -91,7 +92,7 @@ begin
 					-- dedect space
 					elsif data = x"20" then
 						if space = '0' then
-							pos_end_op <= (pos_count - '1');
+							pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
 							-- operand bigger then integer 
 							if (pos_end_op - start_pos) > (x"F" & (others => '0')) then
 								error_sig <= '1';
@@ -112,7 +113,7 @@ begin
 									else
 										operator_next <= x"00";
 										convert <= '1'; 
-										pos_end_op <= (pos_count - '1');		
+										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);		
 									end if;
 								-- "-"
 								when x"2D" =>
@@ -121,7 +122,7 @@ begin
 									else
 										operator_next <= x"01";
 										convert <= '1';  
-										pos_end_op <= (pos_count - '1');
+										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
 									end if;
 								-- "*"
 								when x"2A" =>
@@ -130,7 +131,7 @@ begin
 									else
 										operator <= x"10";
 										convert <= '1';  
-										pos_end_op <= (pos_count - '1');
+										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
 									end if;
 								-- "/"
 								when x"2F" =>
@@ -139,18 +140,18 @@ begin
 									else
 										operator_next <= x"11";
 										convert <= '1';  
-										pos_end_op <= (pos_count - '1');
+										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
 									end if;
 								when others =>
 									if pos_count >= x"45" then
 										convert <= '1';
-										pos_end_op <= (pos_count - '1');
+										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
 									end if;
 							end case;
 						end if;
 					end if; 
 				end if;
-				pos_count := (pos_count + '1');	
+				pos_count := std_logic_vector(unsigned(pos_count) + 1);	
 			end if;
 		end loop;
 		tmp := pos_count;
