@@ -31,12 +31,13 @@ architecture struct of calculator_top is
 	signal uart_top_tx_sig	: std_logic;
 	signal uart_top_rx_sig	: std_logic;
 
-	signal lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
-	signal lb_data_in_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
+	signal lb_addr_out_sig, lb_addr_wr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
+	signal lb_data_wr_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
 	signal operand_sig : std_logic_vector(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
+
 
 component main is
 	generic
@@ -192,10 +193,11 @@ begin
 	port map
 	(
 		clk => sys_clk,
-		address => lb_addr_sig,
+		address_out => lb_addr_out_sig,
 		data_out => lb_data_out_sig,
+		address_wr => lb_addr_wr_sig,
 		wr => lb_wr_sig,
-		data_in => lb_data_in_sig
+		data_wr => lb_data_wr_sig
 	);
 
 	line_buffer_inst : line_buffer
@@ -214,8 +216,8 @@ begin
 		new_ascii_in => new_ascii_sig,
 		ascii_sign_in => ascii_sign_sig,
 		wr_enable => lb_wr_sig,
-		lb_addr => lb_addr_sig,
-		lb_data => lb_data_in_sig,
+		lb_addr => lb_addr_wr_sig,
+		lb_data => lb_data_wr_sig,
 		start_calc => start_calc_sig, 
 		enable => enable_lb_sig
 	);
@@ -232,8 +234,8 @@ begin
 		sys_clk => sys_clk,
 		sys_res_n => sys_res_n_sync, 
 		read_next_n_o => read_next_n_o_sig,
-		data_in => lb_data_in_sig, 
-		addr_lb => lb_addr_sig,
+		data_in => lb_data_out_sig, 
+		addr_lb => lb_addr_out_sig,
 		operand => operand_sig, 
 		operator => operator_sig,
 		end_of_operation => end_of_op_sig,
@@ -260,8 +262,8 @@ begin
 	enable_lb_sig <= '1';	
 
 
-  seg_a <= to_seg(lb_addr_sig(3 downto 0));
-  seg_b <= to_seg(lb_addr_sig(7 downto 4));
+  seg_a <= to_seg(lb_addr_out_sig(3 downto 0));
+  seg_b <= to_seg(lb_addr_out_sig(7 downto 4));
 
 
 end architecture struct;

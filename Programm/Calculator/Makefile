@@ -14,16 +14,21 @@ all: $(QUARTUS)
 err: $(QUARTUS)
 	@clear
 	@echo " MAP ERRORS: "
-	@grep -i 'error:' $(QUARTUS)*map*.rpt
+	@grep -i 'error:' 'error (' $(QUARTUS)*map*.rpt
 	
 warn: $(QUARTUS)
 	@clear
 	@echo " MAP WARNINGS: "
-	@grep -i 'warning:' $(QUARTUS)*map*.rpt
+	@grep -i 'warning:' 'warning ('$(QUARTUS)*map*.rpt
 
 prj: $(QUARTUS)
 	@echo "	make projekt"
 	@quartus_sh -t $(QUARTUS)../prj/create_project.tcl
+
+qflow: $(QUARTUS)
+	@clear
+	@echo " Quartus QFLOW"
+	@$(QUMACRO) quartus_sh -g	
 
 .PHONY: clean
 clean:

@@ -11,9 +11,9 @@ begin
   process(clk)
   begin
     if rising_edge(clk) then
-      data_out <= ram(to_integer(unsigned(address)));
+      data_out <= ram(to_integer(unsigned(address_out)));
       if wr = '1' then
-        ram(to_integer(unsigned(address))) <= data_in;
+        ram(to_integer(unsigned(address_wr))) <= data_wr;
       end if;
     end if;
   end process;

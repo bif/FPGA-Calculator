@@ -9,7 +9,7 @@ architecture beh of parser is
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig, error_sig_next : std_logic;
-	signal line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
 	signal operator_next : std_logic_vector(1 downto 0);
 	signal operand_next : std_logic_vector(31 downto 0);
@@ -17,7 +17,7 @@ architecture beh of parser is
 
 begin
 
-  next_state : process(parser_fsm_state, read_next_n_o, error_sig, )
+  next_state : process(parser_fsm_state, read_next_n_o, error_sig, state_ready)
   begin
     parser_fsm_state_next <= parser_fsm_state;
 
@@ -51,11 +51,10 @@ begin
 
 
 
-	output : process(parser_fsm_state, data, once, space, line_count, end_pos, leading_sign)
+	output : process(parser_fsm_state, data, once, space, line_count, leading_sign, state_ready, start_pos, error_sig, convert_count)
 
   begin
 		leading_sign_next <= leading_sign;
-		end_pos_next <= end_pos;
 		start_pos_next <= start_pos;
 		once_next <= once;
 		error_sig_next <= '0';
@@ -63,10 +62,15 @@ begin
 		parse_ready_next <= '0';
 		space_next <= space;
 		state_ready_next <= '0';
-
+		operator_next <= "00";
+		end_of_op_next <= '0';
+		convert_count_next <= convert_count;
 
 		case parser_fsm_state is
 			when READY =>
+				if state_ready = '1' then
+					state_ready_next <= '0';
+				end if;
 				start_pos_next <= line_count;
 
 			when CHECK_UNSIGNED =>
@@ -88,11 +92,11 @@ begin
 						leading_sign_next <= '0';
 				
 					when others =>
-						error_sig <= '1';
+						error_sig_next <= '1';
 			
 				end case;	
 
-			when CHECK_OPERAND =>
+			when CHECK_OPERAND =>			
 				--erstes Zeichen muss eine Ziffer sein sonst Fehler
 				if once = '0' then
 					case data is
@@ -112,8 +116,8 @@ begin
 							else
 								operator_next <= "00";	
 								if space = '0' then
-									-- save pos of last number
-									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
+									-- calc length of operand
+									convert_count_next <= std_logic_vector((unsigned(line_count) - 1) - unsigned(start_pos));
 								end if; 
 								state_ready_next <= '1';
 							end if; 
@@ -126,8 +130,8 @@ begin
 							else
 								operator_next <= "01";	
 								if space = '0' then
-									-- save pos of last number
-									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
+									-- calc length of operand
+									convert_count_next <= std_logic_vector((unsigned(line_count) - 1) - unsigned(start_pos));
 								end if;  
 								state_ready_next <= '1';
 							end if; 
@@ -140,8 +144,8 @@ begin
 							else
 								operator_next <= "10";	
 								if space = '0' then
-									-- save pos of last number
-									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
+									-- calc length of operand
+									convert_count_next <= std_logic_vector((unsigned(line_count) - 1) - unsigned(start_pos));
 								end if;  
 								state_ready_next <= '1';
 							end if; 
@@ -154,8 +158,8 @@ begin
 							else
 								operator_next <= "11";	
 								if space = '0' then
-									-- save pos of last number
-									end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
+									-- calc length of operand
+									convert_count_next <= std_logic_vector((unsigned(line_count) - 1) - unsigned(start_pos));
 								end if;  
 								state_ready_next <= '1';
 							end if; 
@@ -168,8 +172,8 @@ begin
 								end_of_op_next <= '1';
 								state_ready_next <= '1';
 							elsif space = '0' then	
-								-- save pos of last number
-								end_pos_next <= std_logic_vector(unsigned(line_count) - 1);
+								-- calc length of operand
+								convert_count_next <= std_logic_vector((unsigned(line_count) - 1) - unsigned(start_pos));
 							end if;
 							space_next <= '1'; 
 							line_count_next <= std_logic_vector(unsigned(line_count) + 1);
@@ -181,7 +185,8 @@ begin
 								-- end of buffer, last value still not converted
 								end_of_op_next <= '1';
 								state_ready_next <= '1';
-								end_pos_next <= line_count;
+								-- calc length of operand
+								convert_count_next <= std_logic_vector(unsigned(line_count) - unsigned(start_pos));
 							end if;
 							line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 				
@@ -191,6 +196,9 @@ begin
 				if state_ready = '1' then
 					state_ready_next <= '0';
 				end if;
+				-- Start of Operand = start_pos, End of Operand = end_pos
+--TODO
+					
 
 			when ERROR_STATE =>
 			--TODO:						
@@ -225,7 +233,7 @@ begin
 			state_ready <= state_ready_next;
 			leading_sign <= leading_sign_next;
 			start_pos <= start_pos_next;
-			end_pos <= end_pos_next;
+			convert_count <= convert_count_next;
 		end if;
   end process sync;
 end architecture beh;
