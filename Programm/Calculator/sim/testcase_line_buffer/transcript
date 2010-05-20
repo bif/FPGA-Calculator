@@ -1,0 +1,88 @@
+# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-164.15.1.el5
+# //
+# //  Copyright 1991-2009 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+restart -f
+run
+run

@@ -236,9 +236,9 @@ Diesen Zustand haben wir eingefürht da es möglich ist, dass das nächste Zeich
 Nur wenn das eingelesene Byte nicht F0 ist, wird in den Zustand 'CONVERT' gewechselt und das entsprechende Ascii Zeichen am Ausgang bereit gestellt sowie der Port $new\_ascii$ gesetzt. Dadurch wird signalisiert, dass ein neues Zeichen eingelesen wurde und zur weiterverarbeitung bereit steht.  
 
 
-\subsection{Parser (Scancode Handler Puffer einlesen \& interpretieren)}
+\subsection{Parser (Linebuffer einlesen \& interpretieren)}
 
-Abbildung~\ref{fig:parser} zeigt eine Statemachine für den Parser, in Abbildung~\ref{fig:entity_parser} sind die Ein- und Ausgänge des Moduls dargestellt (Entity). Der Parser wird vom Calculatormodul verwendet um den mathematischen Ausdruck welchen der Scancodehandler in einem Puffer (70 Zeichen Puffer) in Form von Ascii Zeichen zur Verfügung stellt auszuwerten und zu interpretieren. \\
+Abbildung~\ref{fig:parser} zeigt eine Statemachine für den Parser, in Abbildung~\ref{fig:entity_parser} sind die Ein- und Ausgänge des Moduls dargestellt (Entity). Der Parser wird vom Calculatormodul verwendet um den mathematischen Ausdruck (in Form von Ascii Zeichen), welcher beim Einlesen in einem Puffer (70 Zeichen Puffer) gespeichert wird, auszuwerten und zu interpretieren. \\
 Im Folgenden wird die Funktionalität der Parser Statemachine sowie die Abläufe inerhalb der einzelnen States genauer beschrieben.
 
 \begin{figure}[!ht]

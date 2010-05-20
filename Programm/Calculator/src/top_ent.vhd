@@ -20,6 +20,9 @@ entity calculator_top is
 		ps2_clk : inout std_logic;
 		ps2_data : inout std_logic;
 		uart_tx : out  std_logic;
-		uart_rx : in  std_logic
+		uart_rx : in  std_logic;
+    seg_a : out std_logic_vector(6 downto 0);
+    seg_b : out std_logic_vector(6 downto 0)
+ 
 	);
 end entity calculator_top;

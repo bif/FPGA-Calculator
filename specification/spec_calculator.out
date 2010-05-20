@@ -11,7 +11,7 @@
 \BOOKMARK [1][-]{section.3}{3 Detailierte Design Beschreibung der Module}{}
 \BOOKMARK [2][-]{subsection.3.1}{3.1 Main}{section.3}
 \BOOKMARK [2][-]{subsection.3.2}{3.2 Scancode Handler}{section.3}
-\BOOKMARK [2][-]{subsection.3.3}{3.3 Parser \(Scancode Handler Puffer einlesen \046 interpretieren\)}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{3.3 Parser \(Linebuffer einlesen \046 interpretieren\)}{section.3}
 \BOOKMARK [2][-]{subsection.3.4}{3.4 Calculator}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.4.1}{3.4.1 Addition}{subsection.3.4}
 \BOOKMARK [3][-]{subsubsection.3.4.2}{3.4.2 Subtraktion}{subsection.3.4}
