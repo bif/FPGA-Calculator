@@ -64,12 +64,17 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/sp_ram_pkg.vhd
+	set_global_assignment -name VHDL_FILE ../src/memarray_arc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/memarray_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/memarray_pkg.vhd
         set_global_assignment -name VHDL_FILE ../src/uart.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
+        set_global_assignment -name VHDL_FILE ../src/calc.vhd
+        set_global_assignment -name VHDL_FILE ../src/calc_beh.vhd
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd

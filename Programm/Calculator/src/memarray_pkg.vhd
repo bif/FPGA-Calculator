@@ -6,7 +6,7 @@ package memarray_pkg is
 	component memarray is
 	generic
 	(
-		DATA_WIDTH      : integer range 0 to 7;         -- ASCII-Werte von 0 - 127 reicht
+		DATA_WIDTH      : integer range 0 to 7;         -- ASCII-Werte
 		LINES           : integer range 0 to 50;        -- speichern der letzten 50 berechnungen
 		LINE_LENGTH     : integer range 0 to 81         -- eingabe(80byte) + delimter + ergebnis(10byte)
 	);
@@ -15,10 +15,10 @@ package memarray_pkg is
 		sys_clk		: in std_logic;
 		sys_res_n	: in std_logic;
 		wr		: in std_logic;
-		ram_bank        : in std_logic_vector(LINES - 1 downto 0);
-		ram_offset      : in std_logic_vector(LINE_LENGTH -1 downto 0);
-		data_in		: in std_logic_vector(DATA_WIDTH - 1 downto 0);
-		data_out	: out std_logic_vector(DATA_WIDTH - 1 downto 0)
+		ram_bank        : in integer range 0 to 50;
+		ram_offset      : in integer range 0 to 80;
+		data_in		: in integer range 0 to 255;
+		data_out	: out integer range 0 to 255
 	);
 	end component memarray;
 end package memarray_pkg;

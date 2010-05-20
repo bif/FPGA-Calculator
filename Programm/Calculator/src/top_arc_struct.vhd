@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 use work.debounce_pkg.all;
 use work.sync_pkg.all;
 use work.textmode_vga_platform_dependent_pkg.all;
@@ -35,6 +36,22 @@ architecture struct of calculator_top is
 	signal lb_wr_sig : std_logic;
 
 
+	-- calc_inst - signals / constants
+	--constant	OPERAND_MAX		:	integer range 0 to 2147483647  := 2147483647;
+	--constant	OPERAND_MIN		:	integer range -2147483647 to 0 := -2147483647;
+	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
+	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
+	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
+
+	signal 		operand_top		:	signed(31 downto 0);
+	signal 		operator_top		:	std_logic_vector(1 downto 0);
+	signal 		parse_ready_top	 	:	std_logic;
+	signal		need_input_top		:	std_logic;
+	signal		start_calc_top		:	std_logic;
+	signal		operation_end_top	:	std_logic;
+	signal		error_calc_top		:	std_logic;
+
 component main is
 	generic
 (
@@ -51,6 +68,30 @@ component main is
 	);
 
 end component main;
+
+component calc is
+	generic
+	(
+--		OPERAND_MAX     :       integer range 0 to 2147483647;
+--		OPERAND_MIN     :       integer range -2147483647 to 0;
+		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
+		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
+		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+		RESULT_MIN      :       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
+	);
+	port
+	(
+		sys_clk         :       in	std_logic;
+		sys_res_n       :       in	std_logic;
+		parse_ready	:       in	std_logic;
+		start_calc	:       in	std_logic;
+		operation_end	:       in	std_logic;
+		operand         :       in	signed(31 downto 0);
+		operator        :       in	std_logic_vector(1 downto 0)  := "00";
+		need_input	:	out	std_logic;
+		error_calc	:	out	std_logic
+	);
+end component calc;
 
 begin
 
@@ -202,6 +243,27 @@ begin
 		uart_main_rx    =>      uart_top_rx_sig,
 		uart_main_tx    =>      uart_top_tx_sig
 	);
+
+	calc_inst : calc
+	generic map
+	(
+		OPERAND_MAX	=>	OPERAND_MAX,
+		OPERAND_MIN	=>	OPERAND_MIN,	
+		RESULT_MAX	=>	RESULT_MAX,
+		RESULT_MIN	=>	RESULT_MIN
+	)
+	port map
+	(
+		sys_clk		=>	sys_clk,
+		sys_res_n	=>	sys_res_n,
+		parse_ready	=>	parse_ready_top,
+		start_calc	=>	start_calc_top,
+		operation_end	=>	operation_end_top,
+		operand		=>	operand_top,
+		operator	=>	operator_top,
+		need_input	=>	need_input_top,
+		error_calc	=>	error_calc_top
+	);	
 
 	uart_tx <= uart_top_tx_sig;
 	uart_top_rx_sig <= uart_rx;

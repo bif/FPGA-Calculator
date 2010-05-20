@@ -103,17 +103,5 @@ begin
 		
 	end process;
 
---	process(send_byte, enable_TX, uart_send_state)
---	begin
---		if(send_byte'event and send_byte = '1')
---		then
---			enable_TX_next <= '1';
---		end if;	
---		if(uart_send_state = IDLE)
---		then
---			enable_TX_next <= '0';
---		end if;
---	end process;
-
 end architecture beh;
 
