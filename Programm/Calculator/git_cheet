@@ -1,0 +1,34 @@
+
+remote merge if CONFLICTS:
+
+!!!!!!!!!!  save repos with cp -r source goal  !!!!!!!!!!!!!
+
+1)
+git pull origin branch_name
+	>> CONFLICT
+
+2)
+open files and resolve conficts 
+e<<<<<< HEAD ...
+ 
+>>>>>>> ...
+
+======= ...
+
+======= ...
+.
+.
+.
+
+3)
+git add /path/files_with_resolved_conflicts
+
+4)
+git commit
+... write comment
+
+5)
+git push origin branch_name
+
+
+
