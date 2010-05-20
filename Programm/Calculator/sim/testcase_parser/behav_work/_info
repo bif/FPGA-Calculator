@@ -1,0 +1,124 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_line_buffer
+T_opt
+VZlUgO0S<75QcOf:OeDI1^3
+04 14 3 work line_buffer_tb sim 1
+=16-0018fe6af11f-4bd98c13-7119a-286a
+o-quiet -auto_acc_if_foreign -work work
+n@_opt
+OE;O;6.5b;42
+Eparser
+Z1 w1274361331
+Z2 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z3 d/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_parser
+8../../src/parser_ent.vhd
+F../../src/parser_ent.vhd
+l0
+L4
+VkQdZZ8im]AAf<2dA<a`8C3
+Z4 OE;C;6.5b;42
+32
+Z5 o-work work
+Z6 tExplicit 1
+!s100 H<kFbE^gnd6o3j2IWOA;40
+Abeh
+DEx4 work 6 parser 0 22 kQdZZ8im]AAf<2dA<a`8C3
+Z7 DPx4 work 10 parser_pkg 0 22 chX:Cg^SZmzHCkdXnQ;[G0
+Z8 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+R2
+8../../src/parser_arc_beh.vhd
+F../../src/parser_arc_beh.vhd
+l18
+L6
+VbI_SHjHK6LocOf2aeS7XP3
+R4
+32
+Z9 Mx3 4 ieee 14 std_logic_1164
+Mx2 4 ieee 11 numeric_std
+Mx1 4 work 10 parser_pkg
+R5
+R6
+!s100 4XUTcV9_H2H8]V3k<2KA>0
+Pparser_pkg
+R2
+R1
+R3
+8../../src/parser_pkg.vhd
+F../../src/parser_pkg.vhd
+l0
+L4
+VchX:Cg^SZmzHCkdXnQ;[G0
+R4
+32
+Z10 Mx1 4 ieee 14 std_logic_1164
+R5
+R6
+!s100 5MhP4Y^T73Ga]NEPcS]>M2
+Eparser_tb
+w1274367658
+R8
+DPx4 work 10 sp_ram_pkg 0 22 m4P<UhiOBO_Imob0`8lae1
+R7
+R2
+R3
+8parser_tb.vhd
+Fparser_tb.vhd
+l0
+L7
+V4f=nE1?B`ZQY4WVj5OP_=3
+!s100 5@ooEFc9]jcc=@1zK2Noa0
+R4
+32
+R5
+R6
+Esp_ram
+R1
+R8
+R2
+R3
+8../../src/sp_ram_ent.vhd
+F../../src/sp_ram_ent.vhd
+l0
+L4
+VXP^NLHnaFRWcU?OW9l>kI3
+R4
+32
+R5
+R6
+!s100 RGzMO4aNnn@z?;7mO<9a93
+Abeh
+DEx4 work 6 sp_ram 0 22 XP^NLHnaFRWcU?OW9l>kI3
+R8
+R2
+8../../src/sp_ram_arc_beh.vhd
+F../../src/sp_ram_arc_beh.vhd
+l10
+L6
+V10jT=dklWVci[@W`>VXlz1
+R4
+32
+Z11 Mx2 4 ieee 14 std_logic_1164
+Z12 Mx1 4 ieee 11 numeric_std
+R5
+R6
+!s100 E`YP0eNJGI2MzND_jZ]H@3
+Psp_ram_pkg
+R8
+R2
+R1
+R3
+8../../src/sp_ram_pkg.vhd
+F../../src/sp_ram_pkg.vhd
+l0
+L6
+Vm4P<UhiOBO_Imob0`8lae1
+R4
+32
+R11
+R12
+R5
+R6
+!s100 1M2:fa41SnjZD6kfV72z60
