@@ -1,0 +1,424 @@
+# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-164.15.1.el5
+# //
+# //  Copyright 1991-2009 Mentor Graphics Corporation
+# //              All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND 
+# //  PROPRIETARY INFORMATION WHICH IS THE PROPERTY
+# //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+# //  AND IS SUBJECT TO LICENSE TERMS.
+# //
+vsim work.bcdconvtb(bench)
+# vsim work.bcdconvtb(bench) 
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading std.textio(body)
+# Loading work.bcdconvtb(bench)#1
+# Loading work.bcdconv(rtl)#1
+run
+run
+# Expected: Actual:   
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 17        00017
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 18        00018
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 19        00019
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 20        00020
+run
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Compiling entity bcdconvtb
+# -- Compiling architecture bench of bcdconvtb
+# -- Compiling configuration cfg_bcdconvtb
+# -- Loading entity bcdconvtb
+# -- Loading architecture bench of bcdconvtb
+# -- Loading entity bcdconv
+restart -f
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading std.textio(body)
+# Loading work.bcdconvtb(bench)#1
+# Loading work.bcdconv(rtl)#1
+run -continue
+# Expected: Actual:   
+# 17        00017
+# 18        00018
+# 19        00019
+# 20        00020
+run -continue
+run -continue
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 21        00021
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Break key hit 
+quit -sim
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Compiling entity bcdconvtb
+# -- Compiling architecture bench of bcdconvtb
+# -- Compiling configuration cfg_bcdconvtb
+# -- Loading entity bcdconvtb
+# -- Loading architecture bench of bcdconvtb
+# -- Loading entity bcdconv
+vsim work.bcdconvtb(bench)
+# vsim work.bcdconvtb(bench) 
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading std.textio(body)
+# Loading work.bcdconvtb(bench)#1
+# Loading work.bcdconv(rtl)#1
+run
+# Expected: Actual:   
+# 17        00017
+# 18        00018
+# 19        00019
+# 20        00020
+# 21        00021
+# 22        00022
+# 23        00023
+# 30        00030
+# 40        00040
+# 50        00050
+# 60        00060
+# 70        00070
+# 80        00080
+# 90        00090
+# 91        00091
+# 92        00092
+# 93        00093
+# 94        00094
+# 95        00095
+# 96        00096
+# 97        00097
+# 98        00098
+# 99        00099
+# 100       00100
+# 101       00101
+# 302       00302
+# 555       00555
+# 707       00707
+# 9999      09999
+# 10100     10100
+# 99999     99999
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+restart -f
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading std.textio(body)
+# Loading work.bcdconvtb(bench)#1
+# Loading work.bcdconv(rtl)#1
+run
+run
+# Expected: Actual:   
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 17        00017
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 18        00018
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# 19        00019
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Compiling entity bcdconvtb
+# -- Compiling architecture bench of bcdconvtb
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(129): Integer literal 32000 is not of type ieee.std_logic_1164.std_logic.
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(149): VHDL Compiler exiting
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Compiling entity bcdconvtb
+# -- Compiling architecture bench of bcdconvtb
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(129): Type conversion (to ieee.std_logic_1164.std_logic_vector) conflicts with expected type ieee.std_logic_1164.std_logic.
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(149): VHDL Compiler exiting
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textio
+# -- Compiling entity bcdconvtb
+# -- Compiling architecture bench of bcdconvtb
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(58): Integer literal 33333 is not of type tablet.
+# ** Error: /homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd(150): VHDL Compiler exiting

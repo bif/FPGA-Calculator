@@ -1,0 +1,116 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/homes/s0725240/Desktop/hw-mod/binarytobcd
+T_opt
+Vh_IGBAUMcX:9f3W<4GKRF1
+04 9 5 work bcdconvtb bench 1
+=2-0015609eceb2-4be00f06-3bc63-6eca
+o-quiet -auto_acc_if_foreign -work work
+n@_opt
+OE;O;6.5b;42
+Ebcdconv
+Z1 w1006342202
+Z2 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z3 8/homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconv.vhd
+Z4 F/homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconv.vhd
+l0
+L7
+VRN]TNl^_l4D<3YIemf]3:1
+Z5 OE;C;6.5b;42
+32
+Z6 o-work work
+Z7 tExplicit 1
+!s100 M>2@[C0[Wfm3gkI^V?BHj1
+Artl
+R2
+Z8 DEx4 work 7 bcdconv 0 22 RN]TNl^_l4D<3YIemf]3:1
+l32
+L18
+VYcQ24V7[jGg6iJ=iOo6UT0
+R5
+32
+Z9 Mx1 4 ieee 14 std_logic_1164
+R6
+R7
+!s100 a?ZdSGZ@D2:;3RNU^BPFU3
+Ebcdconvtb
+Z10 w1272975507
+Z11 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
+Z12 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+R2
+Z13 8/homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+Z14 F/homes/s0725240/Desktop/hw-mod/binarytobcd/bcdconvtb.vhd
+l0
+L9
+Vh?K7HNQZQi6mGW9WOd3L<3
+!s100 V=5>Y5ERoX?AYi:2[;?1X3
+R5
+32
+R6
+R7
+Abench
+R11
+R12
+R2
+Z15 DEx4 work 9 bcdconvtb 0 22 h?K7HNQZQi6mGW9WOd3L<3
+l61
+L12
+Vjfe6XRmViYNjC0Jl7;J2=3
+R5
+32
+Z16 Mx3 4 ieee 14 std_logic_1164
+Z17 Mx2 4 ieee 11 numeric_std
+Z18 Mx1 3 std 6 textio
+R6
+R7
+!s100 nRHFW]iXSk4i@OmMT2c@j2
+Ccfg_bcdconvtb
+abench
+ebcdconvtb
+R8
+DAx4 work 9 bcdconvtb 5 bench 22 jfe6XRmViYNjC0Jl7;J2=3
+R11
+R12
+R2
+R15
+w1272975017
+R13
+R14
+l0
+L154
+V@`4LT:E0Hn2maeFWzCWnW3
+R5
+32
+R16
+R17
+R18
+R6
+R7
+!s100 3WbQ5<o]nWkn7GZ_7REi`2
+Edigit
+R1
+R2
+Z19 8/homes/s0725240/Desktop/hw-mod/binarytobcd/digit.vhd
+Z20 F/homes/s0725240/Desktop/hw-mod/binarytobcd/digit.vhd
+l0
+L7
+Voh9KGc[N?_g45Nj9:e;gT2
+R5
+32
+R6
+R7
+!s100 4JD[EUzZ=PVHiOLh^cm7^1
+Artl
+R2
+DEx4 work 5 digit 0 22 oh9KGc[N?_g45Nj9:e;gT2
+l21
+L17
+VZ6n3I`3eCeI5dEoUc:DQ:0
+R5
+32
+R9
+R6
+R7
+!s100 3EW[3<iO38nDWljc6GIQO2

@@ -77,7 +77,7 @@ begin
 				start_pos_next <= line_count;
 
 			when CHECK_UNSIGNED =>
-				case data is
+				case data(7 downto 0) is
 					when x"2D" =>
 						-- "-"
 						leading_sign_next <= '1';
@@ -102,7 +102,7 @@ begin
 			when CHECK_OPERAND =>			
 				--erstes Zeichen muss eine Ziffer sein sonst Fehler
 				if once = '0' then
-					case data is
+					case data(7 downto 0) is
 						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
 							null;
 						when others =>
@@ -111,7 +111,7 @@ begin
 					once_next <= '1';
 					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 				elsif error_sig = '0' then	
-					case data is
+					case data(7 downto 0) is
 						when x"2B" =>
 							-- next operator = '+' located 
 							if line_count >= x"45" then
@@ -205,7 +205,7 @@ begin
 					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
 					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
 					if unsigned(convert_count) >= 10 then
-									case data is							
+									case data(7 downto 0) is							
 										when x"31" =>
 											operand_next <= std_logic_vector(unsigned(last_operand) + unsigned(convert_count));
 
@@ -237,7 +237,7 @@ begin
 											null;
 									end case;
 						elsif unsigned(convert_count) = 0 then
-									case data is							
+									case data(7 downto 0) is							
 										when x"31" =>
 											operand_next <= std_logic_vector(unsigned(last_operand) + 1);
 
