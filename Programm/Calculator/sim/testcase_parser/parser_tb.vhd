@@ -112,6 +112,8 @@ begin  -- behav
 		lb_wr_sig <= '0';
 
 		for i in 1 to TEST_ARRAY_WIDTH loop
+--			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			mem_debug_addr <= lb_addr_out_sig;
 			get_next <= '1';
 			wait for 100 ns;
 			get_next <= '0';
