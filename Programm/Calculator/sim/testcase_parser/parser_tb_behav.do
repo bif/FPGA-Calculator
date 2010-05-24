@@ -51,6 +51,8 @@ add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/start_pos
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/start_pos_next
 add wave -noupdate -format Literal -radix decimal /parser_tb/lb_addr_out_sig
 add wave -noupdate -format Literal /parser_tb/tp_parser/parser_fsm_state
+add wave -noupdate -format Literal /parser_tb/tp_parser/state_ready
+add wave -noupdate -format Literal /parser_tb/tp_parser/state_ready_next
 add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig
 add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig_next
 
