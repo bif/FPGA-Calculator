@@ -12,7 +12,8 @@ begin
   begin
     if rising_edge(clk) then
       data_out <= ram(to_integer(unsigned(address_out)));
-      if wr = '1' then
+      data_out_1 <= ram(to_integer(unsigned(address_out_1)));
+			if wr = '1' then
         ram(to_integer(unsigned(address_wr))) <= data_wr;
       end if;
     end if;

@@ -11,9 +11,11 @@ architecture beh of parser is
 	signal error_sig, error_sig_next : std_logic;
 	signal convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal operator_next : std_logic_vector(1 downto 0);
+	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal once, once_next, space, space_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, state_ready, state_ready_next : std_logic;
+	signal negative, negative_next, space, space_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, state_ready, state_ready_next : std_logic;
+	
+	signal debug_sig_next, debug_sig :std_logic := '0';
 
 begin
 
@@ -51,23 +53,24 @@ begin
 
 
 
-	output : process(parser_fsm_state, data, once, space, line_count, leading_sign, state_ready, start_pos, error_sig, convert_count, last_operand)
+	output : process(parser_fsm_state, data, space, line_count, leading_sign, state_ready, start_pos, error_sig, convert_count, last_operand)
 
 --	variable i : unsigned range 1000000000 to 0 := 0;
 
   begin
 		leading_sign_next <= leading_sign;
 		start_pos_next <= start_pos;
-		once_next <= once;
+		negative_next <= negative;
 		error_sig_next <= '0';
 		line_count_next <= line_count;
 		parse_ready_next <= '0';
 		space_next <= space;
 		state_ready_next <= '0';
-		operator_next <= "00";
+		operator_next <= old_operator;
 		end_of_op_next <= '0';
 		convert_count_next <= convert_count;
 		operand_next <= last_operand;
+		debug_sig_next <= debug_sig;
 
 		case parser_fsm_state is
 			when READY =>
@@ -75,25 +78,30 @@ begin
 					state_ready_next <= '0';
 				end if;
 				start_pos_next <= line_count;
+debug_sig_next <= '0';
 
 			when CHECK_UNSIGNED =>
 				case data(7 downto 0) is
 					when x"2D" =>
 						-- "-"
 						leading_sign_next <= '1';
+						negative_next <= '1';
 						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
-						start_pos_next <= line_count;
-
+						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
+						
 					when x"2B" =>
 						-- "+"
-						leading_sign_next <= '0';
+						leading_sign_next <= '1';
+						negative_next <= '0';
 						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
-						start_pos_next <= line_count;
+						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
 
 					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
 						-- "0 ... 9"
 						leading_sign_next <= '0';
-				
+						negative_next <= '0';
+						start_pos_next <= line_count;			
+	
 					when others =>
 						error_sig_next <= '1';
 			
@@ -101,20 +109,20 @@ begin
 
 			when CHECK_OPERAND =>			
 				--erstes Zeichen muss eine Ziffer sein sonst Fehler
-				if once = '0' then
-					case data(7 downto 0) is
-						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
-							null;
-						when others =>
-							error_sig_next <= '1';
-					end case;
-					once_next <= '1';
-					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
-				elsif error_sig = '0' then	
+--				if once = '0' then
+--					case data(7 downto 0) is
+--						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
+--							null;
+--						when others =>
+--							error_sig_next <= '1';
+--					end case;
+--					once_next <= '1';
+--					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+--				elsif error_sig = '0' then	
 					case data(7 downto 0) is
 						when x"2B" =>
 							-- next operator = '+' located 
-							if line_count >= x"45" then
+							if (line_count >= x"45" or line_count = start_pos) then
 								error_sig_next <= '1';
 							else
 								operator_next <= "00";	
@@ -128,7 +136,7 @@ begin
 
 						when x"2D" =>
 							-- next operator = '-'located 
-							if line_count >= x"45" then
+							if (line_count >= x"45" or line_count = start_pos) then
 								error_sig_next <= '1';
 							else
 								operator_next <= "01";	
@@ -142,7 +150,7 @@ begin
 
 						when x"2A" =>
 							-- next operator = '*' located 
-							if line_count >= x"45" then
+							if (line_count >= x"45" or line_count = start_pos) then
 								error_sig_next <= '1';
 							else
 								operator_next <= "10";	
@@ -156,7 +164,7 @@ begin
 
 						when x"2F" =>
 							-- next operator = '/' located 
-							if line_count >= x"45" then
+							if (line_count >= x"45" or line_count = start_pos) then
 								error_sig_next <= '1';
 							else
 								operator_next <= "11";	
@@ -168,6 +176,7 @@ begin
 							end if; 
 							line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 
+--TODO ... zu Beginn sprich vor operanden abfangen (start_pos hinaufzählen) und wie  bei +,-,*,/ vergleichen
 						when x"20" =>
 							-- space located 
 							if line_count >= x"45" then
@@ -194,7 +203,7 @@ begin
 							line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 				
 					end case;
-				end if;
+--				end if;
 			when CONVERT_TO_INT =>
 				if state_ready = '1' then
 					state_ready_next <= '0';
@@ -289,11 +298,12 @@ begin
 			line_count <= (others => '0');
 			space <= '0';
 			last_operand <= x"00000000";
+debug_sig <= '0';
 		elsif (sys_clk'event and sys_clk = '1') then
 			space <= space_next;
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
-			once <= once_next;
+			negative <= negative_next;
 			data <= data_in;
 			line_count <= line_count_next;
 			case parser_fsm_state is
@@ -304,6 +314,7 @@ begin
 			end case;
 			end_of_operation <= end_of_op_next;
 			parse_ready <= parse_ready_next;
+			old_operator <= operator_next;
 			operator <= operator_next;
 			operand <= operand_next;	
 			last_operand <= operand_next;
@@ -311,6 +322,7 @@ begin
 			leading_sign <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
+debug_sig <= debug_sig_next;
 		end if;
   end process sync;
 end architecture beh;

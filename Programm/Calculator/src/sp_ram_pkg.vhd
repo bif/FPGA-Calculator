@@ -15,6 +15,8 @@ package sp_ram_pkg is
 			clk      : in std_logic;
 			address_out : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
 			data_out : out std_logic_vector(DATA_WIDTH - 1 downto 0);
+			address_out_1 : in std_logic_vector(ADDR_WIDTH - 1 downto 0);
+			data_out_1 : out std_logic_vector(DATA_WIDTH - 1 downto 0);
 			address_wr : in std_logic_vector(ADDR_WIDTH - 1 downto 0); 
 			wr       : in std_logic;
 			data_wr : in std_logic_vector(DATA_WIDTH - 1 downto 0)
