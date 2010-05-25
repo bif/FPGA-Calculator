@@ -263,7 +263,7 @@ debug_sig_next <= 0;
 				start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
 				addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
 				-- convert ascii to integer
-				if (unsigned(convert_count) - unsigned(start_pos)) > 1 then
+				if (unsigned(convert_count) - unsigned(start_pos)) >= 1 then
 					case data_in(7 downto 0) is							
 						when x"31" => 
 							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 10));

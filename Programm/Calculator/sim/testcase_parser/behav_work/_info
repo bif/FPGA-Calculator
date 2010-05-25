@@ -18,14 +18,14 @@ R4
 Z10 n@_opt1
 R6
 T_opt2
-VNee=GLm;doJ2^T]AK7]A33
+VnPLgf53WJjT<7>T@L6zG;3
 R8
-Z11 =1-0015609eceb2-4bfbfa25-31d87-3214
+Z11 =1-0015609eceb2-4bfbff7e-7bfd-3538
 R4
 Z12 n@_opt2
 R6
 Eparser
-Z13 w1274361331
+Z13 w1274805564
 Z14 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
 Z15 d/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_parser
 Z16 8../../src/parser_ent.vhd
@@ -39,7 +39,7 @@ Z20 o-work work
 Z21 tExplicit 1
 Z22 !s100 H<kFbE^gnd6o3j2IWOA;40
 Abeh
-Z23 w1274804765
+Z23 w1274806133
 Z24 DEx4 work 6 parser 0 22 kQdZZ8im]AAf<2dA<a`8C3
 Z25 DPx4 work 10 parser_pkg 0 22 chX:Cg^SZmzHCkdXnQ;[G0
 Z26 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
@@ -48,7 +48,7 @@ Z27 8../../src/test_parser_arc_beh.vhd
 Z28 F../../src/test_parser_arc_beh.vhd
 l19
 L6
-Z29 VhC8eF3V^;6gWhEGOgkfl32
+Z29 Vf7@nBaU:l7]LX;iVkk<zj3
 R19
 32
 Z30 Mx3 4 ieee 14 std_logic_1164
@@ -56,7 +56,7 @@ Z31 Mx2 4 ieee 11 numeric_std
 Z32 Mx1 4 work 10 parser_pkg
 R20
 R21
-Z33 !s100 WD0@N0[A2Em7BamSC1=cg1
+Z33 !s100 @h1C9Ed?9=D4I;BUT`[]43
 Pparser_pkg
 R14
 R13
@@ -73,85 +73,85 @@ R20
 R21
 Z38 !s100 5MhP4Y^T73Ga]NEPcS]>M2
 Eparser_tb
-Z39 w1274797847
+R13
 R26
-Z40 DPx4 work 10 sp_ram_pkg 0 22 ZY0WT:B;MXJRRcI5Y:ZBB0
+Z39 DPx4 work 10 sp_ram_pkg 0 22 ZY0WT:B;MXJRRcI5Y:ZBB0
 R25
 R14
 R15
-Z41 8parser_tb.vhd
-Z42 Fparser_tb.vhd
+Z40 8parser_tb.vhd
+Z41 Fparser_tb.vhd
 l0
 L7
-Z43 V4f=nE1?B`ZQY4WVj5OP_=3
+Z42 V4f=nE1?B`ZQY4WVj5OP_=3
 R19
 32
 R20
 R21
-Z44 !s100 5@ooEFc9]jcc=@1zK2Noa0
+Z43 !s100 5@ooEFc9]jcc=@1zK2Noa0
 Asim
 R26
-R40
+R39
 R25
 R14
-Z45 DEx4 work 9 parser_tb 0 22 4f=nE1?B`ZQY4WVj5OP_=3
+Z44 DEx4 work 9 parser_tb 0 22 4f=nE1?B`ZQY4WVj5OP_=3
 l35
 L11
-Z46 VLH]VB0FC3mmLVH26^=U4G3
+Z45 VLH]VB0FC3mmLVH26^=U4G3
 R19
 32
-Z47 Mx4 4 ieee 14 std_logic_1164
-Z48 Mx3 4 work 10 parser_pkg
-Z49 Mx2 4 work 10 sp_ram_pkg
-Z50 Mx1 4 ieee 11 numeric_std
+Z46 Mx4 4 ieee 14 std_logic_1164
+Z47 Mx3 4 work 10 parser_pkg
+Z48 Mx2 4 work 10 sp_ram_pkg
+Z49 Mx1 4 ieee 11 numeric_std
 R20
 R21
-Z51 !s100 0LSABezRk7dbKZiP=hA5N2
+Z50 !s100 0LSABezRk7dbKZiP=hA5N2
 Esp_ram
-Z52 w1274704973
+R13
 R26
 R14
 R15
-Z53 8../../src/sp_ram_ent.vhd
-Z54 F../../src/sp_ram_ent.vhd
+Z51 8../../src/sp_ram_ent.vhd
+Z52 F../../src/sp_ram_ent.vhd
 l0
 L4
-Z55 Vlh2A3TnoVGEQWXZLlM5@Q3
+Z53 Vlh2A3TnoVGEQWXZLlM5@Q3
 R19
 32
 R20
 R21
-Z56 !s100 6_1NG5c8EM7TE72cl3^_<2
+Z54 !s100 6_1NG5c8EM7TE72cl3^_<2
 Abeh
-Z57 DEx4 work 6 sp_ram 0 22 lh2A3TnoVGEQWXZLlM5@Q3
+Z55 DEx4 work 6 sp_ram 0 22 lh2A3TnoVGEQWXZLlM5@Q3
 R26
 R14
-Z58 8../../src/sp_ram_arc_beh.vhd
-Z59 F../../src/sp_ram_arc_beh.vhd
+Z56 8../../src/sp_ram_arc_beh.vhd
+Z57 F../../src/sp_ram_arc_beh.vhd
 l10
 L6
-Z60 VAdDClL]@5C<]6SFBYZBI?0
+Z58 VAdDClL]@5C<]6SFBYZBI?0
 R19
 32
-Z61 Mx2 4 ieee 14 std_logic_1164
-R50
+Z59 Mx2 4 ieee 14 std_logic_1164
+R49
 R20
 R21
-Z62 !s100 `hW?Bd<XEGbNLV10[Ni]j3
+Z60 !s100 `hW?Bd<XEGbNLV10[Ni]j3
 Psp_ram_pkg
 R26
 R14
-Z63 w1274704971
+R13
 R15
-Z64 8../../src/sp_ram_pkg.vhd
-Z65 F../../src/sp_ram_pkg.vhd
+Z61 8../../src/sp_ram_pkg.vhd
+Z62 F../../src/sp_ram_pkg.vhd
 l0
 L6
-Z66 VZY0WT:B;MXJRRcI5Y:ZBB0
+Z63 VZY0WT:B;MXJRRcI5Y:ZBB0
 R19
 32
-R61
-R50
+R59
+R49
 R20
 R21
-Z67 !s100 O=bcDgnjM1Cm@290CYVbe0
+Z64 !s100 O=bcDgnjM1Cm@290CYVbe0
