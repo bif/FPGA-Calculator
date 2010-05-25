@@ -85,14 +85,15 @@ begin
 				parser_fsm_state_next <= CHECK_OPERAND;
 
 			when CONVERT_TO_INT =>
+				parser_fsm_state_next <= CONVERT_POST_STATE;
+			
+			when CONVERT_POST_STATE =>
 				if convert_ready = '1' then
 					parser_fsm_state_next <= READY;
 				else
-					parser_fsm_state_next <= CONVERT_POST_STATE;
+					parser_fsm_state_next <= CONVERT_TO_INT;
 				end if;
 
-			when CONVERT_POST_STATE =>
-				parser_fsm_state_next <= CONVERT_TO_INT;
 		end case;
   end process next_state;
 
@@ -245,21 +246,19 @@ debug_sig_next <= 0;
 					-- end of buffer, last value still not converted
 					end_of_op_next <= '1';
 					check_op_ready_next <= '1';
-					-- calc length of operand
---					convert_count_next <= line_count;
 				end if;
 			
 			when CONVERT_POST_STATE =>
 					if convert_ready /= '1' then
 						addr_lb_next <= start_pos;		
 					else
-						--line_count_next <= std_logic_vector(unsigned(line_count) - 1);
-						addr_lb_next <= line_count;--std_logic_vector(unsigned(line_count) - 1);	
+						addr_lb_next <= line_count;	
 						start_pos_next <= line_count;
+						convert_ready_next <= '1';
+						parse_ready_next <= '1';
 					end if;	
 
 			when CONVERT_TO_INT =>
---				convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
 				start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
 				addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
 				-- convert ascii to integer
@@ -328,10 +327,10 @@ debug_sig_next <= 0;
 						when others =>
 							null;
 					end case;
-
+			
 					convert_ready_next <= '1';
-					parse_ready_next <= '1';
 				end if;
+			
 			when ERROR_STATE =>
 			--TODO:						
 				null;

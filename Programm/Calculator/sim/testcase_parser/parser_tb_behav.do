@@ -43,8 +43,8 @@ add wave -noupdate -format Literal /parser_tb/tp_parser/data_in
 #add wave -noupdate -format Literal /parser_tb/operator_sig
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/operand
 add wave -noupdate -format Literal /parser_tb/tp_parser/operator
-#add wave -noupdate -format Logic /parser_tb/tp_parser/parse_ready
-#add wave -noupdate -format Logic /parser_tb/tp_parser/end_of_operation
+add wave -noupdate -format Logic /parser_tb/tp_parser/parse_ready
+add wave -noupdate -format Logic /parser_tb/tp_parser/end_of_operation
 #add wave -noupdate -format Logic /parser_tb/tp_parser/read_next_n_o
 add wave -noupdate -format Logic /parser_tb/tp_parser/error_sig
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/line_count
@@ -84,7 +84,7 @@ update
 
 
 # auto-run simulation
-run 5 us
+run 15 us
 WaveRestoreZoom {800 ns} {1800 ns}
 #wave zoomfull
 
