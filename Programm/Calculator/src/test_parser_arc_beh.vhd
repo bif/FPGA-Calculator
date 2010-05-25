@@ -5,7 +5,7 @@ use work.parser_pkg.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
-    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_OPERAND, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT, CONVERT_PREE_STATE);
+    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_OPERAND, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT, CONVERT_POST_STATE);
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig, error_sig_next : std_logic;
@@ -54,14 +54,14 @@ begin
 					when x"2F" =>
 						-- next operator = '/' located
 						parser_fsm_state_next <= DIV; 
-					when x"20" =>
+					when x"61" =>
 						parser_fsm_state_next <= SPACE_BAR;
 					when others =>
 						parser_fsm_state_next <= NUMBER;
 				end case;
 	
 				if check_op_ready = '1' and error_sig = '0' then
-					parser_fsm_state_next <= CONVERT_PREE_STATE;
+					parser_fsm_state_next <= CONVERT_TO_INT;
 				elsif error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				end if;
@@ -84,15 +84,15 @@ begin
 			when NUMBER => 
 				parser_fsm_state_next <= CHECK_OPERAND;
 
-			when CONVERT_PREE_STATE =>
+			when CONVERT_TO_INT =>
 				if convert_ready = '1' then
 					parser_fsm_state_next <= READY;
 				else
-					parser_fsm_state_next <= CONVERT_TO_INT;
+					parser_fsm_state_next <= CONVERT_POST_STATE;
 				end if;
 
-			when CONVERT_TO_INT =>
-				parser_fsm_state_next <= CONVERT_PREE_STATE;
+			when CONVERT_POST_STATE =>
+				parser_fsm_state_next <= CONVERT_TO_INT;
 		end case;
   end process next_state;
 
@@ -156,9 +156,12 @@ debug_sig_next <= 0;
 				end case;	
 
 			when CHECK_OPERAND =>		
-				line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 				if check_op_ready /= '1' then 
 					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
+					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+				else
+					convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
+					addr_lb_next <= start_pos;	
 				end if;
 			
 			when PLUS =>
@@ -170,7 +173,7 @@ debug_sig_next <= 0;
 					operator_next <= "00";	
 					if space = '0' then
 						-- calc length of operand
-						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+--						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
 					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
@@ -185,7 +188,7 @@ debug_sig_next <= 0;
 					operator_next <= "01";	
 					if space = '0' then
 						-- calc length of operand
-						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+--						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
 					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
@@ -200,7 +203,7 @@ debug_sig_next <= 0;
 					operator_next <= "10";	
 					if space = '0' then
 						-- calc length of operand
-						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+--						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
 					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
@@ -215,7 +218,7 @@ debug_sig_next <= 0;
 					operator_next <= "11";	
 					if space = '0' then
 						-- calc length of operand
-						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+--						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
 					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
@@ -231,7 +234,7 @@ debug_sig_next <= 0;
 					check_op_ready_next <= '1';
 				elsif space = '0' then	
 					-- calc length of operand
-					convert_count_next <= std_logic_vector(unsigned(line_count) - 2 - unsigned(start_pos));
+--					convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
 				end if;
 				space_next <= '1'; 
 
@@ -243,50 +246,51 @@ debug_sig_next <= 0;
 					end_of_op_next <= '1';
 					check_op_ready_next <= '1';
 					-- calc length of operand
-					convert_count_next <= std_logic_vector(unsigned(line_count) - unsigned(start_pos));
+--					convert_count_next <= line_count;
 				end if;
 			
-			when CONVERT_PREE_STATE =>
-					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
-					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
+			when CONVERT_POST_STATE =>
 					if convert_ready /= '1' then
-						addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+						addr_lb_next <= start_pos;		
 					else
-						line_count_next <= std_logic_vector(unsigned(line_count) - 1);
-						addr_lb_next <= std_logic_vector(unsigned(line_count) - 1);	
+						--line_count_next <= std_logic_vector(unsigned(line_count) - 1);
+						addr_lb_next <= line_count;--std_logic_vector(unsigned(line_count) - 1);	
 						start_pos_next <= line_count;
 					end if;	
 
 			when CONVERT_TO_INT =>
+--				convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
+				start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
+				addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
 				-- convert ascii to integer
-				if unsigned(convert_count) > 1 then
+				if (unsigned(convert_count) - unsigned(start_pos)) > 1 then
 					case data_in(7 downto 0) is							
-						when x"31" =>
-							operand_next <= std_logic_vector(unsigned(last_operand) + unsigned(convert_count));
+						when x"31" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 10));
 
-						when x"32" =>
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 20));
+						when x"32" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 20));
 
-						when x"33" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 30));
+						when x"33" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 30));
 
-						when x"34" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 40));
+						when x"34" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 40));
 
-						when x"35" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 50));
+						when x"35" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 50));
 
-						when x"36" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 60));
+						when x"36" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 60));
 
-						when x"37" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 70));
+						when x"37" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 70));
 
-						when x"38" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 80));
+						when x"38" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 80));
 
-						when x"39" => 
-							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 90));
+						when x"39" =>  
+							operand_next <= std_logic_vector(unsigned(last_operand) + ((unsigned(convert_count) - unsigned(start_pos)) * 90));
 
 						when others =>
 							null;
