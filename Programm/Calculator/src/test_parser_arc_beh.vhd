@@ -1,183 +1,362 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use work.parser_pkg.all;
 use ieee.numeric_std.all;
+use work.parser_pkg.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
-    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_NUMBER, READ_BUFFER);
+    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_OPERAND, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT);
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
-	signal error_sig : std_logic;
-	signal start_pos, pos_end_op: std_logic_vector(ADDR_WIDTH - 1 downto 0);
-	signal data : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal end_of_op_next, parse_ready_next, read, convert : std_logic;
-	signal operand_next : std_logic_vector(31 downto 0);
-	signal operator_next : std_logic_vector(2 downto 0);
+	signal error_sig, error_sig_next : std_logic;
+	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal old_operator, operator_next : std_logic_vector(1 downto 0);
+	signal operand_next, last_operand : std_logic_vector(31 downto 0);
+	signal once, once_next, negative, negative_next, space, space_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
+	signal debug_sig_next, debug_sig :integer := 0;
+
 begin
 
-  output : process(read_next_n_o, convert) 
-		variable space, leading_sign : std_logic := '0';
-		variable pos_count, tmp : std_logic_vector(ADDR_WIDTH - 1 downto 0) := start_pos;
-		variable operand_tmp : std_logic_vector(31 downto 0);
+  next_state : process(parser_fsm_state, data_in, read_next_n_o, error_sig, check_op_ready, convert_ready)
+  begin
+    parser_fsm_state_next <= parser_fsm_state;
+		
+
+    case parser_fsm_state is
+			when READY =>
+				if read_next_n_o = '1' then
+					parser_fsm_state_next <= CHECK_UNSIGNED;
+				end if;
+
+			when CHECK_UNSIGNED =>
+				if error_sig = '0' then
+					parser_fsm_state_next <= CHECK_OPERAND;
+				elsif error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				end if;
+
+			when ERROR_STATE =>
+--TODO:
+				null;	
+
+			when CHECK_OPERAND =>
+				case data_in(7 downto 0) is
+					when x"2B" =>
+						-- next operator = '+' located 
+						parser_fsm_state_next <= PLUS;
+					when x"2D" =>
+						-- next operator = '-'located 
+						parser_fsm_state_next <= MINUS;
+					when x"2A" =>
+						-- next operator = '*' located 
+						parser_fsm_state_next <= MUL;
+					when x"2F" =>
+						-- next operator = '/' located
+						parser_fsm_state_next <= DIV; 
+					when x"20" =>
+						parser_fsm_state_next <= SPACE_BAR;
+					when others =>
+						parser_fsm_state_next <= NUMBER;
+				end case;
+	
+				if check_op_ready = '1' and error_sig = '0' then
+					parser_fsm_state_next <= CONVERT_TO_INT;
+				elsif error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				end if;
+
+			when PLUS => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when MINUS => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when MUL => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when DIV => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when SPACE_BAR => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when NUMBER => 
+				parser_fsm_state_next <= CHECK_OPERAND;
+
+			when CONVERT_TO_INT =>
+				if convert_ready = '1' then
+					parser_fsm_state_next <= READY;
+				end if;
+		end case;
+  end process next_state;
+
+
+
+	output : process(parser_fsm_state, once, data_in, space, line_count, leading_sign, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand)
 
   begin
-		operand_next <= x"00";
-	 	parse_ready_next <= '0';
+		leading_sign_next <= leading_sign;
+		start_pos_next <= start_pos;
+		negative_next <= negative;
+		error_sig_next <= '0';
+		line_count_next <= line_count;
+		parse_ready_next <= '0';
+		space_next <= space;
+		check_op_ready_next <= '0';
+		convert_ready_next <= '0';
+		operator_next <= old_operator;
 		end_of_op_next <= '0';
-		pos_end_op <= (others => '0');
+		convert_count_next <= convert_count;
+		operand_next <= last_operand;
+		debug_sig_next <= debug_sig;
+		once_next <= once;
+		addr_lb_next <= addr_lb_old;
 
+		case parser_fsm_state is
+			when READY =>
+				check_op_ready_next <= '0';
+				convert_ready_next <= '0';				
+debug_sig_next <= 0;
 
-		-- 2 while loops to make the design shorter
+			when CHECK_UNSIGNED =>
+				case data_in(7 downto 0) is
+					when x"2D" =>
+						-- "-"
+						leading_sign_next <= '1';
+						negative_next <= '1';
+						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
+						addr_lb_next <= std_logic_vector(unsigned(line_count) + 1); 					
 
-		--	while loop for converting operand (ascii to integer) & interpret operator
-		while convert = '1' and pos_count <= pos_end_op and parse_ready_next = '0' loop
-			if read = '0' then
-				addr_lb <= pos_count;
-				data <= data_in;
-			else
---TODO: Zahlen 0 bis 9 => mapping & multiplizieren mit der jewieligen Zehnerstelle
-				
-				pos_count := std_logic_vector(unsigned(pos_count) + 1);
-				if pos_count > pos_end_op then
-					operand_next <= operand_tmp;
-				 	parse_ready_next <= '1';
-					if pos_count >= x"45" then
-						end_of_op_next <= '1';
-					end if;
+					when x"2B" =>
+						-- "+"
+						leading_sign_next <= '1';
+						negative_next <= '0';
+						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
+						addr_lb_next <= std_logic_vector(unsigned(line_count) + 1); 	
+
+					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
+						-- "0 ... 9"
+						leading_sign_next <= '0';
+						negative_next <= '0';
+						start_pos_next <= line_count;			
+
+					when others =>
+						error_sig_next <= '1';
+			
+				end case;	
+
+			when CHECK_OPERAND =>		
+				line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+				if check_op_ready /= '1' then 
+					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
 				end if;
-			end if;
-		end loop;
-
-		--while loop for finding position of next operator
-		while convert = '0' and error_sig = '0' and parse_ready_next = '0' loop
-			if read = '0' then
-				addr_lb <= pos_count;
-				data <= data_in;
-			else
-				--check unsigned
-				if pos_count = start_pos then
-					case data is
-						when x"2D" =>
-							-- "-"
-							leading_sign := '1';
-							error_sig <= '0';
-						when x"2B" =>
-							-- "+"
-							leading_sign := '0';
-							error_sig <= '0';
-						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
-							leading_sign := '0';
-							error_sig <= '0';
-						when others =>
-							error_sig <= '1';
-					end case;
-				--check if next sign is number
-				elsif pos_count = std_logic_vector(unsigned(start_pos) + 1) then
-					case data is
-						when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
-							null;
-						when others =>
-							error_sig <= '1';
-					end case;
-				elsif pos_count > std_logic_vector(unsigned(start_pos) + 1) then
-					-- if a space was dedected only operator or space must be next
-					if space = '1' then
-						if data /= x"20" and 
-						(data /= x"2B" or data /= x"2D" or data /= "2A" or data /= x"2F")
- 						then
-							error_sig <= '1';
-						end if;
-					-- dedect space
-					elsif data = x"20" then
-						if space = '0' then
-							pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
-							-- operand bigger then integer 
-							if (pos_end_op - start_pos) > (x"F" & (others => '0')) then
-								error_sig <= '1';
-							end if;
-						end if;
-						space := '1';
-					else
-						-- operand bigger then integer 
-						if (pos_end_op - start_pos) > (x"F" & (others => '0')) then
-							error_sig <= '1';
-						else
-							-- dedect operator if no error was dedected
-							case data is
-								-- "+"
-								when x"2B" =>
-									if pos_count >= x"45" then
-										error_sig <= '1';
-									else
-										operator_next <= x"00";
-										convert <= '1'; 
-										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);		
-									end if;
-								-- "-"
-								when x"2D" =>
-									if pos_count >= x"45" then
-										error_sig <= '1';
-									else
-										operator_next <= x"01";
-										convert <= '1';  
-										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
-									end if;
-								-- "*"
-								when x"2A" =>
-									if pos_count >= x"45" then
-										error_sig <= '1';
-									else
-										operator <= x"10";
-										convert <= '1';  
-										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
-									end if;
-								-- "/"
-								when x"2F" =>
-									if pos_count >= x"45" then
-										error_sig <= '1';
-									else
-										operator_next <= x"11";
-										convert <= '1';  
-										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
-									end if;
-								when others =>
-									if pos_count >= x"45" then
-										convert <= '1';
-										pos_end_op <= std_logic_vector(unsigned(pos_count) - 1);
-									end if;
-							end case;
-						end if;
+				null;
+			when PLUS =>
+				-- next operator = '+' located 
+				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
+						-- first sign after signed check is an operator or last sign is an operator
+						error_sig_next <= '1';
+				else
+					operator_next <= "00";	
+					if space = '0' then
+						-- calc length of operand
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
 					end if; 
-				end if;
-				pos_count := std_logic_vector(unsigned(pos_count) + 1);	
-			end if;
-		end loop;
-		tmp := pos_count;
-		pos_count := start_pos;
-		start_pos <= tmp; 
-	end process output;
+					check_op_ready_next <= '1';
+				end if; 
 
---TODO : extra error prozess ... error_sig unterschiedliche Werte => unterschiedliche Fehlerausgaben ans VGA Modul
---oder auch mit assert möglich???
---	assert RESET_VALUE = '0' or RESET_VALUE = '1' report
---    "RESET_VALUE may only be 0 or 1!" severity failure;
+			when MINUS =>
+				-- next operator = '-' located 
+				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
+						-- first sign after signed check is an operator or last sign is an operator
+						error_sig_next <= '1';
+				else
+					operator_next <= "01";	
+					if space = '0' then
+						-- calc length of operand
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+					end if;  
+					addr_lb_next <= start_pos;
+					check_op_ready_next <= '1';
+				end if; 
+
+			when MUL =>
+				-- next operator = '*' located 
+				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
+						-- first sign after signed check is an operator or last sign is an operator
+						error_sig_next <= '1';
+				else
+					operator_next <= "10";	
+					if space = '0' then
+						-- calc length of operand
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+					end if;  
+					addr_lb_next <= start_pos;
+					check_op_ready_next <= '1';
+				end if; 
+
+			when DIV =>
+				-- next operator = '/' located 
+				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
+						-- first sign after signed check is an operator or last sign is an operator
+						error_sig_next <= '1';
+				else
+					operator_next <= "11";	
+					if space = '0' then
+						-- calc length of operand
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
+					end if;  
+					addr_lb_next <= start_pos;
+					check_op_ready_next <= '1';
+				end if; 
+
+--TODO ... zu Beginn sprich vor operanden abfangen (start_pos hinaufzählen) und wie  bei +,-,*,/ vergleichen
+--TODO ... wenn lincount 0 dann Fehler beio convert count
+			when SPACE_BAR =>
+				-- space located 
+				if line_count >= x"46" then
+					-- end off buffer, last value still not converted
+					end_of_op_next <= '1';
+					check_op_ready_next <= '1';
+				elsif space = '0' then	
+					-- calc length of operand
+					convert_count_next <= std_logic_vector(unsigned(line_count) - 2 - unsigned(start_pos));
+				end if;
+				space_next <= '1'; 
+
+			when NUMBER =>
+				if space = '1' then
+					error_sig_next <= '1';
+				elsif line_count >= x"46" then
+					-- end of buffer, last value still not converted
+					end_of_op_next <= '1';
+					check_op_ready_next <= '1';
+					-- calc length of operand
+					convert_count_next <= std_logic_vector(unsigned(line_count) - unsigned(start_pos));
+				end if;
+			
+			when CONVERT_TO_INT =>
+				-- convert ascii to integer
+				if unsigned(convert_count) > 1 then
+					case data_in(7 downto 0) is							
+						when x"31" =>
+							operand_next <= std_logic_vector(unsigned(last_operand) + unsigned(convert_count));
+
+						when x"32" =>
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 20));
+
+						when x"33" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 30));
+
+						when x"34" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 40));
+
+						when x"35" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 50));
+
+						when x"36" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 60));
+
+						when x"37" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 70));
+
+						when x"38" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 80));
+
+						when x"39" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + (unsigned(convert_count) * 90));
+
+						when others =>
+							null;
+					end case;
+					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
+					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
+					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+				else
+					case data_in(7 downto 0) is							
+						when x"31" =>
+							operand_next <= std_logic_vector(unsigned(last_operand) + 1);
+
+						when x"32" =>
+							operand_next <= std_logic_vector(unsigned(last_operand) + 2);
+
+						when x"33" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 3);
+
+						when x"34" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 4);
+
+						when x"35" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 5);
+
+						when x"36" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 6);
+
+						when x"37" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 7);
+
+						when x"38" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 8);
+
+						when x"39" => 
+							operand_next <= std_logic_vector(unsigned(last_operand) + 9);
+
+						when others =>
+							null;
+					end case;
+					line_count_next <= std_logic_vector(unsigned(line_count) - 1);
+					addr_lb_next <= std_logic_vector(unsigned(line_count) - 1);	
+					start_pos_next <= line_count;
+					convert_ready_next <= '1';
+					parse_ready_next <= '1';
+				end if;
+			when ERROR_STATE =>
+			--TODO:						
+				null;
+
+		end case;
+
+
+   end process output;
+
+  assert RESET_VALUE = '0' or RESET_VALUE = '1' report
+    "RESET_VALUE may only be 0 or 1!" severity failure;
 
   sync : process(sys_clk, sys_res_n)
   begin
     if sys_res_n = '0' then
-			read <= '0';
-			start_pos <= '0';
-			error_sig <= '0';
+      parser_fsm_state <= READY;
+			line_count <= (others => '0');
+			convert_count <= (others => '0');
+			space <= '0';
+			last_operand <= x"00000000";
+			once <= '0';
+			addr_lb_old <= (others => '0');
+debug_sig <= 0;
 		elsif (sys_clk'event and sys_clk = '1') then
-			read <= '0';
+			check_op_ready <= check_op_ready_next;
+			convert_ready <= convert_ready_next;
+			space <= space_next;
+			parser_fsm_state <= parser_fsm_state_next;
+			error_sig <= error_sig_next;
+			negative <= negative_next;
+			line_count <= line_count_next;
+			addr_lb_old <= addr_lb_next;
+			addr_lb <= addr_lb_next;
 			end_of_operation <= end_of_op_next;
 			parse_ready <= parse_ready_next;
+			old_operator <= operator_next;
 			operator <= operator_next;
-			operand <= operand_next;
-		elsif (sys_clk'event and sys_clk = '0') then
-			read <= '1';
+			operand <= operand_next;	
+			last_operand <= operand_next;
+			leading_sign <= leading_sign_next;
+			start_pos <= start_pos_next;
+			convert_count <= convert_count_next;
+			once <= once_next;
+debug_sig <= debug_sig_next;
 		end if;
   end process sync;
 end architecture beh;

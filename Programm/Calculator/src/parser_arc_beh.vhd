@@ -269,6 +269,8 @@ debug_sig_next <= 0;
 					end case;
 					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
 					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
+					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
+
 				else
 					case data(7 downto 0) is							
 						when x"31" =>
