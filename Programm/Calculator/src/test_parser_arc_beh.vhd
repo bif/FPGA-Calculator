@@ -5,7 +5,7 @@ use work.parser_pkg.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
-    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_OPERAND, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT);
+    (READY, ERROR_STATE, CHECK_UNSIGNED, CHECK_OPERAND, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT, CONVERT_PREE_STATE);
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig, error_sig_next : std_logic;
@@ -61,7 +61,7 @@ begin
 				end case;
 	
 				if check_op_ready = '1' and error_sig = '0' then
-					parser_fsm_state_next <= CONVERT_TO_INT;
+					parser_fsm_state_next <= CONVERT_PREE_STATE;
 				elsif error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				end if;
@@ -84,10 +84,15 @@ begin
 			when NUMBER => 
 				parser_fsm_state_next <= CHECK_OPERAND;
 
-			when CONVERT_TO_INT =>
+			when CONVERT_PREE_STATE =>
 				if convert_ready = '1' then
 					parser_fsm_state_next <= READY;
+				else
+					parser_fsm_state_next <= CONVERT_TO_INT;
 				end if;
+
+			when CONVERT_TO_INT =>
+				parser_fsm_state_next <= CONVERT_PREE_STATE;
 		end case;
   end process next_state;
 
@@ -238,6 +243,11 @@ debug_sig_next <= 0;
 					convert_count_next <= std_logic_vector(unsigned(line_count) - unsigned(start_pos));
 				end if;
 			
+			when CONVERT_PREE_STATE =>
+					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
+					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
+					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+
 			when CONVERT_TO_INT =>
 				-- convert ascii to integer
 				if unsigned(convert_count) > 1 then
@@ -272,9 +282,7 @@ debug_sig_next <= 0;
 						when others =>
 							null;
 					end case;
-					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
-					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
-					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+
 				else
 					case data_in(7 downto 0) is							
 						when x"31" =>
