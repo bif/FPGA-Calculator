@@ -4,7 +4,6 @@ use ieee.numeric_std.all;
 use work.math_pkg.all;
 
 package uart_pkg is
-
 	component uart_send is
 		port
 		(

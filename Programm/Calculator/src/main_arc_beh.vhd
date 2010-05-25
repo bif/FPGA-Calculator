@@ -10,33 +10,35 @@ architecture beh of main is
 	constant LINE_LENGTH    : integer := 80;
 	constant DATA_WIDTH     : integer := 7;
 
-	signal sense_old, sense_old_next	: std_logic;
-	signal btn_a_sig 			: std_logic;
-	signal uart_main_tx_sig 		: std_logic;
-	signal uart_main_rx_sig 		: std_logic;
-	signal byte_data			: std_logic_vector(7 downto 0) := "00000000";
-	signal byte_data_next			: std_logic_vector(7 downto 0) := "00000000";
-	signal tx_busy_main			: std_logic := '0';
-	signal tx_busy_main_old			: std_logic := '0';
-	signal tx_busy_main_old_next		: std_logic := '0';
-	signal send_byte_main			: std_logic := '0';
-	signal send_byte_main_next		: std_logic := '0';
-	signal block_tx				: std_logic := '0';
-	signal block_tx_next			: std_logic := '0';
-	signal trigger_main_tx_sig		: std_logic := '0';
-
-	signal line_count			: integer range 0 to 81;
-	signal line_count_next			: integer range 0 to 81;
-	signal init_sent			: integer range 0 to 5;
-	signal init_sent_next			: integer range 0 to 5;
+	signal sense_old, sense_old_next		: std_logic := '0';
+	signal start_calc_old, start_calc_old_next	: std_logic := '0';
+	signal copy_lb, copy_lb_next			: std_logic := '0';
+	signal btn_a_sig 				: std_logic := '0';
+	signal uart_main_tx_sig 			: std_logic := '0';
+	signal uart_main_rx_sig 			: std_logic := '0';
+	signal byte_data				: std_logic_vector(7 downto 0) := "00000000";
+	signal byte_data_next				: std_logic_vector(7 downto 0) := "00000000";
+	signal tx_busy_main				: std_logic := '0';
+	signal tx_busy_main_old				: std_logic := '0';
+	signal tx_busy_main_old_next			: std_logic := '0';
+	signal send_byte_main				: std_logic := '0';
+	signal send_byte_main_next			: std_logic := '0';
+	signal block_tx					: std_logic := '0';
+	signal block_tx_next				: std_logic := '0';
+	signal trigger_main_tx_sig			: std_logic := '0';
+	
+	signal line_count				: integer range 0 to 81;
+	signal line_count_next				: integer range 0 to 81;
+	signal init_sent				: integer range 0 to 5;
+	signal init_sent_next				: integer range 0 to 5;
 
 	-- memarray - signale
-	signal wr_main				: std_logic;
-	signal ram_bank				: integer range 0 to 51;
-	signal ram_bank_next			: integer range 0 to 51;
-	signal ram_offset			: integer range 0 to 81;
-	signal ram_offset_next			: integer range 0 to 81;
-	signal data_in_main, data_out_main	: integer range 0 to 255;
+	signal wr_main					: std_logic;
+	signal ram_bank					: integer range 0 to 51;
+	signal ram_bank_next				: integer range 0 to 51;
+	signal ram_offset				: integer range 0 to 81;
+	signal ram_offset_next				: integer range 0 to 81;
+	signal data_in_main, data_out_main		: integer range 0 to 255;
 
 	component uart is
 	port
@@ -66,6 +68,7 @@ process(sys_clk, sys_res_n)
 		line_count <= 0;
 		block_tx <= '0';
 		init_sent <= 0;
+		start_calc_old <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -77,10 +80,11 @@ process(sys_clk, sys_res_n)
 		line_count <= line_count_next;
 		block_tx <= block_tx_next;
 		init_sent <= init_sent_next;
+		start_calc_old <= start_calc_old_next;
 	end if;
 end process;
 
-process(ram_bank, ram_offset, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, line_count, block_tx, init_sent, data_out_main)
+process(ram_bank, ram_offset, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, line_count, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb)
 begin
 	sense_old_next <= sense;
 	ram_bank_next <= ram_bank;
@@ -91,6 +95,9 @@ begin
 	line_count_next <= line_count;
 	block_tx_next <= block_tx;
 	init_sent_next <= init_sent;
+	copy_lb_next <= copy_lb;
+
+	start_calc_old_next <= start_calc;
 
 	if(((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1') and (block_tx = '0'))	-- start transmit of ringbuffer
 	then	--sense = '0' ... weil button low aktiv
@@ -116,19 +123,19 @@ begin
 
 	if(tx_busy_main_old /= tx_busy_main and tx_busy_main = '0')
 	then
-		if(init_sent < 5)
+		if(init_sent < 5)					-- send initial newlines
 		then
 			byte_data_next <= "00001010";
 			send_byte_main_next <= '1';
 			init_sent_next <= init_sent + 1;
 			
 		else
-			if(ram_offset = 78)				-- beginning of the line: send a newline
+			if(ram_offset = 78)				-- 2nd-last char of the line: send a newline
 			then
 				ram_offset_next <= ram_offset + 1;
 				byte_data_next <= "00001010";
 				send_byte_main_next <= '1';
-			elsif(ram_offset = 79)				-- 2. char on every line: CR
+			elsif(ram_offset = 79)				-- very last char on every line: CR
 			then
 				if(line_count < LINES)
 				then
@@ -153,6 +160,17 @@ begin
 	elsif(tx_busy_main = '1')	-- TX of last byte not finished yet
 	then
 		send_byte_main_next <= '0';
+	end if;
+
+	if(start_calc_old /= start_calc and start_calc = '1')	-- valid line in linebuffer
+	then							-->copy this line into memory and trigger calculation
+		copy_lb_next <= '1';
+		block_tx_next <= '1';				-- disable TX while copying the last inputline into ringbuffer
+	end if;
+
+	if(copy_lb = '1')
+	then
+		
 	end if;
 end process;
 

@@ -14,6 +14,7 @@ entity main is
 		sense			: in	std_logic;
 		uart_main_tx		: out	std_logic;
 		uart_main_rx		: in	std_logic := '1';
-		trigger_main_tx		: out	std_logic := '0'
+		trigger_main_tx		: out	std_logic := '0';
+		start_calc		: in	std_logic := '0'
 	);
 end entity main;

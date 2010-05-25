@@ -41,8 +41,6 @@ architecture struct of calculator_top is
 
 
 	-- calc_inst - signals / constants
-	--constant	OPERAND_MAX		:	integer range 0 to 2147483647  := 2147483647;
-	--constant	OPERAND_MIN		:	integer range -2147483647 to 0 := -2147483647;
 	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
 	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
 	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
@@ -52,7 +50,6 @@ architecture struct of calculator_top is
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal 		parse_ready_top	 	:	std_logic;
 	signal		need_input_top		:	std_logic;
-	signal		start_calc_top		:	std_logic;
 	signal		operation_end_top	:	std_logic;
 	signal		error_calc_top		:	std_logic;
 
@@ -68,7 +65,8 @@ component main is
 		sense : in std_logic;
 		uart_main_tx    : out   std_logic;
 		uart_main_rx    : in    std_logic;
-		trigger_main_tx	: out    std_logic
+		trigger_main_tx	: out	std_logic;
+		start_calc	: in	std_logic
 	);
 
 end component main;
@@ -291,7 +289,8 @@ begin
 		sys_res_n => sys_res_n_sync,
 		sense => btn_a_sync,
 		uart_main_rx => uart_top_rx_sig,
-		uart_main_tx => uart_top_tx_sig
+		uart_main_tx => uart_top_tx_sig,
+		start_calc => start_calc_sig
 	);
 
 	calc_inst : calc
@@ -307,7 +306,7 @@ begin
 		sys_clk		=>	sys_clk,
 		sys_res_n	=>	sys_res_n,
 		parse_ready	=>	parse_ready_top,
-		start_calc	=>	start_calc_top,
+		start_calc	=>	start_calc_sig,
 		operation_end	=>	operation_end_top,
 		operand		=>	operand_top,
 		operator	=>	operator_top,
@@ -319,6 +318,8 @@ begin
 	uart_top_rx_sig <= uart_rx;
 	enable_lb_sig <= '1';	
 
+
+	
 
   seg_a <= to_seg(lb_addr_sig(3 downto 0));
   seg_b <= to_seg(lb_addr_sig(7 downto 4));

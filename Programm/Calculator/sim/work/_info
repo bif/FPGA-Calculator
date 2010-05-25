@@ -4,1247 +4,1353 @@ K3
 cModel Technology
 Z0 d/homes/s0727156/GIT/Programm/Calculator/sim
 T_opt
-Z1 Vck;l2BT^Igi5n=Aebem0o1
-Z2 04 7 3 work main_tb sim 1
-Z3 =1-0015609ece93-4bf3bc0f-990ed-3524
+Z1 Va0?8kfWBh9o2<mh0[XhUo3
+Z2 04 7 3 work itoa_tb sim 1
+Z3 =10-0015609ece93-4bfb958f-58c7-544
 Z4 o-quiet -auto_acc_if_foreign -work work
 Z5 n@_opt
 Z6 OE;O;6.5b;42
 T_opt1
-V?:L7GkRmbQW]I]YP<c5lF2
-04 7 3 work calc_tb sim 1
-Z7 =3-0015609ece93-4bf50a79-1627b-1d3b
+VgD<fX?XJ5]k1J[<NHgnF=2
+Z7 04 7 3 work calc_tb sim 1
+Z8 =9-0015609ece93-4bfbce53-dccc8-2227
 R4
-Z8 n@_opt1
+Z9 n@_opt1
+R6
+T_opt2
+Z10 ViB3QKHKTElZ7Eg2^[IYUG2
+Z11 04 4 3 work itoa beh 1
+Z12 =2-0015609ece93-4bf971d7-403aa-1a73
+R4
+Z13 n@_opt2
 R6
 Ecalc
-Z9 w1274276400
-Z10 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
-Z11 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
-Z12 8/homes/s0727156/GIT/Programm/Calculator/src/calc.vhd
-Z13 F/homes/s0727156/GIT/Programm/Calculator/src/calc.vhd
+Z14 w1274357762
+Z15 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z16 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z17 8/homes/s0727156/GIT/Programm/Calculator/src/calc.vhd
+Z18 F/homes/s0727156/GIT/Programm/Calculator/src/calc.vhd
 l0
 L5
-Z14 V<F1K66N6KmZ6FW<`joTIW2
-Z15 OE;C;6.5b;42
+Z19 V<F1K66N6KmZ6FW<`joTIW2
+Z20 OE;C;6.5b;42
 32
-Z16 o-work work
-Z17 tExplicit 1
-Z18 !s100 Q;HDz2gXHNI?UeUShVXi31
+Z21 o-work work
+Z22 tExplicit 1
+Z23 !s100 ;OmiZHB4JPo]1cWS4THPc2
 Abeh
-Z19 w1274350180
-Z20 DEx4 work 4 calc 0 22 <F1K66N6KmZ6FW<`joTIW2
-R10
-R11
-Z21 8/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
-Z22 F/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
-l31
-L5
-Z23 V[m=_BBN9;0:`hD9?c:K`n3
+Z24 w1274793143
+Z25 DEx4 work 4 calc 0 22 <F1K66N6KmZ6FW<`joTIW2
+Z26 DPx4 work 8 itoa_pkg 0 22 HoinT=LdHhQ4c]0I<0XB93
 R15
-32
-Z24 Mx2 4 ieee 14 std_logic_1164
-Z25 Mx1 4 ieee 11 numeric_std
 R16
-R17
-Z26 !s100 _TdmefN>d<<E?M9X?UfdR0
+Z27 8/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
+Z28 F/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
+l35
+L6
+Z29 VV@N?4VZ8nb`RD3692<4^i0
+R20
+32
+Z30 Mx3 4 ieee 14 std_logic_1164
+Z31 Mx2 4 ieee 11 numeric_std
+Z32 Mx1 4 work 8 itoa_pkg
+R21
+R22
+Z33 !s100 _]5[7CoJABemkd^CCSV@53
 Ecalc_tb
-Z27 w1274347849
-R10
-R11
-Z28 8/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
-Z29 F/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
+Z34 w1274792782
+R15
+R16
+Z35 8/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
+Z36 F/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
 l0
 L5
-Z30 VC8ibcMB>4C;JkHP`9L2W?2
-R15
+Z37 VC8ibcMB>4C;JkHP`9L2W?2
+R20
 32
-R16
-R17
-Z31 !s100 bEX<38Tn43;0]ck__DfV21
+R21
+R22
+Z38 !s100 bEX<38Tn43;0]ck__DfV21
 Asim
-R10
-R11
-Z32 DEx4 work 7 calc_tb 0 22 C8ibcMB>4C;JkHP`9L2W?2
+R15
+R16
+Z39 DEx4 work 7 calc_tb 0 22 C8ibcMB>4C;JkHP`9L2W?2
 l29
 L8
-Z33 VSVbj4_aXU_4=>D^F5mNIc3
-R15
+Z40 VT?5V:n_=9nR@1A`L[LA9<2
+R20
 32
-R24
-R25
-R16
-R17
-Z34 !s100 9UAin>ngGCX`?UG_9V0902
+Z41 Mx2 4 ieee 14 std_logic_1164
+Z42 Mx1 4 ieee 11 numeric_std
+R21
+R22
+Z43 !s100 Z4g]l_a9;D?kLYm@85Dbn3
 Ecalculator_top
-Z35 w1272981257
-R11
-Z36 8/homes/s0727156/GIT/Programm/Calculator/src/top_ent.vhd
-Z37 F/homes/s0727156/GIT/Programm/Calculator/src/top_ent.vhd
+Z44 w1274350555
+R16
+Z45 8/homes/s0727156/GIT/Programm/Calculator/src/top_ent.vhd
+Z46 F/homes/s0727156/GIT/Programm/Calculator/src/top_ent.vhd
 l0
 L4
-Z38 VczC4bb?74Q1e>kdhfaGF03
-R15
+Z47 VQVH?8MB8i9f08WTjdz[P01
+R20
 32
-R16
-R17
-Z39 !s100 ]`eef8m_b5P4=Ool=bOR?2
+R21
+R22
+Z48 !s100 @6>=9;aQX8o:mS8O_2D082
 Astruct
-Z40 w1274263539
-Z41 DEx4 work 14 calculator_top 0 22 czC4bb?74Q1e>kdhfaGF03
-Z42 DPx4 work 10 sp_ram_pkg 0 22 Lh6hd5Y3FYZ:QdN8OjFa90
-Z43 DPx4 work 15 line_buffer_pkg 0 22 KfMCE9I8=N2K0D7mHBD[g0
-Z44 DPx4 work 20 scancode_handler_pkg 0 22 :_a:V]QHnA0gUo@>]N>Q32
-Z45 DPx4 work 27 ps2_keyboard_controller_pkg 0 22 b]V[lbJ^C>`PDh;eDYBbg0
-Z46 DPx4 work 15 pll_wrapper_pkg 0 22 7WW7N`i[Y3AmGP3X0BIAE2
-Z47 DPx4 work 8 font_pkg 0 22 <9Smj4DdgfSWL76lVV3U?2
-Z48 DPx4 work 16 textmode_vga_pkg 0 22 HTRD5=mzW:=@G4n=m6@E21
-Z49 DPx4 work 26 textmode_vga_component_pkg 0 22 MNM1O2SdI54zBfOk2@oF:2
-Z50 DPx4 work 35 textmode_vga_platform_dependent_pkg 0 22 aGXfCiS`F@V36QJo30lAh3
-Z51 DPx4 work 8 sync_pkg 0 22 7SN2X6S3A]bih_P9Vd[k>0
-Z52 DPx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
-Z53 DPx4 work 12 debounce_pkg 0 22 :2^IEIE?2m<=;?S@Tl__m1
-R10
-R11
-Z54 8/homes/s0727156/GIT/Programm/Calculator/src/top_arc_struct.vhd
-Z55 F/homes/s0727156/GIT/Programm/Calculator/src/top_arc_struct.vhd
-l96
-L14
-Z56 VmiSLnIL=DTW9JO[jV2K8f3
+Z49 w1274360681
+Z50 DEx4 work 14 calculator_top 0 22 QVH?8MB8i9f08WTjdz[P01
+Z51 DPx4 work 10 sp_ram_pkg 0 22 Lh6hd5Y3FYZ:QdN8OjFa90
+Z52 DPx4 work 15 line_buffer_pkg 0 22 [Z8an`aW7n2fIn:<AN]`C1
+Z53 DPx4 work 20 scancode_handler_pkg 0 22 :_a:V]QHnA0gUo@>]N>Q32
+Z54 DPx4 work 27 ps2_keyboard_controller_pkg 0 22 b]V[lbJ^C>`PDh;eDYBbg0
+Z55 DPx4 work 15 pll_wrapper_pkg 0 22 7WW7N`i[Y3AmGP3X0BIAE2
+Z56 DPx4 work 8 font_pkg 0 22 <9Smj4DdgfSWL76lVV3U?2
+Z57 DPx4 work 16 textmode_vga_pkg 0 22 HTRD5=mzW:=@G4n=m6@E21
+Z58 DPx4 work 26 textmode_vga_component_pkg 0 22 MNM1O2SdI54zBfOk2@oF:2
+Z59 DPx4 work 35 textmode_vga_platform_dependent_pkg 0 22 aGXfCiS`F@V36QJo30lAh3
+Z60 DPx4 work 8 sync_pkg 0 22 7SN2X6S3A]bih_P9Vd[k>0
+Z61 DPx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
+Z62 DPx4 work 12 debounce_pkg 0 22 :2^IEIE?2m<=;?S@Tl__m1
 R15
-32
-Z57 Mx14 4 ieee 14 std_logic_1164
-Z58 Mx13 4 ieee 11 numeric_std
-Z59 Mx12 4 work 12 debounce_pkg
-Z60 Mx11 4 work 8 math_pkg
-Z61 Mx10 4 work 8 sync_pkg
-Z62 Mx9 4 work 35 textmode_vga_platform_dependent_pkg
-Z63 Mx8 4 work 26 textmode_vga_component_pkg
-Z64 Mx7 4 work 16 textmode_vga_pkg
-Z65 Mx6 4 work 8 font_pkg
-Z66 Mx5 4 work 15 pll_wrapper_pkg
-Z67 Mx4 4 work 27 ps2_keyboard_controller_pkg
-Z68 Mx3 4 work 20 scancode_handler_pkg
-Z69 Mx2 4 work 15 line_buffer_pkg
-Z70 Mx1 4 work 10 sp_ram_pkg
 R16
-R17
-Z71 !s100 RfjH93_@e7zB;Ba:YO;Zj3
+Z63 8/homes/s0727156/GIT/Programm/Calculator/src/top_arc_struct.vhd
+Z64 F/homes/s0727156/GIT/Programm/Calculator/src/top_arc_struct.vhd
+l121
+L15
+Z65 VbWefd4UGh`OPn38P6LYS>1
+R20
+32
+Z66 Mx14 4 ieee 14 std_logic_1164
+Z67 Mx13 4 ieee 11 numeric_std
+Z68 Mx12 4 work 12 debounce_pkg
+Z69 Mx11 4 work 8 math_pkg
+Z70 Mx10 4 work 8 sync_pkg
+Z71 Mx9 4 work 35 textmode_vga_platform_dependent_pkg
+Z72 Mx8 4 work 26 textmode_vga_component_pkg
+Z73 Mx7 4 work 16 textmode_vga_pkg
+Z74 Mx6 4 work 8 font_pkg
+Z75 Mx5 4 work 15 pll_wrapper_pkg
+Z76 Mx4 4 work 27 ps2_keyboard_controller_pkg
+Z77 Mx3 4 work 20 scancode_handler_pkg
+Z78 Mx2 4 work 15 line_buffer_pkg
+Z79 Mx1 4 work 10 sp_ram_pkg
+R21
+R22
+Z80 !s100 o=2Gc3ek]f]Cj2HUW2ZZZ0
 Econsole_sm
-Z72 w1272286893
-R52
-R10
-R47
-R50
-R48
-R11
-Z73 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm.vhd
-Z74 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm.vhd
+Z81 w1272286893
+R61
+R15
+R56
+R59
+R57
+R16
+Z82 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm.vhd
+Z83 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm.vhd
 l0
 L19
-Z75 VjJlb22gnMZE2O_17>^_oV3
-R15
+Z84 VjJlb22gnMZE2O_17>^_oV3
+R20
 32
-R16
-R17
-Z76 !s100 58KGbE;F@ahnGRdBQ5m=W2
+R21
+R22
+Z85 !s100 58KGbE;F@ahnGRdBQ5m=W2
 Abeh
-Z77 w1272965148
-R52
-R47
-Z78 DEx4 work 10 console_sm 0 22 jJlb22gnMZE2O_17>^_oV3
-R50
-R48
-R10
-R11
-Z79 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_beh.vhd
-Z80 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_beh.vhd
+Z86 w1272965148
+R61
+R56
+Z87 DEx4 work 10 console_sm 0 22 jJlb22gnMZE2O_17>^_oV3
+R59
+R57
+R15
+R16
+Z88 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_beh.vhd
+Z89 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_beh.vhd
 l45
 L18
-Z81 VF]GO8oiChG2=29TYcLFK_2
-R15
+Z90 VF]GO8oiChG2=29TYcLFK_2
+R20
 32
-Z82 Mx6 4 ieee 14 std_logic_1164
-Z83 Mx5 4 ieee 11 numeric_std
-Z84 Mx4 4 work 16 textmode_vga_pkg
-Z85 Mx3 4 work 35 textmode_vga_platform_dependent_pkg
-Z86 Mx2 4 work 8 font_pkg
-Z87 Mx1 4 work 8 math_pkg
-R16
-R17
-Z88 !s100 `NmPAc<Hz9LcbI5d9CWO71
+Z91 Mx6 4 ieee 14 std_logic_1164
+Z92 Mx5 4 ieee 11 numeric_std
+Z93 Mx4 4 work 16 textmode_vga_pkg
+Z94 Mx3 4 work 35 textmode_vga_platform_dependent_pkg
+Z95 Mx2 4 work 8 font_pkg
+Z96 Mx1 4 work 8 math_pkg
+R21
+R22
+Z97 !s100 `NmPAc<Hz9LcbI5d9CWO71
 Econsole_sm_sync
-R72
-R52
-R10
-R47
-R50
-R48
-R11
-Z89 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync.vhd
-Z90 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync.vhd
+R81
+R61
+R15
+R56
+R59
+R57
+R16
+Z98 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync.vhd
+Z99 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync.vhd
 l0
 L18
-Z91 V;hnXno@5[Gd^6=C_Ie:<@3
-R15
+Z100 V;hnXno@5[Gd^6=C_Ie:<@3
+R20
 32
-R16
-R17
-Z92 !s100 [SQSd@gHz2jf7n83VQMMk0
+R21
+R22
+Z101 !s100 [SQSd@gHz2jf7n83VQMMk0
 Abeh
-Z93 DEx4 work 15 console_sm_sync 0 22 ;hnXno@5[Gd^6=C_Ie:<@3
-R52
-R47
-R50
-R48
-R10
-R11
-Z94 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync_beh.vhd
-Z95 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync_beh.vhd
+Z102 DEx4 work 15 console_sm_sync 0 22 ;hnXno@5[Gd^6=C_Ie:<@3
+R61
+R56
+R59
+R57
+R15
+R16
+Z103 8/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync_beh.vhd
+Z104 F/homes/s0727156/GIT/Programm/textmode_vga/src/console_sm_sync_beh.vhd
 l31
 L21
-Z96 V0[fzEU]?oD_7nThQnkAcd3
-R15
+Z105 V0[fzEU]?oD_7nThQnkAcd3
+R20
 32
-R82
-R83
-R84
-R85
-R86
-R87
-R16
-R17
-Z97 !s100 F_b7C2CGFPH?2JQ@L0dgn0
+R91
+R92
+R93
+R94
+R95
+R96
+R21
+R22
+Z106 !s100 F_b7C2CGFPH?2JQ@L0dgn0
 Ecounter
-Z98 w1272981126
-R52
-R11
-Z99 8/homes/s0727156/GIT/Programm/Calculator/src/counter_ent.vhd
-Z100 F/homes/s0727156/GIT/Programm/Calculator/src/counter_ent.vhd
+Z107 w1272981126
+R61
+R16
+Z108 8/homes/s0727156/GIT/Programm/Calculator/src/counter_ent.vhd
+Z109 F/homes/s0727156/GIT/Programm/Calculator/src/counter_ent.vhd
 l0
 L5
-Z101 VCkY3EQ_<G<41`;DOk3`=U1
-R15
+Z110 VCkY3EQ_<G<41`;DOk3`=U1
+R20
 32
-R16
-R17
-Z102 !s100 c=SjIn2M[H9SCcRodAhE00
+R21
+R22
+Z111 !s100 c=SjIn2M[H9SCcRodAhE00
 Abeh
-Z103 DEx4 work 7 counter 0 22 CkY3EQ_<G<41`;DOk3`=U1
-R52
-R10
-R11
-Z104 8/homes/s0727156/GIT/Programm/Calculator/src/counter_arc_beh.vhd
-Z105 F/homes/s0727156/GIT/Programm/Calculator/src/counter_arc_beh.vhd
+Z112 DEx4 work 7 counter 0 22 CkY3EQ_<G<41`;DOk3`=U1
+R61
+R15
+R16
+Z113 8/homes/s0727156/GIT/Programm/Calculator/src/counter_arc_beh.vhd
+Z114 F/homes/s0727156/GIT/Programm/Calculator/src/counter_arc_beh.vhd
 l8
 L6
-Z106 VKW^g<EK6eM_JCd^3m4z`10
-R15
+Z115 VKW^g<EK6eM_JCd^3m4z`10
+R20
 32
-Z107 Mx3 4 ieee 14 std_logic_1164
-Z108 Mx2 4 ieee 11 numeric_std
-R87
-R16
-R17
-Z109 !s100 d1oNOhn3n:kgU=7AF;@n12
+R30
+R31
+R96
+R21
+R22
+Z116 !s100 d1oNOhn3n:kgU=7AF;@n12
 Edebounce
-R98
-R11
-Z110 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_ent.vhd
-Z111 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_ent.vhd
+R107
+R16
+Z117 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_ent.vhd
+Z118 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_ent.vhd
 l0
 L4
-Z112 V177H5M:kTaX7GUT]iWXg03
-R15
+Z119 V177H5M:kTaX7GUT]iWXg03
+R20
 32
-R16
-R17
-Z113 !s100 5ZOm5zR^5GUJR174fnIzR2
+R21
+R22
+Z120 !s100 5ZOm5zR^5GUJR174fnIzR2
 Astruct
-Z114 DEx4 work 8 debounce 0 22 177H5M:kTaX7GUT]iWXg03
-R52
-R53
-R51
-R11
-Z115 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_arc_struct.vhd
-Z116 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_arc_struct.vhd
+Z121 DEx4 work 8 debounce 0 22 177H5M:kTaX7GUT]iWXg03
+R61
+R62
+R60
+R16
+Z122 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_arc_struct.vhd
+Z123 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_arc_struct.vhd
 l14
 L7
-Z117 VTgjb6lJ4m[zRS_^aJP2o70
-R15
+Z124 VTgjb6lJ4m[zRS_^aJP2o70
+R20
 32
-Z118 Mx4 4 ieee 14 std_logic_1164
-Z119 Mx3 4 work 8 sync_pkg
-Z120 Mx2 4 work 12 debounce_pkg
-R87
-R16
-R17
-Z121 !s100 o<ZD5g;?TgDb9A>oiei_W2
+Z125 Mx4 4 ieee 14 std_logic_1164
+Z126 Mx3 4 work 8 sync_pkg
+Z127 Mx2 4 work 12 debounce_pkg
+R96
+R21
+R22
+Z128 !s100 o<ZD5g;?TgDb9A>oiei_W2
 Edebounce_fsm
-R98
-R52
-R11
-Z122 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_ent.vhd
-Z123 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_ent.vhd
+R107
+R61
+R16
+Z129 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_ent.vhd
+Z130 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_ent.vhd
 l0
 L5
-Z124 VUGod3=E4KZWJC?5iB8=MA3
-R15
+Z131 VUGod3=E4KZWJC?5iB8=MA3
+R20
 32
-R16
-R17
-Z125 !s100 7<3?[zA;VQ[]a>Bomd4l=2
+R21
+R22
+Z132 !s100 7<3?[zA;VQ[]a>Bomd4l=2
 Abeh
-R52
-Z126 DEx4 work 12 debounce_fsm 0 22 UGod3=E4KZWJC?5iB8=MA3
-R10
-R11
-Z127 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_arc_beh.vhd
-Z128 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_arc_beh.vhd
+R61
+Z133 DEx4 work 12 debounce_fsm 0 22 UGod3=E4KZWJC?5iB8=MA3
+R15
+R16
+Z134 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_arc_beh.vhd
+Z135 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_fsm_arc_beh.vhd
 l9
 L5
-Z129 V2LAUgcC5B=Pf;JJg1lGhe1
-R15
+Z136 V2LAUgcC5B=Pf;JJg1lGhe1
+R20
 32
-R107
-R108
-R87
-R16
-R17
-Z130 !s100 8e[1@55Q4V0Xo^PL536Vz1
+R30
+R31
+R96
+R21
+R22
+Z137 !s100 8e[1@55Q4V0Xo^PL536Vz1
 Pdebounce_pkg
-R52
-R11
-R98
-Z131 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_pkg.vhd
-Z132 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_pkg.vhd
+R61
+R16
+R107
+Z138 8/homes/s0727156/GIT/Programm/Calculator/src/debounce_pkg.vhd
+Z139 F/homes/s0727156/GIT/Programm/Calculator/src/debounce_pkg.vhd
 l0
 L5
-Z133 V:2^IEIE?2m<=;?S@Tl__m1
-R15
+Z140 V:2^IEIE?2m<=;?S@Tl__m1
+R20
 32
-R24
-R87
-R16
-R17
-Z134 !s100 O4JAnOZQI7eKN?JX8L2Sl3
+R41
+R96
+R21
+R22
+Z141 !s100 O4JAnOZQI7eKN?JX8L2Sl3
 Edp_ram
-R98
-R10
-R11
-Z135 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_ent.vhd
-Z136 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_ent.vhd
+R107
+R15
+R16
+Z142 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_ent.vhd
+Z143 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_ent.vhd
 l0
 L5
-Z137 V>jI4:dE>ahbPhh`NCITVQ3
-R15
+Z144 V>jI4:dE>ahbPhh`NCITVQ3
+R20
 32
-R16
-R17
-Z138 !s100 OU@ob71HdK9Dke:hAh1Yb1
+R21
+R22
+Z145 !s100 OU@ob71HdK9Dke:hAh1Yb1
 Abeh
-Z139 DEx4 work 6 dp_ram 0 22 >jI4:dE>ahbPhh`NCITVQ3
-R10
-R11
-Z140 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_arc_beh.vhd
-Z141 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_arc_beh.vhd
+Z146 DEx4 work 6 dp_ram 0 22 >jI4:dE>ahbPhh`NCITVQ3
+R15
+R16
+Z147 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_arc_beh.vhd
+Z148 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_arc_beh.vhd
 l10
 L6
-Z142 V8CUALPXcKoRgEd^B?]oF>3
-R15
+Z149 V8CUALPXcKoRgEd^B?]oF>3
+R20
 32
-R24
-R25
-R16
-R17
-Z143 !s100 ;nb@2]kd:5TYEJTiIQ1FU1
+R41
+R42
+R21
+R22
+Z150 !s100 ;nb@2]kd:5TYEJTiIQ1FU1
 Pdp_ram_pkg
-R10
-R11
-R98
-Z144 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_pkg.vhd
-Z145 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_pkg.vhd
+R15
+R16
+R107
+Z151 8/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_pkg.vhd
+Z152 F/homes/s0727156/GIT/Programm/Calculator/src/dp_ram_pkg.vhd
 l0
 L6
-Z146 V>Pi=MgeD7B9kb7;TJzGCi3
-R15
+Z153 V>Pi=MgeD7B9kb7;TJzGCi3
+R20
 32
-R24
-R25
-R16
-R17
-Z147 !s100 :>[`6eYA?1AE;fHAenzcU1
+R41
+R42
+R21
+R22
+Z154 !s100 :>[`6eYA?1AE;fHAenzcU1
 Pfont_pkg
-R52
-R50
-R48
-R10
-R11
-R72
-Z148 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_pkg.vhd
-Z149 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_pkg.vhd
+R61
+R59
+R57
+R15
+R16
+R81
+Z155 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_pkg.vhd
+Z156 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_pkg.vhd
 l0
 L20
-Z150 V<9Smj4DdgfSWL76lVV3U?2
-R15
+Z157 V<9Smj4DdgfSWL76lVV3U?2
+R20
 32
-Z151 Mx5 4 ieee 14 std_logic_1164
-Z152 Mx4 4 ieee 11 numeric_std
-Z153 Mx3 4 work 16 textmode_vga_pkg
-Z154 Mx2 4 work 35 textmode_vga_platform_dependent_pkg
-R87
-R16
-R17
-Z155 !s100 kX7eLHbJ`VDQ=GLAaPj2j0
+Z158 Mx5 4 ieee 14 std_logic_1164
+Z159 Mx4 4 ieee 11 numeric_std
+Z160 Mx3 4 work 16 textmode_vga_pkg
+Z161 Mx2 4 work 35 textmode_vga_platform_dependent_pkg
+R96
+R21
+R22
+Z162 !s100 kX7eLHbJ`VDQ=GLAaPj2j0
 Efont_rom
-R72
-R52
-R50
-R48
-R10
-R47
-R11
-Z156 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom.vhd
-Z157 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom.vhd
+R81
+R61
+R59
+R57
+R15
+R56
+R16
+Z163 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom.vhd
+Z164 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom.vhd
 l0
 L17
-Z158 Vj[V06=Tm[3L=@`OX52^8I1
-R15
+Z165 Vj[V06=Tm[3L=@`OX52^8I1
+R20
 32
-R16
-R17
-Z159 !s100 k^<ECmL=N]1X[FEfl8[?13
+R21
+R22
+Z166 !s100 k^<ECmL=N]1X[FEfl8[?13
 Abeh
-Z160 DEx4 work 8 font_rom 0 22 j[V06=Tm[3L=@`OX52^8I1
-R52
-R50
-R48
-R47
-R10
-R11
-Z161 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom_beh.vhd
-Z162 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom_beh.vhd
+Z167 DEx4 work 8 font_rom 0 22 j[V06=Tm[3L=@`OX52^8I1
+R61
+R59
+R57
+R56
+R15
+R16
+Z168 8/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom_beh.vhd
+Z169 F/homes/s0727156/GIT/Programm/textmode_vga/src/font_rom_beh.vhd
 l18
 L17
-Z163 VSH=gWCi=G75=jon2DY0Yc3
-R15
+Z170 VSH=gWCi=G75=jon2DY0Yc3
+R20
 32
-R82
-R83
-Z164 Mx4 4 work 8 font_pkg
-R153
-R154
-R87
-R16
-R17
-Z165 !s100 HW1=R>0aVo?_d=zV20NCO2
+R91
+R92
+Z171 Mx4 4 work 8 font_pkg
+R160
+R161
+R96
+R21
+R22
+Z172 !s100 HW1=R>0aVo?_d=zV20NCO2
 Einterval
-R72
-R11
-Z166 8/homes/s0727156/GIT/Programm/textmode_vga/src/interval.vhd
-Z167 F/homes/s0727156/GIT/Programm/textmode_vga/src/interval.vhd
+R81
+R16
+Z173 8/homes/s0727156/GIT/Programm/textmode_vga/src/interval.vhd
+Z174 F/homes/s0727156/GIT/Programm/textmode_vga/src/interval.vhd
 l0
 L15
-Z168 VYL0AGS@IF6dPm6b`gTb=C2
-R15
+Z175 VYL0AGS@IF6dPm6b`gTb=C2
+R20
 32
-R16
-R17
-Z169 !s100 7ofl_zZNnAd3gWf1jbBZ51
+R21
+R22
+Z176 !s100 7ofl_zZNnAd3gWf1jbBZ51
 Abeh
-Z170 DEx4 work 8 interval 0 22 YL0AGS@IF6dPm6b`gTb=C2
-R11
-Z171 8/homes/s0727156/GIT/Programm/textmode_vga/src/interval_beh.vhd
-Z172 F/homes/s0727156/GIT/Programm/textmode_vga/src/interval_beh.vhd
+Z177 DEx4 work 8 interval 0 22 YL0AGS@IF6dPm6b`gTb=C2
+R16
+Z178 8/homes/s0727156/GIT/Programm/textmode_vga/src/interval_beh.vhd
+Z179 F/homes/s0727156/GIT/Programm/textmode_vga/src/interval_beh.vhd
 l19
 L15
-Z173 V>1E2X>@>ZL^V5af787mMK0
-R15
+Z180 V>1E2X>@>ZL^V5af787mMK0
+R20
 32
-Z174 Mx1 4 ieee 14 std_logic_1164
-R16
-R17
-Z175 !s100 Tekf23?X2<ajkLYff2k<O2
-Eline_buffer
-R98
-R50
-R48
-R10
-R11
-Z176 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_ent.vhd
-Z177 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_ent.vhd
-l0
-L7
-Z178 VU@HT_kFUZ1z2iIP<OczPG2
+Z181 Mx1 4 ieee 14 std_logic_1164
+R21
+R22
+Z182 !s100 Tekf23?X2<ajkLYff2k<O2
+Eitoa
+Z183 w1274785924
 R15
-32
 R16
-R17
-Z179 !s100 fCAN]@5mFV3MBohL<^fW73
-Abeh
-Z180 DEx4 work 11 line_buffer 0 22 U@HT_kFUZ1z2iIP<OczPG2
-Z181 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
-Z182 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
-R50
-R48
-R10
-R11
-Z183 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_arc_beh.vhd
-Z184 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_arc_beh.vhd
-l24
-L7
-Z185 VJZ4fOjmB:1<aedl_hfdU00
-R15
-32
-R82
-R83
-R84
-R85
-Z186 Mx2 4 ieee 18 std_logic_unsigned
-Z187 Mx1 4 ieee 15 std_logic_arith
-R16
-R17
-Z188 !s100 liEb0=8T?AGQV9X<]EJ[22
-Pline_buffer_pkg
-R50
-R48
-R10
-R11
-R98
-Z189 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_pkg.vhd
-Z190 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_pkg.vhd
-l0
-L7
-Z191 VKfMCE9I8=N2K0D7mHBD[g0
-R15
-32
-R118
-Z192 Mx3 4 ieee 11 numeric_std
-Z193 Mx2 4 work 16 textmode_vga_pkg
-Z194 Mx1 4 work 35 textmode_vga_platform_dependent_pkg
-R16
-R17
-Z195 !s100 7K=ggT_;Y:m0WC9SKffK31
-Emain
-Z196 w1273011218
-R10
-Z197 DPx4 work 12 memarray_pkg 0 22 iUhoSX`@b@IBj<=a6mB`;3
-R11
-Z198 8/homes/s0727156/GIT/Programm/Calculator/src/main_ent.vhd
-Z199 F/homes/s0727156/GIT/Programm/Calculator/src/main_ent.vhd
+Z184 8/homes/s0727156/GIT/Programm/Calculator/src/itoa.vhd
+Z185 F/homes/s0727156/GIT/Programm/Calculator/src/itoa.vhd
 l0
 L5
-Z200 VB6Q:[0URXOG4O47NN5bZR3
-R15
+Z186 VYGlNORzBPaF]L90nF<SX=1
+R20
 32
-R16
-R17
-Z201 !s100 hZj9i]Z]i=1E`TIOJK[BQ2
+R21
+R22
+Z187 !s100 E2>IARnfhm0iWW7?XW=3b0
 Abeh
-Z202 w1274259910
-Z203 DEx4 work 4 main 0 22 B6Q:[0URXOG4O47NN5bZR3
-R197
-R10
-R11
-Z204 8/homes/s0727156/GIT/Programm/Calculator/src/main_arc_beh.vhd
-Z205 F/homes/s0727156/GIT/Programm/Calculator/src/main_arc_beh.vhd
+Z188 w1274786665
+Z189 DEx4 work 4 itoa 0 22 YGlNORzBPaF]L90nF<SX=1
+R15
+R16
+Z190 8/homes/s0727156/GIT/Programm/Calculator/src/itoa_beh.vhd
+Z191 F/homes/s0727156/GIT/Programm/Calculator/src/itoa_beh.vhd
+l17
+L5
+Z192 VgLMSZ^hzQ?Ek2Rlz;B3`23
+R20
+32
+R41
+R42
+R21
+R22
+Z193 !s100 CZHeT1U=8SoAT<kigXjEi3
+Pitoa_pkg
+R15
+R16
+Z194 w1274785938
+Z195 8/homes/s0727156/GIT/Programm/Calculator/src/itoa_pkg.vhd
+Z196 F/homes/s0727156/GIT/Programm/Calculator/src/itoa_pkg.vhd
+l0
+L5
+Z197 VHoinT=LdHhQ4c]0I<0XB93
+R20
+32
+R41
+R42
+R21
+R22
+Z198 !s100 dFnA`3LgVNdWo;P[VZXP03
+Eitoa_tb
+Z199 w1274784464
+R15
+R16
+Z200 8/homes/s0727156/GIT/Programm/Calculator/src/itoa_tb.vhd
+Z201 F/homes/s0727156/GIT/Programm/Calculator/src/itoa_tb.vhd
+l0
+L5
+Z202 VUK6f5I^^;1fdEQ<hc<E?D2
+R20
+32
+R21
+R22
+Z203 !s100 U<S?k7JBW2icaJ1TGP?]d1
+Asim
+R15
+R16
+Z204 DEx4 work 7 itoa_tb 0 22 UK6f5I^^;1fdEQ<hc<E?D2
+l33
+L8
+Z205 VIk0bTa`4]28Ca6EMzLU]J2
+R20
+32
+R41
+R42
+R21
+R22
+Z206 !s100 HEY=h<g>V[GHE43h1F^X20
+Eline_buffer
+R44
+R59
+R57
+R15
+R16
+Z207 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_ent.vhd
+Z208 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_ent.vhd
+l0
+L7
+Z209 VEcQG@QVTn7zYPN5fM=g9`1
+R20
+32
+R21
+R22
+Z210 !s100 ZLe2U1JGlVRj:4Lcz?[S20
+Abeh
+Z211 DEx4 work 11 line_buffer 0 22 EcQG@QVTn7zYPN5fM=g9`1
+R59
+R57
+R15
+R16
+Z212 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_arc_beh.vhd
+Z213 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_arc_beh.vhd
+l24
+L6
+Z214 V1NCXjJHbTQen1Qjk;S[U33
+R20
+32
+R125
+Z215 Mx3 4 ieee 11 numeric_std
+Z216 Mx2 4 work 16 textmode_vga_pkg
+Z217 Mx1 4 work 35 textmode_vga_platform_dependent_pkg
+R21
+R22
+Z218 !s100 G:OBK:D1MMF=3_:5Q3Z_30
+Pline_buffer_pkg
+R59
+R57
+R15
+R16
+R44
+Z219 8/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_pkg.vhd
+Z220 F/homes/s0727156/GIT/Programm/Calculator/src/line_buffer_pkg.vhd
+l0
+L7
+Z221 V[Z8an`aW7n2fIn:<AN]`C1
+R20
+32
+R125
+R215
+R216
+R217
+R21
+R22
+Z222 !s100 M@:8oAH10zj<@aWg4eN?@2
+Emain
+Z223 w1274360421
+R15
+Z224 DPx4 work 12 memarray_pkg 0 22 iUhoSX`@b@IBj<=a6mB`;3
+R16
+Z225 8/homes/s0727156/GIT/Programm/Calculator/src/main_ent.vhd
+Z226 F/homes/s0727156/GIT/Programm/Calculator/src/main_ent.vhd
+l0
+L5
+Z227 V]dSE?Y=nCg5b^0_eLV5:@0
+R20
+32
+R21
+R22
+Z228 !s100 0;UIF<U[c8g9b8K9z]jGU2
+Abeh
+Z229 DEx4 work 4 main 0 22 ]dSE?Y=nCg5b^0_eLV5:@0
+R224
+R15
+R16
+Z230 8/homes/s0727156/GIT/Programm/Calculator/src/main_arc_beh.vhd
+Z231 F/homes/s0727156/GIT/Programm/Calculator/src/main_arc_beh.vhd
 l54
 L7
-Z206 VL:9BTg9l0JjfOSGR>C?6O3
-R15
+Z232 VL:9BTg9l0JjfOSGR>C?6O3
+R20
 32
-R107
-R108
-Z207 Mx1 4 work 12 memarray_pkg
-R16
-R17
-Z208 !s100 ]a`mBi`]AU8i`jSc0ePJY0
+R30
+R31
+Z233 Mx1 4 work 12 memarray_pkg
+R21
+R22
+Z234 !s100 ]a`mBi`]AU8i`jSc0ePJY0
 Emain_tb
-Z209 w1274260507
-R11
-R28
-R29
+Z235 w1274024806
+R16
+Z236 8/homes/s0727156/GIT/Programm/Calculator/src/main_tb.vhd
+Z237 F/homes/s0727156/GIT/Programm/Calculator/src/main_tb.vhd
 l0
 L4
-Z210 VD2;^]6j>^aUEE3Wi9d`Jk1
-R15
+Z238 VD2;^]6j>^aUEE3Wi9d`Jk1
+R20
 32
-R16
-R17
-Z211 !s100 RG>f3lSK;biSzPAJj2S`^3
+R21
+R22
+Z239 !s100 RG>f3lSK;biSzPAJj2S`^3
 Asim
-R11
-Z212 DEx4 work 7 main_tb 0 22 D2;^]6j>^aUEE3Wi9d`Jk1
+R16
+Z240 DEx4 work 7 main_tb 0 22 D2;^]6j>^aUEE3Wi9d`Jk1
 l35
 L7
-Z213 VMTl=o?omQ`ld_Z>nB@k6V1
-R15
+Z241 VMTl=o?omQ`ld_Z>nB@k6V1
+R20
 32
-R174
-R16
-R17
-Z214 !s100 o<_oS8J<A0c@IPSPk<5aJ1
+R181
+R21
+R22
+Z242 !s100 o<_oS8J<A0c@IPSPk<5aJ1
 Pmath_pkg
-R98
-Z215 8/homes/s0727156/GIT/Programm/Calculator/src/math_pkg.vhd
-Z216 F/homes/s0727156/GIT/Programm/Calculator/src/math_pkg.vhd
+R107
+Z243 8/homes/s0727156/GIT/Programm/Calculator/src/math_pkg.vhd
+Z244 F/homes/s0727156/GIT/Programm/Calculator/src/math_pkg.vhd
 l0
 L12
-Z217 Vk9T[AY[;iJ0Z^CT=zZQ^o1
-R15
+Z245 Vk9T[AY[;iJ0Z^CT=zZQ^o1
+R20
 32
 b1
-R16
-R17
-Z218 !s100 @ci_Z8I9bdCB4P@C5FXR_1
+R21
+R22
+Z246 !s100 @ci_Z8I9bdCB4P@C5FXR_1
 Bbody
-Z219 DBx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
+Z247 DBx4 work 8 math_pkg 0 22 k9T[AY[;iJ0Z^CT=zZQ^o1
 l0
 L22
-Z220 VBV<bkG4A^@UeEh<[a`0fg2
-R15
+Z248 VBV<bkG4A^@UeEh<[a`0fg2
+R20
 32
-R16
-R17
+R21
+R22
 nbody
-Z221 !s100 FGmaFGOGC:P<5`?0TcPDh3
+Z249 !s100 FGmaFGOGC:P<5`?0TcPDh3
 Ememarray
-Z222 w1274026348
-R10
-R11
-Z223 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_ent.vhd
-Z224 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_ent.vhd
+Z250 w1274026348
+R15
+R16
+Z251 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_ent.vhd
+Z252 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_ent.vhd
 l0
 L5
-Z225 Va45P3i4Ragid7jlm>CJ[;0
-R15
+Z253 Va45P3i4Ragid7jlm>CJ[;0
+R20
 32
-R16
-R17
-Z226 !s100 AFgm3U@a8CW:3Zd`KM1kK0
+R21
+R22
+Z254 !s100 AFgm3U@a8CW:3Zd`KM1kK0
 Abeh
-Z227 w1274174379
-Z228 DEx4 work 8 memarray 0 22 a45P3i4Ragid7jlm>CJ[;0
-R10
-R11
-Z229 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_arc_beh.vhd
-Z230 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_arc_beh.vhd
+Z255 w1274174379
+Z256 DEx4 work 8 memarray 0 22 a45P3i4Ragid7jlm>CJ[;0
+R15
+R16
+Z257 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_arc_beh.vhd
+Z258 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_arc_beh.vhd
 l10
 L5
-Z231 VL<BACoN41z>Y4k[6j]S^J0
-R15
+Z259 VL<BACoN41z>Y4k[6j]S^J0
+R20
 32
-R24
-R25
-R16
-R17
-Z232 !s100 f=FQZEI`<<lX[5O2zNVQk1
+R41
+R42
+R21
+R22
+Z260 !s100 f=FQZEI`<<lX[5O2zNVQk1
 Pmemarray_pkg
-R10
-R11
-Z233 w1274026353
-Z234 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_pkg.vhd
-Z235 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_pkg.vhd
+R15
+R16
+Z261 w1274026353
+Z262 8/homes/s0727156/GIT/Programm/Calculator/src/memarray_pkg.vhd
+Z263 F/homes/s0727156/GIT/Programm/Calculator/src/memarray_pkg.vhd
 l0
 L5
-Z236 ViUhoSX`@b@IBj<=a6mB`;3
-R15
+Z264 ViUhoSX`@b@IBj<=a6mB`;3
+R20
 32
-R24
-R25
+R41
+R42
+R21
+R22
+Z265 !s100 31I]36lB?E1IQhiJ<WZRa1
+Eparser
+R44
 R16
-R17
-Z237 !s100 31I]36lB?E1IQhiJ<WZRa1
+Z266 8/homes/s0727156/GIT/Programm/Calculator/src/parser_ent.vhd
+Z267 F/homes/s0727156/GIT/Programm/Calculator/src/parser_ent.vhd
+l0
+L4
+Z268 V=m`UH97:]kmbeIAi>??^z1
+R20
+32
+R21
+R22
+Z269 !s100 kb`EnRnNT9Tj0G0i=fAnI2
+Pparser_pkg
+R16
+R44
+Z270 8/homes/s0727156/GIT/Programm/Calculator/src/parser_pkg.vhd
+Z271 F/homes/s0727156/GIT/Programm/Calculator/src/parser_pkg.vhd
+l0
+L4
+Z272 V`>hiB59kVKI8>?58WV;Id2
+R20
+32
+R181
+R21
+R22
+Z273 !s100 g9oShG7z6^66QT7Y0okO01
 Epll_wrapper
-R98
-R11
-Z238 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_ent.vhd
-Z239 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_ent.vhd
+R107
+R16
+Z274 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_ent.vhd
+Z275 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_ent.vhd
 l0
 L5
-Z240 VUo]W4nY6`hfj@C[h4dB500
-R15
+Z276 VUo]W4nY6`hfj@C[h4dB500
+R20
 32
-R16
-R17
-Z241 !s100 M:Y5;ZVWdn3lzEkMZ>GGK1
+R21
+R22
+Z277 !s100 M:Y5;ZVWdn3lzEkMZ>GGK1
 Astruct
-Z242 DEx4 work 11 pll_wrapper 0 22 Uo]W4nY6`hfj@C[h4dB500
-R46
-R11
-Z243 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_arc_struct.vhd
-Z244 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_arc_struct.vhd
+Z278 DEx4 work 11 pll_wrapper 0 22 Uo]W4nY6`hfj@C[h4dB500
+R55
+R16
+Z279 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_arc_struct.vhd
+Z280 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_arc_struct.vhd
 l9
 L5
-Z245 V6<Ym`IPFkid24`_A7A``43
-R15
+Z281 V6<Ym`IPFkid24`_A7A``43
+R20
 32
-R24
-Z246 Mx1 4 work 15 pll_wrapper_pkg
-R16
-R17
-Z247 !s100 <R;C:>57Bh<kMC7XD]B6=0
+R41
+Z282 Mx1 4 work 15 pll_wrapper_pkg
+R21
+R22
+Z283 !s100 <R;C:>57Bh<kMC7XD]B6=0
 Ppll_wrapper_pkg
-R11
-R98
-Z248 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_pkg.vhd
-Z249 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_pkg.vhd
+R16
+R107
+Z284 8/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_pkg.vhd
+Z285 F/homes/s0727156/GIT/Programm/Calculator/src/pll_wrapper_pkg.vhd
 l0
 L4
-Z250 V7WW7N`i[Y3AmGP3X0BIAE2
-R15
+Z286 V7WW7N`i[Y3AmGP3X0BIAE2
+R20
 32
-R174
-R16
-R17
-Z251 !s100 jnPX^PAcGTkEeImWgL1^61
+R181
+R21
+R22
+Z287 !s100 jnPX^PAcGTkEeImWgL1^61
 Eps2_keyboard_controller
-R72
-R11
-Z252 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller.vhd
-Z253 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller.vhd
+R81
+R16
+Z288 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller.vhd
+Z289 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller.vhd
 l0
 L15
-Z254 VO4QK=>KBL`V1GP3VDB[HG1
-R15
+Z290 VO4QK=>KBL`V1GP3VDB[HG1
+R20
 32
-R16
-R17
-Z255 !s100 kKHg_]L;D0[:mYiOK_YCe1
+R21
+R22
+Z291 !s100 kKHg_]L;D0[:mYiOK_YCe1
 Abeh
-Z256 DEx4 work 23 ps2_keyboard_controller 0 22 O4QK=>KBL`V1GP3VDB[HG1
-Z257 DPx4 work 19 ps2_transceiver_pkg 0 22 EcgXP_T@?dQfl889]1DT91
-R11
-Z258 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_beh.vhd
-Z259 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_beh.vhd
+Z292 DEx4 work 23 ps2_keyboard_controller 0 22 O4QK=>KBL`V1GP3VDB[HG1
+Z293 DPx4 work 19 ps2_transceiver_pkg 0 22 EcgXP_T@?dQfl889]1DT91
+R16
+Z294 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_beh.vhd
+Z295 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_beh.vhd
 l33
 L16
-Z260 V[dR<b:@NTLK2M9MADi8hh0
-R15
+Z296 V[dR<b:@NTLK2M9MADi8hh0
+R20
 32
-R24
-Z261 Mx1 4 work 19 ps2_transceiver_pkg
-R16
-R17
-Z262 !s100 FV]mE]?T4Ta5AZ_B7Uh>S1
+R41
+Z297 Mx1 4 work 19 ps2_transceiver_pkg
+R21
+R22
+Z298 !s100 FV]mE]?T4Ta5AZ_B7Uh>S1
 Pps2_keyboard_controller_pkg
-R11
-R72
-Z263 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_pkg.vhd
-Z264 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_pkg.vhd
+R16
+R81
+Z299 8/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_pkg.vhd
+Z300 F/homes/s0727156/GIT/Programm/ps2/src/ps2_keyboard_controller_pkg.vhd
 l0
 L15
-Z265 Vb]V[lbJ^C>`PDh;eDYBbg0
-R15
+Z301 Vb]V[lbJ^C>`PDh;eDYBbg0
+R20
 32
-R174
-R16
-R17
-Z266 !s100 Lf[IPGS[kUC>4GRe09PNZ2
+R181
+R21
+R22
+Z302 !s100 Lf[IPGS[kUC>4GRe09PNZ2
 Eps2_transceiver
-R72
-R11
-Z267 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver.vhd
-Z268 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver.vhd
+R81
+R16
+Z303 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver.vhd
+Z304 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver.vhd
 l0
 L15
-Z269 VIKJXKj`KmKUFP9]AeabKI1
-R15
+Z305 VIKJXKj`KmKUFP9]AeabKI1
+R20
 32
-R16
-R17
-Z270 !s100 fnJVSSIX;5CCkc<Oobe8]2
+R21
+R22
+Z306 !s100 fnJVSSIX;5CCkc<Oobe8]2
 Abeh
-Z271 DEx4 work 15 ps2_transceiver 0 22 IKJXKj`KmKUFP9]AeabKI1
-R11
-Z272 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_beh.vhd
-Z273 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_beh.vhd
+Z307 DEx4 work 15 ps2_transceiver 0 22 IKJXKj`KmKUFP9]AeabKI1
+R16
+Z308 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_beh.vhd
+Z309 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_beh.vhd
 l44
 L15
-Z274 VKVEeF_`IaI`[35RXk1nZh2
-R15
+Z310 VKVEeF_`IaI`[35RXk1nZh2
+R20
 32
-R174
-R16
-R17
-Z275 !s100 So:AI_NmFfG72X3oXLL6Z0
+R181
+R21
+R22
+Z311 !s100 So:AI_NmFfG72X3oXLL6Z0
 Pps2_transceiver_pkg
-R11
-R72
-Z276 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_pkg.vhd
-Z277 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_pkg.vhd
+R16
+R81
+Z312 8/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_pkg.vhd
+Z313 F/homes/s0727156/GIT/Programm/ps2/src/ps2_transceiver_pkg.vhd
 l0
 L15
-Z278 VEcgXP_T@?dQfl889]1DT91
-R15
+Z314 VEcgXP_T@?dQfl889]1DT91
+R20
 32
-R174
-R16
-R17
-Z279 !s100 =Q2I34Ac?8PjAUXHzQ6EF2
+R181
+R21
+R22
+Z315 !s100 =Q2I34Ac?8PjAUXHzQ6EF2
 Escancode_handler
-R98
-R11
-Z280 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_ent.vhd
-Z281 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_ent.vhd
+R107
+R16
+Z316 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_ent.vhd
+Z317 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_ent.vhd
 l0
 L4
-Z282 V1jZ9DM=FKiN`EJkDBfl?[2
-R15
+Z318 V1jZ9DM=FKiN`EJkDBfl?[2
+R20
 32
-R16
-R17
-Z283 !s100 ODQiioI5Tiz<N5@M_GD8J2
+R21
+R22
+Z319 !s100 ODQiioI5Tiz<N5@M_GD8J2
 Abeh
-Z284 DEx4 work 16 scancode_handler 0 22 1jZ9DM=FKiN`EJkDBfl?[2
-R11
-Z285 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_arc_beh.vhd
-Z286 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_arc_beh.vhd
+Z320 DEx4 work 16 scancode_handler 0 22 1jZ9DM=FKiN`EJkDBfl?[2
+R16
+Z321 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_arc_beh.vhd
+Z322 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_arc_beh.vhd
 l22
 L5
-Z287 VkLiA?nA]EX3T@Vd?YW@EI1
-R15
+Z323 VkLiA?nA]EX3T@Vd?YW@EI1
+R20
 32
-R174
-R16
-R17
-Z288 !s100 6zP52LRhojPHa2A]lORcc3
+R181
+R21
+R22
+Z324 !s100 6zP52LRhojPHa2A]lORcc3
 Pscancode_handler_pkg
-R11
-R98
-Z289 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_pkg.vhd
-Z290 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_pkg.vhd
+R16
+R107
+Z325 8/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_pkg.vhd
+Z326 F/homes/s0727156/GIT/Programm/Calculator/src/scancode_handler_pkg.vhd
 l0
 L4
-Z291 V:_a:V]QHnA0gUo@>]N>Q32
-R15
+Z327 V:_a:V]QHnA0gUo@>]N>Q32
+R20
 32
-R174
-R16
-R17
-Z292 !s100 DB?bPlFdQ3z[UIK]BTP^]0
+R181
+R21
+R22
+Z328 !s100 DB?bPlFdQ3z[UIK]BTP^]0
 Esp_ram
-Z293 w1273003274
-R10
-R11
-Z294 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_ent.vhd
-Z295 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_ent.vhd
+Z329 w1273003274
+R15
+R16
+Z330 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_ent.vhd
+Z331 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_ent.vhd
 l0
 L4
-Z296 V:>^Ajk^`3JZ]A?C70lLU<1
-R15
+Z332 V:>^Ajk^`3JZ]A?C70lLU<1
+R20
 32
-R16
-R17
-Z297 !s100 3f73RK;oWk3;3k05kSnoC3
+R21
+R22
+Z333 !s100 3f73RK;oWk3;3k05kSnoC3
 Abeh
-Z298 w1273003305
-Z299 DEx4 work 6 sp_ram 0 22 :>^Ajk^`3JZ]A?C70lLU<1
-R10
-R11
-Z300 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_arc_beh.vhd
-Z301 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_arc_beh.vhd
+Z334 w1273003305
+Z335 DEx4 work 6 sp_ram 0 22 :>^Ajk^`3JZ]A?C70lLU<1
+R15
+R16
+Z336 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_arc_beh.vhd
+Z337 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_arc_beh.vhd
 l10
 L6
-Z302 VnG30znS1EH@DR8i9?W^JV3
-R15
+Z338 VnG30znS1EH@DR8i9?W^JV3
+R20
 32
-R24
-R25
-R16
-R17
-Z303 !s100 _TGImiL`UziRcR==n:fil0
+R41
+R42
+R21
+R22
+Z339 !s100 _TGImiL`UziRcR==n:fil0
 Psp_ram_pkg
-R10
-R11
-Z304 w1273003290
-Z305 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_pkg.vhd
-Z306 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_pkg.vhd
+R15
+R16
+Z340 w1273003290
+Z341 8/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_pkg.vhd
+Z342 F/homes/s0727156/GIT/Programm/Calculator/src/sp_ram_pkg.vhd
 l0
 L6
-Z307 VLh6hd5Y3FYZ:QdN8OjFa90
-R15
+Z343 VLh6hd5Y3FYZ:QdN8OjFa90
+R20
 32
-R24
-R25
-R16
-R17
-Z308 !s100 n:_kmgIPN@f55mP?9mL:V1
+R41
+R42
+R21
+R22
+Z344 !s100 n:_kmgIPN@f55mP?9mL:V1
 Esync
-R98
-R11
-Z309 8/homes/s0727156/GIT/Programm/Calculator/src/sync_ent.vhd
-Z310 F/homes/s0727156/GIT/Programm/Calculator/src/sync_ent.vhd
+R107
+R16
+Z345 8/homes/s0727156/GIT/Programm/Calculator/src/sync_ent.vhd
+Z346 F/homes/s0727156/GIT/Programm/Calculator/src/sync_ent.vhd
 l0
 L4
-Z311 VX3h;NRIFXdQz8jEmzg0XP3
-R15
+Z347 VX3h;NRIFXdQz8jEmzg0XP3
+R20
 32
-R16
-R17
-Z312 !s100 J^=fD`5C[nPz1[^hhCEY;2
+R21
+R22
+Z348 !s100 J^=fD`5C[nPz1[^hhCEY;2
 Abeh
-Z313 DEx4 work 4 sync 0 22 X3h;NRIFXdQz8jEmzg0XP3
-R11
-Z314 8/homes/s0727156/GIT/Programm/Calculator/src/sync_arc_beh.vhd
-Z315 F/homes/s0727156/GIT/Programm/Calculator/src/sync_arc_beh.vhd
+Z349 DEx4 work 4 sync 0 22 X3h;NRIFXdQz8jEmzg0XP3
+R16
+Z350 8/homes/s0727156/GIT/Programm/Calculator/src/sync_arc_beh.vhd
+Z351 F/homes/s0727156/GIT/Programm/Calculator/src/sync_arc_beh.vhd
 l6
 L4
-Z316 V<XBDkXFVdlN]i`9?C<iC@0
-R15
+Z352 V<XBDkXFVdlN]i`9?C<iC@0
+R20
 32
-R174
-R16
-R17
-Z317 !s100 j:QHJdg_IlhL>:5C@5PGn3
+R181
+R21
+R22
+Z353 !s100 j:QHJdg_IlhL>:5C@5PGn3
 Psync_pkg
-R11
-R98
-Z318 8/homes/s0727156/GIT/Programm/Calculator/src/sync_pkg.vhd
-Z319 F/homes/s0727156/GIT/Programm/Calculator/src/sync_pkg.vhd
+R16
+R107
+Z354 8/homes/s0727156/GIT/Programm/Calculator/src/sync_pkg.vhd
+Z355 F/homes/s0727156/GIT/Programm/Calculator/src/sync_pkg.vhd
 l0
 L4
-Z320 V7SN2X6S3A]bih_P9Vd[k>0
-R15
+Z356 V7SN2X6S3A]bih_P9Vd[k>0
+R20
 32
-R174
-R16
-R17
-Z321 !s100 HSoVOL0OYkeT0L=Gh0jIe2
+R181
+R21
+R22
+Z357 !s100 HSoVOL0OYkeT0L=Gh0jIe2
 Etextmode_vga
-R72
-R50
-R48
-R11
-Z322 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga.vhd
-Z323 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga.vhd
+R81
+R59
+R57
+R16
+Z358 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga.vhd
+Z359 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga.vhd
 l0
 L17
-Z324 Vm4CPH6jcAlCKHR]lj<UcS2
-R15
+Z360 Vm4CPH6jcAlCKHR]lj<UcS2
+R20
 32
-R16
-R17
-Z325 !s100 Z9ZFJ1zP;lD@]e0O;OZI52
+R21
+R22
+Z361 !s100 Z9ZFJ1zP;lD@]e0O;OZI52
 Astruct
-Z326 w1272286894
-Z327 DEx4 work 12 textmode_vga 0 22 m4CPH6jcAlCKHR]lj<UcS2
-R47
-R10
-R49
-R50
-R48
-R52
-R11
-Z328 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_struct.vhd
-Z329 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_struct.vhd
+Z362 w1272286894
+Z363 DEx4 work 12 textmode_vga 0 22 m4CPH6jcAlCKHR]lj<UcS2
+R56
+R15
+R58
+R59
+R57
+R61
+R16
+Z364 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_struct.vhd
+Z365 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_struct.vhd
 l39
 L19
-Z330 VlUjlH0Nn]S>YS`6DW62hY1
-R15
+Z366 VlUjlH0Nn]S>YS`6DW62hY1
+R20
 32
-Z331 Mx7 4 ieee 14 std_logic_1164
-Z332 Mx6 4 work 8 math_pkg
-Z333 Mx5 4 work 16 textmode_vga_pkg
-Z334 Mx4 4 work 35 textmode_vga_platform_dependent_pkg
-Z335 Mx3 4 work 26 textmode_vga_component_pkg
-R108
-Z336 Mx1 4 work 8 font_pkg
-R16
-R17
-Z337 !s100 ][fcC>lg6B]PmIURVik=H1
+Z367 Mx7 4 ieee 14 std_logic_1164
+Z368 Mx6 4 work 8 math_pkg
+Z369 Mx5 4 work 16 textmode_vga_pkg
+Z370 Mx4 4 work 35 textmode_vga_platform_dependent_pkg
+Z371 Mx3 4 work 26 textmode_vga_component_pkg
+R31
+Z372 Mx1 4 work 8 font_pkg
+R21
+R22
+Z373 !s100 ][fcC>lg6B]PmIURVik=H1
 Ptextmode_vga_component_pkg
-R47
-R50
-R48
-R52
-R10
-R11
-R77
-Z338 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_component_pkg.vhd
-Z339 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_component_pkg.vhd
+R56
+R59
+R57
+R61
+R15
+R16
+R86
+Z374 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_component_pkg.vhd
+Z375 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_component_pkg.vhd
 l0
 L21
-Z340 VMNM1O2SdI54zBfOk2@oF:2
-R15
+Z376 VMNM1O2SdI54zBfOk2@oF:2
+R20
 32
-R82
-R83
-Z341 Mx4 4 work 8 math_pkg
-R153
-R154
-R336
-R16
-R17
-Z342 !s100 1n;cD?V59nUAS2IPI9flK0
+R91
+R92
+Z377 Mx4 4 work 8 math_pkg
+R160
+R161
+R372
+R21
+R22
+Z378 !s100 1n;cD?V59nUAS2IPI9flK0
 Etextmode_vga_h_sm
-R72
-R10
-R47
-R50
-R48
-R52
-R11
-Z343 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm.vhd
-Z344 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm.vhd
+R81
+R15
+R56
+R59
+R57
+R61
+R16
+Z379 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm.vhd
+Z380 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm.vhd
 l0
 L19
-Z345 VCKWGg5QM6M05NYaI7JYMJ0
-R15
+Z381 VCKWGg5QM6M05NYaI7JYMJ0
+R20
 32
-R16
-R17
-Z346 !s100 3]cFnT_C?bI_>I[Dn=4oG0
+R21
+R22
+Z382 !s100 3]cFnT_C?bI_>I[Dn=4oG0
 Abeh
-R77
-Z347 DEx4 work 17 textmode_vga_h_sm 0 22 CKWGg5QM6M05NYaI7JYMJ0
-R47
-R50
-R48
-R52
-R10
-R11
-Z348 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm_beh.vhd
-Z349 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm_beh.vhd
+R86
+Z383 DEx4 work 17 textmode_vga_h_sm 0 22 CKWGg5QM6M05NYaI7JYMJ0
+R56
+R59
+R57
+R61
+R15
+R16
+Z384 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm_beh.vhd
+Z385 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_h_sm_beh.vhd
 l32
 L19
-Z350 V7oF=1;=Qa]nd_U6MiKl@P1
-R15
+Z386 V7oF=1;=Qa]nd_U6MiKl@P1
+R20
 32
-R82
-R83
-R341
-R153
-R154
-R336
-R16
-R17
-Z351 !s100 J@9leGBCmzY[Db`CiOMI01
+R91
+R92
+R377
+R160
+R161
+R372
+R21
+R22
+Z387 !s100 J@9leGBCmzY[Db`CiOMI01
 Ptextmode_vga_pkg
-R50
-R11
-R326
-Z352 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_pkg.vhd
-Z353 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_pkg.vhd
+R59
+R16
+R362
+Z388 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_pkg.vhd
+Z389 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_pkg.vhd
 l0
 L44
-Z354 VHTRD5=mzW:=@G4n=m6@E21
-R15
+Z390 VHTRD5=mzW:=@G4n=m6@E21
+R20
 32
-R24
-R194
-R16
-R17
-Z355 !s100 JJKUJR72MGPzk6Ue;832J1
+R41
+R217
+R21
+R22
+Z391 !s100 JJKUJR72MGPzk6Ue;832J1
 Ptextmode_vga_platform_dependent_pkg
-R11
-R72
-Z356 8/homes/s0727156/GIT/Programm/textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
-Z357 F/homes/s0727156/GIT/Programm/textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
+R16
+R81
+Z392 8/homes/s0727156/GIT/Programm/textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
+Z393 F/homes/s0727156/GIT/Programm/textmode_vga/src/mjl_stratix/textmode_vga_platform_dependent_pkg.vhd
 l0
 L16
-Z358 VaGXfCiS`F@V36QJo30lAh3
-R15
+Z394 VaGXfCiS`F@V36QJo30lAh3
+R20
 32
-R174
-R16
-R17
-Z359 !s100 [3d;d=Ak=6g0KSVN4L1CD2
+R181
+R21
+R22
+Z395 !s100 [3d;d=Ak=6g0KSVN4L1CD2
 Etextmode_vga_v_sm
-R326
-R10
-R47
-R50
-R48
-R52
-R11
-Z360 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm.vhd
-Z361 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm.vhd
+R362
+R15
+R56
+R59
+R57
+R61
+R16
+Z396 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm.vhd
+Z397 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm.vhd
 l0
 L18
-Z362 VaNW:KEoJSOGZAK==a`ggk1
-R15
+Z398 VaNW:KEoJSOGZAK==a`ggk1
+R20
 32
-R16
-R17
-Z363 !s100 onI;ONJ;9a3nDO1lI@=AL0
+R21
+R22
+Z399 !s100 onI;ONJ;9a3nDO1lI@=AL0
 Abeh
-R47
-Z364 DEx4 work 17 textmode_vga_v_sm 0 22 aNW:KEoJSOGZAK==a`ggk1
-R50
-R48
-R52
-R10
-R11
-Z365 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm_beh.vhd
-Z366 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm_beh.vhd
+R56
+Z400 DEx4 work 17 textmode_vga_v_sm 0 22 aNW:KEoJSOGZAK==a`ggk1
+R59
+R57
+R61
+R15
+R16
+Z401 8/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm_beh.vhd
+Z402 F/homes/s0727156/GIT/Programm/textmode_vga/src/textmode_vga_v_sm_beh.vhd
 l30
 L18
-Z367 VIbNAcdb<J;leNin8dc_EE3
-R15
+Z403 VIbNAcdb<J;leNin8dc_EE3
+R20
 32
-R82
-R83
-R341
-R153
-R154
-R336
-R16
-R17
-Z368 !s100 LMTnG2jSGX092lcnbTb:G1
+R91
+R92
+R377
+R160
+R161
+R372
+R21
+R22
+Z404 !s100 LMTnG2jSGX092lcnbTb:G1
 Euart
-R98
-R10
-Z369 DPx4 work 8 uart_pkg 0 22 Tma6O0fHn8D;:E49Ma7Un2
-R52
-R11
-Z370 8/homes/s0727156/GIT/Programm/Calculator/src/uart.vhd
-Z371 F/homes/s0727156/GIT/Programm/Calculator/src/uart.vhd
+R107
+R15
+Z405 DPx4 work 8 uart_pkg 0 22 Tma6O0fHn8D;:E49Ma7Un2
+R61
+R16
+Z406 8/homes/s0727156/GIT/Programm/Calculator/src/uart.vhd
+Z407 F/homes/s0727156/GIT/Programm/Calculator/src/uart.vhd
 l0
 L6
-Z372 V1i@N3ZbS_6_WSE]nhfQ<_0
-R15
+Z408 V1i@N3ZbS_6_WSE]nhfQ<_0
+R20
 32
-R16
-R17
-Z373 !s100 46`BKocBNBEhKoPkalSVb0
+R21
+R22
+Z409 !s100 46`BKocBNBEhKoPkalSVb0
 Abeh
-R10
-R369
-R52
-R11
-Z374 DEx4 work 4 uart 0 22 1i@N3ZbS_6_WSE]nhfQ<_0
-Z375 8/homes/s0727156/GIT/Programm/Calculator/src/uart_beh.vhd
-Z376 F/homes/s0727156/GIT/Programm/Calculator/src/uart_beh.vhd
+R15
+R405
+R61
+R16
+Z410 DEx4 work 4 uart 0 22 1i@N3ZbS_6_WSE]nhfQ<_0
+Z411 8/homes/s0727156/GIT/Programm/Calculator/src/uart_beh.vhd
+Z412 F/homes/s0727156/GIT/Programm/Calculator/src/uart_beh.vhd
 l40
 L32
-Z377 VJ@0Vl_4XkSee=U3gAd[iR0
-R15
+Z413 VJ@0Vl_4XkSee=U3gAd[iR0
+R20
 32
-R118
-Z378 Mx3 4 work 8 math_pkg
-Z379 Mx2 4 work 8 uart_pkg
-R25
-R16
-R17
-Z380 !s100 QbN<V>9FP]1RFn>BnH>O13
+R125
+Z414 Mx3 4 work 8 math_pkg
+Z415 Mx2 4 work 8 uart_pkg
+R42
+R21
+R22
+Z416 !s100 QbN<V>9FP]1RFn>BnH>O13
 Puart_pkg
-R52
-R10
-R11
-R98
-R375
-R376
+R61
+R15
+R16
+R107
+R411
+R412
 l0
 L6
-Z381 VTma6O0fHn8D;:E49Ma7Un2
-R15
+Z417 VTma6O0fHn8D;:E49Ma7Un2
+R20
 32
-R107
-R108
-R87
-R16
-R17
-Z382 !s100 _P0UNegEYZ:HzfD7Y[Ynj2
+R30
+R31
+R96
+R21
+R22
+Z418 !s100 _P0UNegEYZ:HzfD7Y[Ynj2
 Euart_rcv
-R98
-R52
-R11
-Z383 8/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv.vhd
-Z384 F/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv.vhd
+R107
+R61
+R16
+Z419 8/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv.vhd
+Z420 F/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv.vhd
 l0
 L5
-Z385 VJnfz`bOI0T>bBK:m8gGUh2
-R15
+Z421 VJnfz`bOI0T>bBK:m8gGUh2
+R20
 32
-R16
-R17
-Z386 !s100 a1<A^9@^9O7_ffXC5eUfi1
+R21
+R22
+Z422 !s100 a1<A^9@^9O7_ffXC5eUfi1
 Abeh
-Z387 DEx4 work 8 uart_rcv 0 22 Jnfz`bOI0T>bBK:m8gGUh2
-R52
-R10
-R11
-Z388 8/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv_beh.vhd
-Z389 F/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv_beh.vhd
+Z423 DEx4 work 8 uart_rcv 0 22 Jnfz`bOI0T>bBK:m8gGUh2
+R61
+R15
+R16
+Z424 8/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv_beh.vhd
+Z425 F/homes/s0727156/GIT/Programm/Calculator/src/uart_rcv_beh.vhd
 l19
 L6
-Z390 V8UcEf`V0oJbicJ7DE;F551
-R15
+Z426 V8UcEf`V0oJbicJ7DE;F551
+R20
 32
-R107
-R108
-R87
-R16
-R17
-Z391 !s100 i>QmmLRQAnYC`<D[AY6_m3
+R30
+R31
+R96
+R21
+R22
+Z427 !s100 i>QmmLRQAnYC`<D[AY6_m3
 Euart_send
-R98
-R52
-R11
-Z392 8/homes/s0727156/GIT/Programm/Calculator/src/uart_send.vhd
-Z393 F/homes/s0727156/GIT/Programm/Calculator/src/uart_send.vhd
+R107
+R61
+R16
+Z428 8/homes/s0727156/GIT/Programm/Calculator/src/uart_send.vhd
+Z429 F/homes/s0727156/GIT/Programm/Calculator/src/uart_send.vhd
 l0
 L5
-Z394 VW[gLRMRFE:N;f6<M90iBH3
-R15
+Z430 VW[gLRMRFE:N;f6<M90iBH3
+R20
 32
-R16
-R17
-Z395 !s100 Wl[3I4BKob4:a]z^AE?`L0
+R21
+R22
+Z431 !s100 Wl[3I4BKob4:a]z^AE?`L0
 Abeh
-Z396 w1274021334
-Z397 DEx4 work 9 uart_send 0 22 W[gLRMRFE:N;f6<M90iBH3
-R52
-R10
-R11
-Z398 8/homes/s0727156/GIT/Programm/Calculator/src/uart_send_beh.vhd
-Z399 F/homes/s0727156/GIT/Programm/Calculator/src/uart_send_beh.vhd
+Z432 w1274021334
+Z433 DEx4 work 9 uart_send 0 22 W[gLRMRFE:N;f6<M90iBH3
+R61
+R15
+R16
+Z434 8/homes/s0727156/GIT/Programm/Calculator/src/uart_send_beh.vhd
+Z435 F/homes/s0727156/GIT/Programm/Calculator/src/uart_send_beh.vhd
 l19
 L6
-Z400 V3XTS=Ge^048Pfm@_7<XR>3
-R15
+Z436 V3XTS=Ge^048Pfm@_7<XR>3
+R20
 32
-R107
-R108
-R87
-R16
-R17
-Z401 !s100 G:gNaI[d0B`i2>NoW7m@`2
+R30
+R31
+R96
+R21
+R22
+Z437 !s100 G:gNaI[d0B`i2>NoW7m@`2
 Evideo_memory
-R326
-R11
-Z402 8/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory.vhd
-Z403 F/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory.vhd
+R362
+R16
+Z438 8/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory.vhd
+Z439 F/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory.vhd
 l0
 L15
-Z404 VVN>LT9ioQf9nbPbTY3_613
-R15
+Z440 VVN>LT9ioQf9nbPbTY3_613
+R20
 32
-R16
-R17
-Z405 !s100 DeEif@a[GD8:NHDN>mM:g0
+R21
+R22
+Z441 !s100 DeEif@a[GD8:NHDN>mM:g0
 Abeh
-Z406 DEx4 work 12 video_memory 0 22 VN>LT9ioQf9nbPbTY3_613
-R52
-R47
-R50
-R48
-R10
-R11
-Z407 8/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory_beh.vhd
-Z408 F/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory_beh.vhd
+Z442 DEx4 work 12 video_memory 0 22 VN>LT9ioQf9nbPbTY3_613
+R61
+R56
+R59
+R57
+R15
+R16
+Z443 8/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory_beh.vhd
+Z444 F/homes/s0727156/GIT/Programm/textmode_vga/src/video_memory_beh.vhd
 l26
 L19
-Z409 V]eDNge<X@z;>jf_BA=mz02
-R15
+Z445 V]eDNge<X@z;>jf_BA=mz02
+R20
 32
-R82
-R83
-R84
-R85
-R86
-R87
-R16
-R17
-Z410 !s100 NW`3:Q<45]A=>Dk18]HT:0
+R91
+R92
+R93
+R94
+R95
+R96
+R21
+R22
+Z446 !s100 NW`3:Q<45]A=>Dk18]HT:0
