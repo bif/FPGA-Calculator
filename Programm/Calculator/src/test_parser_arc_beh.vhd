@@ -121,10 +121,12 @@ begin
 		case parser_fsm_state is
 			when READY =>
 				check_op_ready_next <= '0';
-				convert_ready_next <= '0';				
+				convert_ready_next <= '0';			
 debug_sig_next <= 0;
 
 			when CHECK_UNSIGNED =>
+				-- set saved operand to zero
+				operand_next <= (others => '0');	
 				case data_in(7 downto 0) is
 					when x"2D" =>
 						-- "-"
@@ -158,7 +160,7 @@ debug_sig_next <= 0;
 				if check_op_ready /= '1' then 
 					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
 				end if;
-				null;
+			
 			when PLUS =>
 				-- next operator = '+' located 
 				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
@@ -169,7 +171,8 @@ debug_sig_next <= 0;
 					if space = '0' then
 						-- calc length of operand
 						convert_count_next <= std_logic_vector(unsigned(line_count) - 1 - unsigned(start_pos));
-					end if; 
+					end if;  
+					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				end if; 
 
@@ -246,7 +249,13 @@ debug_sig_next <= 0;
 			when CONVERT_PREE_STATE =>
 					convert_count_next <= std_logic_vector(unsigned(convert_count) - 1);
 					start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
-					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+					if convert_ready /= '1' then
+						addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);		
+					else
+						line_count_next <= std_logic_vector(unsigned(line_count) - 1);
+						addr_lb_next <= std_logic_vector(unsigned(line_count) - 1);	
+						start_pos_next <= line_count;
+					end if;	
 
 			when CONVERT_TO_INT =>
 				-- convert ascii to integer
@@ -315,9 +324,7 @@ debug_sig_next <= 0;
 						when others =>
 							null;
 					end case;
-					line_count_next <= std_logic_vector(unsigned(line_count) - 1);
-					addr_lb_next <= std_logic_vector(unsigned(line_count) - 1);	
-					start_pos_next <= line_count;
+
 					convert_ready_next <= '1';
 					parse_ready_next <= '1';
 				end if;
