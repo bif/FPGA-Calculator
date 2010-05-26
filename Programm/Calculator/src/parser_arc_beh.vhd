@@ -12,7 +12,7 @@ architecture beh of parser is
 	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal once, once_next, negative, negative_next, space, space_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
+	signal negative, negative_next, space, space_next, num, num_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
 	signal debug_sig_next, debug_sig :integer := 0;
 
@@ -99,7 +99,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, once, data_in, space, line_count, leading_sign, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand)
+	output : process(parser_fsm_state, data_in, space, num, line_count, leading_sign, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand)
 
   begin
 		leading_sign_next <= leading_sign;
@@ -109,6 +109,7 @@ begin
 		line_count_next <= line_count;
 		parse_ready_next <= '0';
 		space_next <= space;
+		num_next <= num;
 		check_op_ready_next <= '0';
 		convert_ready_next <= '0';
 		operator_next <= old_operator;
@@ -116,7 +117,6 @@ begin
 		convert_count_next <= convert_count;
 		operand_next <= last_operand;
 		debug_sig_next <= debug_sig;
-		once_next <= once;
 		addr_lb_next <= addr_lb_old;
 		
 
@@ -176,10 +176,10 @@ debug_sig_next <= (debug_sig + 1);
 						error_sig_next <= '1';
 				else
 					operator_next <= "00";	
-					if space = '0' then
+--*					if space = '0' then
 						-- calc length of operand
 --						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
-					end if;  
+--*					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				end if; 
@@ -191,10 +191,10 @@ debug_sig_next <= (debug_sig + 1);
 						error_sig_next <= '1';
 				else
 					operator_next <= "01";	
-					if space = '0' then
+--*					if space = '0' then
 						-- calc length of operand
 --						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
-					end if;  
+--*					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				end if; 
@@ -206,10 +206,10 @@ debug_sig_next <= (debug_sig + 1);
 						error_sig_next <= '1';
 				else
 					operator_next <= "10";	
-					if space = '0' then
+--*					if space = '0' then
 						-- calc length of operand
 --						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
-					end if;  
+--*					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				end if; 
@@ -221,18 +221,15 @@ debug_sig_next <= (debug_sig + 1);
 						error_sig_next <= '1';
 				else
 					operator_next <= "11";	
-					if space = '0' then
+--*					if space = '0' then
 						-- calc length of operand
 --						convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
-					end if;  
+--*					end if;  
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				end if; 
 
---TODO ... zu Beginn sprich vor operanden abfangen (start_pos hinaufzählen) und wie  bei +,-,*,/ vergleichen
---TODO ... wenn lincount 0 dann Fehler beio convert count
 			when SPACE_BAR =>
---debug_sig_next <= (debug_sig + 1);
 				-- space located 
 				if line_count >= x"46" then
 					addr_lb_next <= start_pos;
@@ -244,8 +241,11 @@ debug_sig_next <= (debug_sig + 1);
 				space_next <= '1'; 
 
 			when NUMBER =>
-				if space = '1' then
+				num_next <= '1';
+				if num = '1' and space = '1' then
 					error_sig_next <= '1';
+				elsif space = '1' and num = '0' then
+					start_pos_next <= line_count;
 				elsif line_count >= x"46" then
 					check_op_ready_next <= '1';
 				end if;
@@ -361,13 +361,14 @@ debug_sig_next <= (debug_sig + 1);
 			convert_count <= (others => '0');
 			space <= '0';
 			last_operand <= x"00000000";
-			once <= '0';
 			addr_lb_old <= (others => '0');
+			error_sig <= '0';
 debug_sig <= 0;
 		elsif (sys_clk'event and sys_clk = '1') then
 			check_op_ready <= check_op_ready_next;
 			convert_ready <= convert_ready_next;
 			space <= space_next;
+			num <= num_next;
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
 			negative <= negative_next;
@@ -383,7 +384,6 @@ debug_sig <= 0;
 			leading_sign <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
-			once <= once_next;
 debug_sig <= debug_sig_next;
 		end if;
   end process sync;
