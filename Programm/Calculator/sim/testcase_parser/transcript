@@ -1676,3 +1676,2333 @@ do parser_tb_behav.do
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
 quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(280): near "loop": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(286): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(286): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(286): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(289): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(289): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(292): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(292): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(295): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(295): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(298): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(298): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(301): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(301): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(304): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(304): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(307): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(307): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(310): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(310): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(316): near "else": expecting "END" or "WHEN"
+# ** Error: ../../src/parser_arc_beh.vhd(351): near "if": expecting "PROCESS"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(280): (vcom-1079) Range left bound type Integer is not the same as right bound type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(286): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(286): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(286): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(289): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(289): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(292): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(292): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(295): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(295): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(298): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(298): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(301): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(301): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(304): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(304): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(307): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(307): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(310): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(310): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(281): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(399): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(280): Illegal type conversion from ieee.numeric_std.unsigned to std.standard.integer (array to numeric).
+# ** Error: ../../src/parser_arc_beh.vhd(286): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(286): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(286): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(289): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(289): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(289): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(292): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(292): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(292): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(295): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(295): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(295): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(298): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(298): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(298): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(301): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(301): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(301): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(304): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(304): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(304): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(307): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(307): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(307): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(310): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(310): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(310): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(281): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(399): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(281): Illegal type conversion from ieee.numeric_std.unsigned to std.standard.integer (array to numeric).
+# ** Error: ../../src/parser_arc_beh.vhd(288): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(288): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(288): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(291): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(291): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(294): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(294): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(297): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(297): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(300): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(300): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(303): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(303): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(306): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(306): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(309): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(309): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(312): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(312): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(401): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(281): Illegal type conversion from ieee.std_logic_1164.std_logic_vector to std.standard.integer (array to numeric).
+# ** Error: ../../src/parser_arc_beh.vhd(281): Illegal type conversion from ieee.std_logic_1164.std_logic_vector to std.standard.integer (array to numeric).
+# ** Error: ../../src/parser_arc_beh.vhd(288): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(288): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(288): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(291): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(291): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(294): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(294): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(297): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(297): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(300): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(300): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(303): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(303): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(306): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(306): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(309): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(309): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(312): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(312): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(401): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(288): No feasible entries for infix operator "+".
+# ** Error: ../../src/parser_arc_beh.vhd(288): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(288): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(291): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(291): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(291): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(294): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(294): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(294): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(297): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(297): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(297): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(300): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(300): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(300): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(303): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(303): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(303): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(306): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(306): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(306): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(309): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(309): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(309): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Error: ../../src/parser_arc_beh.vhd(312): No feasible entries for infix operator "*".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Bad expression in right operand of infix expression "+".
+# ** Error: ../../src/parser_arc_beh.vhd(312): Cannot resolve expression type of infix expression.
+# ** Error: ../../src/parser_arc_beh.vhd(312): Illegal type conversion to ieee.std_logic_1164.std_logic_vector (operand type is not known).
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(401): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(319): Illegal target for signal assignment.
+# ** Error: ../../src/parser_arc_beh.vhd(319): (vcom-1136) Unknown identifier "igebug_sig_next".
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(291): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(294): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(297): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(300): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(303): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(306): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(309): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(312): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Error: ../../src/parser_arc_beh.vhd(401): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(291): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(294): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(297): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(300): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(303): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(306): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(309): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(312): (vcom-1272) Length of expected is 32; length of actual is 64.
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 32 (31 downto 0). Right is 64 (63 downto 0).
+#    Time: 14512 ns  Iteration: 2  Process: /parser_tb/tp_parser/output File: ../../src/parser_arc_beh.vhd
+# Fatal error in ForLoop loop at ../../src/parser_arc_beh.vhd line 283
+# 
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(291): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(294): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(297): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(300): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(303): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(306): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(309): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(312): (vcom-1272) Length of expected is 32; length of actual is 64.
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 32 (31 downto 0). Right is 64 (63 downto 0).
+#    Time: 14512 ns  Iteration: 2  Process: /parser_tb/tp_parser/output File: ../../src/parser_arc_beh.vhd
+# Fatal error in ForLoop loop at ../../src/parser_arc_beh.vhd line 283
+# 
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+run
+# Cannot continue because of fatal error.
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 ForLoop loop
+# 
+quit -sim
+do parser_tb_behav.do^
+# Cannot open macro file: parser_tb_behav.do^
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(281): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(289): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(292): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(295): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(298): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(301): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(304): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(307): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(310): (vcom-1272) Length of expected is 32; length of actual is 64.
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 32 (31 downto 0). Right is 64 (63 downto 0).
+#    Time: 14512 ns  Iteration: 2  Process: /parser_tb/tp_parser/output File: ../../src/parser_arc_beh.vhd
+# Fatal error in ForLoop loop at ../../src/parser_arc_beh.vhd line 281
+# 
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 281 ForLoop loop
+# 
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(292): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(295): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(298): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(301): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(304): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(307): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(310): (vcom-1272) Length of expected is 32; length of actual is 64.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(313): (vcom-1272) Length of expected is 32; length of actual is 64.
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 32 (31 downto 0). Right is 64 (63 downto 0).
+#    Time: 14512 ns  Iteration: 2  Process: /parser_tb/tp_parser/output File: ../../src/parser_arc_beh.vhd
+# Fatal error in Process output at ../../src/parser_arc_beh.vhd line 283
+# 
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 283 Process output
+# 
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(280): (vcom-1272) Length of expected is 65; length of actual is 32.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(283): (vcom-1272) Length of expected is 65; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(289): (vcom-1272) Length of expected is 32; length of actual is 65.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(292): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(295): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(298): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(301): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(304): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(307): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(310): (vcom-1272) Length of expected is 32; length of actual is 130.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(313): (vcom-1272) Length of expected is 32; length of actual is 130.
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 65 (64 downto 0). Right is 32 (64 downto 33).
+#    Time: 14512 ns  Iteration: 2  Process: /parser_tb/tp_parser/output File: ../../src/parser_arc_beh.vhd
+# Fatal error in Process output at ../../src/parser_arc_beh.vhd line 280
+# 
+# HDL call sequence:
+# Stopped at ../../src/parser_arc_beh.vhd 280 Process output
+# 
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): near "100000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(23): Integer literal 1410065408 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(25): near "10000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(25): Integer literal 1410065408 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(27): Integer literal 1000000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(29): Integer literal 100000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(31): Integer literal 10000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(33): Integer literal 1000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(35): Integer literal 100000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(37): Integer literal 10000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(39): Integer literal 1000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(41): Integer literal 100 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(43): Integer literal 10 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(312): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(342): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(24): near "elsif": expecting "END"
+# ** Error: ../../src/parser_arc_beh.vhd(25): near "10000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(25): near "10000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(25): Integer literal 1410065408 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(27): Integer literal 1000000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(29): Integer literal 100000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(31): Integer literal 10000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(33): Integer literal 1000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(35): Integer literal 100000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(37): Integer literal 10000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(39): Integer literal 1000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(41): Integer literal 100 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(43): Integer literal 10 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(312): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(342): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(25): near "10000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(41): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(43): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(312): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(342): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Integer literal 1000000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(25): Integer literal 100000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(27): Integer literal 10000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(29): Integer literal 1000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(31): Integer literal 100000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(33): Integer literal 10000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(35): Integer literal 1000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(37): Integer literal 100 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(39): Integer literal 10 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(308): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(338): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): Integer literal 10000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(29): Integer literal 1000000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(31): Integer literal 100000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(33): Integer literal 10000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(35): Integer literal 1000 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(37): Integer literal 100 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(39): Integer literal 10 is not of type ieee.numeric_std.unsigned.
+# ** Error: ../../src/parser_arc_beh.vhd(308): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(338): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(27): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(308): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(338): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(308): near ";": expecting ')'
+# ** Error: ../../src/parser_arc_beh.vhd(338): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(338): near "else": expecting "END" or "WHEN"
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(420): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(25): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(27): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(29): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(31): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(420): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(23): No feasible entries for subprogram "to_unsigned".
+# ** Error: ../../src/parser_arc_beh.vhd(25): No feasible entries for subprogram "to_unsigned".
+# ** Error: ../../src/parser_arc_beh.vhd(27): No feasible entries for subprogram "to_unsigned".
+# ** Error: ../../src/parser_arc_beh.vhd(29): No feasible entries for subprogram "to_unsigned".
+# ** Error: ../../src/parser_arc_beh.vhd(31): No feasible entries for subprogram "to_unsigned".
+# ** Error: ../../src/parser_arc_beh.vhd(33): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(35): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(37): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(39): Illegal type conversion from Integer to ieee.numeric_std.unsigned (numeric to array).
+# ** Error: ../../src/parser_arc_beh.vhd(420): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(35): near ",": expecting ';'
+# ** Error: ../../src/parser_arc_beh.vhd(420): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(35): near ",": expecting ';'
+# ** Error: ../../src/parser_arc_beh.vhd(420): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# ** Error: parser_tb.vhd(24): (vcom-1272) Length of expected is 7; length of actual is 8.
+# ** Error: parser_tb.vhd(142): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 25
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work parser_tb.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/parser_arc_beh.vhd(67): near "3000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(89): near "4000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(111): near "5000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(133): near "6000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(155): near "7000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(177): near "8000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Error: ../../src/parser_arc_beh.vhd(199): near "9000000000": (vcom-119) Integer value exceeds INTEGER'high.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(67): (vcom-1144) Value -1294967296 is out of std.standard.natural range 0 to 2147483647.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(89): (vcom-1144) Value -294967296 is out of std.standard.natural range 0 to 2147483647.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(155): (vcom-1144) Value -1589934592 is out of std.standard.natural range 0 to 2147483647.
+# ** Warning: [14] ../../src/parser_arc_beh.vhd(177): (vcom-1144) Value -589934592 is out of std.standard.natural range 0 to 2147483647.
+# ** Error: ../../src/parser_arc_beh.vhd(593): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/parser_arc_beh.vhd"
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf /homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_parser/wave.do
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
