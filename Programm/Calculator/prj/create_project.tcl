@@ -58,6 +58,7 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/scancode_handler_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/main_ent.vhd
+	set_global_assignment -name VHDL_FILE ../src/main_pkg.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/line_buffer_pkg.vhd
@@ -73,7 +74,6 @@ if {$make_assignments} {
         set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
         set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
-<<<<<<< HEAD:Programm/Calculator/prj/create_project.tcl
         set_global_assignment -name VHDL_FILE ../src/calc.vhd
         set_global_assignment -name VHDL_FILE ../src/calc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa.vhd
@@ -82,11 +82,9 @@ if {$make_assignments} {
 #	set_global_assignment -name VHDL_FILE ../src/test_parser_arc_beh.vhd
 #        set_global_assignment -name VHDL_FILE ../src/parser_ent.vhd
 #        set_global_assignment -name VHDL_FILE ../src/parser_pkg.vhd
-=======
 	set_global_assignment -name VHDL_FILE ../src/parser_arc_beh.vhd
         set_global_assignment -name VHDL_FILE ../src/parser_ent.vhd
         set_global_assignment -name VHDL_FILE ../src/parser_pkg.vhd
->>>>>>> bif_lokal:Programm/Calculator/prj/create_project.tcl
 
 
 	# used ip cores

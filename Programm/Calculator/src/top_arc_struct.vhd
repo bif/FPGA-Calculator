@@ -11,6 +11,7 @@ use work.scancode_handler_pkg.all;
 use work.line_buffer_pkg.all;
 use work.sp_ram_pkg.all;
 use work.parser_pkg.all;
+use work.main_pkg.all;
 
 architecture struct of calculator_top is
 	constant CLK_FREQ : integer := 33330000;
@@ -32,8 +33,8 @@ architecture struct of calculator_top is
 	signal uart_top_tx_sig	: std_logic;
 	signal uart_top_rx_sig	: std_logic;
 
-	signal lb_addr_out_sig, lb_addr_wr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
-	signal lb_data_wr_sig, lb_data_out_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
+	signal lb_addr_out_sig, lb_addr_wr_sig, main_lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
+	signal lb_data_wr_sig, lb_data_out_sig, main_lb_data_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic;
 	signal operand_sig : std_logic_vector(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
@@ -54,23 +55,6 @@ architecture struct of calculator_top is
 	signal		operation_end_top	:	std_logic;
 	signal		error_calc_top		:	std_logic;
 
-component main is
-	generic
-(
-		RESET_VALUE : std_logic
-	);
-	port
-	(
-		sys_clk : in std_logic;
-		sys_res_n : in std_logic;
-		sense : in std_logic;
-		uart_main_tx    : out   std_logic;
-		uart_main_rx    : in    std_logic;
-		trigger_main_tx	: out	std_logic;
-		start_calc	: in	std_logic
-	);
-
-end component main;
 
 component calc is
 	generic
@@ -229,12 +213,14 @@ begin
 	)
 	port map
 	(
-		clk => sys_clk,
-		address_out => lb_addr_out_sig,
-		data_out => lb_data_out_sig,
-		address_wr => lb_addr_wr_sig,
-		wr => lb_wr_sig,
-		data_wr => lb_data_wr_sig
+		clk		=>	sys_clk,
+		data_out	=>	lb_data_out_sig,
+		data_out_1	=>	main_lb_data_sig,	-- data-connection lb --> main
+		address_out	=>	lb_addr_out_sig,
+		address_out_1	=>	main_lb_addr_sig,	-- addr-connection lb <-- main
+		address_wr	=>	lb_addr_wr_sig,
+		wr		=>	lb_wr_sig,
+		data_wr		=>	lb_data_wr_sig
 	);
 
 	line_buffer_inst : line_buffer
@@ -283,16 +269,20 @@ begin
 	main_inst : main
 	generic map
 	(
-		RESET_VALUE => RES_N_DEFAULT_VALUE
+		RESET_VALUE	=>	RES_N_DEFAULT_VALUE,
+		ADR_WIDTH	=>	LB_ADDR_WIDTH,
+		DAT_WIDTH	=>	LB_DATA_WIDTH
 	)
 	port map
 	(
-		sys_clk => sys_clk,
-		sys_res_n => sys_res_n_sync,
-		sense => btn_a_sync,
-		uart_main_rx => uart_top_rx_sig,
-		uart_main_tx => uart_top_tx_sig,
-		start_calc => start_calc_sig
+		sys_clk		=>	sys_clk,
+		sys_res_n	=>	sys_res_n_sync,
+		sense		=>	btn_a_sync,
+		uart_main_rx	=>	uart_top_rx_sig,
+		uart_main_tx	=>	uart_top_tx_sig,
+		start_calc	=>	start_calc_sig,
+		lb_addr		=>	main_lb_addr_sig,
+		lb_data		=>	main_lb_data_sig
 	);
 
 	calc_inst : calc
