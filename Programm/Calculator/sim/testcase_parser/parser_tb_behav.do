@@ -50,6 +50,8 @@ add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready
 add wave -noupdate -format Literal /parser_tb/tp_parser/convert_ready
 add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig
 add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig_next
+add wave -noupdate -format Literal /parser_tb/tp_parser/space
+add wave -noupdate -format Literal /parser_tb/tp_parser/num
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/convert_count
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/convert_count_next
 
@@ -74,7 +76,8 @@ update
 
 # auto-run simulation
 run 300 us
-WaveRestoreZoom {14200 ns} {14400 ns}
+#WaveRestoreZoom {14200 ns} {14400 ns}
+WaveRestoreZoom {15200 ns} {15400 ns}
 #wave zoomfull
 
 

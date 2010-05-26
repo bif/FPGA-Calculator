@@ -311,6 +311,8 @@ begin
 
 		case parser_fsm_state is
 			when READY =>
+				space_next <= '0';
+				num_next <= '0';
 				check_op_ready_next <= '0';
 				convert_ready_next <= '0';			
 debug_sig_next <= 0;
@@ -335,7 +337,7 @@ debug_sig_next <= 0;
 						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
 						addr_lb_next <= std_logic_vector(unsigned(line_count) + 1); 	
 
-					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
+					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" | x"20"=>
 						-- "0 ... 9"
 						leading_sign_next <= '0';
 						negative_next <= '0';
@@ -350,8 +352,14 @@ debug_sig_next <= 0;
 				if check_op_ready /= '1' then 
 					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
 					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
+					if space = '1' and num = '1' then
+debug_sig_next <= 7;
+--TODO: das darf nur einmal ausgeführt werden
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 1); 	
+					end if;
 				else
 					if space = '0' then
+debug_sig_next <= 9;
 						convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
 					end if;						
 					addr_lb_next <= start_pos;	
@@ -419,14 +427,15 @@ debug_sig_next <= 0;
 
 			when SPACE_BAR =>
 
-debug_sig_next <= (debug_sig + 1);
 				-- space located 
 				if line_count >= x"46" then
 					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
-				elsif space = '0' then	
-					-- calc length of operand
-					convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
+--				elsif space = '0' then	
+
+--debug_sig_next <= (debug_sig + 1);
+--					-- calc length of operand
+--					convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
 				end if;
 				space_next <= '1'; 
 
