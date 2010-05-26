@@ -54,7 +54,7 @@ begin
 					when x"2F" =>
 						-- next operator = '/' located
 						parser_fsm_state_next <= DIV; 
-					when x"61" =>
+					when x"20" =>
 						parser_fsm_state_next <= SPACE_BAR;
 					when others =>
 						parser_fsm_state_next <= NUMBER;
@@ -118,6 +118,7 @@ begin
 		debug_sig_next <= debug_sig;
 		once_next <= once;
 		addr_lb_next <= addr_lb_old;
+		
 
 		case parser_fsm_state is
 			when READY =>
@@ -161,7 +162,10 @@ debug_sig_next <= 0;
 					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
 					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 				else
-					convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
+debug_sig_next <= (debug_sig + 1);
+					if space = '0' then
+						convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
+					end if;						
 					addr_lb_next <= start_pos;	
 				end if;
 			
@@ -228,14 +232,14 @@ debug_sig_next <= 0;
 --TODO ... zu Beginn sprich vor operanden abfangen (start_pos hinaufzählen) und wie  bei +,-,*,/ vergleichen
 --TODO ... wenn lincount 0 dann Fehler beio convert count
 			when SPACE_BAR =>
+--debug_sig_next <= (debug_sig + 1);
 				-- space located 
 				if line_count >= x"46" then
-					-- end off buffer, last value still not converted
-					end_of_op_next <= '1';
+					addr_lb_next <= start_pos;
 					check_op_ready_next <= '1';
 				elsif space = '0' then	
 					-- calc length of operand
---					convert_count_next <= std_logic_vector(unsigned(line_count) - 1);
+					convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
 				end if;
 				space_next <= '1'; 
 
@@ -243,8 +247,6 @@ debug_sig_next <= 0;
 				if space = '1' then
 					error_sig_next <= '1';
 				elsif line_count >= x"46" then
-					-- end of buffer, last value still not converted
-					end_of_op_next <= '1';
 					check_op_ready_next <= '1';
 				end if;
 			
@@ -252,6 +254,11 @@ debug_sig_next <= 0;
 					if convert_ready /= '1' then
 						addr_lb_next <= start_pos;		
 					else
+						if line_count >= x"46" then
+							end_of_op_next <= '1';
+							-- if end of operation set operator to + or - => Calculator can finish if last operator is + or -
+							operator_next <= "00";
+						end if;
 						addr_lb_next <= line_count;	
 						start_pos_next <= line_count;
 						convert_ready_next <= '1';
@@ -260,7 +267,9 @@ debug_sig_next <= 0;
 
 			when CONVERT_TO_INT =>
 				start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
-				addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
+--				if space = '0' then
+					addr_lb_next <= std_logic_vector(unsigned(start_pos) + 1);
+--				end if;		
 				-- convert ascii to integer
 				if (unsigned(convert_count) - unsigned(start_pos)) >= 1 then
 					case data_in(7 downto 0) is							
@@ -296,6 +305,7 @@ debug_sig_next <= 0;
 					end case;
 
 				else
+debug_sig_next <= (debug_sig + 1);
 					case data_in(7 downto 0) is							
 						when x"31" =>
 							operand_next <= std_logic_vector(unsigned(last_operand) + 1);
@@ -327,7 +337,7 @@ debug_sig_next <= 0;
 						when others =>
 							null;
 					end case;
-			
+					
 					convert_ready_next <= '1';
 				end if;
 			

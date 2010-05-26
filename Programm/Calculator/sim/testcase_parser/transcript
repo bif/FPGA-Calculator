@@ -110,127 +110,13 @@ do parser_tb_behav.do
 # -- Loading package sp_ram_pkg
 # -- Compiling entity parser_tb
 # -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-restart -f
-run
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(13): (vcom-1294) Declaration with designator "data_in" already exists in this region.
-# ** Error: ../../src/test_parser_arc_beh.vhd(377): VHDL Compiler exiting
+# ** Error: parser_tb.vhd(108): near "200": expecting ';'
+# ** Error: parser_tb.vhd(142): VHDL Compiler exiting
 # ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
+# Error in macro ./parser_tb_behav.do line 25
 # /opt/modelsim/modeltech/linux/vcom failed.
 #     while executing
-# "vcom -work work ../../src/test_parser_arc_beh.vhd"
+# "vcom -work work parser_tb.vhd"
 do parser_tb_behav.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
@@ -289,1834 +175,6 @@ do parser_tb_behav.do
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
 quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(154): (vcom-1136) Unknown identifier "check_op_read".
-# ** Error: ../../src/test_parser_arc_beh.vhd(154): Type error resolving infix expression "=" as type std.standard.boolean.
-# ** Error: ../../src/test_parser_arc_beh.vhd(366): VHDL Compiler exiting
-# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
-# /opt/modelsim/modeltech/linux/vcom failed.
-#     while executing
-# "vcom -work work ../../src/test_parser_arc_beh.vhd"
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(114): Cannot read output "addr_lb".
-# ** Error: ../../src/test_parser_arc_beh.vhd(360): VHDL Compiler exiting
-# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
-# /opt/modelsim/modeltech/linux/vcom failed.
-#     while executing
-# "vcom -work work ../../src/test_parser_arc_beh.vhd"
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 48 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 80 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 144 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 208 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 272 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 336 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 400 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 464 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 528 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 592 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 656 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 720 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 784 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 848 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 912 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 976 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1008 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1168 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1200 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1232 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1264 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1296 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1328 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1360 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1392 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1424 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1456 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1488 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 48 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 80 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 144 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 208 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 272 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 336 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 400 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 464 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 528 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 592 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 656 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 720 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 784 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 848 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 912 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 976 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1008 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1168 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1200 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1200 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1232 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1264 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1264 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1296 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1328 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1360 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1392 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1392 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1424 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1424 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1456 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1456 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1488 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1488 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1520 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1520 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1552 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1552 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1584 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1584 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1616 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1616 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1648 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1680 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1680 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1712 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1744 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1744 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1776 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1808 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1808 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1840 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1872 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1904 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1936 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1968 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1968 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2 us  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2 us  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2032 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2032 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2064 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2064 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2096 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2096 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2128 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2128 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2160 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2192 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2192 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2224 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2256 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2256 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2288 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2320 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2320 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2352 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2384 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2384 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2416 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2448 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2448 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2480 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2512 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2512 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2576 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2640 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2704 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2768 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2832 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2896 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2960 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3024 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3024 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3056 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3088 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3088 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3120 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3152 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3152 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3184 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3216 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3216 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3248 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3280 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3280 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3312 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3344 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3344 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3376 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3408 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3408 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3440 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3472 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3472 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3504 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3536 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3536 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3568 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3600 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3600 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3632 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3664 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3664 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3696 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3728 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3728 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3760 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3792 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3792 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3824 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3856 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3856 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3888 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3920 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3920 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3952 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3984 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3984 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4016 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4048 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4048 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4080 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4144 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4208 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4272 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4336 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4400 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4464 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4528 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4592 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4656 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4720 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4784 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4848 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4912 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4976 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 48 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 80 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 144 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 208 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 272 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 336 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 400 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 464 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 528 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 592 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 656 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 720 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 784 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 848 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 912 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 976 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1008 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1040 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1072 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1104 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1136 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1168 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1200 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1200 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1232 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1264 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1264 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1296 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1328 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1360 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1392 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1392 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1424 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1424 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1456 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1456 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1488 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1488 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1520 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1520 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1552 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1552 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1584 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1584 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1616 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1616 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1648 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1680 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1680 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1712 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1744 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1744 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1776 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1808 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1808 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1840 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1872 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1904 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1936 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1968 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 1968 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2 us  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2 us  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2032 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2032 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2064 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2064 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2096 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2096 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2128 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2128 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2160 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2192 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2192 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2224 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2256 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2256 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2288 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2320 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2320 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2352 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2384 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2384 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2416 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2448 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2448 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2480 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2512 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2512 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2576 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2640 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2704 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2768 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2832 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2896 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 2960 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3024 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3024 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3056 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3088 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3088 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3120 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3152 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3152 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3184 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3216 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3216 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3248 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3280 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3280 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3312 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3344 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3344 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3376 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3408 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3408 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3440 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3472 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3472 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3504 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3536 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3536 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3568 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3600 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3600 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3632 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3664 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3664 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3696 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3728 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3728 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3760 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3792 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3792 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3824 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3856 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3856 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3888 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3920 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3920 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3952 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3984 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 3984 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4016 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4048 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4048 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4080 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4112 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4144 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4176 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4208 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4240 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4272 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4304 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4336 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4368 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4400 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4432 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4464 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4496 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4528 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4560 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4592 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4624 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4656 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4688 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4720 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4752 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4784 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4816 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4848 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4880 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4912 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4944 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 4976 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-# Load canceled
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
 quit -sim
 do parser_tb_behav.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
@@ -2386,126 +444,8 @@ do parser_tb_behav.do
 # -- Loading package parser_pkg
 # -- Compiling architecture beh of parser
 # -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-quit -sim
-
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(129): Integer literal 0 is not of type ieee.std_logic_1164.std_logic_vector.
-# ** Error: ../../src/test_parser_arc_beh.vhd(377): VHDL Compiler exiting
+# ** Error: ../../src/test_parser_arc_beh.vhd(115): Cannot read output "end_of_operation".
+# ** Error: ../../src/test_parser_arc_beh.vhd(381): VHDL Compiler exiting
 # ** Error: /opt/modelsim/modeltech/linux/vcom failed.
 # Error in macro ./parser_tb_behav.do line 19
 # /opt/modelsim/modeltech/linux/vcom failed.
@@ -2837,17 +777,28 @@ do parser_tb_behav.do
 # -- Loading package parser_pkg
 # -- Compiling architecture beh of parser
 # -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(91): (vcom-1136) Unknown identifier "convert_post_state".
-# ** Error: ../../src/test_parser_arc_beh.vhd(94): (vcom-1136) Unknown identifier "convert_post_state".
-# ** Error: ../../src/test_parser_arc_beh.vhd(94): Case choice must be a locally static expression.
-# ** Error: ../../src/test_parser_arc_beh.vhd(251): (vcom-1136) Unknown identifier "convert_prost_state".
-# ** Error: ../../src/test_parser_arc_beh.vhd(251): Case choice must be a locally static expression.
-# ** Error: ../../src/test_parser_arc_beh.vhd(379): VHDL Compiler exiting
-# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
-# /opt/modelsim/modeltech/linux/vcom failed.
-#     while executing
-# "vcom -work work ../../src/test_parser_arc_beh.vhd"
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
 do parser_tb_behav.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
@@ -2884,9 +835,124 @@ do parser_tb_behav.do
 # -- Loading package parser_pkg
 # -- Compiling architecture beh of parser
 # -- Loading entity parser
-# ** Error: ../../src/test_parser_arc_beh.vhd(251): (vcom-1136) Unknown identifier "convert_prost_state".
-# ** Error: ../../src/test_parser_arc_beh.vhd(251): Case choice must be a locally static expression.
-# ** Error: ../../src/test_parser_arc_beh.vhd(379): VHDL Compiler exiting
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package parser_pkg
+# -- Loading package numeric_std
+# -- Loading package sp_ram_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# vsim -coverage work.parser_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading work.parser_pkg
+# Loading ieee.numeric_std(body)
+# Loading work.sp_ram_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.parser(beh)#1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/test_parser_arc_beh.vhd(379): Cannot read output "end_of_operation".
+# ** Error: ../../src/test_parser_arc_beh.vhd(393): VHDL Compiler exiting
 # ** Error: /opt/modelsim/modeltech/linux/vcom failed.
 # Error in macro ./parser_tb_behav.do line 19
 # /opt/modelsim/modeltech/linux/vcom failed.
@@ -2950,6 +1016,57 @@ do parser_tb_behav.do
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
 quit -sim
+do parser_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# ** Error: ../../src/test_parser_arc_beh.vhd(116): Illegal target for signal assignment.
+# ** Error: ../../src/test_parser_arc_beh.vhd(116): (vcom-1136) Unknown identifier "save_end_of_op_next".
+# ** Error: ../../src/test_parser_arc_beh.vhd(344): (vcom-1136) Unknown identifier "save_end_of_op".
+# ** Error: ../../src/test_parser_arc_beh.vhd(344): Type error resolving infix expression "=" as type std.standard.boolean.
+# ** Error: ../../src/test_parser_arc_beh.vhd(345): Illegal target for signal assignment.
+# ** Error: ../../src/test_parser_arc_beh.vhd(345): (vcom-1136) Unknown identifier "save_end_of_op_next".
+# ** Error: ../../src/test_parser_arc_beh.vhd(383): Illegal target for signal assignment.
+# ** Error: ../../src/test_parser_arc_beh.vhd(383): (vcom-1136) Unknown identifier "save_end_of_op".
+# ** Error: ../../src/test_parser_arc_beh.vhd(384): (vcom-1136) Unknown identifier "save_end_of_op_next".
+# ** Error: ../../src/test_parser_arc_beh.vhd(397): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./parser_tb_behav.do line 19
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work ../../src/test_parser_arc_beh.vhd"
 do parser_tb_behav.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti7.

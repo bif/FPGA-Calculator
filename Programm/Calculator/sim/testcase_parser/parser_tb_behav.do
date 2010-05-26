@@ -16,7 +16,7 @@ vmap work behav_work
 
 	vcom -work work ../../src/parser_pkg.vhd
 	vcom -work work ../../src/parser_ent.vhd
-	vcom -work work ../../src/test_parser_arc_beh.vhd
+	vcom -work work ../../src/parser_arc_beh.vhd
 
 
 # vcom -work work -cover bs ../../src/demo.vhd
@@ -58,8 +58,8 @@ add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready
 #add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready_next
 add wave -noupdate -format Literal /parser_tb/tp_parser/convert_ready
 #add wave -noupdate -format Literal /parser_tb/tp_parser/convert_ready_next
-#add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig
-#add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig_next
+add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig
+add wave -noupdate -format Logic /parser_tb/tp_parser/debug_sig_next
 add wave -noupdate -format Literal /parser_tb/tp_parser/convert_count
 add wave -noupdate -format Literal /parser_tb/tp_parser/convert_count_next
 
@@ -84,8 +84,8 @@ update
 
 
 # auto-run simulation
-run 15 us
-WaveRestoreZoom {800 ns} {1800 ns}
+run 30 us
+WaveRestoreZoom {13800 ns} {14600 ns}
 #wave zoomfull
 
 

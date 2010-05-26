@@ -104,7 +104,8 @@ begin  -- behav
 				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
 				wait for 200 ns;
 			else
-				lb_data_wr_sig <= x"61";
+				lb_data_wr_sig <= x"20";
+				wait for 200 ns;
 			end if;
 		end loop;
 
