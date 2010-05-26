@@ -48,8 +48,8 @@ add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/start_pos
 add wave -noupdate -format Literal /parser_tb/tp_parser/parser_fsm_state
 add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready
 add wave -noupdate -format Literal /parser_tb/tp_parser/convert_ready
-add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig
-add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig_next
+#add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig
+#add wave -noupdate -format Literal /parser_tb/tp_parser/debug_sig_next
 add wave -noupdate -format Literal /parser_tb/tp_parser/space
 add wave -noupdate -format Literal /parser_tb/tp_parser/num
 add wave -noupdate -format Literal /parser_tb/tp_parser/once

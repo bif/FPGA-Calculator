@@ -12,7 +12,7 @@ architecture beh of parser is
 	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal negative, negative_next, once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
+	signal once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
 --	signal debug_sig_next, debug_sig :integer := 0;
 
@@ -35,7 +35,7 @@ architecture beh of parser is
 				return to_unsigned(1000, 10);
 			elsif value = 2 then
 				return to_unsigned(100, 10);
-			elsif value = 1 then
+			else 
 				return to_unsigned(10, 10);
 			end if;
 	end function;  
@@ -57,7 +57,7 @@ architecture beh of parser is
 				return to_unsigned(2000, 10);
 			elsif value = 2 then
 				return to_unsigned(200, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(20, 10);
 			end if;
 	end function;
@@ -77,7 +77,7 @@ architecture beh of parser is
 				return to_unsigned(3000, 10);
 			elsif value = 2 then
 				return to_unsigned(300, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(30, 10);
 			end if;
 	end function;
@@ -97,7 +97,7 @@ architecture beh of parser is
 				return to_unsigned(4000, 10);
 			elsif value = 2 then
 				return to_unsigned(400, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(40, 10);
 			end if;
 	end function;
@@ -117,7 +117,7 @@ architecture beh of parser is
 				return to_unsigned(5000, 10);
 			elsif value = 2 then
 				return to_unsigned(500, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(50, 10);
 			end if;
 	end function;
@@ -137,7 +137,7 @@ architecture beh of parser is
 				return to_unsigned(6000, 10);
 			elsif value = 2 then
 				return to_unsigned(600, 10);
-			elsif value = 1 then
+			else 
 				return to_unsigned(60, 10);
 			end if;
 	end function;
@@ -157,7 +157,7 @@ architecture beh of parser is
 				return to_unsigned(7000, 10);
 			elsif value = 2 then
 				return to_unsigned(700, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(70, 10);
 			end if;
 	end function;
@@ -177,7 +177,7 @@ architecture beh of parser is
 				return to_unsigned(8000, 10);
 			elsif value = 2 then
 				return to_unsigned(800, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(80, 10);
 			end if;
 	end function;
@@ -197,7 +197,7 @@ architecture beh of parser is
 				return to_unsigned(9000, 10);
 			elsif value = 2 then
 				return to_unsigned(900, 10);
-			elsif value = 1 then
+			else
 				return to_unsigned(90, 10);
 			end if;
 	end function;
@@ -285,15 +285,12 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, space, num, num_and_space, line_count, leading_sign, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand)
-
-	variable e : std_logic_vector(64 downto 0) := (others => '0');
-	variable i : integer range 1 to 12;
+	output : process(parser_fsm_state, data_in, space, num, num_and_space, line_count, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand, once, old_operator, addr_lb_old, leading_sign_old )
 
   begin
-		leading_sign_next <= leading_sign;
+		leading_sign_next <= leading_sign_old;
 		start_pos_next <= start_pos;
-		negative_next <= negative;
+--		negative_next <= negative;
 		error_sig_next <= '0';
 		line_count_next <= line_count;
 		parse_ready_next <= '0';
@@ -312,6 +309,7 @@ begin
 
 		case parser_fsm_state is
 			when READY =>
+				leading_sign_next <= '0';
 				num_and_space_next <= '0';
 				space_next <= '0';
 				num_next <= '0';
@@ -327,15 +325,15 @@ begin
 					when x"2D" =>
 						-- "-"
 						leading_sign_next <= '1';
-						negative_next <= '1';
+--						negative_next <= '1';
 						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
 						addr_lb_next <= std_logic_vector(unsigned(line_count) + 1); 					
 
 					when x"2B" =>
 						-- "+"
-						leading_sign_next <= '1';
-						negative_next <= '0';
+						leading_sign_next <= '0';
+--						negative_next <= '0';
 						line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 						start_pos_next <= std_logic_vector(unsigned(line_count) + 1);
 						addr_lb_next <= std_logic_vector(unsigned(line_count) + 1); 	
@@ -343,7 +341,7 @@ begin
 					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" | x"20"=>
 						-- "0 ... 9"
 						leading_sign_next <= '0';
-						negative_next <= '0';
+--						negative_next <= '0';
 						start_pos_next <= line_count;			
 
 					when others =>
@@ -555,7 +553,7 @@ begin
 			once <= once_next;
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
-			negative <= negative_next;
+--			negative <= negative_next;
 			line_count <= line_count_next;
 			addr_lb_old <= addr_lb_next;
 			addr_lb <= addr_lb_next;
@@ -566,6 +564,7 @@ begin
 			operand <= operand_next;	
 			last_operand <= operand_next;
 			leading_sign <= leading_sign_next;
+			leading_sign_old <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
 --debug_sig <= debug_sig_next;

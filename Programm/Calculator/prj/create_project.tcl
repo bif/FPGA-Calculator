@@ -68,14 +68,14 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/memarray_arc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/memarray_ent.vhd
 	set_global_assignment -name VHDL_FILE ../src/memarray_pkg.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
-        set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
-        set_global_assignment -name VHDL_FILE ../src/calc.vhd
-        set_global_assignment -name VHDL_FILE ../src/calc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart_send.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart_send_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart_rcv.vhd
+	set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/calc.vhd
+	set_global_assignment -name VHDL_FILE ../src/calc_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa_pkg.vhd
@@ -150,8 +150,8 @@ if {$make_assignments} {
  	set_location_assignment PIN_F2 -to vga_vsync_n
 	set_location_assignment PIN_E21 -to ps2_data
 	set_location_assignment PIN_Y26 -to ps2_clk
-        set_location_assignment PIN_D22 -to uart_tx
-        set_location_assignment PIN_D23 -to uart_rx
+	set_location_assignment PIN_D22 -to uart_tx
+	set_location_assignment PIN_D23 -to uart_rx
 	
 	set_global_assignment -name FMAX_REQUIREMENT "33.33 MHz" -section_id sys_clk
 	set_instance_assignment -name CLOCK_SETTINGS sys_clk -to sys_clk
