@@ -14,7 +14,7 @@ architecture beh of parser is
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
 	signal negative, negative_next, once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
-	signal debug_sig_next, debug_sig :integer := 0;
+--	signal debug_sig_next, debug_sig :integer := 0;
 
 	-- look up table functions to convert ascii to integer
 	function foo_1(value : in unsigned) return unsigned is
@@ -305,7 +305,7 @@ begin
 		end_of_op_next <= '0';
 		convert_count_next <= convert_count;
 		operand_next <= last_operand;
-		debug_sig_next <= debug_sig;
+--		debug_sig_next <= debug_sig;
 		addr_lb_next <= addr_lb_old;
 		once_next <= once;
 		num_and_space_next <= num_and_space;
@@ -318,7 +318,7 @@ begin
 				once_next <= '0';
 				check_op_ready_next <= '0';
 				convert_ready_next <= '0';			
-debug_sig_next <= 0;
+--debug_sig_next <= 0;
 
 			when CHECK_UNSIGNED =>
 				-- set saved operand to zero
@@ -356,15 +356,12 @@ debug_sig_next <= 0;
 					addr_lb_next <= std_logic_vector(unsigned(line_count) + 1);	
 					line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 					if num_and_space = '1' and once = '0' then
-debug_sig_next <= 7;
---TODO: das darf nur einmal ausgeführt werdeni
 						once_next <= '1';
 						convert_count_next <= std_logic_vector(unsigned(line_count) - 2); 
 						start_pos_next <= std_logic_vector(unsigned(start_pos) - 1); 
 					end if;
 				else
 					if space = '0' then
-debug_sig_next <= 9;
 						convert_count_next <= std_logic_vector(unsigned(line_count) - 2);
 					end if;						
 					addr_lb_next <= start_pos;	
@@ -548,7 +545,7 @@ debug_sig_next <= 9;
 			last_operand <= x"00000000";
 			addr_lb_old <= (others => '0');
 			error_sig <= '0';
-debug_sig <= 0;
+--debug_sig <= 0;
 		elsif (sys_clk'event and sys_clk = '1') then
 			check_op_ready <= check_op_ready_next;
 			convert_ready <= convert_ready_next;
@@ -571,7 +568,7 @@ debug_sig <= 0;
 			leading_sign <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
-debug_sig <= debug_sig_next;
+--debug_sig <= debug_sig_next;
 		end if;
   end process sync;
 end architecture beh;

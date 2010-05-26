@@ -14,14 +14,14 @@ architecture sim of parser_tb is
 	constant LB_ADDR_WIDTH : integer := 8;
 	constant QUARTZ_PERIOD : time := 33 ns;
 	constant QUARTZ_PLL_PERIOD : time := 2*40 ns;
-	constant TEST_ARRAY_WIDTH : integer := 9;
+	constant TEST_ARRAY_WIDTH : integer := 11;
 
 	-- subtype TEST_ARRAY_CELL is std_logic_vector(1 downto 0); -- 8 bit for every ram cell(7 would be enough, but its easier this way(casting...))
 	-- type TEST_ARRAY is array (TEST_ARRAY_WIDTH - 1 downto 0) of TEST_ARRAY_CELL;
 
   --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
 
-	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59-77+ 84";
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59- 77 +  4";
   signal clk : std_logic;
   signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
