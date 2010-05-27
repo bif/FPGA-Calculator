@@ -151,7 +151,7 @@ begin  -- behav
 
 
 
-		for i in 1 to 70 loop
+		for i in 1 to 10 loop
 			vga_free_sig <= '1';
 			wait for 200 ns;
 			new_ascii_sig <= '1';

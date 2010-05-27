@@ -157,6 +157,14 @@ begin
 				end if;
 
 			when CHECK_ASCII =>
+				case ascii_sign_in is
+					when x"03" | x"08" =>
+						null;
+					when others =>
+						wr_enable_next <= '1';
+						lb_data_next <= ascii_sign_in;
+						lb_addr_next <= count;
+				end case;
 				once_next <= '0';
 
 			when DISABLE =>
@@ -230,9 +238,9 @@ begin
 					vga_command_data_next(31 downto 8) <= x"FFFFFF";
 					vga_command_data_next(7 downto 0) <= ascii_sign_in;
 					if once = '0' then	
-						wr_enable_next <= '1';
-						lb_data_next <= ascii_sign_in;
-						lb_addr_next <= count;
+--						wr_enable_next <= '1';
+--						lb_data_next <= ascii_sign_in;
+--						lb_addr_next <= count;
 						count_next <= std_logic_vector(unsigned(count) + 1);
 						once_next <= '1';
 					else					

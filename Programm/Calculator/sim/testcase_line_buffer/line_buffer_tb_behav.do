@@ -78,6 +78,8 @@ update
 
 # auto-run simulation
 run 50 us
-
-WaveRestoreZoom {26800 ns} {27000 ns}
+#simulate save value (first sign ?)
+WaveRestoreZoom {7200 ns} {7400 ns}
+#simulate enable
+#WaveRestoreZoom {26800 ns} {27000 ns}
 #wave zoomfull
