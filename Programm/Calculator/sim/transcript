@@ -1,4 +1,4 @@
-# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-164.15.1.el5
+# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-194.3.1.el5
 # //
 # //  Copyright 1991-2009 Mentor Graphics Corporation
 # //              All Rights Reserved.
@@ -11,14 +11,7 @@
 ls
 # modelsim.ini
 # testcase_line_buffer
+# testcase_parser
 # transcript
 # vsim.wlf
-# wave.do
-# work
-ls
-# modelsim.ini
-# testcase_line_buffer
-# transcript
-# vsim.wlf
-# wave.do
 # work

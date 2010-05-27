@@ -1,4 +1,4 @@
-# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-164.15.1.el5
+# //  ModelSim SE 6.5b May 21 2009 Linux 2.6.18-194.3.1.el5
 # //
 # //  Copyright 1991-2009 Mentor Graphics Corporation
 # //              All Rights Reserved.
@@ -8,6 +8,17 @@
 # //  OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
 # //  AND IS SUBJECT TO LICENSE TERMS.
 # //
+ls
+# behav_work
+# config_behav.vhd
+# config_post.vhd
+# line_buffer_tb_behav.do
+# line_buffer_tb_post.do
+# line_buffer_tb.vhd
+# modelsim.ini
+# transcript
+# vsim.wlf
+# wave.do
 do line_buffer_tb_behav.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
 # ** Warning: (vlib-34) Library already exists at "behav_work".
@@ -83,6 +94,651 @@ do line_buffer_tb_behav.do
 # Loading work.textmode_vga_pkg
 # Loading work.line_buffer_pkg
 # Loading work.line_buffer_tb(sim)#1
-restart -f
-run
-run
+# Loading work.line_buffer(beh)#1
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 7 (6 downto 0). Right is 8 (7 downto 0).
+#    Time: 20 ns  Iteration: 1  Process: /line_buffer_tb/uut/output File: ../../src/line_buffer_arc_beh.vhd
+# Fatal error in Process output at ../../src/line_buffer_arc_beh.vhd line 144
+# 
+# HDL call sequence:
+# Stopped at ../../src/line_buffer_arc_beh.vhd 144 Process output
+# 
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 7 (6 downto 0). Right is 8 (7 downto 0).
+#    Time: 5010 ns  Iteration: 1  Process: /line_buffer_tb/uut/output File: ../../src/line_buffer_arc_beh.vhd
+# Fatal error in Process output at ../../src/line_buffer_arc_beh.vhd line 144
+# 
+# HDL call sequence:
+# Stopped at ../../src/line_buffer_arc_beh.vhd 144 Process output
+# 
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1
+# ** Error: (vish-4014) No objects found matching '/line_buffer_tb/uut/enable_next'.
+# Error in macro ./line_buffer_tb_behav.do line 43
+# (vish-4014) No objects found matching '/line_buffer_tb/uut/enable_next'.
+#     while executing
+# "add wave -noupdate -format Logic /line_buffer_tb/uut/enable_next"
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1
+# ** Error: (vish-4014) No objects found matching 'decimal'.
+# Error in macro ./line_buffer_tb_behav.do line 46
+# (vish-4014) No objects found matching 'decimal'.
+#     while executing
+# "add wave -noupdate -format -radix decimal /line_buffer_tb/uut/reset_count"
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1
+# ** Fatal: (vsim-3420) Array lengths do not match. Left is 7 (6 downto 0). Right is 8 (7 downto 0).
+#    Time: 5010 ns  Iteration: 1  Process: /line_buffer_tb/uut/output File: ../../src/line_buffer_arc_beh.vhd
+# Fatal error in Process output at ../../src/line_buffer_arc_beh.vhd line 144
+# 
+# HDL call sequence:
+# Stopped at ../../src/line_buffer_arc_beh.vhd 144 Process output
+# 
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1
+quit -sim
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# ** Error: line_buffer_tb.vhd(109): Illegal target for signal assignment.
+# ** Error: line_buffer_tb.vhd(109): (vcom-1136) Unknown identifier "enable".
+# ** Error: line_buffer_tb.vhd(110): Illegal target for signal assignment.
+# ** Error: line_buffer_tb.vhd(110): (vcom-1136) Unknown identifier "enable_next".
+# ** Error: line_buffer_tb.vhd(111): Illegal target for signal assignment.
+# ** Error: line_buffer_tb.vhd(111): (vcom-1136) Unknown identifier "enable_old".
+# ** Error: line_buffer_tb.vhd(180): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./line_buffer_tb_behav.do line 28
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work line_buffer_tb.vhd"
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# ** Error: line_buffer_tb.vhd(110): Illegal target for signal assignment.
+# ** Error: line_buffer_tb.vhd(110): (vcom-1136) Unknown identifier "enable_next".
+# ** Error: line_buffer_tb.vhd(111): Illegal target for signal assignment.
+# ** Error: line_buffer_tb.vhd(111): (vcom-1136) Unknown identifier "enable_old".
+# ** Error: line_buffer_tb.vhd(180): VHDL Compiler exiting
+# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
+# Error in macro ./line_buffer_tb_behav.do line 28
+# /opt/modelsim/modeltech/linux/vcom failed.
+#     while executing
+# "vcom -work work line_buffer_tb.vhd"
+do line_buffer_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Compiling package textmode_vga_platform_dependent_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Compiling package math_pkg
+# -- Compiling package body math_pkg
+# -- Loading package math_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Compiling package textmode_vga_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package math_pkg
+# -- Compiling package font_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package math_pkg
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package font_pkg
+# -- Compiling package textmode_vga_component_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling package line_buffer_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Compiling architecture beh of line_buffer
+# -- Loading entity line_buffer
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package textmode_vga_platform_dependent_pkg
+# -- Loading package textmode_vga_pkg
+# -- Loading package line_buffer_pkg
+# -- Compiling entity line_buffer_tb
+# -- Compiling architecture sim of line_buffer_tb
+# vsim -coverage work.line_buffer_tb 
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.textmode_vga_platform_dependent_pkg
+# Loading work.textmode_vga_pkg
+# Loading work.line_buffer_pkg
+# Loading work.line_buffer_tb(sim)#1
+# Loading work.line_buffer(beh)#1

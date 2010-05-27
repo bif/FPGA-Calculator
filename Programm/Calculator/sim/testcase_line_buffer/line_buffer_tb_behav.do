@@ -38,10 +38,13 @@ add wave -noupdate -format Literal /line_buffer_tb/uut/lb_fsm_state
 add wave -noupdate -format Literal /line_buffer_tb/uut/lb_fsm_state_next
 add wave -noupdate -format Logic /line_buffer_tb/clk
 add wave -noupdate -format Logic /line_buffer_tb/vga_free_sig
-add wave -noupdate -format Logic /line_buffer_tb/uut/once
-add wave -noupdate -format Logic /line_buffer_tb/uut/once_next
+add wave -noupdate -format Logic /line_buffer_tb/uut/enable
+add wave -noupdate -format Logic /line_buffer_tb/uut/enable_old
+add wave -noupdate -format Logic /line_buffer_tb/uut/enable_old_next
 add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count
 add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count_next
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_count
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_count_next
 add wave -noupdate -format Logic /line_buffer_tb/new_ascii_sig
 add wave -noupdate -format Literal -radix ascii /line_buffer_tb/ascii_sign_sig
 add wave -noupdate -format Literal /line_buffer_tb/command_sig

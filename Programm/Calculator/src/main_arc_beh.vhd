@@ -211,7 +211,6 @@ begin
 			ram_offset_next <= to_integer(unsigned(lb_addr))+80*mem_pointer;	-- set destination address
 			--ram_offset_next <= to_integer(unsigned(lb_addr));	-- set destination address
 			data_in_main_next <= lb_data;		-- .. write this data to ringbuffer
-		
 		else
 			copy_lb_next <= '0';
 			block_tx_next <= '0';			-- enable TX unit again
