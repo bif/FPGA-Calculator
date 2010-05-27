@@ -63,10 +63,10 @@ begin
 					end case;
 				end if;
 			when DISABLE =>
-				if enable_old /= enable and enable = '1' then --and en_test = '1' then
+--				if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 					lb_fsm_state_next <= CHECK_ASCII;
-				end if;
+--				end if;
 	    when ENTER_1 => 
 				if vga_free = '0' then
 					lb_fsm_state_next <= WAIT_STATE;
@@ -216,6 +216,7 @@ begin
       lb_fsm_state <= CLEAR_SCREEN;
 			count <= (others => '0');	-- x"00"
 			reset_count <= (others => '0');	-- x"00"
+			enable_old <= '0';
     elsif rising_edge(sys_clk) then
 			lb_fsm_state <= lb_fsm_state_next;
 			count <= count_next;
