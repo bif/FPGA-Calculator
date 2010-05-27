@@ -8,7 +8,7 @@ architecture beh of line_buffer is
 
 
 	type LINEBUFFER_FSM_STATE_TYPE is
-    (DISABLE, CLEAR_SCREEN, CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
+    (DISABLE, CLEAR_SCREEN, CLEAR_BUFFER, CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
   signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
   signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
@@ -41,6 +41,7 @@ begin
 				else
 					lb_fsm_state_next <= CHECK_ASCII;
 				end if;
+
 			when CHECK_ASCII =>
 				if new_ascii_in = '1' then
 					case ascii_sign_in is
@@ -62,11 +63,18 @@ begin
 							end if;
 					end case;
 				end if;
+
 			when DISABLE =>
 --				if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
+					lb_fsm_state_next <= CLEAR_BUFFER;
+				end if;
+
+			when CLEAR_BUFFER =>	
+				if count >= x"46" then
 					lb_fsm_state_next <= CHECK_ASCII;
---				end if;
+				end if;
+
 	    when ENTER_1 => 
 				if vga_free = '0' then
 					lb_fsm_state_next <= WAIT_STATE;
@@ -129,6 +137,15 @@ begin
 			when CLEAR_SCREEN =>
 				if vga_free = '1' then
 						if reset_count <= x"78" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
+							--init line buffer memmory
+							if reset_count < x"46" then
+								wr_enable_next <= '1';
+								lb_data_next <= x"20";
+								lb_addr_next <= reset_count;
+							else
+								lb_addr_next <= (others => '0');
+								wr_enable_next <= '0';
+							end if;
 							vga_command_next <= COMMAND_SET_CHAR;
 							vga_command_data_next(7 downto 0) <= x"0A"; 
 							reset_count_next <= std_logic_vector(unsigned(reset_count) + 1);
@@ -138,29 +155,43 @@ begin
 							reset_count_next <= std_logic_vector(unsigned(reset_count) + 1);
 						end if;
 				end if;
+
 			when CHECK_ASCII =>
 				once_next <= '0';
+
 			when DISABLE =>
 			--	if enable_old = '0' and enable = '1' then --and en_test = '1' then
 			--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 				start_calc_next <= '0';
+				count_next <= (others => '0');
+ 
+			when CLEAR_BUFFER =>
+					wr_enable_next <= '1';
+					lb_data_next <= x"20";
+					lb_addr_next <= count;
+					count_next <= std_logic_vector(unsigned(count) + 1);
+
 			when ENTER_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					vga_command_data_next(7 downto 0) <= x"0D";
 				end if;
+
 			when ENTER_2 =>
 				start_calc_next <= '1';
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					vga_command_data_next(7 downto 0) <= x"0A"; 
-					count_next <= (others => '0'); 
+					count_next <= (others => '0');
+					lb_addr_next <= (others => '0'); 
 				end if;
+
 			when BKSP_1 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
 					vga_command_data_next(7 downto 0) <= std_logic_vector(unsigned(count) - 1);
 				end if;
+
 			when BKSP_2 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
@@ -176,6 +207,7 @@ begin
 						once_next <= '0';	
 					end if;
 				end if;
+
 			when BKSP_3 =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CURSOR_COLUMN;
@@ -187,6 +219,7 @@ begin
 						once_next <= '0';
 					end if;
 				end if;
+
 			when SAVE_VALUE =>
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
@@ -203,6 +236,7 @@ begin
 						once_next <= '0';
 					end if;
 				end if;
+
 			when others =>
 				null;
 		end case;
