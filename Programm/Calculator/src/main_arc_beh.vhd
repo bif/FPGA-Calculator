@@ -46,6 +46,8 @@ architecture beh of main is
 	signal lb_addr_next				: std_logic_vector(7 downto 0) := "00000000";
 	signal lb_enable_next				: std_logic := '0';
 
+	signal rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
+
 	component uart is
 	port
 	(
@@ -82,6 +84,7 @@ process(sys_clk, sys_res_n)
 		data_in_main <= "00000000";
 		lb_addr <= "00000000";
 		lb_enable <= '0';
+		rbuf_overflow <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -100,10 +103,11 @@ process(sys_clk, sys_res_n)
 		line_count <= line_count_next;
 		lb_addr <= lb_addr_next;
 		lb_enable <= lb_enable_next;
+		rbuf_overflow <= rbuf_overflow_next;
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer, line_count, lb_addr)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer, line_count, lb_addr, rbuf_overflow)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -121,6 +125,7 @@ begin
 	line_count_next <= line_count;
 	lb_addr_next <= lb_addr;
 	lb_enable_next <= '0';
+	rbuf_overflow_next <= rbuf_overflow;
 
 	-- transmit of ringbuffer triggered:
 	if(((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1') and (block_tx = '0'))	
@@ -130,15 +135,16 @@ begin
 		byte_data_next <= "00001101";
 		block_tx_next <= '1';
 		init_sent_next <= 0;
-		if(mem_pointer > 0)
+		if(rbuf_overflow = '0')			-- fewer than 50 lines input so far
 		then
-			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress
+			ram_offset_next <= 0;
 		else
-			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress
+			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress	FIXME - when more than 50 calcs input --> ORDER MISMATCH
+		end if;
 		line_count_next <= 0;
 	end if;
 
-	-- start of calculation triggered - block TX, copy the inputline from linebuffer to memory, enable TX again
+	-- start of calculation triggered(done by calc_inst): block TX, copy the inputline from linebuffer to memory, enable TX again
 	if(start_calc_old /= start_calc and start_calc = '1')	
 	then
 		copy_lb_next <= '1';
@@ -202,18 +208,20 @@ begin
 		if(unsigned(lb_addr) < 70)
 		then
 			lb_addr_next <=	std_logic_vector(unsigned(lb_addr) + 1);		-- set source address
-			ram_offset_next <= to_integer(unsigned(lb_addr)+80*mem_pointer);	-- set destination address
+			ram_offset_next <= to_integer(unsigned(lb_addr))+80*mem_pointer;	-- set destination address
+			--ram_offset_next <= to_integer(unsigned(lb_addr));	-- set destination address
 			data_in_main_next <= lb_data;		-- .. write this data to ringbuffer
 		
 		else
 			copy_lb_next <= '0';
 			block_tx_next <= '0';			-- enable TX unit again
-			mem_pointer_next <= mem_pointer + 1;
 			wr_main_next <= '0';
 			lb_enable_next <= '1';			-- wake up linebuffer-module again
+			mem_pointer_next <= mem_pointer + 1;
 			if(mem_pointer = 50)
 			then
 				mem_pointer_next <= 0;
+				rbuf_overflow_next <= '1';
 			end if;
 		end if;
 	end if;
