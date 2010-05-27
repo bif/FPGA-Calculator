@@ -1,0 +1,324 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.parser_pkg.all;
+use work.sp_ram_pkg.all;
+use ieee.numeric_std.all;
+use work.main_pkg.all;
+
+
+
+entity parser_tb is
+
+end parser_tb;
+
+architecture sim of parser_tb is
+
+	constant LB_DATA_WIDTH : integer := 8;
+	constant LB_ADDR_WIDTH : integer := 8;
+	constant QUARTZ_PERIOD : time := 33 ns;
+	constant QUARTZ_PLL_PERIOD : time := 2*40 ns;
+	constant TEST_ARRAY_WIDTH : integer := 12;
+
+	-- subtype TEST_ARRAY_CELL is std_logic_vector(1 downto 0); -- 8 bit for every ram cell(7 would be enough, but its easier this way(casting...))
+	-- type TEST_ARRAY is array (TEST_ARRAY_WIDTH - 1 downto 0) of TEST_ARRAY_CELL;
+
+  --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
+
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59- 777 +  4";
+  signal clk : std_logic;
+  signal reset : std_logic;
+	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
+	signal lb_data_wr_sig, lb_data_out_sig, mem_debug_data : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
+	signal operand_sig : signed(31 downto 0);
+	signal operator_sig : std_logic_vector(1 downto 0);
+	signal end_parse, end_parse_next, end_of_op_sig, parse_ready_sig, read_next_n_o_sig, get_next, enable_lb_sig, start_calc_sig : std_logic := '0';
+	signal btn_a_sync : std_logic := '1';
+	signal lb_wr_sig, uart_top_rx_sig, uart_top_tx_sig : std_logic;
+
+
+	signal bcd0_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd1_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd2_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd3_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd4_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd5_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd6_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd7_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd8_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd9_sig				:	unsigned(3 downto 0) := "0000";
+	signal decode_ready_sig			:	std_logic := '0';
+
+	-- calc_inst - signals / constants
+	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
+	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
+	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
+
+	signal 		operator_top		:	std_logic_vector(1 downto 0);
+	signal		operation_end_top	:	std_logic;
+	signal		error_calc_top, negative		:	std_logic;
+	signal		calc_ready_top		:	std_logic;
+
+
+
+component calc is
+	generic
+	(
+--		OPERAND_MAX     :       integer range 0 to 2147483647;
+--		OPERAND_MIN     :       integer range -2147483647 to 0;
+		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
+		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
+		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+		RESULT_MIN      :       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
+	);
+	port
+	(
+		sys_clk         :       in	std_logic;
+		sys_res_n       :       in	std_logic;
+		parse_ready	:       in	std_logic;
+		start_calc	:       in	std_logic;
+		operation_end	:       in	std_logic;
+		operand         :       in	signed(31 downto 0);
+		operator        :       in	std_logic_vector(1 downto 0)  := "00";
+		need_input	:	out	std_logic;
+		calc_ready	:	out	std_logic;
+		error_calc	:	out	std_logic;
+		decode_ready    :       out     std_logic;
+		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
+		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
+		nibble_2        :       out     unsigned(3 downto 0) := "0000";
+		nibble_3        :       out     unsigned(3 downto 0) := "0000";
+		nibble_4        :       out     unsigned(3 downto 0) := "0000";
+		nibble_5        :       out     unsigned(3 downto 0) := "0000";
+		nibble_6        :       out     unsigned(3 downto 0) := "0000";
+		nibble_7        :       out     unsigned(3 downto 0) := "0000";
+		nibble_8        :       out     unsigned(3 downto 0) := "0000";
+		nibble_9        :       out     unsigned(3 downto 0) := "0000"         -- ... most significant nibble
+	);
+end component calc;
+
+begin  -- behav
+
+
+	calc_inst : calc
+	generic map
+	(
+		OPERAND_MAX	=>	OPERAND_MAX,
+		OPERAND_MIN	=>	OPERAND_MIN,	
+		RESULT_MAX	=>	RESULT_MAX,
+		RESULT_MIN	=>	RESULT_MIN
+	)
+	port map
+	(
+		sys_clk		=>	clk,
+		sys_res_n	=>	reset,
+		parse_ready	=>	parse_ready_sig,	-- IN:	new unit(operand + operator) is ready to be read
+
+		start_calc	=>	start_calc_sig,
+		operation_end	=>	end_of_op_sig,
+		operand		=>	operand_sig,
+		operator	=>	operator_sig,
+		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
+		error_calc	=>	error_calc_top,
+		nibble_0	=>	bcd0_sig,
+		nibble_1	=>	bcd0_sig,
+		nibble_2	=>	bcd0_sig,
+		nibble_3	=>	bcd0_sig,
+		nibble_4	=>	bcd0_sig,
+		nibble_5	=>	bcd0_sig,
+		nibble_6	=>	bcd0_sig,
+		nibble_7	=>	bcd0_sig,
+		nibble_8	=>	bcd0_sig,
+		nibble_9	=>	bcd0_sig
+	);
+
+
+
+
+  tp_parser: parser
+	generic map
+	(
+    RESET_VALUE => '0',
+    ADDR_WIDTH => LB_ADDR_WIDTH,
+    DATA_WIDTH => LB_DATA_WIDTH
+  )  
+	port map 
+	(
+		sys_clk => clk,
+		sys_res_n => reset, 
+		read_next_n_o => read_next_n_o_sig,
+		data_in => lb_data_out_sig, 
+		addr_lb => lb_addr_out_sig,
+		operand => operand_sig, 
+		operator => operator_sig,
+		leading_sign => negative,
+		end_of_operation => end_of_op_sig,
+		parse_ready => parse_ready_sig
+	);
+
+	tb_line_buf_ram : sp_ram
+	generic map
+	(
+		ADDR_WIDTH => LB_ADDR_WIDTH,
+		DATA_WIDTH => LB_DATA_WIDTH
+	)
+	port map
+	(
+		clk => clk,
+		address_out => lb_addr_out_sig,
+		data_out => lb_data_out_sig,
+		address_out_1 => mem_debug_addr,
+		data_out_1 => mem_debug_data,
+		address_wr => lb_addr_wr_sig,
+		wr => lb_wr_sig,
+		data_wr => lb_data_wr_sig
+	);
+
+
+
+	main_inst : main
+	generic map
+	(
+		RESET_VALUE	=>	'0',
+		ADR_WIDTH	=>	LB_ADDR_WIDTH,
+		DAT_WIDTH	=>	LB_DATA_WIDTH
+	)
+	port map
+	(
+		sys_clk		=>	clk,
+		sys_res_n	=>	reset,
+		sense		=>	btn_a_sync,
+		uart_main_rx	=>	uart_top_rx_sig,
+		uart_main_tx	=>	uart_top_tx_sig,
+		start_calc	=>	start_calc_sig,
+		lb_addr		=>	mem_debug_addr,
+		lb_data		=>	mem_debug_data,
+		decode_ready	=>	calc_ready_top,
+		lb_enable	=>	enable_lb_sig,
+		nibble_0	=>	bcd0_sig,
+		nibble_1	=>	bcd0_sig,
+		nibble_2	=>	bcd0_sig,
+		nibble_3	=>	bcd0_sig,
+		nibble_4	=>	bcd0_sig,
+		nibble_5	=>	bcd0_sig,
+		nibble_6	=>	bcd0_sig,
+		nibble_7	=>	bcd0_sig,
+		nibble_8	=>	bcd0_sig,
+		nibble_9	=>	bcd0_sig
+	);
+
+
+  process
+  begin  -- process
+    clk <= '0';
+    wait for QUARTZ_PERIOD / 2;
+    clk <= '1';
+    wait for QUARTZ_PERIOD / 2;
+  end process;
+
+
+	process
+		variable i :  std_logic_vector(LB_ADDR_WIDTH - 1 downto 0) := (others => '0');
+		variable c : character;
+--		variable u :  std_logic_vector(4096 - 1 downto 0) := (others => '0');
+
+  begin
+
+    reset <= '0';
+    wait for 10 ns;
+    reset <= '1';
+		get_next <= '0';
+    wait for 10 ns;
+
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			if i <= TEST_ARRAY_WIDTH then
+				-- Test-String in Speicher schreiben 
+				c := test_string(i);
+				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+				wait for 200 ns;
+			else
+				lb_data_wr_sig <= x"20";
+				wait for 200 ns;
+			end if;
+		end loop;
+
+    i := (others => '0');
+		lb_wr_sig <= '0';
+
+
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 5 us;
+
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 5 us;
+
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 5 us;
+
+
+		
+
+
+
+
+--to simulate the calculator 
+--		while end_parse = '0' loop
+--			mem_debug_addr <= lb_addr_out_sig;
+--			get_next <= '1';
+--			wait for 100 ns;
+--			get_next <= '0';
+--			wait for 400 ns;
+--		end loop;
+
+-- Memarray augeben
+
+--		while unsigned(u) < 20 loop
+--			wait for 200 ns;
+--			mem_debug_addr <= u;
+--			u := std_logic_vector(unsigned(u) + 1 );
+--			wait for 200 ns;
+--		end loop;
+
+
+   wait;
+  end process;
+
+-- to stop simulaton of calculator
+--	process(end_of_op_sig)
+--	begin
+--		if end_of_op_sig = '1' then
+--			end_parse_next <= '1';
+--		end if;
+--	end process;
+
+
+--  process(clk)
+
+--  begin
+
+--   if (clk'event and clk = '1') then
+    -- synchrone part to simulate teh calculator
+--		if get_next = '1' then
+--			read_next_n_o_sig <= '1';
+--		else
+--			read_next_n_o_sig <= '0';
+--    end if; 
+--		end_parse <= end_parse_next;
+--	end if;
+--  end process;
+
+
+end architecture sim;
+
