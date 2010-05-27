@@ -58,8 +58,9 @@ begin
 						-- other value
 						when others =>	
 							if count < x"46" then 
-								lb_fsm_state_next <= WAIT_STATE;
-								save_next_state_next <= SAVE_VALUE;							
+									lb_fsm_state_next <= SAVE_VALUE;
+--								lb_fsm_state_next <= WAIT_STATE;
+--								save_next_state_next <= SAVE_VALUE;							
 							end if;
 					end case;
 				end if;
@@ -129,7 +130,7 @@ begin
 		reset_count_next <= reset_count;
 		once_next <= once;
 		wr_enable_next <= '0';
-		lb_data_next <= x"00";
+		lb_data_next <= ascii_sign_in;--x"00";
 		lb_addr_next <= count;
 
 		case lb_fsm_state is
@@ -161,7 +162,6 @@ begin
 					when x"03" | x"08" =>
 						null;
 					when others =>
-						wr_enable_next <= '1';
 						lb_data_next <= ascii_sign_in;
 						lb_addr_next <= count;
 				end case;
@@ -238,7 +238,7 @@ begin
 					vga_command_data_next(31 downto 8) <= x"FFFFFF";
 					vga_command_data_next(7 downto 0) <= ascii_sign_in;
 					if once = '0' then	
---						wr_enable_next <= '1';
+						wr_enable_next <= '1';
 --						lb_data_next <= ascii_sign_in;
 --						lb_addr_next <= count;
 						count_next <= std_logic_vector(unsigned(count) + 1);

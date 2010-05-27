@@ -12,7 +12,7 @@ architecture beh of parser is
 	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
+	signal once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, debug_end_of_op, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
 --	signal debug_sig_next, debug_sig :integer := 0;
 
@@ -204,14 +204,13 @@ architecture beh of parser is
 
 begin
 
-  next_state : process(parser_fsm_state, data_in, read_next_n_o, error_sig, check_op_ready, convert_ready)
+  next_state : process(parser_fsm_state, data_in, read_next_n_o, error_sig, check_op_ready, convert_ready, debug_end_of_op)
   begin
-    parser_fsm_state_next <= parser_fsm_state;
-		
+    parser_fsm_state_next <= parser_fsm_state;	
 
     case parser_fsm_state is
 			when READY =>
-				if read_next_n_o = '1' then
+				if read_next_n_o = '1' and debug_end_of_op = '0' then
 					parser_fsm_state_next <= CHECK_UNSIGNED;
 				end if;
 
@@ -285,7 +284,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, space, num, num_and_space, line_count, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand, once, old_operator, addr_lb_old, leading_sign_old )
+	output : process(parser_fsm_state, data_in, space, num, num_and_space, line_count, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand, once, old_operator, addr_lb_old, leading_sign_old)
 
   begin
 		leading_sign_next <= leading_sign_old;
@@ -548,6 +547,7 @@ begin
 			last_operand <= x"00000000";
 			addr_lb_old <= (others => '0');
 			error_sig <= '0';
+			debug_end_of_op <= '0';
 --debug_sig <= 0;
 		elsif (sys_clk'event and sys_clk = '1') then
 			check_op_ready <= check_op_ready_next;
@@ -562,6 +562,7 @@ begin
 			line_count <= line_count_next;
 			addr_lb_old <= addr_lb_next;
 			addr_lb <= addr_lb_next;
+			debug_end_of_op <= end_of_op_next;
 			end_of_operation <= end_of_op_next;
 			parse_ready <= parse_ready_next;
 			old_operator <= operator_next;

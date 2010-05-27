@@ -16,10 +16,15 @@ vmap work behav_work
 	vcom -work work ../../../textmode_vga/src/font_pkg.vhd
 	vcom -work work ../../../textmode_vga/src/textmode_vga_component_pkg.vhd	
 
+	vcom -work work ../../src/sp_ram_pkg.vhd
+	vcom -work work ../../src/sp_ram_ent.vhd
+	vcom -work work ../../src/sp_ram_arc_beh.vhd
 
 	vcom -work work ../../src/line_buffer_pkg.vhd
 	vcom -work work ../../src/line_buffer_ent.vhd
 	vcom -work work ../../src/line_buffer_arc_beh.vhd
+
+
 
 
 # vcom -work work -cover bs ../../src/demo.vhd
@@ -47,16 +52,17 @@ add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_coun
 add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_count_next
 add wave -noupdate -format Logic /line_buffer_tb/new_ascii_sig
 add wave -noupdate -format Literal -radix ascii /line_buffer_tb/ascii_sign_sig
-add wave -noupdate -format Literal /line_buffer_tb/command_sig
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(7)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(6)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(5)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(4)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(3)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(2)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(1)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(0)
-
+#add wave -noupdate -format Literal /line_buffer_tb/command_sig
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(7)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(6)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(5)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(4)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(3)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(2)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(1)
+#add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(0)
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/mem_debug_addr
+add wave -noupdate -format Literal -radix ascii /line_buffer_tb/mem_debug_data
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ns} 0}
@@ -77,9 +83,11 @@ update
 
 
 # auto-run simulation
-run 50 us
+run 30 us
 #simulate save value (first sign ?)
-WaveRestoreZoom {7200 ns} {7400 ns}
+#WaveRestoreZoom {7200 ns} {7400 ns}
 #simulate enable
 #WaveRestoreZoom {26800 ns} {27000 ns}
+#simulate memmory 
+WaveRestoreZoom {22950 ns} {25000 ns}
 #wave zoomfull

@@ -41,7 +41,11 @@ begin
 			data_out <= ram(ram_offset);
 	
 			if wr = '1' then
-				ram(ram_offset-1) <= data_in;
+				if ram_offset = 0 then
+					ram(ram_offset) <= data_in;
+				else
+					ram(ram_offset-1) <= data_in;
+				end if;
 			end if;
 		end if;
 	end process;

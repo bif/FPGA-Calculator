@@ -125,7 +125,6 @@ begin  -- behav
 
 	process(end_of_op_sig)
 	begin
-		end_parse_next <= '0';
 		if end_of_op_sig = '1' then
 			end_parse_next <= '1';
 		end if;
@@ -137,9 +136,6 @@ begin  -- behav
   begin
 
    if (clk'event and clk = '1') then
---	  if read_next_n_o_sig = '1' then
- --     read_next_n_o_sig <= '0';
-  --  end if; 
     if get_next = '1' then
 			read_next_n_o_sig <= '1';
 		else
