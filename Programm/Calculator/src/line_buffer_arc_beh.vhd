@@ -13,7 +13,7 @@ architecture beh of line_buffer is
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
 	signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal count, count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
-	signal reset_count, reset_count_next : std_logic_vector(7 downto 0);
+	signal reset_count, reset_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
 	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
@@ -65,10 +65,10 @@ begin
 				end if;
 
 			when DISABLE =>
---				if enable_old /= enable and enable = '1' then --and en_test = '1' then
+				if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 					lb_fsm_state_next <= CLEAR_BUFFER;
---				end if;
+				end if;
 
 			when CLEAR_BUFFER =>	
 				if count >= x"46" then

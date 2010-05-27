@@ -106,10 +106,12 @@ begin  -- behav
 		variable i : integer := 1;
 
   begin
+		enable_sig <= '0';
+
     reset <= '0';
     wait for 10 ns;
     reset <= '1';
-    wait for 10 ns;
+    wait for 5 us;
     
 		vga_free_sig <= '1';
 		wait for 2.2 us;
@@ -132,7 +134,7 @@ begin  -- behav
 		vga_free_sig <= '1';
     wait for 200 ns;
     new_ascii_sig <= '1';
-		ascii_sign_sig <= x"03";
+		ascii_sign_sig <= x"31";
 		wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
 --		wait for 40 ns;
@@ -162,23 +164,27 @@ begin  -- behav
 		end loop;
 
 		vga_free_sig <= '1';
-	  wait for 200 ns;
+    wait for 200 ns;
     new_ascii_sig <= '1';
-		ascii_sign_sig <= x"08";
-    wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
--- 		wait for 40 ns;
-		vga_free_sig <= '0';
-		wait for 20 ns;
-		vga_free_sig <= '1';
-	  wait for 200 ns;
-    new_ascii_sig <= '1';
-		ascii_sign_sig <= x"08";
-    wait for QUARTZ_PERIOD / 2; 
+		ascii_sign_sig <= x"03";
+		wait for QUARTZ_PERIOD / 2; 
     new_ascii_sig <= '0';
 --		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 20 ns;
+		wait for 200 ns;
+		vga_free_sig <= '1';
+		wait for 200 ns;
+		vga_free_sig <= '0';
+		wait for 200 ns;
+		vga_free_sig <= '1';
+		wait for 200 ns;
+		vga_free_sig <= '0';
+		wait for 200 ns;
+		vga_free_sig <= '1';
+		
+		wait for 30 ns;
+		enable_sig <= '1';
+		
 
     wait;
   end process;
