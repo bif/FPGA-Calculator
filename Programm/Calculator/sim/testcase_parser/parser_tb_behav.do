@@ -34,9 +34,11 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate -format Logic /parser_tb/clk
 add wave -noupdate -format Logic /parser_tb/parse_ready_sig
 add wave -noupdate -format Logic /parser_tb/read_next_n_o_sig
+add wave -noupdate -format Logic /parser_tb/tp_parser/read_next_n_o
 add wave -noupdate -format Literal -radix ascii /parser_tb/tp_parser/data_in
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/operand
 add wave -noupdate -format Literal /parser_tb/tp_parser/operator
+add wave -noupdate -format Logic /parser_tb/tp_parser/leading_sign
 add wave -noupdate -format Logic /parser_tb/tp_parser/parse_ready
 add wave -noupdate -format Logic /parser_tb/tp_parser/end_of_operation
 add wave -noupdate -format Logic /parser_tb/tp_parser/error_sig

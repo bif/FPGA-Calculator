@@ -315,7 +315,7 @@ begin
 				num_next <= '0';
 				once_next <= '0';
 				check_op_ready_next <= '0';
-				convert_ready_next <= '0';			
+				convert_ready_next <= '0';		
 --debug_sig_next <= 0;
 
 			when CHECK_UNSIGNED =>
@@ -379,8 +379,10 @@ begin
 			when MINUS =>
 				-- next operator = '-' located 
 				if (line_count >= x"46" or (unsigned(line_count) - 1)  = unsigned(start_pos)) then
-						-- first sign after signed check is an operator or last sign is an operator
-						error_sig_next <= '1';
+					-- first sign after signed check is an operator or last sign is an operator
+					error_sig_next <= '1';
+				elsif space = '1' and num = '0' then
+					leading_sign_next <= '1';
 				else
 					operator_next <= "01";	
 					addr_lb_next <= start_pos;
@@ -439,6 +441,9 @@ begin
 							end_of_op_next <= '1';
 							-- if end of operation set operator to + or - => Calculator can finish if last operator is + or -
 							operator_next <= "00";
+							line_count_next <= (others => '0');
+							addr_lb_next <= (others => '0');
+							start_pos_next <= (others => '0');
 						end if;
 						addr_lb_next <= line_count;	
 						start_pos_next <= line_count;
