@@ -76,21 +76,8 @@ configure wave -timelineunits us
 update
 
 
-
-
-
-
-
-
-# add signals to waveform
-# add all testbench signals
-#add wave *
-
-# add internal signals of unit under test
-#add wave -divider DEMO
-#add wave uut/counter
-#add wave uut/ledstate
-
 # auto-run simulation
 run 50 us
+
+WaveRestoreZoom {26800 ns} {27000 ns}
 #wave zoomfull

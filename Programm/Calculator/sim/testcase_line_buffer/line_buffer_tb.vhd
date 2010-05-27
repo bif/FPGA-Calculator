@@ -171,19 +171,18 @@ begin  -- behav
     new_ascii_sig <= '0';
 --		wait for 40 ns;
 		vga_free_sig <= '0';
-		wait for 20 ns;
-		vga_free_sig
-
-
-
-wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
 		wait for 200 ns;
-    new_ascii_sig <= '1';
-    wait for QUARTZ_PERIOD / 2; 
-    new_ascii_sig <= '0';
-
-		wait for 10 us;
+		vga_free_sig <= '1';
+		wait for 200 ns;
+		vga_free_sig <= '0';
+		wait for 200 ns;
+		vga_free_sig <= '1';
+		wait for 200 ns;
+		vga_free_sig <= '0';
+		wait for 200 ns;
+		vga_free_sig <= '1';
+		
+		wait for 30 ns;
 		enable_sig <= '1';
 		
 
