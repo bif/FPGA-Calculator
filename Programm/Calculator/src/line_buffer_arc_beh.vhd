@@ -68,7 +68,7 @@ begin
 --				if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 					lb_fsm_state_next <= CLEAR_BUFFER;
-				end if;
+--				end if;
 
 			when CLEAR_BUFFER =>	
 				if count >= x"46" then
@@ -170,6 +170,10 @@ begin
 					lb_data_next <= x"20";
 					lb_addr_next <= count;
 					count_next <= std_logic_vector(unsigned(count) + 1);
+					if count >= x"46" then
+						count_next <= (others => '0');
+						lb_addr_next <= (others => '0');
+					end if;
 
 			when ENTER_1 =>
 				if vga_free = '1' then
