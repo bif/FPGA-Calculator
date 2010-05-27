@@ -7,7 +7,7 @@ use work.memarray_pkg.all;
 architecture beh of main is
 
 	constant LINES          : integer := 50;
-	constant LINE_LENGTH    : integer := 80;
+	constant LINE_LENGTH    : integer := 81;
 	constant DATA_WIDTH     : integer := 7;
 
 	signal sense_old, sense_old_next		: std_logic := '0';
@@ -43,10 +43,12 @@ architecture beh of main is
 	signal ram_line_next				: integer range 0 to 90;
 	signal line_count, line_count_next		: integer range 0 to 50;
 
-	signal lb_addr_next				: std_logic_vector(7 downto 0) := "00000000";
+--	signal lb_addr_next				: std_logic_vector(7 downto 0) := "00000000";
+	signal addr, addr_next				: std_logic_vector(7 downto 0) := "00000000";
 	signal lb_enable_next				: std_logic := '0';
 
 	signal rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
+	signal calc_ready_old, calc_ready_old_next	: std_logic := '0';
 
 	component uart is
 	port
@@ -82,9 +84,11 @@ process(sys_clk, sys_res_n)
 		ram_line <= 0;
 		line_count <= 0;
 		data_in_main <= "00000000";
-		lb_addr <= "00000000";
+		--lb_addr <= "00000000";
 		lb_enable <= '0';
 		rbuf_overflow <= '0';
+		addr <= "00000000";
+		calc_ready_old <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -101,13 +105,15 @@ process(sys_clk, sys_res_n)
 		mem_pointer <= mem_pointer_next;
 		ram_line <= ram_line_next;
 		line_count <= line_count_next;
-		lb_addr <= lb_addr_next;
+		--lb_addr <= lb_addr_next;
 		lb_enable <= lb_enable_next;
 		rbuf_overflow <= rbuf_overflow_next;
+		addr <= addr_next;
+		calc_ready_old <= calc_ready_old_next;
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer, line_count, lb_addr, rbuf_overflow)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, calc_ready, calc_ready_old)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -123,9 +129,12 @@ begin
 	start_calc_old_next <= start_calc;
 	mem_pointer_next <= mem_pointer;
 	line_count_next <= line_count;
-	lb_addr_next <= lb_addr;
 	lb_enable_next <= '0';
 	rbuf_overflow_next <= rbuf_overflow;
+	--lb_addr_next <= lb_addr;
+	lb_addr <= "00000000";
+	addr_next <= addr;
+	calc_ready_old_next <= calc_ready;
 
 	-- transmit of ringbuffer triggered:
 	if(((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1') and (block_tx = '0'))	
@@ -138,12 +147,12 @@ begin
 		then
 			ram_offset_next <= 0;
 		else
-			ram_offset_next <= mem_pointer * 80;	-- get lines from proper startadress(ringbuf was wrapped around)
+			ram_offset_next <= mem_pointer * 81;	-- get lines from proper startadress(ringbuf was wrapped around)
 		end if;
 		line_count_next <= 0;
 	end if;
 
-	if(ram_offset = 4000)					-- overflow(mem_pointer /= 0x00)
+	if(ram_offset = 4050)					-- overflow(mem_pointer /= 0x00)
 	then
 		ram_offset_next <= 0;
 	end if;
@@ -157,12 +166,12 @@ begin
 			init_sent_next <= init_sent + 1;
 			
 		else
-			if(ram_line = 80)				-- 2nd-last char of the line: send a newline
+			if(ram_line = 81)				-- 2nd-last char of the line: send a newline
 			then
 				byte_data_next <= "00001010";
 				send_byte_main_next <= '1';
-				ram_line_next <= 81;
-			elsif(ram_line = 81)
+				ram_line_next <= 82;
+			elsif(ram_line = 82)
 			then
 				ram_line_next <= 0;
 				byte_data_next <= "00001101";
@@ -197,28 +206,25 @@ begin
 	then
 		copy_lb_next <= '1';
 		block_tx_next <= '1';				-- disable TX while copying the last inputline into ringbuffer
---		wr_main_next <= '1';		
-		lb_addr_next <= "00000000";			-- set next adress for reading from linebuffer
---		ram_offset_next <= 0;		-- set destination address(ringbuffer)
-		ram_offset_next <= 80 * mem_pointer;		-- set destination address(ringbuffer)
+		addr_next <= "00000000";			-- set next adress for reading from linebuffer
+		ram_offset_next <= 81 * mem_pointer;		-- set destination address(ringbuffer)
 		lb_enable_next <= '0';
---		data_in_main_next <= lb_data;
-		wr_main_next <= '1';		
 	end if;
 
 	if(copy_lb = '1')
 	then
-		if(unsigned(lb_addr) < 70)
+		if(unsigned(addr) < 70)
 		then
-			data_in_main_next <= lb_data;		-- .. write this data to ringbuffer
+			wr_main_next <= '1';		
+			data_in_main_next <= lb_data;		-- .. write actual data to ringbuffer
 			ram_offset_next <= ram_offset + 1;
-			lb_addr_next <=	std_logic_vector(unsigned(lb_addr) + 1);		-- set source address
+			lb_addr <= addr;
+			addr_next <= std_logic_vector(unsigned(addr) + 1);
 		else
 			copy_lb_next <= '0';
 			block_tx_next <= '0';			-- enable TX unit again
 			wr_main_next <= '0';
-			lb_enable_next <= '1';			-- wake up linebuffer-module again
-			lb_addr_next <= "00000000";
+			addr_next <= "00000000";
 			mem_pointer_next <= mem_pointer + 1;
 			if(mem_pointer = 50)
 			then
@@ -226,6 +232,12 @@ begin
 				rbuf_overflow_next <= '1';
 			end if;
 		end if;
+	end if;
+
+	if(calc_ready_old /= calc_ready and calc_ready = '1')
+	then
+		lb_enable_next <= '1';			-- wake up linebuffer-module again
+		
 	end if;
 end process;
 

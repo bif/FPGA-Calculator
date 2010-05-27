@@ -36,7 +36,7 @@ architecture struct of calculator_top is
 	signal lb_addr_out_sig, lb_addr_wr_sig, main_lb_addr_sig : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_wr_sig, lb_data_out_sig, main_lb_data_sig : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic := '0';
-	signal operand_sig : std_logic_vector(31 downto 0);
+	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
 
@@ -48,12 +48,11 @@ architecture struct of calculator_top is
 	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
 	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
 
-	signal 		operand_top		:	signed(31 downto 0);
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
-	signal 		parse_ready_top	 	:	std_logic;
 	signal		need_input_top		:	std_logic;
 	signal		operation_end_top	:	std_logic;
 	signal		error_calc_top		:	std_logic;
+	signal		calc_ready_top		:	std_logic;
 
 
 component calc is
@@ -76,6 +75,7 @@ component calc is
 		operand         :       in	signed(31 downto 0);
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
+		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic
 	);
 end component calc;
@@ -284,6 +284,7 @@ begin
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	main_lb_addr_sig,
 		lb_data		=>	main_lb_data_sig,
+		calc_ready	=>	calc_ready_top,
 		lb_enable	=>	enable_lb_sig
 	);
 
@@ -299,12 +300,13 @@ begin
 	(
 		sys_clk		=>	sys_clk,
 		sys_res_n	=>	sys_res_n,
-		parse_ready	=>	parse_ready_top,	-- IN:	new unit(operand + operator) is ready to be read
+		parse_ready	=>	parse_ready_sig,	-- IN:	new unit(operand + operator) is ready to be read
+
 		start_calc	=>	start_calc_sig,
-		operation_end	=>	operation_end_top,
-		operand		=>	operand_top,
-		operator	=>	operator_top,
-		need_input	=>	need_input_top,		-- OUT: triggers new parse 
+		operation_end	=>	end_of_op_sig,
+		operand		=>	operand_sig,
+		operator	=>	operator_sig,
+		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_calc	=>	error_calc_top
 	);	
 

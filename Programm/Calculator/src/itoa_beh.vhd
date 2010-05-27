@@ -11,8 +11,8 @@ architecture beh of itoa is
 	signal enable_next	:	std_logic := '0';
 	signal start		:	std_logic := '0';
 	signal start_next	:	std_logic := '0';
-	signal scratch		:	std_logic_vector(75 downto 0) := "0000000000000000000000000000000000000000000000000000000000000000000000000000";
-	signal scratch_next	:	std_logic_vector(75 downto 0) := "0000000000000000000000000000000000000000000000000000000000000000000000000000";
+	signal scratch		:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
+	signal scratch_next	:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
 
 begin
 
@@ -36,7 +36,7 @@ begin
 	end process;
 
 	process(count, enable, start, start_decode, int_in, scratch, sign)
-	variable scratch_tmp	: std_logic_vector(75 downto 0) := "0000000000000000000000000000000000000000000000000000000000000000000000000000";
+	variable scratch_tmp	: std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		start_next <= start_decode;
 		count_next <= count;
@@ -55,7 +55,6 @@ begin
 		out_7	<= "0000";
 		out_8	<= "0000";
 		out_9	<= "0000";
-		out_10	<= "0000";
 
 		if(start /= start_decode and start_decode = '1')
 		then
@@ -69,7 +68,7 @@ begin
 
 			--scratch_tmp(31 downto 0) := std_logic_vector(int_in);
 			scratch_tmp(31 downto 0) := std_logic_vector(to_unsigned(int_in, 32));
-			scratch_tmp(75 downto 32) := "00000000000000000000000000000000000000000000";
+			scratch_tmp(71 downto 32) := "0000000000000000000000000000000000000000";
 			scratch_tmp(31) := '0';
 			decode_ready <= '0';
 			count_next <= 0;
@@ -86,7 +85,7 @@ begin
 				count_next <= count + 1;
 	
 				--shift it
-				scratch_tmp(75 downto 1) := scratch_tmp(74 downto 0);
+				scratch_tmp(71 downto 1) := scratch_tmp(70 downto 0);
 		                scratch_tmp(0) := '0';
 	
 				if(count < 31)
@@ -131,10 +130,6 @@ begin
 					then
 						scratch_tmp(71 downto 68) := std_logic_vector(unsigned(scratch_tmp(71 downto 68)) + 3);	
 					end if;
-					if(scratch_tmp(75 downto 72) > "0100")
-					then
-						scratch_tmp(75 downto 72) := std_logic_vector(unsigned(scratch_tmp(75 downto 72)) + 3);
-					end if;
 				end if;
 
 				-- copy nibbles to corresponding bytes	
@@ -148,7 +143,6 @@ begin
 				out_7(3 downto 0) <= unsigned(scratch_tmp(63 downto 60));
 				out_8(3 downto 0) <= unsigned(scratch_tmp(67 downto 64));
 				out_9(3 downto 0) <= unsigned(scratch_tmp(71 downto 68));
-				out_10(3 downto 0) <= unsigned(scratch_tmp(75 downto 72));
 
 			end if;
 		end if;

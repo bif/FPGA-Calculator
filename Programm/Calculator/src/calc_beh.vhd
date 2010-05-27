@@ -16,6 +16,9 @@ architecture beh of calc is
 	signal operation_end_old_next	: std_logic;
 	signal error_calc_next		: std_logic;
 	signal start_decode_bcd		: std_logic;
+	signal decode_ready_old		: std_logic;
+	signal decode_ready_old_next	: std_logic;
+	signal decode_ready_sig		: std_logic;
 	
 	signal buffer_strich		: signed(62 downto 0);
 	signal buffer_strich_next	: signed(62 downto 0);
@@ -29,8 +32,21 @@ architecture beh of calc is
 	signal op_strich_flag_next	: std_logic;
 	signal op_punkt_flag		: std_logic;
 	signal op_punkt_flag_next	: std_logic;
+	signal calc_ready_next		: std_logic;
 
 	signal calculation		: integer range -2147483647 to 2147483647 := 0;
+
+	signal out_0_sig			: unsigned(3 downto 0) := "0000";
+	signal out_1_sig			: unsigned(3 downto 0) := "0000";
+	signal out_2_sig			: unsigned(3 downto 0) := "0000";
+	signal out_3_sig			: unsigned(3 downto 0) := "0000";
+	signal out_4_sig			: unsigned(3 downto 0) := "0000";
+	signal out_5_sig			: unsigned(3 downto 0) := "0000";
+	signal out_6_sig			: unsigned(3 downto 0) := "0000";
+	signal out_7_sig			: unsigned(3 downto 0) := "0000";
+	signal out_8_sig			: unsigned(3 downto 0) := "0000";
+	signal out_9_sig			: unsigned(3 downto 0) := "0000";
+	signal sign_bcd_sig			: std_logic := '0';
 
 begin
 	process(sys_clk, sys_res_n)
@@ -49,6 +65,8 @@ begin
 			operator_punkt <= "00";
 			op_punkt_flag <= '0';
 			op_strich_flag <= '0';
+			decode_ready_old <= '0';
+			calc_ready <= '0';
 		elsif(sys_clk'event and sys_clk = '1')
 		then
 			calc_state <= calc_state_next;
@@ -63,11 +81,13 @@ begin
 			operator_punkt <= operator_punkt_next;
 			op_punkt_flag <= op_punkt_flag_next;
 			op_strich_flag <= op_strich_flag_next;
+			decode_ready_old <= decode_ready_old_next;
+			calc_ready <= calc_ready_next;
 		end if;
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old)
 	variable erg_tmp	:	signed(62 downto 0) := "000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		erg_tmp := "000000000000000000000000000000000000000000000000000000000000000";
@@ -81,6 +101,8 @@ begin
 		buffer_strich_next <= buffer_strich;
 		op_punkt_flag_next <= op_punkt_flag;
 		op_strich_flag_next <= op_strich_flag;
+		decode_ready_old_next <= decode_ready_sig;
+		calc_ready_next <= '0';
 
 		case calc_state is
 			when READY =>
@@ -90,6 +112,7 @@ begin
 				end if;
 				op_punkt_flag_next <= '0';
 				op_strich_flag_next <= '0';
+				calc_ready_next <= '0';
 
 			when MANAGE =>
 				
@@ -220,7 +243,11 @@ begin
 			when INVALID =>
 				calc_state_next <= READY;
 			when FINISH =>
-				calc_state_next <= READY;
+				if(decode_ready_old /= decode_ready_sig and decode_ready_sig = '1')
+				then
+					calc_state_next <= READY;
+					calc_ready_next <= '1';
+				end if;
 
 		end case;	
 	end process;
@@ -260,20 +287,20 @@ begin
 		sys_clk         =>      sys_clk,
 		sys_res_n       =>      sys_res_n,
 		int_in          =>	calculation,
-		start_decode    =>	start_decode_bcd
---		out_0           =>
---		out_1           =>
---		out_2           =>
---		out_3           =>
---		out_4           =>
---		out_5           =>
---		out_6           =>
---		out_7           =>
---		out_8           =>
---		out_9           =>
---		out_10          =>
---		decode_ready    =>
---		sign            =>
+		start_decode    =>	start_decode_bcd,
+		decode_ready    =>	decode_ready_sig,
+		out_0           =>	nibble_0,
+		out_1           =>	nibble_1,
+		out_2           =>	nibble_2,
+		out_3           =>	nibble_3,
+		out_4           =>	nibble_4,
+		out_5           =>	nibble_5,
+		out_6           =>	nibble_6,
+		out_7           =>	nibble_7,
+		out_8           =>	nibble_8,
+		out_9           =>	nibble_9,
+		sign            =>	sign_bcd_sig
 	);
+	decode_ready <= decode_ready_sig;
 
 end architecture beh;
