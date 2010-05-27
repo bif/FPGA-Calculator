@@ -41,6 +41,17 @@ architecture struct of calculator_top is
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
 
 
+	signal bcd0_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd1_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd2_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd3_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd4_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd5_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd6_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd7_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd8_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd9_sig				:	unsigned(3 downto 0) := "0000";
+	signal decode_ready_sig			:	std_logic := '0';
 
 	-- calc_inst - signals / constants
 	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
@@ -76,7 +87,18 @@ component calc is
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		error_calc	:	out	std_logic
+		error_calc	:	out	std_logic;
+		decode_ready    :       out     std_logic;
+		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
+		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
+		nibble_2        :       out     unsigned(3 downto 0) := "0000";
+		nibble_3        :       out     unsigned(3 downto 0) := "0000";
+		nibble_4        :       out     unsigned(3 downto 0) := "0000";
+		nibble_5        :       out     unsigned(3 downto 0) := "0000";
+		nibble_6        :       out     unsigned(3 downto 0) := "0000";
+		nibble_7        :       out     unsigned(3 downto 0) := "0000";
+		nibble_8        :       out     unsigned(3 downto 0) := "0000";
+		nibble_9        :       out     unsigned(3 downto 0) := "0000"         -- ... most significant nibble
 	);
 end component calc;
 
@@ -284,8 +306,18 @@ begin
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	main_lb_addr_sig,
 		lb_data		=>	main_lb_data_sig,
-		calc_ready	=>	calc_ready_top,
-		lb_enable	=>	enable_lb_sig
+		decode_ready	=>	calc_ready_top,
+		lb_enable	=>	enable_lb_sig,
+		nibble_0	=>	bcd0_sig,
+		nibble_1	=>	bcd0_sig,
+		nibble_2	=>	bcd0_sig,
+		nibble_3	=>	bcd0_sig,
+		nibble_4	=>	bcd0_sig,
+		nibble_5	=>	bcd0_sig,
+		nibble_6	=>	bcd0_sig,
+		nibble_7	=>	bcd0_sig,
+		nibble_8	=>	bcd0_sig,
+		nibble_9	=>	bcd0_sig
 	);
 
 	calc_inst : calc
@@ -307,7 +339,17 @@ begin
 		operand		=>	operand_sig,
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_calc	=>	error_calc_top
+		error_calc	=>	error_calc_top,
+		nibble_0	=>	bcd0_sig,
+		nibble_1	=>	bcd0_sig,
+		nibble_2	=>	bcd0_sig,
+		nibble_3	=>	bcd0_sig,
+		nibble_4	=>	bcd0_sig,
+		nibble_5	=>	bcd0_sig,
+		nibble_6	=>	bcd0_sig,
+		nibble_7	=>	bcd0_sig,
+		nibble_8	=>	bcd0_sig,
+		nibble_9	=>	bcd0_sig
 	);	
 
 	uart_tx <= uart_top_tx_sig;
