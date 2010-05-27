@@ -17,17 +17,18 @@ architecture beh of line_buffer is
 	signal vga_free_sig, once, once_next : std_logic := '0';
 	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal wr_enable_next, start_calc_next : std_logic;
+	signal enable_old, enable_old_next, wr_enable_next, start_calc_next : std_logic;
 
 --	signal en_test : std_logic;
 
 begin
 
-	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable)--, en_test)
+	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable, enable_old)--, en_test)
   begin
     
 		lb_fsm_state_next <= lb_fsm_state;
 		save_next_state_next <= save_next_state;
+		enable_old_next <= enable;
 
     case lb_fsm_state is
 		
@@ -41,32 +42,29 @@ begin
 					lb_fsm_state_next <= CHECK_ASCII;
 				end if;
 			when CHECK_ASCII =>
-				if enable = '0' then
-					lb_fsm_state_next <= DISABLE;
-				else
-					if new_ascii_in = '1' then
-						case ascii_sign_in is
-							-- ENTER
-							when x"03" => 
+				if new_ascii_in = '1' then
+					case ascii_sign_in is
+						-- ENTER
+						when x"03" => 
+							lb_fsm_state_next <= WAIT_STATE;
+							save_next_state_next <= ENTER_1;							
+						-- BKSP
+						when x"08" =>
+							if count /= x"00" then 
 								lb_fsm_state_next <= WAIT_STATE;
-								save_next_state_next <= ENTER_1;							
-							-- BKSP
-							when x"08" =>
-								if count /= x"00" then 
-									lb_fsm_state_next <= WAIT_STATE;
-									save_next_state_next <= BKSP_1;							
-								end if;
-							-- other value
-							when others =>	
-								if count < x"46" then 
-									lb_fsm_state_next <= WAIT_STATE;
-									save_next_state_next <= SAVE_VALUE;							
-								end if;
-						end case;
-					end if;
- 				end if;
+								save_next_state_next <= BKSP_1;							
+							end if;
+						-- other value
+						when others =>	
+							if count < x"46" then 
+								lb_fsm_state_next <= WAIT_STATE;
+								save_next_state_next <= SAVE_VALUE;							
+							end if;
+					end case;
+				end if;
 			when DISABLE =>
-				if enable = '1' then --and en_test = '1' then
+				if enable_old /= enable and enable = '1' then --and en_test = '1' then
+					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 					lb_fsm_state_next <= CHECK_ASCII;
 				end if;
 	    when ENTER_1 => 
@@ -143,6 +141,8 @@ begin
 			when CHECK_ASCII =>
 				once_next <= '0';
 			when DISABLE =>
+			--	if enable_old = '0' and enable = '1' then --and en_test = '1' then
+			--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 				start_calc_next <= '0';
 			when ENTER_1 =>
 				if vga_free = '1' then
@@ -225,6 +225,7 @@ begin
 			vga_command_data <= vga_command_data_next;
 			once <= once_next;
 			wr_enable <= wr_enable_next;
+			enable_old <= enable_old_next;
 			lb_data <= lb_data_next;
 			lb_addr <= lb_addr_next;
 			start_calc <= start_calc_next;

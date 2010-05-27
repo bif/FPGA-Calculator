@@ -31,8 +31,8 @@ architecture beh of main is
 	signal init_sent_next				: integer range 0 to 5;
 
 	-- memarray - signale
-	signal wr_main					: std_logic;
-	signal wr_main_next				: std_logic;
+	signal wr_main					: std_logic := '0';
+	signal wr_main_next				: std_logic := '0';
 	signal ram_offset				: integer range 0 to 4000;
 	signal ram_offset_next				: integer range 0 to 4000;
 	signal data_in_main, data_in_main_next		: std_logic_vector(7 downto 0);
@@ -41,8 +41,10 @@ architecture beh of main is
 
 	signal ram_line					: integer range 0 to 90;
 	signal ram_line_next				: integer range 0 to 90;
-	signal ram_tmp					: integer range 0 to 5;
-	signal ram_tmp_next				: integer range 0 to 5;
+	signal line_count, line_count_next		: integer range 0 to 50;
+
+	signal lb_addr_next				: std_logic_vector(7 downto 0) := "00000000";
+	signal lb_enable_next				: std_logic := '0';
 
 	component uart is
 	port
@@ -76,7 +78,10 @@ process(sys_clk, sys_res_n)
 		data_in_main <= x"00";
 		mem_pointer <= 0;
 		ram_line <= 0;
-		ram_tmp <= 0;
+		line_count <= 0;
+		data_in_main <= "00000000";
+		lb_addr <= "00000000";
+		lb_enable <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -92,16 +97,17 @@ process(sys_clk, sys_res_n)
 		data_in_main <= data_in_main_next;
 		mem_pointer <= mem_pointer_next;
 		ram_line <= ram_line_next;
-		ram_tmp <= ram_tmp_next;
+		line_count <= line_count_next;
+		lb_addr <= lb_addr_next;
+		lb_enable <= lb_enable_next;
 	end if;
 end process;
 
-process(ram_offset, ram_tmp, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, block_tx, init_sent, data_out_main, start_calc, start_calc_old, copy_lb, wr_main, data_in_main, lb_data, mem_pointer, line_count, lb_addr)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
 	ram_line_next <= ram_line;
-	ram_tmp_next <= ram_tmp;
 	send_byte_main_next <= send_byte_main;
 	byte_data_next <= byte_data;
 	tx_busy_main_old_next <= tx_busy_main;
@@ -112,8 +118,9 @@ begin
 	wr_main_next <= wr_main;
 	start_calc_old_next <= start_calc;
 	mem_pointer_next <= mem_pointer;
-
-	lb_addr <= x"00";
+	line_count_next <= line_count;
+	lb_addr_next <= lb_addr;
+	lb_enable_next <= '0';
 
 	-- transmit of ringbuffer triggered:
 	if(((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1') and (block_tx = '0'))	
@@ -123,16 +130,26 @@ begin
 		byte_data_next <= "00001101";
 		block_tx_next <= '1';
 		init_sent_next <= 0;
-		ram_offset_next <= 0;			-- get lines from proper start-adress(last_line_written + 1 = mem_pointer)
-		--ram_offset_next <= mem_pointer * 80;			-- get lines from proper start-adress(last_line_written + 1 = mem_pointer)
+		if(mem_pointer > 0)
+		then
+			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress
+		else
+			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress
+		line_count_next <= 0;
 	end if;
 
-	-- start of calculation triggered - block TX, copy the inputline from linebuffer to memory, start calculation, enable TX again
-	if(start_calc_old /= start_calc and start_calc = '1')	-- valid line in linebuffer
-	then							-->copy this line into memory and trigger calculation
+	-- start of calculation triggered - block TX, copy the inputline from linebuffer to memory, enable TX again
+	if(start_calc_old /= start_calc and start_calc = '1')	
+	then
 		copy_lb_next <= '1';
 		block_tx_next <= '1';				-- disable TX while copying the last inputline into ringbuffer
 		wr_main_next <= '1';		
+		lb_addr_next <= "00000000";			-- set startadress for reading from linebuffer
+		lb_enable_next <= '0';
+	end if;
+
+	if(ram_offset = 4000)					-- overflow(mem_pointer /= 0x00)
+	then
 		ram_offset_next <= 0;
 	end if;
 
@@ -147,25 +164,21 @@ begin
 		else
 			if(ram_line = 80)				-- 2nd-last char of the line: send a newline
 			then
-				if(ram_tmp = 0)
+				byte_data_next <= "00001010";
+				send_byte_main_next <= '1';
+				ram_line_next <= 81;
+			elsif(ram_line = 81)
+			then
+				ram_line_next <= 0;
+				byte_data_next <= "00001101";
+				send_byte_main_next <= '1';
+				line_count_next <= line_count + 1;					
+
+				if(line_count = 49)				-- there are no more lines to be sent
 				then
-					byte_data_next <= "00001010";
-					send_byte_main_next <= '1';
-					ram_tmp_next <= 1;
-				elsif(ram_tmp = 1)
-				then
-					ram_tmp_next <= 0;
+					send_byte_main_next <= '0';
 					ram_line_next <= 0;
-					byte_data_next <= "00001101";
-					send_byte_main_next <= '1';
-					
-					if(ram_offset > 3871)	-- there are still lines to be sent - so go on...
-					then
-						send_byte_main_next <= '0';		-- last line was sent right now - no more TX-triggering...
-						ram_offset_next <= 0;
-						ram_line_next <= 0;
-						block_tx_next <= '0';
-					end if;
+					block_tx_next <= '0';
 				end if;
 			else								-- send the rest of the line
 				ram_offset_next <= ram_offset + 1;
@@ -174,7 +187,7 @@ begin
 				then
 					byte_data_next <= data_out_main;
 				else
-					byte_data_next <= x"20";
+					byte_data_next <= x"2E";
 				end if;
 				send_byte_main_next <= '1';
 			end if;
@@ -186,15 +199,18 @@ begin
 
 	if(copy_lb = '1')
 	then
-		if(ram_offset < 70)
+		if(unsigned(lb_addr) < 70)
 		then
-			data_in_main_next <= lb_data;
-			lb_addr <= std_logic_vector(to_unsigned(ram_offset * 80, ADR_WIDTH));
-			ram_offset_next <= ram_offset + 1;
+			lb_addr_next <=	std_logic_vector(unsigned(lb_addr) + 1);		-- set source address
+			ram_offset_next <= to_integer(unsigned(lb_addr)+80*mem_pointer);	-- set destination address
+			data_in_main_next <= lb_data;		-- .. write this data to ringbuffer
+		
 		else
 			copy_lb_next <= '0';
 			block_tx_next <= '0';			-- enable TX unit again
 			mem_pointer_next <= mem_pointer + 1;
+			wr_main_next <= '0';
+			lb_enable_next <= '1';			-- wake up linebuffer-module again
 			if(mem_pointer = 50)
 			then
 				mem_pointer_next <= 0;

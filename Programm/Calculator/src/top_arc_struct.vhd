@@ -242,7 +242,7 @@ begin
 		lb_addr => lb_addr_wr_sig,
 		lb_data => lb_data_wr_sig,
 		start_calc => start_calc_sig, 
-		enable => enable_lb_sig
+		enable => enable_lb_sig				-- <-- main(rising edge)
 	);
 
 	parser_inst : parser
@@ -256,14 +256,14 @@ begin
 	(
 		sys_clk => sys_clk,
 		sys_res_n => sys_res_n_sync, 
-		read_next_n_o => read_next_n_o_sig,
+		read_next_n_o => read_next_n_o_sig,		-- when rising edge -> parse new unit
 		data_in => lb_data_out_sig, 
 		addr_lb => lb_addr_out_sig,
 		operand => operand_sig, 
 		operator => operator_sig,
 		leading_sign => negative,
-		end_of_operation => end_of_op_sig,
-		parse_ready => parse_ready_sig
+		end_of_operation => end_of_op_sig,		-- last operand found - calculation ends here
+		parse_ready => parse_ready_sig			-- 1 unit(operand + operator) is ready
 	);
 
 
@@ -283,7 +283,8 @@ begin
 		uart_main_tx	=>	uart_top_tx_sig,
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	main_lb_addr_sig,
-		lb_data		=>	main_lb_data_sig
+		lb_data		=>	main_lb_data_sig,
+		lb_enable	=>	enable_lb_sig
 	);
 
 	calc_inst : calc
@@ -298,18 +299,17 @@ begin
 	(
 		sys_clk		=>	sys_clk,
 		sys_res_n	=>	sys_res_n,
-		parse_ready	=>	parse_ready_top,
+		parse_ready	=>	parse_ready_top,	-- IN:	new unit(operand + operator) is ready to be read
 		start_calc	=>	start_calc_sig,
 		operation_end	=>	operation_end_top,
 		operand		=>	operand_top,
 		operator	=>	operator_top,
-		need_input	=>	need_input_top,
+		need_input	=>	need_input_top,		-- OUT: triggers new parse 
 		error_calc	=>	error_calc_top
 	);	
 
 	uart_tx <= uart_top_tx_sig;
 	uart_top_rx_sig <= uart_rx;
-	enable_lb_sig <= '1';	
 
 
   seg_a <= to_seg(lb_addr_out_sig(3 downto 0));
