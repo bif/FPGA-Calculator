@@ -130,7 +130,6 @@ begin
 	-- transmit of ringbuffer triggered:
 	if(((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1') and (block_tx = '0'))	
 	then
-
 		send_byte_main_next <= '1';
 		byte_data_next <= "00001101";
 		block_tx_next <= '1';
@@ -139,19 +138,9 @@ begin
 		then
 			ram_offset_next <= 0;
 		else
-			ram_offset_next <= mem_pointer * 80;	-- get lines from proper start-adress	FIXME - when more than 50 calcs input --> ORDER MISMATCH
+			ram_offset_next <= mem_pointer * 80;	-- get lines from proper startadress(ringbuf was wrapped around)
 		end if;
 		line_count_next <= 0;
-	end if;
-
-	-- start of calculation triggered(done by calc_inst): block TX, copy the inputline from linebuffer to memory, enable TX again
-	if(start_calc_old /= start_calc and start_calc = '1')	
-	then
-		copy_lb_next <= '1';
-		block_tx_next <= '1';				-- disable TX while copying the last inputline into ringbuffer
-		wr_main_next <= '1';		
-		lb_addr_next <= "00000000";			-- set startadress for reading from linebuffer
-		lb_enable_next <= '0';
 	end if;
 
 	if(ram_offset = 4000)					-- overflow(mem_pointer /= 0x00)
@@ -203,19 +192,33 @@ begin
 		send_byte_main_next <= '0';
 	end if;
 
+	-- start of calculation triggered(calc will be done by calc_inst): block TX, copy the inputline from linebuffer to memory, enable TX again
+	if(start_calc_old /= start_calc and start_calc = '1')	
+	then
+		copy_lb_next <= '1';
+		block_tx_next <= '1';				-- disable TX while copying the last inputline into ringbuffer
+--		wr_main_next <= '1';		
+		lb_addr_next <= "00000000";			-- set next adress for reading from linebuffer
+--		ram_offset_next <= 0;		-- set destination address(ringbuffer)
+		ram_offset_next <= 80 * mem_pointer;		-- set destination address(ringbuffer)
+		lb_enable_next <= '0';
+--		data_in_main_next <= lb_data;
+		wr_main_next <= '1';		
+	end if;
+
 	if(copy_lb = '1')
 	then
 		if(unsigned(lb_addr) < 70)
 		then
-			lb_addr_next <=	std_logic_vector(unsigned(lb_addr) + 1);		-- set source address
-			ram_offset_next <= to_integer(unsigned(lb_addr))+80*mem_pointer;	-- set destination address
-			--ram_offset_next <= to_integer(unsigned(lb_addr));	-- set destination address
 			data_in_main_next <= lb_data;		-- .. write this data to ringbuffer
+			ram_offset_next <= ram_offset + 1;
+			lb_addr_next <=	std_logic_vector(unsigned(lb_addr) + 1);		-- set source address
 		else
 			copy_lb_next <= '0';
 			block_tx_next <= '0';			-- enable TX unit again
 			wr_main_next <= '0';
 			lb_enable_next <= '1';			-- wake up linebuffer-module again
+			lb_addr_next <= "00000000";
 			mem_pointer_next <= mem_pointer + 1;
 			if(mem_pointer = 50)
 			then
