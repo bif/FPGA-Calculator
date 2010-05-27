@@ -9,9 +9,9 @@ architecture beh of line_buffer is
 
 	type LINEBUFFER_FSM_STATE_TYPE is
     (DISABLE, CLEAR_SCREEN, CLEAR_BUFFER, CHECK_ASCII, ENTER_1, ENTER_2, BKSP_1, BKSP_2, BKSP_3, SAVE_VALUE, WAIT_STATE);
-  signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
+	signal lb_fsm_state, lb_fsm_state_next, save_next_state, save_next_state_next : LINEBUFFER_FSM_STATE_TYPE;
 	signal vga_command_next : std_logic_vector(COMMAND_SIZE - 1 downto 0);
-  signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
+	signal vga_command_data_next : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
 	signal count, count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal reset_count, reset_count_next : std_logic_vector(7 downto 0);
 	signal vga_free_sig, once, once_next : std_logic := '0';
