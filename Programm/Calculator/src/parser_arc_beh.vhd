@@ -567,7 +567,7 @@ begin
 			parse_ready <= parse_ready_next;
 			old_operator <= operator_next;
 			operator <= operator_next;
-			operand <= operand_next;	
+			operand <= signed(operand_next);	
 			last_operand <= operand_next;
 			leading_sign <= leading_sign_next;
 			leading_sign_old <= leading_sign_next;
