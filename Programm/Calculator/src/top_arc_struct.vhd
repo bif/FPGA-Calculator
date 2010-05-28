@@ -58,7 +58,7 @@ architecture struct of calculator_top is
 	signal		sign_bcd_top		:	std_logic;
 
 
-signal debug_sig : std_logic;
+signal debug_sig : std_logic_vector(2 downto 0);
 
 
 component calc is
@@ -327,8 +327,8 @@ begin
 	uart_tx <= uart_top_tx_sig;
 	uart_top_rx_sig <= uart_rx;
 
-	seg_b(0) <= debug_sig;
-	seg_b(6 downto 1) <= "111111";
+	seg_b(2 downto 0) <= debug_sig;
+	seg_b(6 downto 3) <= "1111";
   seg_a <= to_seg(lb_addr_out_sig(3 downto 0));
 --  seg_b <= to_seg(lb_addr_out_sig(7 downto 4));
 
