@@ -170,7 +170,8 @@ begin  -- behav
 		decode_ready_main	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		sign_bcd_main	=>	sign_bcd_top,
-		bcd_buf		=>	bcd_buf_sig
+		bcd_buf		=>	bcd_buf_sig,
+		error_calc_main	=>	error_calc_top
 	);
 
 

@@ -136,6 +136,7 @@ begin
 	addr_next <= addr;
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
+	error_calc_main_old_next <= error_calc_main;
 
 	case main_state is
 		when READY =>
@@ -245,6 +246,8 @@ begin
 			if(error_calc_main_old /= error_calc_main and error_calc_main = '1')
 			then
 				main_state_next <= READY;
+				lb_enable_next <= '1';		
+				
 			end if;
 
 		when COPY_SUM =>

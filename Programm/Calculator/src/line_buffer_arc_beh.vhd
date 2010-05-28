@@ -20,18 +20,15 @@ architecture beh of line_buffer is
 	signal enable_old, enable_old_next, wr_enable_next, start_calc_next, enter_write_result, enter_write_result_next : std_logic;
 	signal bcd_result_sig, bcd_result_next : std_logic_vector(39 downto 0);
 
-signal debug_test, debug_old : std_logic_vector(2 downto 0);
---	signal en_test : std_logic;
 
 begin
 
-	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable, enable_old,  enter_write_result)--, en_test)
+	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable, enable_old,  enter_write_result)
   begin
     
 		lb_fsm_state_next <= lb_fsm_state;
 		save_next_state_next <= save_next_state;
 		enable_old_next <= enable;
-debug_test <= debug_old;
 
 
     case lb_fsm_state is
@@ -70,14 +67,11 @@ debug_test <= debug_old;
 				end if;
 
 			when DISABLE =>
-debug_test <= "100";
-				if enable_old /= enable and enable = '1' then --and en_test = '1' then
-					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
+				if enable_old /= enable and enable = '1' then 
 					lb_fsm_state_next <= WRITE_RESULT;
 				end if;
 
 			when WRITE_RESULT =>	
-debug_test <= "011";
 				if vga_free = '0' and count < x"0A" then 
 					lb_fsm_state_next <= WAIT_STATE;
 					save_next_state_next <= WRITE_RESULT;
@@ -88,20 +82,17 @@ debug_test <= "011";
 
 			when CLEAR_BUFFER =>
 
---debug_test <= '0';
 				if count >= x"46" then
 					lb_fsm_state_next <= CHECK_ASCII;
 				end if;
 
 	    when ENTER_1 => 
---debug_test <= '0';			
 			if vga_free = '0' then
 					lb_fsm_state_next <= WAIT_STATE;
 					save_next_state_next <= ENTER_2; 
 				end if;
 
 			when ENTER_2 =>
---debug_test <= '0';
 				if vga_free = '0' then
 					if enter_write_result = '1' then
 						lb_fsm_state_next <= WAIT_STATE;
@@ -142,14 +133,6 @@ debug_test <= "011";
   end process next_state;
 
 
---	test_disable : process(lb_fsm_state)
---	begin
---		en_test <= '1';
---		if lb_fsm_state = DISABLE then
---			en_test <= '0';
---		end if;
---	end process test_disable;
-
 	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, bcd_result, enter_write_result)
 	
 	begin
@@ -170,7 +153,7 @@ debug_test <= "011";
 
 			when CLEAR_SCREEN =>
 				if vga_free = '1' then
-						if reset_count <= x"78" then 	 	-- 0x78 = 2*60 ... doppelt so weit zählen da output prozess immer 2 mal aufgerufen wird	
+						if reset_count <= x"78" then 	 	-- 0x78 = 2*60 	
 							--init line buffer memmory
 							if reset_count < x"46" then
 								wr_enable_next <= '1';
@@ -341,8 +324,6 @@ debug_test <= "011";
 			start_calc <= start_calc_next;
 			enter_write_result <= enter_write_result_next;
 			bcd_result_sig <= bcd_result_next;
-debug_old <= debug_test;
-debug <= debug_test;
 		end if;
 	end process sync;
 

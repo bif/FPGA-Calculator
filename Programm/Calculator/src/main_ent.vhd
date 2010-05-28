@@ -25,6 +25,7 @@ entity main is
 		lb_addr			: out	std_logic_vector(ADR_WIDTH - 1 downto 0);
 		bcd_buf			: in unsigned(39 downto 0);
 		sign_bcd_main		: in	std_logic;
-		error_calc_main		: in	std_logic
+		error_calc_main		: in	std_logic;
+		error_print2vga		: out	std_logic		--	signal to linebuffer: last line was INVALID
 	);
 end entity main;
