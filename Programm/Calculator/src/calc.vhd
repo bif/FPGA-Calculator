@@ -16,7 +16,8 @@ entity calc is
 		sys_res_n	:	in	std_logic;
 		parse_ready	:	in	std_logic;
 		start_calc	:	in	std_logic;
-		decode_ready_calc	:	out	std_logic;
+		decode_ready_calc	: out	std_logic;
+		sign_bcd_calc		: out	std_logic;
 		bcd_buf		:	out	unsigned(39 downto 0);
 		operation_end	:	in	std_logic;
 		operand		:	in	signed(31 downto 0);

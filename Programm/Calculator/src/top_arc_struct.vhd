@@ -77,7 +77,8 @@ component calc is
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
-		decode_ready_calc    :       out     std_logic;
+		decode_ready_calc:       out     std_logic;
+		sign_bcd_calc	:	out     std_logic;
 		bcd_buf		:	out	unsigned(39 downto 0)
 	);
 end component calc;
