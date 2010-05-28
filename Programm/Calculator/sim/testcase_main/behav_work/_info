@@ -11,325 +11,337 @@ Z4 o-quiet -auto_acc_if_foreign -work work
 Z5 n@_opt
 Z6 OE;O;6.5b;42
 T_opt1
-V>bZnA5fe2XIag`I9o5G8g1
-04 9 3 work parser_tb sim 1
-Z7 =1-0015609ed120-4bfef484-80bb0-3920
+Z7 V>bZnA5fe2XIag`I9o5G8g1
+Z8 04 9 3 work parser_tb sim 1
+Z9 =1-0015609ed120-4bfef484-80bb0-3920
 R4
-Z8 n@_opt1
+Z10 n@_opt1
+R6
+T_opt2
+V>_52DL89_GDL?O^CYO;nz2
+R8
+Z11 =1-0015609eceb2-4bff74f9-ef21a-161b
+R4
+Z12 n@_opt2
 R6
 Ecalc
-Z9 w1274987968
-Z10 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
-Z11 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
-Z12 d/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_main
-Z13 8../../src/calc.vhd
-Z14 F../../src/calc.vhd
+Z13 w1275000174
+Z14 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
+Z15 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
+Z16 d/homes/s0727156/GIT/Programm/Calculator/sim/testcase_main
+Z17 8../../src/calc.vhd
+Z18 F../../src/calc.vhd
 l0
 L5
-Z15 VdJ0ekl>`hQ1Woe0iDenQ52
-Z16 OE;C;6.5b;42
+Z19 VHUaeRkcEG;d?mGFozEm>f1
+Z20 OE;C;6.5b;42
 32
-Z17 o-work work
-Z18 tExplicit 1
-Z19 !s100 F9MX9FlHefaJ`c0TBKE3j1
+Z21 o-work work
+Z22 tExplicit 1
+Z23 !s100 Pkbz>dgjeMFilB7o?3jgO2
 Abeh
-Z20 DEx4 work 4 calc 0 22 dJ0ekl>`hQ1Woe0iDenQ52
-Z21 DPx4 work 8 itoa_pkg 0 22 ACcX;^_ihH_2>TU]1<]Ik3
-R10
-R11
-Z22 8../../src/calc_beh.vhd
-Z23 F../../src/calc_beh.vhd
-l51
+Z24 w1275001284
+Z25 DEx4 work 4 calc 0 22 HUaeRkcEG;d?mGFozEm>f1
+Z26 DPx4 work 8 itoa_pkg 0 22 ACcX;^_ihH_2>TU]1<]Ik3
+R14
+R15
+Z27 8../../src/calc_beh.vhd
+Z28 F../../src/calc_beh.vhd
+l52
 L6
-Z24 VSoAmPW3T;:::Uj9ADoF[72
-R16
+Z29 Vem[Bn<2;5TglZGE02BE]G3
+R20
 32
-Z25 Mx3 4 ieee 14 std_logic_1164
-Z26 Mx2 4 ieee 11 numeric_std
-Z27 Mx1 4 work 8 itoa_pkg
-R17
-R18
-Z28 !s100 <:XdMF=CS66n7az8gb:il2
+Z30 Mx3 4 ieee 14 std_logic_1164
+Z31 Mx2 4 ieee 11 numeric_std
+Z32 Mx1 4 work 8 itoa_pkg
+R21
+R22
+Z33 !s100 Alzd^a5YokVfS5eLJnabT0
 Eitoa
-R9
-R10
-R11
-R12
-Z29 8../../src/itoa.vhd
-Z30 F../../src/itoa.vhd
+Z34 w1274980744
+R14
+R15
+R16
+Z35 8../../src/itoa.vhd
+Z36 F../../src/itoa.vhd
 l0
 L5
-Z31 Vk`1Wa=jfW[bz8@flD]]1j2
-R16
+Z37 Vk`1Wa=jfW[bz8@flD]]1j2
+R20
 32
-R17
-R18
-Z32 !s100 S8?DcQb[eVTT>:2=P6Zz^3
+R21
+R22
+Z38 !s100 S8?DcQb[eVTT>:2=P6Zz^3
 Abeh
-Z33 DEx4 work 4 itoa 0 22 k`1Wa=jfW[bz8@flD]]1j2
-R10
-R11
-Z34 8../../src/itoa_beh.vhd
-Z35 F../../src/itoa_beh.vhd
+Z39 w1275000233
+Z40 DEx4 work 4 itoa 0 22 k`1Wa=jfW[bz8@flD]]1j2
+R14
+R15
+Z41 8../../src/itoa_beh.vhd
+Z42 F../../src/itoa_beh.vhd
 l17
 L5
-Z36 V:bKgZbi]h1ZWk^NW3<JXD0
-R16
+Z43 VkHIg[68fX[0g1X5ZXF@ij3
+R20
 32
-Z37 Mx2 4 ieee 14 std_logic_1164
-Z38 Mx1 4 ieee 11 numeric_std
-R17
-R18
-Z39 !s100 dg?89eBDIjzKRH13lJ@^;0
+Z44 Mx2 4 ieee 14 std_logic_1164
+Z45 Mx1 4 ieee 11 numeric_std
+R21
+R22
+Z46 !s100 BVZn^]dbP6Yz:2Qi_c0Pk3
 Pitoa_pkg
-R10
-R11
-R9
-R12
-Z40 8../../src/itoa_pkg.vhd
-Z41 F../../src/itoa_pkg.vhd
+R14
+R15
+Z47 w1274980756
+R16
+Z48 8../../src/itoa_pkg.vhd
+Z49 F../../src/itoa_pkg.vhd
 l0
 L5
-Z42 VACcX;^_ihH_2>TU]1<]Ik3
-R16
+Z50 VACcX;^_ihH_2>TU]1<]Ik3
+R20
 32
-R37
-R38
-R17
-R18
-Z43 !s100 <:dFmFlmX?;I3PF@h<Td51
+R44
+R45
+R21
+R22
+Z51 !s100 <:dFmFlmX?;I3PF@h<Td51
 Emain
-R9
-R10
-Z44 DPx4 work 12 memarray_pkg 0 22 =6o9K;>N26mh^I_z5e]om1
-R11
-R12
-Z45 8../../src/main_ent.vhd
-Z46 F../../src/main_ent.vhd
+Z52 w1274987886
+R14
+Z53 DPx4 work 12 memarray_pkg 0 22 =6o9K;>N26mh^I_z5e]om1
+R15
+R16
+Z54 8../../src/main_ent.vhd
+Z55 F../../src/main_ent.vhd
 l0
 L6
-Z47 VNbKP<]6V^>RQU[A^Em@4P2
-R16
+Z56 VNbKP<]6V^>RQU[A^Em@4P2
+R20
 32
-R17
-R18
-Z48 !s100 8[iGzN2j9ES3`=8a20ndQ1
+R21
+R22
+Z57 !s100 8[iGzN2j9ES3`=8a20ndQ1
 Abeh
-Z49 DEx4 work 4 main 0 22 NbKP<]6V^>RQU[A^Em@4P2
-R44
-R10
-R11
-Z50 8../../src/main_arc_beh.vhd
-Z51 F../../src/main_arc_beh.vhd
-l66
+Z58 w1275000865
+Z59 DEx4 work 4 main 0 22 NbKP<]6V^>RQU[A^Em@4P2
+R53
+R14
+R15
+Z60 8../../src/main_arc_beh.vhd
+Z61 F../../src/main_arc_beh.vhd
+l69
 L7
-Z52 V^j`0b>e98Sm0F?o3H84OB3
-R16
+Z62 V=b[U3AOfnd09NMGWSaH1o3
+R20
 32
-R25
-R26
-Z53 Mx1 4 work 12 memarray_pkg
-R17
-R18
-Z54 !s100 2kOYNjIifbTTW7g4VCc1D2
+R30
+R31
+Z63 Mx1 4 work 12 memarray_pkg
+R21
+R22
+Z64 !s100 M2;nR6E;5McLTkl4cbF<`0
 Pmain_pkg
-R10
-R11
-R9
-R12
-Z55 8../../src/main_pkg.vhd
-Z56 F../../src/main_pkg.vhd
+R14
+R15
+Z65 w1274987992
+R16
+Z66 8../../src/main_pkg.vhd
+Z67 F../../src/main_pkg.vhd
 l0
 L5
-Z57 V1V;HlQ]YLQXDCIBW?7Zlb2
-R16
+Z68 V1V;HlQ]YLQXDCIBW?7Zlb2
+R20
 32
-R37
-R38
-R17
-R18
-Z58 !s100 61jSA6kLm@_fJWl9Tob400
+R44
+R45
+R21
+R22
+Z69 !s100 61jSA6kLm@_fJWl9Tob400
 Ememarray
-R9
-R10
-R11
-R12
-Z59 8../../src/memarray_ent.vhd
-Z60 F../../src/memarray_ent.vhd
+Z70 w1274971136
+R14
+R15
+R16
+Z71 8../../src/memarray_ent.vhd
+Z72 F../../src/memarray_ent.vhd
 l0
 L5
-Z61 V;fBN?G5TCPCS]][[K[L]S3
-R16
+Z73 V;fBN?G5TCPCS]][[K[L]S3
+R20
 32
-R17
-R18
-Z62 !s100 Hz2KEMK8YJ:>mJIlK8^631
+R21
+R22
+Z74 !s100 Hz2KEMK8YJ:>mJIlK8^631
 Abeh
-Z63 DEx4 work 8 memarray 0 22 ;fBN?G5TCPCS]][[K[L]S3
-R10
-R11
-Z64 8../../src/memarray_arc_beh.vhd
-Z65 F../../src/memarray_arc_beh.vhd
+Z75 w1274984360
+Z76 DEx4 work 8 memarray 0 22 ;fBN?G5TCPCS]][[K[L]S3
+R14
+R15
+Z77 8../../src/memarray_arc_beh.vhd
+Z78 F../../src/memarray_arc_beh.vhd
 l21
 L5
-Z66 V>ZaAKl2zm4F^04LTg1k8H3
-R16
+Z79 V>ZaAKl2zm4F^04LTg1k8H3
+R20
 32
-R37
-R38
-R17
-R18
-Z67 !s100 ::3[OCWVB`>kbeK<h=@DB3
+R44
+R45
+R21
+R22
+Z80 !s100 ::3[OCWVB`>kbeK<h=@DB3
 Pmemarray_pkg
-R10
-R11
-Z68 w1274900620
-R12
-Z69 8../../src/memarray_pkg.vhd
-Z70 F../../src/memarray_pkg.vhd
+R14
+R15
+Z81 w1274879954
+R16
+Z82 8../../src/memarray_pkg.vhd
+Z83 F../../src/memarray_pkg.vhd
 l0
 L5
-Z71 V=6o9K;>N26mh^I_z5e]om1
-R16
+Z84 V=6o9K;>N26mh^I_z5e]om1
+R20
 32
-R37
-R38
-R17
-R18
-Z72 !s100 i6];e`f309nONlkc@ad>72
+R44
+R45
+R21
+R22
+Z85 !s100 i6];e`f309nONlkc@ad>72
 Eparser
-R9
-R10
-R11
-R12
-Z73 8../../src/parser_ent.vhd
-Z74 F../../src/parser_ent.vhd
+Z86 w1274986071
+R14
+R15
+R16
+Z87 8../../src/parser_ent.vhd
+Z88 F../../src/parser_ent.vhd
 l0
 L5
-Z75 VOhcZC>8mfZCzZS9]M>[?W3
-R16
+Z89 VOhcZC>8mfZCzZS9]M>[?W3
+R20
 32
-R17
-R18
-Z76 !s100 Wm]eDE[ZIX3njfGi::Al=3
+R21
+R22
+Z90 !s100 Wm]eDE[ZIX3njfGi::Al=3
 Abeh
-Z77 DEx4 work 6 parser 0 22 OhcZC>8mfZCzZS9]M>[?W3
-Z78 DPx4 work 10 parser_pkg 0 22 bh7b[^Ib9J=n6]8X]ST8R0
-R10
-R11
-Z79 8../../src/parser_arc_beh.vhd
-Z80 F../../src/parser_arc_beh.vhd
+Z91 DEx4 work 6 parser 0 22 OhcZC>8mfZCzZS9]M>[?W3
+Z92 DPx4 work 10 parser_pkg 0 22 bh7b[^Ib9J=n6]8X]ST8R0
+R14
+R15
+Z93 8../../src/parser_arc_beh.vhd
+Z94 F../../src/parser_arc_beh.vhd
 l205
 L6
-Z81 VOG7><JLG6<8c>QT?bC`g`1
-R16
+Z95 VOG7><JLG6<8c>QT?bC`g`1
+R20
 32
-R25
-R26
-Z82 Mx1 4 work 10 parser_pkg
-R17
-R18
-Z83 !s100 o;o?OmCYIjRYoYdLmQka00
+R30
+R31
+Z96 Mx1 4 work 10 parser_pkg
+R21
+R22
+Z97 !s100 o;o?OmCYIjRYoYdLmQka00
 Pparser_pkg
-R10
-R11
-R9
-R12
-Z84 8../../src/parser_pkg.vhd
-Z85 F../../src/parser_pkg.vhd
+R14
+R15
+R86
+R16
+Z98 8../../src/parser_pkg.vhd
+Z99 F../../src/parser_pkg.vhd
 l0
 L5
-Z86 Vbh7b[^Ib9J=n6]8X]ST8R0
-R16
+Z100 Vbh7b[^Ib9J=n6]8X]ST8R0
+R20
 32
-R37
-R38
-R17
-R18
-Z87 !s100 >QHk[Th@AQ>:hTXi@oLPT0
+R44
+R45
+R21
+R22
+Z101 !s100 >QHk[Th@AQ>:hTXi@oLPT0
 Eparser_tb
-Z88 w1274999909
-Z89 DPx4 work 8 main_pkg 0 22 1V;HlQ]YLQXDCIBW?7Zlb2
-Z90 DPx4 work 10 sp_ram_pkg 0 22 ZY0WT:B;MXJRRcI5Y:ZBB0
-R10
-R78
-R11
-R12
-Z91 8parser_main_tb.vhd
-Z92 Fparser_main_tb.vhd
+Z102 w1275032822
+Z103 DPx4 work 8 main_pkg 0 22 1V;HlQ]YLQXDCIBW?7Zlb2
+Z104 DPx4 work 10 sp_ram_pkg 0 22 ZY0WT:B;MXJRRcI5Y:ZBB0
+R14
+R92
+R15
+R16
+Z105 8parser_main_tb.vhd
+Z106 Fparser_main_tb.vhd
 l0
 L10
-Z93 V[O4h_X9[fXU=BPE0ZnVQ30
-R16
+Z107 V[O4h_X9[fXU=BPE0ZnVQ30
+R20
 32
-R17
-R18
-Z94 !s100 >]RLVHC16hhHIH[PkmNB:0
+R21
+R22
+Z108 !s100 >]RLVHC16hhHIH[PkmNB:0
 Asim
-R89
-R90
-R10
-R78
-R11
-Z95 DEx4 work 9 parser_tb 0 22 [O4h_X9[fXU=BPE0ZnVQ30
-l100
+R103
+R104
+R14
+R92
+R15
+Z109 DEx4 work 9 parser_tb 0 22 [O4h_X9[fXU=BPE0ZnVQ30
+l98
 L14
-Z96 VJdgCaQPI[8dBmRiek:T6n1
-R16
+Z110 V9PWo8;ZQIlRNazZC_ILL20
+R20
 32
-Z97 Mx5 4 ieee 14 std_logic_1164
-Z98 Mx4 4 work 10 parser_pkg
-Z99 Mx3 4 ieee 11 numeric_std
-Z100 Mx2 4 work 10 sp_ram_pkg
-Z101 Mx1 4 work 8 main_pkg
-R17
-R18
-Z102 !s100 =9eQio=G8>LzTk766inBX1
+Z111 Mx5 4 ieee 14 std_logic_1164
+Z112 Mx4 4 work 10 parser_pkg
+Z113 Mx3 4 ieee 11 numeric_std
+Z114 Mx2 4 work 10 sp_ram_pkg
+Z115 Mx1 4 work 8 main_pkg
+R21
+R22
+Z116 !s100 0B_]X1WQfN=^8Go_1^:[;2
 Esp_ram
-Z103 w1274891274
-R10
-R11
-R12
-Z104 8../../src/sp_ram_ent.vhd
-Z105 F../../src/sp_ram_ent.vhd
+Z117 w1274805842
+R14
+R15
+R16
+Z118 8../../src/sp_ram_ent.vhd
+Z119 F../../src/sp_ram_ent.vhd
 l0
 L4
-Z106 Vlh2A3TnoVGEQWXZLlM5@Q3
-R16
+Z120 Vlh2A3TnoVGEQWXZLlM5@Q3
+R20
 32
-R17
-R18
-Z107 !s100 6_1NG5c8EM7TE72cl3^_<2
+R21
+R22
+Z121 !s100 6_1NG5c8EM7TE72cl3^_<2
 Abeh
-Z108 DEx4 work 6 sp_ram 0 22 lh2A3TnoVGEQWXZLlM5@Q3
-R10
-R11
-Z109 8../../src/sp_ram_arc_beh.vhd
-Z110 F../../src/sp_ram_arc_beh.vhd
+Z122 w1274883845
+Z123 DEx4 work 6 sp_ram 0 22 lh2A3TnoVGEQWXZLlM5@Q3
+R14
+R15
+Z124 8../../src/sp_ram_arc_beh.vhd
+Z125 F../../src/sp_ram_arc_beh.vhd
 l10
 L6
-Z111 VAdDClL]@5C<]6SFBYZBI?0
-R16
+Z126 VAdDClL]@5C<]6SFBYZBI?0
+R20
 32
-R37
-R38
-R17
-R18
-Z112 !s100 `hW?Bd<XEGbNLV10[Ni]j3
+R44
+R45
+R21
+R22
+Z127 !s100 `hW?Bd<XEGbNLV10[Ni]j3
 Psp_ram_pkg
-R10
-R11
-R103
-R12
-Z113 8../../src/sp_ram_pkg.vhd
-Z114 F../../src/sp_ram_pkg.vhd
+R14
+R15
+R117
+R16
+Z128 8../../src/sp_ram_pkg.vhd
+Z129 F../../src/sp_ram_pkg.vhd
 l0
 L6
-Z115 VZY0WT:B;MXJRRcI5Y:ZBB0
-R16
+Z130 VZY0WT:B;MXJRRcI5Y:ZBB0
+R20
 32
-R37
-R38
-R17
-R18
-Z116 !s100 O=bcDgnjM1Cm@290CYVbe0
+R44
+R45
+R21
+R22
+Z131 !s100 O=bcDgnjM1Cm@290CYVbe0

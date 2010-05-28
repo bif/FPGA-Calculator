@@ -64,8 +64,6 @@ architecture sim of parser_tb is
 component calc is
 	generic
 	(
---		OPERAND_MAX     :       integer range 0 to 2147483647;
---		OPERAND_MIN     :       integer range -2147483647 to 0;
 		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
 		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
 		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
@@ -83,7 +81,7 @@ component calc is
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
-		decode_ready    :       out     std_logic;
+		decode_ready_calc    :       out     std_logic;
 		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
 		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
 		nibble_2        :       out     unsigned(3 downto 0) := "0000";
@@ -113,7 +111,7 @@ begin  -- behav
 		sys_clk		=>	clk,
 		sys_res_n	=>	reset,
 		parse_ready	=>	parse_ready_sig,	-- IN:	new unit(operand + operator) is ready to be read
-
+		decode_ready_calc =>	decode_ready_sig,
 		start_calc	=>	start_calc_sig,
 		operation_end	=>	end_of_op_sig,
 		operand		=>	operand_sig,
