@@ -12,7 +12,7 @@ architecture beh of parser is
 	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal once, once_next, num_and_space, num_and_space_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, debug_end_of_op, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
+	signal once, once_next, num_and_space, num_and_space_next, spezial, spezial_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, debug_end_of_op, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
 	
 --	signal debug_sig_next, debug_sig :integer := 0;
 
@@ -284,7 +284,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, space, num, num_and_space, line_count, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand, once, old_operator, addr_lb_old, leading_sign_old)
+	output : process(parser_fsm_state, data_in, space, num, num_and_space, spezial, line_count, check_op_ready, convert_ready, start_pos, error_sig, convert_count, last_operand, once, old_operator, addr_lb_old, leading_sign_old)
 
   begin
 		leading_sign_next <= leading_sign_old;
@@ -305,6 +305,7 @@ begin
 		addr_lb_next <= addr_lb_old;
 		once_next <= once;
 		num_and_space_next <= num_and_space;
+		spezial_next <= spezial;
 
 		case parser_fsm_state is
 			when READY =>
@@ -419,6 +420,8 @@ begin
 				end if;
 				if num = '1' and space = '1' then
 					num_and_space_next <= '1';
+				elsif num = '1' then
+					spezial_next <= '1';				
 				end if;
 				space_next <= '1'; 
 
@@ -428,6 +431,8 @@ begin
 					error_sig_next <= '1';
 				elsif space = '1' and num = '0' then
 					start_pos_next <= line_count;
+				elsif spezial = '1' then
+					error_sig_next <= '1';
 				elsif line_count >= x"46" then
 					check_op_ready_next <= '1';
 				end if;
@@ -556,6 +561,7 @@ begin
 			space <= space_next;
 			num <= num_next;
 			num_and_space <= num_and_space_next;
+			spezial <= spezial_next;
 			once <= once_next;
 			parser_fsm_state <= parser_fsm_state_next;
 			error_sig <= error_sig_next;
