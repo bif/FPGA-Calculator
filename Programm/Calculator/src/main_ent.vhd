@@ -26,6 +26,6 @@ entity main is
 		bcd_buf			: in unsigned(39 downto 0);
 		sign_bcd_main		: in	std_logic;
 		error_calc_main		: in	std_logic;
-		error_print2vga		: in	std_logic		--	signal to linebuffer: last line was INVALID
+		error_print2vga		: out	std_logic		--	signal to linebuffer: last line was INVALID
 	);
 end entity main;

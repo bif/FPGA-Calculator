@@ -247,6 +247,7 @@ begin
 			then
 				main_state_next <= READY;
 				lb_enable_next <= '1';		
+				
 			end if;
 
 		when COPY_SUM =>

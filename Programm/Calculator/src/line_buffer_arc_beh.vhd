@@ -328,7 +328,6 @@ debug_test <= '0';
 			start_calc <= start_calc_next;
 			enter_write_result <= enter_write_result_next;
 			bcd_result_sig <= bcd_result_next;
-debug <= debug_test;
 		end if;
 	end process sync;
 
