@@ -443,9 +443,10 @@ begin
 							line_count_next <= (others => '0');
 							addr_lb_next <= (others => '0');
 							start_pos_next <= (others => '0');
+						else
+							addr_lb_next <= line_count;	
+							start_pos_next <= line_count;
 						end if;
-						addr_lb_next <= line_count;	
-						start_pos_next <= line_count;
 						convert_ready_next <= '1';
 						parse_ready_next <= '1';
 					end if;	
