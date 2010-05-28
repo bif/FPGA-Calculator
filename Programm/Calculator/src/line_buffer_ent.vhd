@@ -25,7 +25,6 @@ entity line_buffer is
 		start_calc : out std_logic;
 		enable : in std_logic;
 		bcd_result : in std_logic_vector(39 downto 0);
-		debug : out std_logic
 	);
 end entity line_buffer;
 
