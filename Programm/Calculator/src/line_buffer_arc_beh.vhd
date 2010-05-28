@@ -72,11 +72,12 @@ begin
 				end if;
 
 			when WRITE_RESULT =>	
-				if vga_free = '0' and count < x"27" then 
+				if vga_free = '0' and count < x"0A" then 
 					lb_fsm_state_next <= WAIT_STATE;
 					save_next_state_next <= WRITE_RESULT;
 				elsif vga_free = '0' then
-					lb_fsm_state_next <= ENTER_1;
+					lb_fsm_state_next <= WAIT_STATE;
+					save_next_state_next <= ENTER_1;
 				end if;
 
 			when CLEAR_BUFFER =>
@@ -188,16 +189,17 @@ begin
 
 			when WRITE_RESULT =>
 				if vga_free = '1' then
-					vga_command_next <= COMMAND_SET_CHAR;
-					-- high nibble is always hex 3 => high nibble of offset hex 30
-					vga_command_data_next(7 downto 4) <= x"3";
-					-- low nibble => bcd value
---					vga_command_data_next(3 downto 0) <= bcd_result_sig(3 downto 0);
---					bcd_result_next <= std_logic_vector(shift_right(unsigned(bcd_result_sig), 4));
-					vga_command_data_next(3 downto 0) <= x"9";
-					count_next <= std_logic_vector(unsigned(count) + 4);
-					-- hex 20 ... dec 39
-					if count > x"27" then
+					if count < x"0A" then
+						vga_command_next <= COMMAND_SET_CHAR;
+						-- high nibble is always hex 3 => high nibble of offset hex 30
+--						vga_command_data_next(7 downto 4) <= x"3";
+						-- low nibble => bcd value
+	--					vga_command_data_next(3 downto 0) <= bcd_result_sig(3 downto 0);
+	--					bcd_result_next <= std_logic_vector(shift_right(unsigned(bcd_result_sig), 4));
+						vga_command_data_next(7 downto 0) <= x"39";
+						count_next <= std_logic_vector(unsigned(count) + 1);
+						-- hex 20 ... dec 39
+					else	
 						count_next <= (others => '0');
 						enter_write_result_next <= '1';
 					end if;
