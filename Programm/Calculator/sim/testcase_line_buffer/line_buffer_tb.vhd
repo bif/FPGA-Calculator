@@ -24,7 +24,7 @@ architecture sim of line_buffer_tb is
 	signal lb_addr_sig, lb_addr_out_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_in_sig, lb_data_out_sig, mem_debug_data : std_logic_vector(LB_DATA_WIDTH - 1 downto 0);
 	signal wr_enable_sig, enable_sig, start_calc_sig : std_logic;
-
+	signal bcd_result_sig : std_logic_vector(39 downto 0);
 	
 
 
@@ -53,7 +53,8 @@ begin  -- behav
 			lb_addr => lb_addr_sig,
 			lb_data => lb_data_in_sig,
 			start_calc => start_calc_sig,
-			enable => enable_sig
+			enable => enable_sig,
+			bcd_result => bcd_result_sig
 		);
 
 	tb_line_buf_ram : sp_ram
@@ -95,7 +96,7 @@ begin  -- behav
 
 	process
 		variable i : integer := 1;
-		variable u :  std_logic_vector(LB_ADDR_WIDTH - 1 downto 0) := (others => '0');
+--		variable u :  std_logic_vector(LB_ADDR_WIDTH - 1 downto 0) := (others => '0');
 
   begin
 
@@ -168,16 +169,25 @@ begin  -- behav
 		
 	
 
-		while unsigned(u) < 20 loop
-			wait for 200 ns;
-			mem_debug_addr <= u;
-			u := std_logic_vector(unsigned(u) + 1 );
-			wait for 200 ns;
-		end loop;
+--		while unsigned(u) < 20 loop
+--			wait for 200 ns;
+--			mem_debug_addr <= u;
+--			u := std_logic_vector(unsigned(u) + 1 );
+--			wait for 200 ns;
+--		end loop;
 
+-- test bcd ausgabe
 		wait for 30 ns;
+		bcd_result_sig <= x"1234567890";
 		enable_sig <= '1';
 	
+		for i in 1 to 46 loop
+			vga_free_sig <= '1';
+			wait for 200 ns;
+			wait for QUARTZ_PERIOD / 2; 
+			vga_free_sig <= '0';
+			wait for 20 ns;
+		end loop;
 
     wait;
   end process;
