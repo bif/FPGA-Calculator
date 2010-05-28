@@ -67,10 +67,8 @@ begin
 
 			when DISABLE =>
 				if enable_old /= enable and enable = '1' then --and en_test = '1' then
-					if vga_free = '0' then
-						lb_fsm_state_next <= WAIT_STATE;
-						save_next_state_next <= ENTER_1;
-					end if;
+					lb_fsm_state_next <= WAIT_STATE;
+					save_next_state_next <= ENTER_1;
 				end if;
 
 			when WRITE_RESULT =>	
@@ -144,7 +142,7 @@ begin
 --		end if;
 --	end process test_disable;
 
-	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, enter_write_result, enter_disable)
+	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, bcd_result, enter_write_result, enter_disable)
 	
 	begin
 		start_calc_next <= '0';
@@ -200,8 +198,9 @@ begin
 					-- high nibble is always hex 3 => high nibble of offset hex 30
 					vga_command_data_next(7 downto 4) <= x"3";
 					-- low nibble => bcd value
-					vga_command_data_next(3 downto 0) <= bcd_result_sig(3 downto 0);
-					bcd_result_next <= std_logic_vector(shift_right(unsigned(bcd_result_sig), 4));
+--					vga_command_data_next(3 downto 0) <= bcd_result_sig(3 downto 0);
+--					bcd_result_next <= std_logic_vector(shift_right(unsigned(bcd_result_sig), 4));
+					vga_command_data_next(3 downto 0) <= x"9";
 					count_next <= std_logic_vector(unsigned(count) + 4);
 					-- hex 20 ... dec 39
 					if count >= x"27" then
