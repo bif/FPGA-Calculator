@@ -222,8 +222,7 @@ begin
 				end if;
 
 			when ERROR_STATE =>
---TODO:
-				null;	
+				parser_fsm_state_next <= READY;
 
 			when CHECK_OPERAND =>
 				case data_in(7 downto 0) is
@@ -308,6 +307,26 @@ begin
 		spezial_next <= spezial;
 
 		case parser_fsm_state is
+			
+			when ERROR_STATE =>
+--TODO: !!!! FIXME!!! noch keine Error Behandlung!
+
+				leading_sign_next <= '0';
+				start_pos_next <= (others => '0');
+				error_sig_next <= '0';
+				line_count_next <= (others => '0');
+				parse_ready_next <= '1';
+				space_next <= '0';
+				num_next <= '0';
+				check_op_ready_next <= '0';
+				convert_ready_next <= '0';
+				end_of_op_next <= '1';
+				convert_count_next <= (others => '0');
+				addr_lb_next <= (others => '0');
+				once_next <= '0';
+				num_and_space_next <= '0';
+				spezial_next <= '0';
+
 			when READY =>
 				leading_sign_next <= '0';
 				num_and_space_next <= '0';
@@ -530,11 +549,6 @@ begin
 					
 					convert_ready_next <= '1';
 				end if;
-			
-			when ERROR_STATE =>
-			--TODO:						
-				null;
-
 		end case;
 
 
