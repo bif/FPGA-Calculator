@@ -310,18 +310,28 @@ begin
 		int_in          =>	calculation,
 		start_decode    =>	start_decode_bcd,
 		decode_ready    =>	decode_ready_sig,
-		out_0           =>	nibble_0,
-		out_1           =>	nibble_1,
-		out_2           =>	nibble_2,
-		out_3           =>	nibble_3,
-		out_4           =>	nibble_4,
-		out_5           =>	nibble_5,
-		out_6           =>	nibble_6,
-		out_7           =>	nibble_7,
-		out_8           =>	nibble_8,
-		out_9           =>	nibble_9,
+		out_0           =>	out_0_sig,
+		out_1           =>	out_1_sig,
+		out_2           =>	out_2_sig,
+		out_3           =>	out_3_sig,
+		out_4           =>	out_4_sig,
+		out_5           =>	out_5_sig,
+		out_6           =>	out_6_sig,
+		out_7           =>	out_7_sig,
+		out_8           =>	out_8_sig,
+		out_9           =>	out_9_sig,
 		sign            =>	sign_bcd_sig
 	);
 	decode_ready_calc <= decode_ready_sig;
-
+	bcd_buf(3 downto 0) <= out_0_sig;
+	bcd_buf(7 downto 4) <= out_1_sig;
+	bcd_buf(11 downto 8) <= out_2_sig;
+	bcd_buf(15 downto 12) <= out_3_sig;
+	bcd_buf(19 downto 16) <= out_4_sig;
+	bcd_buf(23 downto 20) <= out_5_sig;
+	bcd_buf(27 downto 24) <= out_6_sig;
+	bcd_buf(31 downto 28) <= out_7_sig;
+	bcd_buf(35 downto 32) <= out_8_sig;
+	bcd_buf(39 downto 36) <= out_9_sig;
+			
 end architecture beh;

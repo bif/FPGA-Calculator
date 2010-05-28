@@ -17,16 +17,7 @@ entity calc is
 		parse_ready	:	in	std_logic;
 		start_calc	:	in	std_logic;
 		decode_ready_calc	:	out	std_logic;
-		nibble_0	:	out	unsigned(3 downto 0) := "0000";		-- calculation nibble 0 (einerstelle)
-		nibble_1	:	out	unsigned(3 downto 0) := "0000";		-- ...
-		nibble_2	:	out	unsigned(3 downto 0) := "0000";
-		nibble_3	:	out	unsigned(3 downto 0) := "0000";
-		nibble_4	:	out	unsigned(3 downto 0) := "0000";
-		nibble_5	:	out	unsigned(3 downto 0) := "0000";
-		nibble_6	:	out	unsigned(3 downto 0) := "0000";
-		nibble_7	:	out	unsigned(3 downto 0) := "0000";
-		nibble_8	:	out	unsigned(3 downto 0) := "0000";
-		nibble_9	:	out	unsigned(3 downto 0) := "0000";		-- ... most significant nibble
+		bcd_buf		:	out	unsigned(39 downto 0);
 		operation_end	:	in	std_logic;
 		operand		:	in	signed(31 downto 0);
 		operator	:	in	std_logic_vector(1 downto 0)  := "00";

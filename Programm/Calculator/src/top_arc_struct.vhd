@@ -41,16 +41,7 @@ architecture struct of calculator_top is
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
 
 
-	signal bcd0_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd1_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd2_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd3_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd4_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd5_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd6_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd7_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd8_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd9_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
 
 	-- calc_inst - signals / constants
@@ -69,8 +60,6 @@ architecture struct of calculator_top is
 component calc is
 	generic
 	(
---		OPERAND_MAX     :       integer range 0 to 2147483647;
---		OPERAND_MIN     :       integer range -2147483647 to 0;
 		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
 		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
 		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
@@ -89,16 +78,7 @@ component calc is
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
 		decode_ready_calc    :       out     std_logic;
-		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
-		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
-		nibble_2        :       out     unsigned(3 downto 0) := "0000";
-		nibble_3        :       out     unsigned(3 downto 0) := "0000";
-		nibble_4        :       out     unsigned(3 downto 0) := "0000";
-		nibble_5        :       out     unsigned(3 downto 0) := "0000";
-		nibble_6        :       out     unsigned(3 downto 0) := "0000";
-		nibble_7        :       out     unsigned(3 downto 0) := "0000";
-		nibble_8        :       out     unsigned(3 downto 0) := "0000";
-		nibble_9        :       out     unsigned(3 downto 0) := "0000"         -- ... most significant nibble
+		bcd_buf		:	out	unsigned(39 downto 0)
 	);
 end component calc;
 
@@ -308,16 +288,7 @@ begin
 		lb_data		=>	main_lb_data_sig,
 		decode_ready	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
-		nibble_0	=>	bcd0_sig,
-		nibble_1	=>	bcd0_sig,
-		nibble_2	=>	bcd0_sig,
-		nibble_3	=>	bcd0_sig,
-		nibble_4	=>	bcd0_sig,
-		nibble_5	=>	bcd0_sig,
-		nibble_6	=>	bcd0_sig,
-		nibble_7	=>	bcd0_sig,
-		nibble_8	=>	bcd0_sig,
-		nibble_9	=>	bcd0_sig
+		bcd_buf		=>	bcd_buf_sig
 	);
 
 	calc_inst : calc
@@ -330,27 +301,17 @@ begin
 	)
 	port map
 	(
-		sys_clk		=>	sys_clk,
-		sys_res_n	=>	sys_res_n,
-		parse_ready	=>	parse_ready_sig,	-- IN:	new unit(operand + operator) is ready to be read
-
-		start_calc	=>	start_calc_sig,
-		operation_end	=>	end_of_op_sig,
-		operand		=>	operand_sig,
-		operator	=>	operator_sig,
-		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_calc	=>	error_calc_top,
+		sys_clk			=>	sys_clk,
+		sys_res_n		=>	sys_res_n,
+		parse_ready		=>	parse_ready_sig,	-- IN:	new unit(operand + operator) is ready to be read
+		start_calc		=>	start_calc_sig,
+		operation_end		=>	end_of_op_sig,
+		operand			=>	operand_sig,
+		operator		=>	operator_sig,
+		need_input		=>	read_next_n_o_sig,	-- OUT: triggers new parse 
+		error_calc		=>	error_calc_top,
 		decode_ready_calc	=>	decode_ready_sig,
-		nibble_0	=>	bcd0_sig,
-		nibble_1	=>	bcd0_sig,
-		nibble_2	=>	bcd0_sig,
-		nibble_3	=>	bcd0_sig,
-		nibble_4	=>	bcd0_sig,
-		nibble_5	=>	bcd0_sig,
-		nibble_6	=>	bcd0_sig,
-		nibble_7	=>	bcd0_sig,
-		nibble_8	=>	bcd0_sig,
-		nibble_9	=>	bcd0_sig
+		bcd_buf			=>	bcd_buf_sig
 	);	
 
 	uart_tx <= uart_top_tx_sig;

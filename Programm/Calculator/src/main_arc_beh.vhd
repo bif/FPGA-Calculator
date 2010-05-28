@@ -51,7 +51,7 @@ architecture beh of main is
 	signal rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
 	signal decode_ready_old, decode_ready_old_next	: std_logic := '0';
 
-	signal bcd_buf					: unsigned(39 downto 0) := "0000000000000000000000000000000000000000";
+--	signal bcd_buf					: unsigned(39 downto 0) := "0000000000000000000000000000000000000000";
 
 	component uart is
 	port

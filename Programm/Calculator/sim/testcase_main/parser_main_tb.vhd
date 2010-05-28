@@ -36,16 +36,7 @@ architecture sim of parser_tb is
 	signal lb_wr_sig, uart_top_rx_sig, uart_top_tx_sig : std_logic;
 
 
-	signal bcd0_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd1_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd2_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd3_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd4_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd5_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd6_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd7_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd8_sig				:	unsigned(3 downto 0) := "0000";
-	signal bcd9_sig				:	unsigned(3 downto 0) := "0000";
+	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
 
 	-- calc_inst - signals / constants
@@ -82,16 +73,7 @@ component calc is
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
 		decode_ready_calc    :       out     std_logic;
-		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
-		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
-		nibble_2        :       out     unsigned(3 downto 0) := "0000";
-		nibble_3        :       out     unsigned(3 downto 0) := "0000";
-		nibble_4        :       out     unsigned(3 downto 0) := "0000";
-		nibble_5        :       out     unsigned(3 downto 0) := "0000";
-		nibble_6        :       out     unsigned(3 downto 0) := "0000";
-		nibble_7        :       out     unsigned(3 downto 0) := "0000";
-		nibble_8        :       out     unsigned(3 downto 0) := "0000";
-		nibble_9        :       out     unsigned(3 downto 0) := "0000"         -- ... most significant nibble
+		bcd_buf		:	out	unsigned(39 downto 0)
 	);
 end component calc;
 
@@ -118,16 +100,7 @@ begin  -- behav
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_calc	=>	error_calc_top,
-		nibble_0	=>	bcd0_sig,
-		nibble_1	=>	bcd0_sig,
-		nibble_2	=>	bcd0_sig,
-		nibble_3	=>	bcd0_sig,
-		nibble_4	=>	bcd0_sig,
-		nibble_5	=>	bcd0_sig,
-		nibble_6	=>	bcd0_sig,
-		nibble_7	=>	bcd0_sig,
-		nibble_8	=>	bcd0_sig,
-		nibble_9	=>	bcd0_sig
+		bcd_buf		=>	bcd_buf_sig
 	);
 
 
@@ -193,16 +166,7 @@ begin  -- behav
 		lb_data		=>	mem_debug_data,
 		decode_ready	=>	calc_ready_top,
 		lb_enable	=>	enable_lb_sig,
-		nibble_0	=>	bcd0_sig,
-		nibble_1	=>	bcd0_sig,
-		nibble_2	=>	bcd0_sig,
-		nibble_3	=>	bcd0_sig,
-		nibble_4	=>	bcd0_sig,
-		nibble_5	=>	bcd0_sig,
-		nibble_6	=>	bcd0_sig,
-		nibble_7	=>	bcd0_sig,
-		nibble_8	=>	bcd0_sig,
-		nibble_9	=>	bcd0_sig
+		bcd_buf		=>	bcd_buf_sig
 	);
 
 
