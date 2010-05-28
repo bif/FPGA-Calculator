@@ -244,7 +244,7 @@ begin
 			then
 				wr_main_next <= '1';
 				ram_line_next <= ram_line + 1;
-				ram_offset_next <= mem_pointer * 81 + ram_line + 70;
+				ram_offset_next <= mem_pointer * 81 + ram_line + 71;
 --				if(sign_bcd_main = '0')
 --				then
 					data_in_main_next <= x"3d";				-- '+'
