@@ -14,7 +14,8 @@ architecture beh of calc is
 	signal parse_ready_old_next	: std_logic;
 	signal operation_end_old	: std_logic;
 	signal operation_end_old_next	: std_logic;
-	signal error_calc_next		: std_logic;
+	signal error_calc_old		: std_logic;
+	signal error_calc_old_next	: std_logic;
 	signal start_decode_bcd		: std_logic;
 	signal decode_ready_old		: std_logic;
 	signal decode_ready_old_next	: std_logic;
@@ -59,7 +60,7 @@ begin
 			need_input <= '0';
 			parse_ready_old <= '0';
 			operation_end_old <= '0';
-			error_calc	<= '0';
+			error_calc_old	<= '0';
 			buffer_punkt <= "000000000000000000000000000000000000000000000000000000000000000";
 			buffer_strich <= "000000000000000000000000000000000000000000000000000000000000000";
 			operator_strich <= "00";
@@ -76,7 +77,7 @@ begin
 			need_input <= need_input_next;
 			parse_ready_old <= parse_ready_old_next;
 			operation_end_old <= operation_end_old_next;
-			error_calc <= error_calc_next;
+			error_calc_old <= error_calc_old_next;
 			buffer_punkt <= buffer_punkt_next;
 			buffer_strich <= buffer_strich_next;
 			operator_strich <= operator_strich_next;
@@ -90,7 +91,7 @@ begin
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, error_parser, error_calc_old)
 	variable erg_tmp	:	signed(62 downto 0) := "000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		erg_tmp := "000000000000000000000000000000000000000000000000000000000000000";
@@ -107,6 +108,7 @@ begin
 		decode_ready_old_next <= decode_ready_sig;
 		ready_flag_next <= ready_flag;
 		calc_ready_next <= '0';
+		error_calc_old_next <= error_parser;
 
 decode_ready_calc <= '0';
 
@@ -149,7 +151,12 @@ decode_ready_calc <= '0';
 				then
 						calc_state_next <= FINISH;
 				end if;
-				
+			
+				if(error_calc_old /= error_parser and error_parser = '1')		-- syntax error found by parser unit - forget this inputline!
+				then
+					calc_state_next <= INVALID;
+				end if;
+	
 				if(operation_end /= operation_end_old and operation_end = '1')		-- just got the LAST operand - remember it!
 				then
 					ready_flag_next <= '1';
@@ -263,7 +270,7 @@ decode_ready_calc <= '0';
 					
 				end if;
 				operator_strich_next <= operator;
-			when WAIT4ALU =>				-- FIXME - bei divion warten auf div_ready_signal!
+			when WAIT4ALU =>				-- FIXME - bei division warten auf div_ready_signal!
 				calc_state_next <= MANAGE;
 
 			when INVALID =>
@@ -283,34 +290,32 @@ decode_ready_calc <= '0';
 	begin
 		calculation <= 0;
 		start_decode_bcd <= '0';
-		error_calc_next <= '0';
 		need_input_next <= '0';
+
 		case calc_state is
-		when READY => 
-			need_input_next <= '0';
-			error_calc_next <= '0';
-			start_decode_bcd <= '0';
-		when MANAGE =>
-			if(ready_flag /= '1')
-			then
-				need_input_next <= '1';
-			end if;
-		when WAIT4PARSER =>
-			need_input_next <= '0';
-		when WAIT4ALU =>
-			need_input_next <= '0';
-		when OP_PUNKT =>
-			need_input_next <= '0';
-		when OP_STRICH =>
-			need_input_next <= '0';
-		when INVALID =>
-			need_input_next <= '0';
-			error_calc_next <= '1';
-		when FINISH =>
-			need_input_next <= '0';
-			calculation <= to_integer(buffer_strich);
-			--calculation <= 34254;
-			start_decode_bcd <= '1';
+			when READY => 
+				need_input_next <= '0';
+				start_decode_bcd <= '0';
+			when MANAGE =>
+				if(ready_flag /= '1')
+				then
+					need_input_next <= '1';
+				end if;
+			when WAIT4PARSER =>
+				need_input_next <= '0';
+			when WAIT4ALU =>
+				need_input_next <= '0';
+			when OP_PUNKT =>
+				need_input_next <= '0';
+			when OP_STRICH =>
+				need_input_next <= '0';
+			when INVALID =>
+				need_input_next <= '0';
+			when FINISH =>
+				need_input_next <= '0';
+				start_decode_bcd <= '1';
+				--calculation <= to_integer(buffer_strich);
+				calculation <= 6671982;	-- test if bcd-conversion works
 		end case;
 	end process;
 

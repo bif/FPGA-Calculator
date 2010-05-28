@@ -6,9 +6,9 @@ use ieee.numeric_std.all;
 entity main is
 	generic
 	(
-		RESET_VALUE : std_logic;
-		DAT_WIDTH : integer range 1 to integer'high;
-		ADR_WIDTH : integer range 1 to integer'high
+		RESET_VALUE		: std_logic;
+		DAT_WIDTH		: integer range 1 to integer'high;
+		ADR_WIDTH		: integer range 1 to integer'high
 	);
 	port
 	(
@@ -20,12 +20,11 @@ entity main is
 		trigger_main_tx		: out	std_logic := '0';
 		lb_enable		: out	std_logic := '0';
 		start_calc		: in	std_logic := '0';
-		decode_ready_main		: in	std_logic := '0';
+		decode_ready_main	: in	std_logic := '0';				
 		lb_data			: in	std_logic_vector(DAT_WIDTH - 1 downto 0);
-		lb_addr			: out	std_logic_vector(ADR_WIDTH - 1 downto 0);
-		bcd_buf			: in unsigned(39 downto 0);
+		lb_addr			: out	std_logic_vector(ADR_WIDTH - 1 downto 0) := "00000000";
+		bcd_buf			: in	unsigned(39 downto 0);
 		sign_bcd_main		: in	std_logic;
-		error_calc_main		: in	std_logic;
-		error_print2vga		: out	std_logic		--	signal to linebuffer: last line was INVALID
+		error_parser		: in	std_logic					-- input from parser
 	);
 end entity main;

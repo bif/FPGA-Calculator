@@ -18,6 +18,12 @@ architecture beh of main is
 	signal		sense_old, sense_old_next		: std_logic := '0';
 	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
 	signal		error_calc_main_old, error_calc_main_old_next		: std_logic := '0';
+
+	signal		goto_nextstate				: std_logic := '0';
+	signal		goto_nextstate_next			: std_logic := '0';
+	signal		decode_ready_old, decode_ready_old_next	: std_logic := '0';
+
+	-- uart - related:	
 	signal		uart_main_tx_sig 			: std_logic := '0';
 	signal		uart_main_rx_sig 			: std_logic := '0';
 	signal		tx_busy_main				: std_logic := '0';
@@ -26,13 +32,12 @@ architecture beh of main is
 	signal		send_byte_main				: std_logic := '0';
 	signal		send_byte_main_next			: std_logic := '0';
 	signal		trigger_main_tx_sig			: std_logic := '0';
-	
 	signal		init_sent				: integer range 0 to 5;
 	signal		init_sent_next				: integer range 0 to 5;
 
+	-- memarray - related:
 	signal		byte_data				: std_logic_vector(7 downto 0) := "00000000";
 	signal		byte_data_next				: std_logic_vector(7 downto 0) := "00000000";
-	-- memarray - signale
 	signal		wr_main					: std_logic := '0';
 	signal		wr_main_next				: std_logic := '0';
 	signal		ram_offset				: integer range 0 to 4095;
@@ -40,16 +45,13 @@ architecture beh of main is
 	signal		data_in_main, data_in_main_next		: std_logic_vector(7 downto 0);
 	signal		data_out_main				: std_logic_vector(7 downto 0);
 	signal		mem_pointer, mem_pointer_next		: integer range 0 to 51;
-
-	signal		ram_line					: integer range 0 to 90;
+	signal		ram_line				: integer range 0 to 90;
 	signal		ram_line_next				: integer range 0 to 90;
 	signal		line_count, line_count_next		: integer range 0 to 50;
-
+	signal		rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
 	signal		addr, addr_next				: std_logic_vector(7 downto 0) := "00000000";
 	signal		lb_enable_next				: std_logic := '0';
 
-	signal		rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
-	signal		decode_ready_old, decode_ready_old_next	: std_logic := '0';
 
 	component uart is
 	port
@@ -90,7 +92,7 @@ process(sys_clk, sys_res_n)
 		decode_ready_old <= '0';
 		main_state <= READY;
 		error_calc_main_old <= '0';
-
+		goto_nextstate <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -112,10 +114,11 @@ process(sys_clk, sys_res_n)
 		decode_ready_old <= decode_ready_old_next;
 		main_state <= main_state_next;
 		error_calc_main_old <= error_calc_main_old_next;
+		goto_nextstate <= goto_nextstate_next;
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, error_calc_main, error_calc_main_old)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, error_parser, error_calc_main_old, goto_nextstate)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -136,8 +139,9 @@ begin
 	addr_next <= addr;
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
-	error_calc_main_old_next <= error_calc_main;
-
+	error_calc_main_old_next <= error_parser;
+	goto_nextstate_next <= goto_nextstate;
+	
 	case main_state is
 		when READY =>
 
@@ -223,6 +227,7 @@ begin
 			then
 				wr_main_next <= '1';		
 				data_in_main_next <= lb_data;		-- .. write actual data to ringbuffer
+
 				ram_offset_next <= ram_offset + 1;
 				lb_addr <= addr;
 				addr_next <= std_logic_vector(unsigned(addr) + 1);
@@ -236,32 +241,39 @@ begin
 				end if;
 			end if;
 			
-		when WAIT4SUM =>
 			if(decode_ready_old /= decode_ready_main and decode_ready_main = '1')	-- BCD - conversion of calculation is DONE --> copy sum into ringbuffer
+			then									-- FIXME: this happens because no error_sig_handling from parser so far
+				goto_nextstate_next <= '1';
+			end if;
+
+		when WAIT4SUM =>
+
+			if((decode_ready_old /= decode_ready_main and decode_ready_main = '1') or(goto_nextstate = '1')) -- or: see FI	
 			then
 				ram_line_next <= 0;
 				main_state_next <= COPY_SUM;
+				goto_nextstate_next <= '0';
+				
+				if(sign_bcd_main = '0')
+				then
+					data_in_main_next <= x"2b";				-- '+'
+				else
+					data_in_main_next <= x"2d";				-- '-'
+				end if;
 			end if;
 
-			if(error_calc_main_old /= error_calc_main and error_calc_main = '1')
+			if(error_calc_main_old /= error_parser and error_parser = '1')
 			then
 				main_state_next <= READY;
 				lb_enable_next <= '1';		
-				
 			end if;
-
+			
 		when COPY_SUM =>
 			if(ram_line = 0)		-- send <+> or <->
 			then
 				wr_main_next <= '1';
 				ram_line_next <= ram_line + 1;
 				ram_offset_next <= mem_pointer * 81 + ram_line + 71;
---				if(sign_bcd_main = '0')
---				then
-					data_in_main_next <= x"3d";				-- '+'
---				else
---					data_in_main_next <= x"3d";				-- '-'
---				end if;
 			elsif(ram_line < 11)
 			then
 				wr_main_next <= '1';

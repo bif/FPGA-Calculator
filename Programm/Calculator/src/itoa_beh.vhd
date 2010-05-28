@@ -3,17 +3,17 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 architecture beh of itoa is
-	signal count		:	integer range 0 to 35 := 0;
-	signal count_next	:	integer range 0 to 35 := 0;
+	signal count			:	integer range 0 to 35 := 0;
+	signal count_next		:	integer range 0 to 35 := 0;
 	
-	signal sign_next	:	std_logic := '0';
+	signal sign_next		:	std_logic := '0';
 	signal decode_ready_next	:	std_logic := '0';
-	signal enable		:	std_logic := '0';
-	signal enable_next	:	std_logic := '0';
-	signal start		:	std_logic := '0';
-	signal start_next	:	std_logic := '0';
-	signal scratch		:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
-	signal scratch_next	:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
+	signal enable			:	std_logic := '0';
+	signal enable_next		:	std_logic := '0';
+	signal start			:	std_logic := '0';
+	signal start_next		:	std_logic := '0';
+	signal scratch			:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
+	signal scratch_next		:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
 
 	signal out_0_next		:	unsigned(3 downto 0) := "0000";
 	signal out_1_next		:	unsigned(3 downto 0) := "0000";
