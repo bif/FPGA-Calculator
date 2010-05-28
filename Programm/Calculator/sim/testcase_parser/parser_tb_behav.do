@@ -10,8 +10,8 @@ vmap work behav_work
 
 #compile vhdl files
 
-	vcom -work work ../../src/sp_ram_pkg.vhd
 	vcom -work work ../../src/sp_ram_ent.vhd
+	vcom -work work ../../src/sp_ram_pkg.vhd
 	vcom -work work ../../src/sp_ram_arc_beh.vhd
 
 	vcom -work work ../../src/parser_pkg.vhd

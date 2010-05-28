@@ -16,12 +16,12 @@ do parser_tb_behav.do
 # -- Loading package standard
 # -- Loading package std_logic_1164
 # -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
+# -- Compiling entity sp_ram
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
 # -- Loading package numeric_std
-# -- Compiling entity sp_ram
+# -- Compiling package sp_ram_pkg
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
@@ -31,10 +31,12 @@ do parser_tb_behav.do
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
+# -- Loading package numeric_std
 # -- Compiling package parser_pkg
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
+# -- Loading package numeric_std
 # -- Compiling entity parser
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
@@ -46,448 +48,13 @@ do parser_tb_behav.do
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
-# -- Loading package parser_pkg
 # -- Loading package numeric_std
+# -- Loading package parser_pkg
 # -- Loading package sp_ram_pkg
 # -- Compiling entity parser_tb
 # -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
-#    Time: 32176 ns  Iteration: 2  Instance: /parser_tb/tp_parser
-# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
-#    Time: 32240 ns  Iteration: 2  Instance: /parser_tb/tp_parser
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
-#    Time: 32176 ns  Iteration: 2  Instance: /parser_tb/tp_parser
-# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
-#    Time: 32240 ns  Iteration: 2  Instance: /parser_tb/tp_parser
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/parser_arc_beh.vhd(319): Cannot read output "end_of_operation".
-# ** Error: ../../src/parser_arc_beh.vhd(321): near "=>": expecting "<=" or ":="
-# ** Error: ../../src/parser_arc_beh.vhd(580): VHDL Compiler exiting
-# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
-# /opt/modelsim/modeltech/linux/vcom failed.
-#     while executing
-# "vcom -work work ../../src/parser_arc_beh.vhd"
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# ** Error: ../../src/parser_arc_beh.vhd(445): near "=>": expecting "<=" or ":="
-# ** Error: ../../src/parser_arc_beh.vhd(578): VHDL Compiler exiting
-# ** Error: /opt/modelsim/modeltech/linux/vcom failed.
-# Error in macro ./parser_tb_behav.do line 19
-# /opt/modelsim/modeltech/linux/vcom failed.
-#     while executing
-# "vcom -work work ../../src/parser_arc_beh.vhd"
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# ** Error: parser_tb.vhd(130): near "=": expecting "<=" or ":="
-# ** Error: parser_tb.vhd(151): VHDL Compiler exiting
+# ** Error: parser_tb.vhd(51): Signal "operand_sig" is type ieee.std_logic_1164.std_logic_vector; expecting type ieee.numeric_std.signed.
+# ** Error: parser_tb.vhd(147): VHDL Compiler exiting
 # ** Error: /opt/modelsim/modeltech/linux/vcom failed.
 # Error in macro ./parser_tb_behav.do line 25
 # /opt/modelsim/modeltech/linux/vcom failed.
@@ -501,12 +68,12 @@ do parser_tb_behav.do
 # -- Loading package standard
 # -- Loading package std_logic_1164
 # -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
+# -- Compiling entity sp_ram
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
 # -- Loading package numeric_std
-# -- Compiling entity sp_ram
+# -- Compiling package sp_ram_pkg
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
@@ -516,10 +83,12 @@ do parser_tb_behav.do
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
+# -- Loading package numeric_std
 # -- Compiling package parser_pkg
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
+# -- Loading package numeric_std
 # -- Compiling entity parser
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
@@ -531,8 +100,8 @@ do parser_tb_behav.do
 # Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
 # -- Loading package standard
 # -- Loading package std_logic_1164
-# -- Loading package parser_pkg
 # -- Loading package numeric_std
+# -- Loading package parser_pkg
 # -- Loading package sp_ram_pkg
 # -- Compiling entity parser_tb
 # -- Compiling architecture sim of parser_tb
@@ -540,8 +109,8 @@ do parser_tb_behav.do
 # ** Note: (vsim-3812) Design is being optimized...
 # Loading std.standard
 # Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
 # Loading ieee.numeric_std(body)
+# Loading work.parser_pkg
 # Loading work.sp_ram_pkg
 # Loading work.parser_tb(sim)#1
 # Loading work.parser(beh)#1
@@ -550,123 +119,4 @@ do parser_tb_behav.do
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
 quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-w
-#  12:13:30 up  2:45,  4 users,  load average: 0.06, 0.37, 0.37
-# USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
-# s0727156 :0       -                09:37   ?xdm?  15:25   0.09s /usr/bin/gnome-
-# s0727156 pts/0    :0.0             09:38    2:11m  5:00   0.00s /bin/bash /usr/
-# s0727156 pts/1    :0.0             09:38   15.00s  9.97s  9.87s vim memarray_en
-# s0725240 pts/2    e194-084.eduroam 11:09    3:25  31.59s  2.62s vim parser_arc_
-quit -sim
-do parser_tb_behav.do
-# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
-# ** Warning: (vlib-34) Library already exists at "behav_work".
-# Modifying modelsim.ini
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling package sp_ram_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Compiling architecture beh of sp_ram
-# -- Loading entity sp_ram
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling package parser_pkg
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Compiling entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package numeric_std
-# -- Loading package parser_pkg
-# -- Compiling architecture beh of parser
-# -- Loading entity parser
-# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
-# -- Loading package standard
-# -- Loading package std_logic_1164
-# -- Loading package parser_pkg
-# -- Loading package numeric_std
-# -- Loading package sp_ram_pkg
-# -- Compiling entity parser_tb
-# -- Compiling architecture sim of parser_tb
-# vsim -coverage work.parser_tb 
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading ieee.std_logic_1164(body)
-# Loading work.parser_pkg
-# Loading ieee.numeric_std(body)
-# Loading work.sp_ram_pkg
-# Loading work.parser_tb(sim)#1
-# Loading work.parser(beh)#1
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 16 ns  Iteration: 1  Instance: /parser_tb/tb_line_buf_ram
+# Load canceled

@@ -65,10 +65,10 @@ begin
 				end if;
 
 			when DISABLE =>
-				if enable_old /= enable and enable = '1' then --and en_test = '1' then
+		--		if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
 					lb_fsm_state_next <= CLEAR_BUFFER;
-				end if;
+		--		end if;
 
 			when CLEAR_BUFFER =>	
 				if count >= x"46" then

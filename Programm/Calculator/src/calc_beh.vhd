@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 use work.itoa_pkg.all;
 
 architecture beh of calc is
-	type CALC_STATE_TYPE is (READY, MANAGE, FINISH, WAIT4PARSER, OP_PUNKT, OP_STRICH, INVALID);
+	type CALC_STATE_TYPE is (READY, MANAGE, FINISH, WAIT4PARSER, OP_PUNKT, OP_STRICH, INVALID, WAIT4ALU);
 	signal calc_state		: CALC_STATE_TYPE;
 	signal calc_state_next		: CALC_STATE_TYPE;
 	signal start_calc_old		: std_logic;
@@ -47,6 +47,7 @@ architecture beh of calc is
 	signal out_8_sig			: unsigned(3 downto 0) := "0000";
 	signal out_9_sig			: unsigned(3 downto 0) := "0000";
 	signal sign_bcd_sig			: std_logic := '0';
+	signal ready_flag, ready_flag_next	: std_logic := '0';
 
 begin
 	process(sys_clk, sys_res_n)
@@ -67,6 +68,7 @@ begin
 			op_strich_flag <= '0';
 			decode_ready_old <= '0';
 			calc_ready <= '0';
+			ready_flag <= '0';
 		elsif(sys_clk'event and sys_clk = '1')
 		then
 			calc_state <= calc_state_next;
@@ -83,11 +85,12 @@ begin
 			op_strich_flag <= op_strich_flag_next;
 			decode_ready_old <= decode_ready_old_next;
 			calc_ready <= calc_ready_next;
+			ready_flag <= ready_flag_next;
 		end if;
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag)
 	variable erg_tmp	:	signed(62 downto 0) := "000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		erg_tmp := "000000000000000000000000000000000000000000000000000000000000000";
@@ -102,6 +105,7 @@ begin
 		op_punkt_flag_next <= op_punkt_flag;
 		op_strich_flag_next <= op_strich_flag;
 		decode_ready_old_next <= decode_ready_sig;
+		ready_flag_next <= ready_flag;
 		calc_ready_next <= '0';
 
 		case calc_state is
@@ -113,6 +117,7 @@ begin
 				op_punkt_flag_next <= '0';
 				op_strich_flag_next <= '0';
 				calc_ready_next <= '0';
+				ready_flag_next <= '0';
 
 			when MANAGE =>
 				
@@ -133,11 +138,14 @@ begin
 					then
 						calc_state_next <= OP_PUNKT;
 					end if;
+				elsif(ready_flag = '1')
+				then
+						calc_state_next <= FINISH;
 				end if;
 				
-				if(operation_end /= operation_end_old and operation_end = '1')
+				if(operation_end /= operation_end_old and operation_end = '1')		-- just got the LAST operand - remember it!
 				then
-					calc_state_next <= FINISH;
+					ready_flag_next <= '1';
 				end if;
 
 			when OP_PUNKT =>
@@ -146,14 +154,16 @@ begin
 					buffer_punkt_next <= resize(operand, 63);
 					operator_punkt_next <= operator;
 					op_punkt_flag_next <= '1';
-					calc_state_next <= MANAGE;
+--					calc_state_next <= MANAGE;
+					calc_state_next <= WAIT4ALU;
 				elsif(op_punkt_flag = '1')
 				then
 					operator_punkt_next <= operator;
 					if(operator_punkt = "10")		-- multiplikation
 					then
 						buffer_punkt_next <= resize(buffer_punkt * operand, 63);
-						calc_state_next <= MANAGE;
+--						calc_state_next <= MANAGE;
+						calc_state_next <= WAIT4ALU;
 					elsif(operator_punkt = "11")			-- division
 					then
 						if(operand = 0)
@@ -161,7 +171,8 @@ begin
 							calc_state_next <= INVALID;
 						else
 --							buffer_punkt_next <= resize(buffer_punkt / operand, 63);
-							calc_state_next <= MANAGE;
+--							calc_state_next <= MANAGE;
+							calc_state_next <= WAIT4ALU;
 						end if;
 					
 					end if;
@@ -174,7 +185,8 @@ begin
 					buffer_strich_next <= resize(operand, 63);
 					operator_punkt_next <= operator;
 					op_strich_flag_next <= '1';
-					calc_state_next <= MANAGE;
+--					calc_state_next <= MANAGE;
+					calc_state_next <= WAIT4ALU;
 
 				elsif(op_strich_flag = '0' and op_punkt_flag = '1')	-- punktrechnung vorgemerkt
 				then
@@ -183,7 +195,8 @@ begin
 					if(operator_punkt = "10")			-- multiplikation vorgemerkt
 					then
 						buffer_strich_next <= resize(buffer_punkt * operand, 63);
-						calc_state_next <= MANAGE;
+--						calc_state_next <= MANAGE;
+						calc_state_next <= WAIT4ALU;
 					elsif(operator_punkt = "11")			-- division vorgemerkt
 					then
 						if(operand = 0)
@@ -191,7 +204,8 @@ begin
 							calc_state_next <= INVALID;
 						else
 --							buffer_strich_next <= resize(buffer_punkt / operand, 63);
-							calc_state_next <= MANAGE;
+--							calc_state_next <= MANAGE;
+							calc_state_next <= WAIT4ALU;
 						end if;
 					end if;
 
@@ -204,7 +218,8 @@ begin
 					then
 						buffer_strich_next <= resize(buffer_strich - operand, 63);
 					end if;
-					calc_state_next <= MANAGE;
+--					calc_state_next <= MANAGE;
+					calc_state_next <= WAIT4ALU;
 
 				elsif(op_strich_flag = '1' and op_punkt_flag = '1')	-- punkt UND strichrechnung vorgemerkt
 				then
@@ -229,16 +244,20 @@ begin
 					elsif(operator_strich = "00")
 					then
 						buffer_strich_next <= buffer_strich + erg_tmp;
-						calc_state_next <= MANAGE;
+--						calc_state_next <= MANAGE;
+						calc_state_next <= WAIT4ALU;
 					elsif(operator_strich = "01")
 					then
 						buffer_strich_next <= buffer_strich - erg_tmp;
-						calc_state_next <= MANAGE;
+--						calc_state_next <= MANAGE;
+						calc_state_next <= WAIT4ALU;
 					end if;
 					op_punkt_flag_next <= '0';
 					
 				end if;
 				operator_strich_next <= operator;
+			when WAIT4ALU =>				-- FIXME - bei divion warten auf div_ready_signal!
+				calc_state_next <= MANAGE;
 
 			when INVALID =>
 				calc_state_next <= READY;
@@ -266,6 +285,8 @@ begin
 		when MANAGE =>
 			need_input_next <= '1';
 		when WAIT4PARSER =>
+			need_input_next <= '0';
+		when WAIT4ALU =>
 			need_input_next <= '0';
 		when OP_PUNKT =>
 			need_input_next <= '0';
@@ -301,6 +322,6 @@ begin
 		out_9           =>	nibble_9,
 		sign            =>	sign_bcd_sig
 	);
-	decode_ready <= decode_ready_sig;
+	decode_ready_calc <= decode_ready_sig;
 
 end architecture beh;

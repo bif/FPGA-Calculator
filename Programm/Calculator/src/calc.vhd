@@ -16,7 +16,7 @@ entity calc is
 		sys_res_n	:	in	std_logic;
 		parse_ready	:	in	std_logic;
 		start_calc	:	in	std_logic;
-		decode_ready	:	out	std_logic;
+		decode_ready_calc	:	out	std_logic;
 		nibble_0	:	out	unsigned(3 downto 0) := "0000";		-- calculation nibble 0 (einerstelle)
 		nibble_1	:	out	unsigned(3 downto 0) := "0000";		-- ...
 		nibble_2	:	out	unsigned(3 downto 0) := "0000";

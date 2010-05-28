@@ -170,12 +170,10 @@ begin
 	operand <= "00000000000000000000000000111001";		-- 57 EOP
     wait for 100 ns;
 	parse_ready <= '1';
-    wait for 100 ns;
-	parse_ready <= '0';
+	operation_end <= '1';
 
     wait for 100 ns;
-	operation_end <= '1';
-    wait for 100 ns;
+	parse_ready <= '0';
 	operation_end <= '0';
 	start_calc <= '0';
 
@@ -204,12 +202,9 @@ begin
 	operand <= "00000000000000000000000000000101";		-- 5 EOP
     wait for 100 ns;
 	parse_ready <= '1';
-    wait for 100 ns;
-	parse_ready <= '0';
-
-    wait for 100 ns;
 	operation_end <= '1';
     wait for 100 ns;
+	parse_ready <= '0';
 	operation_end <= '0';
 
 

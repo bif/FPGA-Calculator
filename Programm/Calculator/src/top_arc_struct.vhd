@@ -88,7 +88,7 @@ component calc is
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
-		decode_ready    :       out     std_logic;
+		decode_ready_calc    :       out     std_logic;
 		nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
 		nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
 		nibble_2        :       out     unsigned(3 downto 0) := "0000";
@@ -306,7 +306,7 @@ begin
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	main_lb_addr_sig,
 		lb_data		=>	main_lb_data_sig,
-		decode_ready	=>	calc_ready_top,
+		decode_ready	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		nibble_0	=>	bcd0_sig,
 		nibble_1	=>	bcd0_sig,
@@ -340,6 +340,7 @@ begin
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_calc	=>	error_calc_top,
+		decode_ready_calc	=>	decode_ready_sig,
 		nibble_0	=>	bcd0_sig,
 		nibble_1	=>	bcd0_sig,
 		nibble_2	=>	bcd0_sig,

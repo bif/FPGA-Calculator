@@ -78,6 +78,8 @@ begin
 				enable_next <= '0';
 				count_next <= 0;
 				decode_ready <= '1';
+			else
+				decode_ready <= '0';
 			end if;
 		
 			if(enable = '1')
