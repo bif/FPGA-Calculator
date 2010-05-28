@@ -1,0 +1,19 @@
+# => ignore all files.
+*
+
+# => ignore file by extension.
+
+modelsim
+work/
+modelsim.ini
+transcript
+vsim.wlf 
+                                                                                 
+# => excludes *.sof from ignoring.
+#!*.sof
+#!*.qpf
+#!*.qsf
+#!*.tcl
+!.gitignore
+
+
