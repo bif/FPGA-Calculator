@@ -108,6 +108,8 @@ begin
 		ready_flag_next <= ready_flag;
 		calc_ready_next <= '0';
 
+decode_ready_calc <= '0';
+
 		case calc_state is
 			when READY =>
 				op_punkt_flag_next <= '0';
@@ -267,7 +269,6 @@ begin
 			when INVALID =>
 				calc_state_next <= READY;
 			when FINISH =>
-				--if(decode_ready_old /= decode_ready_sig and decode_ready_sig = '1')
 				if(decode_ready_old /= decode_ready_sig and decode_ready_sig = '1')
 				then
 					calc_state_next <= READY;

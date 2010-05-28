@@ -24,7 +24,7 @@ architecture sim of parser_tb is
 
   --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
 
-	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "590+ 777 * 4";
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59 + 777 * 4";
 	signal clk : std_logic;
 	signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
@@ -167,7 +167,7 @@ begin  -- behav
 		lb_addr		=>	mem_debug_addr,
 		lb_data		=>	mem_debug_data,
 		--decode_ready	=>	calc_ready_top,
-		decode_ready	=>	decode_ready_sig,
+		decode_ready_main	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		sign_bcd_main	=>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
