@@ -17,14 +17,14 @@ architecture beh of line_buffer is
 	signal vga_free_sig, once, once_next : std_logic := '0';
 	signal lb_addr_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
-	signal enable_old, enable_old_next, wr_enable_next, start_calc_next, enter_write_result, enter_write_result_next, enter_disable, enter_disable_next : std_logic;
+	signal enable_old, enable_old_next, wr_enable_next, start_calc_next, enter_write_result, enter_write_result_next : std_logic;
 	signal bcd_result_sig, bcd_result_next : std_logic_vector(39 downto 0);
 
 --	signal en_test : std_logic;
 
 begin
 
-	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable, enable_old, enter_disable, enter_write_result)--, en_test)
+	next_state : process(lb_fsm_state, new_ascii_in, ascii_sign_in, vga_free, save_next_state, count, reset_count, enable, enable_old,  enter_write_result)--, en_test)
   begin
     
 		lb_fsm_state_next <= lb_fsm_state;
@@ -68,15 +68,14 @@ begin
 			when DISABLE =>
 				if enable_old /= enable and enable = '1' then --and en_test = '1' then
 					--TODO: Leerzeichen einfügen befor wieder in CHECK_ASCII
-					lb_fsm_state_next <= WAIT_STATE;
-					save_next_state_next <= ENTER_1;
+					lb_fsm_state_next <= WRITE_RESULT;
 				end if;
 
 			when WRITE_RESULT =>	
 				if vga_free = '0' and count < x"27" then 
 					lb_fsm_state_next <= WAIT_STATE;
 					save_next_state_next <= WRITE_RESULT;
-				elsif count >= x"27" then
+				elsif vga_free = '0' then
 					lb_fsm_state_next <= ENTER_1;
 				end if;
 
@@ -93,15 +92,12 @@ begin
 
 			when ENTER_2 =>
 				if vga_free = '0' then
-					if enter_disable = '1' then
-						lb_fsm_state_next <= WAIT_STATE;
-						save_next_state_next <= WRITE_RESULT;
-					elsif enter_write_result = '1' then
-						lb_fsm_state_next <= WAIT_STATE;
-						save_next_state_next <= DISABLE; 
-					else
+					if enter_write_result = '1' then
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= CLEAR_BUFFER; 
+					else
+						lb_fsm_state_next <= WAIT_STATE;
+						save_next_state_next <= DISABLE; 
 					end if;
 				end if;
 
@@ -143,7 +139,7 @@ begin
 --		end if;
 --	end process test_disable;
 
-	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, bcd_result, enter_write_result, enter_disable)
+	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, bcd_result, enter_write_result)
 	
 	begin
 		start_calc_next <= '0';
@@ -157,7 +153,6 @@ begin
 		lb_addr_next <= count;
 		bcd_result_next <= (others => '0');
 		enter_write_result_next <= enter_write_result;
-		enter_disable_next <= enter_disable;
 
 
 		case lb_fsm_state is
@@ -190,10 +185,8 @@ begin
 			when DISABLE =>
 				start_calc_next <= '0';
 				count_next <= (others => '0');
-				enter_disable_next <= '1';
 
 			when WRITE_RESULT =>
-				enter_write_result_next <= '1';
 				if vga_free = '1' then
 					vga_command_next <= COMMAND_SET_CHAR;
 					-- high nibble is always hex 3 => high nibble of offset hex 30
@@ -204,8 +197,9 @@ begin
 					vga_command_data_next(3 downto 0) <= x"9";
 					count_next <= std_logic_vector(unsigned(count) + 4);
 					-- hex 20 ... dec 39
-					if count >= x"27" then
+					if count > x"27" then
 						count_next <= (others => '0');
+						enter_write_result_next <= '1';
 					end if;
 				end if;
  
@@ -216,7 +210,6 @@ begin
 					count_next <= std_logic_vector(unsigned(count) + 1);
 					if count >= x"46" then
 						enter_write_result_next <= '0';
-						enter_disable_next <= '0';
 						count_next <= (others => '0');
 						lb_addr_next <= (others => '0');
 					end if;
@@ -233,11 +226,8 @@ begin
 					vga_command_data_next(7 downto 0) <= x"0A"; 
 					count_next <= (others => '0');
 					lb_addr_next <= (others => '0'); 
-					if enter_disable = '1' then
-						enter_disable_next <= '0';
+					if enter_write_result = '1' then
 						bcd_result_next <= bcd_result;
-					elsif enter_write_result = '1' then
-						enter_write_result_next <= '0';
 					else
 						start_calc_next <= '1';
 					end if;
@@ -322,7 +312,6 @@ begin
 			lb_addr <= lb_addr_next;
 			start_calc <= start_calc_next;
 			enter_write_result <= enter_write_result_next;
-			enter_disable <= enter_disable_next;
 			bcd_result_sig <= bcd_result_next;
 		end if;
 	end process sync;
