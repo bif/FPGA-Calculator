@@ -24,7 +24,7 @@ entity line_buffer is
 		ascii_sign_in : in std_logic_vector(7 downto 0);
 		start_calc : out std_logic;
 		enable : in std_logic;
-		bcd_result : in std_logic_vector(39 downto 0);
+		bcd_result : in std_logic_vector(39 downto 0)
 	);
 end entity line_buffer;
 

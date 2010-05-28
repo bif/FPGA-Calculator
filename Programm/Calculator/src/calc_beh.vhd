@@ -314,8 +314,8 @@ decode_ready_calc <= '0';
 			when FINISH =>
 				need_input_next <= '0';
 				start_decode_bcd <= '1';
-				--calculation <= to_integer(buffer_strich);
-				calculation <= 6671982;	-- test if bcd-conversion works
+				calculation <= to_integer(buffer_strich);
+				--calculation <= 6671982;	-- test if bcd-conversion works
 		end case;
 	end process;
 
