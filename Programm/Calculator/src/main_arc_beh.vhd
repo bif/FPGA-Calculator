@@ -112,7 +112,7 @@ process(sys_clk, sys_res_n)
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready, decode_ready_old, main_state, bcd_buf, sign_bcd_main)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -131,7 +131,7 @@ begin
 	--lb_addr_next <= lb_addr;
 	lb_addr <= "00000000";
 	addr_next <= addr;
-	decode_ready_old_next <= decode_ready;
+	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
 
 	case main_state is
@@ -233,7 +233,7 @@ begin
 			end if;
 			
 		when WAIT4SUM =>
-			if(decode_ready_old /= decode_ready and decode_ready = '1')		-- BCD - conversion of calculation is DONE --> copy sum into ringbuffer
+			if(decode_ready_old /= decode_ready_main and decode_ready_main = '1')	-- BCD - conversion of calculation is DONE --> copy sum into ringbuffer
 			then
 				ram_line_next <= 0;
 				main_state_next <= COPY_SUM;

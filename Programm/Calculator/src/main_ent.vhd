@@ -20,7 +20,7 @@ entity main is
 		trigger_main_tx		: out	std_logic := '0';
 		lb_enable		: out	std_logic := '0';
 		start_calc		: in	std_logic := '0';
-		decode_ready		: in	std_logic := '0';
+		decode_ready_main		: in	std_logic := '0';
 		lb_data			: in	std_logic_vector(DAT_WIDTH - 1 downto 0);
 		lb_addr			: out	std_logic_vector(ADR_WIDTH - 1 downto 0);
 		bcd_buf			: in unsigned(39 downto 0);

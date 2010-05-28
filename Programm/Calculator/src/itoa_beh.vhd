@@ -7,6 +7,7 @@ architecture beh of itoa is
 	signal count_next	:	integer range 0 to 35 := 0;
 	
 	signal sign_next	:	std_logic := '0';
+	signal decode_ready_next	:	std_logic := '0';
 	signal enable		:	std_logic := '0';
 	signal enable_next	:	std_logic := '0';
 	signal start		:	std_logic := '0';
@@ -35,6 +36,7 @@ begin
 			start <= '0';
 			count <= 0;
 			enable <= '0';
+			decode_ready <= '0';
 			out_0 <= "0000";
 			out_1 <= "0000";
 			out_2 <= "0000";
@@ -52,6 +54,7 @@ begin
 			enable <= enable_next;
 			scratch <= scratch_next;
 			sign <= sign_next;
+			decode_ready <= decode_ready_next;
 			out_0 <= out_0_next;
 			out_1 <= out_1_next;
 			out_2 <= out_2_next;
@@ -74,7 +77,7 @@ begin
 		scratch_tmp := scratch;	
 		enable_next <= enable;
 		sign_next <= sign;
-		decode_ready <= '0';
+		decode_ready_next <= '0';
 
 		out_0_next <= out_0;
 		out_1_next <= out_1;
@@ -103,7 +106,7 @@ begin
 			
 			scratch_tmp(71 downto 32) := "0000000000000000000000000000000000000000";
 			scratch_next <= "000000000000000000000000000000000000000000000000000000000000000000000000";	
-			decode_ready <= '0';
+			decode_ready_next <= '0';
 			count_next <= 0;
 
 			out_0_next <= "0000";
@@ -121,9 +124,9 @@ begin
 			then
 				enable_next <= '0';
 				count_next <= 0;
-				decode_ready <= '1';
+				decode_ready_next <= '1';
 			else
-				decode_ready <= '0';
+				decode_ready_next <= '0';
 			end if;
 		
 			if(enable = '1')

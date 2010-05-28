@@ -77,7 +77,7 @@ component calc is
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
 		error_calc	:	out	std_logic;
-		decode_ready_calc:       out     std_logic;
+		decode_ready_calc	:       out     std_logic;
 		sign_bcd_calc	:	out     std_logic;
 		bcd_buf		:	out	unsigned(39 downto 0)
 	);
@@ -288,7 +288,7 @@ begin
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	main_lb_addr_sig,
 		lb_data		=>	main_lb_data_sig,
-		decode_ready	=>	decode_ready_sig,
+		decode_ready_main	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		bcd_buf		=>	bcd_buf_sig,
 		sign_bcd_main	=>	sign_bcd_top

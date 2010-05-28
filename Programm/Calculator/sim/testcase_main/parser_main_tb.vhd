@@ -166,7 +166,8 @@ begin  -- behav
 		start_calc	=>	start_calc_sig,
 		lb_addr		=>	mem_debug_addr,
 		lb_data		=>	mem_debug_data,
-		decode_ready	=>	calc_ready_top,
+		--decode_ready	=>	calc_ready_top,
+		decode_ready	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		sign_bcd_main	=>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
