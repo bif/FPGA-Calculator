@@ -116,3 +116,167 @@ do parser_tb_behav.do
 # /opt/modelsim/modeltech/linux/vcom failed.
 #     while executing
 # "vcom -work work parser_tb.vhd"
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/src/parser_ent.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity parser
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/src/parser_pkg.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package parser_pkg
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/src/parser_arc_beh.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+vcom -reportprogress 300 -work work /homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase_main/parser_main_tb.vhd
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Loading package sp_ram_pkg
+# -- Loading package main_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+vsim work.parser_tb(sim)
+# vsim work.parser_tb(sim) 
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: [1] ../../src/main_arc_beh.vhd(289): (vopt-3473) Component instance "uart_inst : uart" is not bound.
+# Loading std.standard
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.parser_pkg
+# Loading work.sp_ram_pkg
+# Loading work.main_pkg
+# Loading work.parser_tb(sim)#1
+# Loading work.itoa_pkg
+# Loading work.calc(beh)#1
+# Loading work.itoa(beh)#1
+# Loading work.parser(beh)#1
+# Loading work.memarray_pkg
+# Loading work.main(beh)#1
+# ** Warning: (vsim-3473) Component instance "uart_inst : uart" is not bound.
+#    Time: 0 ns  Iteration: 0  Region: /parser_tb/main_inst  File: ../../src/main_arc_beh.vhd
+do parser_main_tb_behav.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is s0725240@ti8.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is s0725240@ti4.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt2".  Locker is s0725240@ti6.
+# ** Warning: (vlib-34) Library already exists at "behav_work".
+# Modifying modelsim.ini
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package itoa_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity itoa
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of itoa
+# -- Loading entity itoa
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity calc
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package itoa_pkg
+# -- Compiling architecture beh of calc
+# -- Loading entity calc
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package memarray_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity memarray
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of memarray
+# -- Loading entity memarray
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package main_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package memarray_pkg
+# -- Compiling entity main
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package memarray_pkg
+# -- Compiling architecture beh of main
+# -- Loading entity main
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package sp_ram_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling architecture beh of sp_ram
+# -- Loading entity sp_ram
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling package parser_pkg
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Compiling entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Compiling architecture beh of parser
+# -- Loading entity parser
+# Model Technology ModelSim SE vcom 6.5b Compiler 2009.05 May 21 2009
+# -- Loading package standard
+# -- Loading package std_logic_1164
+# -- Loading package numeric_std
+# -- Loading package parser_pkg
+# -- Loading package sp_ram_pkg
+# -- Loading package main_pkg
+# -- Compiling entity parser_tb
+# -- Compiling architecture sim of parser_tb
+# ** Error: (vish-4014) No objects found matching '/parser_tb/calc_inst/nibble_0'.
+# Error in macro ./parser_main_tb_behav.do line 110
+# (vish-4014) No objects found matching '/parser_tb/calc_inst/nibble_0'.
+#     while executing
+# "add wave -noupdate -format Literal -radix unsigned /parser_tb/calc_inst/nibble_0"
