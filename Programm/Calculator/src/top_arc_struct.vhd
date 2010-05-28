@@ -39,7 +39,7 @@ architecture struct of calculator_top is
 	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
-
+	signal bcd_result_sig : std_logic_vector(39 downto 0);
 
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
@@ -244,7 +244,8 @@ begin
 		lb_addr => lb_addr_wr_sig,
 		lb_data => lb_data_wr_sig,
 		start_calc => start_calc_sig, 
-		enable => enable_lb_sig				-- <-- main(rising edge)
+		enable => enable_lb_sig,				-- <-- main(rising edge)
+		bcd_result => bcd_result_sig
 	);
 
 	parser_inst : parser
