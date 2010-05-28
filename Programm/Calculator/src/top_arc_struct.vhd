@@ -55,7 +55,7 @@ architecture struct of calculator_top is
 	signal		operation_end_top	:	std_logic;
 	signal		error_calc_top		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
-
+	signal		sign_bcd_top		:	std_logic;
 
 component calc is
 	generic
@@ -289,7 +289,8 @@ begin
 		lb_data		=>	main_lb_data_sig,
 		decode_ready	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
-		bcd_buf		=>	bcd_buf_sig
+		bcd_buf		=>	bcd_buf_sig,
+		sign_bcd_main	=>	sign_bcd_top
 	);
 
 	calc_inst : calc
@@ -312,7 +313,8 @@ begin
 		need_input		=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_calc		=>	error_calc_top,
 		decode_ready_calc	=>	decode_ready_sig,
-		bcd_buf			=>	bcd_buf_sig
+		bcd_buf			=>	bcd_buf_sig,
+		sign_bcd_calc		=>	sign_bcd_top
 	);	
 
 	uart_tx <= uart_top_tx_sig;

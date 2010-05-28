@@ -24,9 +24,9 @@ architecture sim of parser_tb is
 
   --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
 
-	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59- 777 +  4";
-  signal clk : std_logic;
-  signal reset : std_logic;
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "59 + 777 * 4";
+	signal clk : std_logic;
+	signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
 	signal lb_data_wr_sig, lb_data_out_sig, mem_debug_data : std_logic_vector(LB_DATA_WIDTH - 1  downto 0);
 	signal operand_sig : signed(31 downto 0);
@@ -34,7 +34,6 @@ architecture sim of parser_tb is
 	signal end_parse, end_parse_next, end_of_op_sig, parse_ready_sig, read_next_n_o_sig, get_next, enable_lb_sig, start_calc_sig : std_logic := '0';
 	signal btn_a_sync : std_logic := '1';
 	signal lb_wr_sig, uart_top_rx_sig, uart_top_tx_sig : std_logic;
-
 
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
@@ -49,6 +48,7 @@ architecture sim of parser_tb is
 	signal		operation_end_top	:	std_logic;
 	signal		error_calc_top, negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
+	signal		sign_bcd_top		:	std_logic;
 
 
 
@@ -66,6 +66,7 @@ component calc is
 		sys_res_n       :       in	std_logic;
 		parse_ready	:       in	std_logic;
 		start_calc	:       in	std_logic;
+		sign_bcd_calc           : out   std_logic;
 		operation_end	:       in	std_logic;
 		operand         :       in	signed(31 downto 0);
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
@@ -100,6 +101,7 @@ begin  -- behav
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_calc	=>	error_calc_top,
+		sign_bcd_calc   =>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
 	);
 
@@ -166,6 +168,7 @@ begin  -- behav
 		lb_data		=>	mem_debug_data,
 		decode_ready	=>	calc_ready_top,
 		lb_enable	=>	enable_lb_sig,
+		sign_bcd_main	=>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
 	);
 
@@ -215,19 +218,19 @@ begin  -- behav
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 5 us;
+		wait for 500 us;
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 5 us;
+		wait for 500 us;
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 5 us;
+		wait for 500 us;
 
 
 		

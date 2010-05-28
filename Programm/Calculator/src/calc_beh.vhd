@@ -110,15 +110,19 @@ begin
 
 		case calc_state is
 			when READY =>
-				if(start_calc /= start_calc_old and start_calc = '1')
-				then
-					calc_state_next <= MANAGE;
-				end if;
 				op_punkt_flag_next <= '0';
 				op_strich_flag_next <= '0';
 				calc_ready_next <= '0';
 				ready_flag_next <= '0';
+				buffer_punkt_next <= "000000000000000000000000000000000000000000000000000000000000000";
+				buffer_strich_next <= "000000000000000000000000000000000000000000000000000000000000000";
+				operator_strich_next <= "00";
+				operator_punkt_next <= "00";
 
+				if(start_calc /= start_calc_old and start_calc = '1')
+				then
+					calc_state_next <= MANAGE;
+				end if;
 			when MANAGE =>
 				
 				if(buffer_punkt > OPERAND_MAX or buffer_punkt < OPERAND_MIN or buffer_strich > OPERAND_MAX or buffer_strich < OPERAND_MIN)
@@ -297,7 +301,8 @@ begin
 			error_calc_next <= '1';
 		when FINISH =>
 			need_input_next <= '0';
-			calculation <= to_integer(buffer_strich);
+			--calculation <= to_integer(buffer_strich);			-- FIXME TEST!
+			calculation <= 34254;
 			start_decode_bcd <= '1';
 		end case;
 	end process;
@@ -309,7 +314,10 @@ begin
 		sys_res_n       =>      sys_res_n,
 		int_in          =>	calculation,
 		start_decode    =>	start_decode_bcd,
+
 		decode_ready    =>	decode_ready_sig,
+		sign            =>	sign_bcd_sig,
+
 		out_0           =>	out_0_sig,
 		out_1           =>	out_1_sig,
 		out_2           =>	out_2_sig,
@@ -319,19 +327,29 @@ begin
 		out_6           =>	out_6_sig,
 		out_7           =>	out_7_sig,
 		out_8           =>	out_8_sig,
-		out_9           =>	out_9_sig,
-		sign            =>	sign_bcd_sig
+		out_9           =>	out_9_sig
 	);
 	decode_ready_calc <= decode_ready_sig;
-	bcd_buf(3 downto 0) <= out_0_sig;
-	bcd_buf(7 downto 4) <= out_1_sig;
-	bcd_buf(11 downto 8) <= out_2_sig;
-	bcd_buf(15 downto 12) <= out_3_sig;
-	bcd_buf(19 downto 16) <= out_4_sig;
-	bcd_buf(23 downto 20) <= out_5_sig;
-	bcd_buf(27 downto 24) <= out_6_sig;
-	bcd_buf(31 downto 28) <= out_7_sig;
-	bcd_buf(35 downto 32) <= out_8_sig;
-	bcd_buf(39 downto 36) <= out_9_sig;
+	sign_bcd_calc <= sign_bcd_sig;
+	--bcd_buf(3 downto 0) <= out_0_sig;
+	--bcd_buf(7 downto 4) <= out_1_sig;
+	--bcd_buf(11 downto 8) <= out_2_sig;
+	--bcd_buf(15 downto 12) <= out_3_sig;
+	--bcd_buf(19 downto 16) <= out_4_sig;
+	--bcd_buf(23 downto 20) <= out_5_sig;
+	--bcd_buf(27 downto 24) <= out_6_sig;
+	--bcd_buf(31 downto 28) <= out_7_sig;
+	--bcd_buf(35 downto 32) <= out_8_sig;
+	--bcd_buf(39 downto 36) <= out_9_sig;
+	bcd_buf(3 downto 0) <= out_9_sig;		-- ATTENTION: '1er-stelle' steht GANZ LINKS, danach '10er-stelle', danach 100-er-stelle, ...
+	bcd_buf(7 downto 4) <= out_8_sig;
+	bcd_buf(11 downto 8) <= out_7_sig;
+	bcd_buf(15 downto 12) <= out_6_sig;
+	bcd_buf(19 downto 16) <= out_5_sig;
+	bcd_buf(23 downto 20) <= out_4_sig;
+	bcd_buf(27 downto 24) <= out_3_sig;
+	bcd_buf(31 downto 28) <= out_2_sig;
+	bcd_buf(35 downto 32) <= out_1_sig;
+	bcd_buf(39 downto 36) <= out_0_sig;
 			
 end architecture beh;

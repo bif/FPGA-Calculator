@@ -6,52 +6,49 @@ use work.memarray_pkg.all;
 
 architecture beh of main is
 
-	constant LINES          : integer := 50;
-	constant LINE_LENGTH    : integer := 81;
-	constant DATA_WIDTH     : integer := 7;
+	constant	LINES          : integer := 50;
+	constant	LINE_LENGTH    : integer := 81;
+	constant	DATA_WIDTH     : integer := 7;
 
-	type MAIN_STATE_TYPE is (READY, SEND_UART, COPY_LB, COPY_SUM, WAIT4SUM);
-        signal main_state               : MAIN_STATE_TYPE;
-        signal main_state_next          : MAIN_STATE_TYPE;
+	type 		MAIN_STATE_TYPE is (READY, SEND_UART, COPY_LB, COPY_SUM, WAIT4SUM);
+        signal		main_state				: MAIN_STATE_TYPE;
+        signal		main_state_next				: MAIN_STATE_TYPE;
 
-	signal sense_old, sense_old_next		: std_logic := '0';
-	signal start_calc_old, start_calc_old_next	: std_logic := '0';
-	signal btn_a_sig 				: std_logic := '0';
-	signal uart_main_tx_sig 			: std_logic := '0';
-	signal uart_main_rx_sig 			: std_logic := '0';
-	signal byte_data				: std_logic_vector(7 downto 0) := "00000000";
-	signal byte_data_next				: std_logic_vector(7 downto 0) := "00000000";
-	signal tx_busy_main				: std_logic := '0';
-	signal tx_busy_main_old				: std_logic := '0';
-	signal tx_busy_main_old_next			: std_logic := '0';
-	signal send_byte_main				: std_logic := '0';
-	signal send_byte_main_next			: std_logic := '0';
-	signal trigger_main_tx_sig			: std_logic := '0';
+	signal		btn_a_sig 				: std_logic := '0';
+	signal		sense_old, sense_old_next		: std_logic := '0';
+	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
+	signal		uart_main_tx_sig 			: std_logic := '0';
+	signal		uart_main_rx_sig 			: std_logic := '0';
+	signal		tx_busy_main				: std_logic := '0';
+	signal		tx_busy_main_old			: std_logic := '0';
+	signal		tx_busy_main_old_next			: std_logic := '0';
+	signal		send_byte_main				: std_logic := '0';
+	signal		send_byte_main_next			: std_logic := '0';
+	signal		trigger_main_tx_sig			: std_logic := '0';
 	
-	signal init_sent				: integer range 0 to 5;
-	signal init_sent_next				: integer range 0 to 5;
+	signal		init_sent				: integer range 0 to 5;
+	signal		init_sent_next				: integer range 0 to 5;
 
+	signal		byte_data				: std_logic_vector(7 downto 0) := "00000000";
+	signal		byte_data_next				: std_logic_vector(7 downto 0) := "00000000";
 	-- memarray - signale
-	signal wr_main					: std_logic := '0';
-	signal wr_main_next				: std_logic := '0';
-	signal ram_offset				: integer range 0 to 4000;
-	signal ram_offset_next				: integer range 0 to 4000;
-	signal data_in_main, data_in_main_next		: std_logic_vector(7 downto 0);
-	signal data_out_main				: std_logic_vector(7 downto 0);
-	signal mem_pointer, mem_pointer_next		: integer range 0 to 51;
+	signal		wr_main					: std_logic := '0';
+	signal		wr_main_next				: std_logic := '0';
+	signal		ram_offset				: integer range 0 to 4095;
+	signal		ram_offset_next				: integer range 0 to 4095;
+	signal		data_in_main, data_in_main_next		: std_logic_vector(7 downto 0);
+	signal		data_out_main				: std_logic_vector(7 downto 0);
+	signal		mem_pointer, mem_pointer_next		: integer range 0 to 51;
 
-	signal ram_line					: integer range 0 to 90;
-	signal ram_line_next				: integer range 0 to 90;
-	signal line_count, line_count_next		: integer range 0 to 50;
+	signal		ram_line					: integer range 0 to 90;
+	signal		ram_line_next				: integer range 0 to 90;
+	signal		line_count, line_count_next		: integer range 0 to 50;
 
---	signal lb_addr_next				: std_logic_vector(7 downto 0) := "00000000";
-	signal addr, addr_next				: std_logic_vector(7 downto 0) := "00000000";
-	signal lb_enable_next				: std_logic := '0';
+	signal		addr, addr_next				: std_logic_vector(7 downto 0) := "00000000";
+	signal		lb_enable_next				: std_logic := '0';
 
-	signal rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
-	signal decode_ready_old, decode_ready_old_next	: std_logic := '0';
-
---	signal bcd_buf					: unsigned(39 downto 0) := "0000000000000000000000000000000000000000";
+	signal		rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
+	signal		decode_ready_old, decode_ready_old_next	: std_logic := '0';
 
 	component uart is
 	port
@@ -115,7 +112,7 @@ process(sys_clk, sys_res_n)
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready, decode_ready_old, main_state)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready, decode_ready_old, main_state, bcd_buf, sign_bcd_main)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -177,12 +174,17 @@ begin
 					init_sent_next <= init_sent + 1;
 					
 				else
-					if(ram_line = 81)				-- 2nd-last char of the line: send a newline
+					if(ram_line = 70)				-- 2nd-last char of the line: send a newline
+					then
+						byte_data_next <= x"3d";
+						send_byte_main_next <= '1';
+						ram_line_next <= ram_line + 1;
+					elsif(ram_line = 82)				-- 2nd-last char of the line: send a newline
 					then
 						byte_data_next <= "00001010";
 						send_byte_main_next <= '1';
-						ram_line_next <= 82;
-					elsif(ram_line = 82)
+						ram_line_next <= ram_line + 1;
+					elsif(ram_line = 83)
 					then
 						ram_line_next <= 0;
 						byte_data_next <= "00001101";
@@ -222,7 +224,7 @@ begin
 				addr_next <= std_logic_vector(unsigned(addr) + 1);
 			else
 				main_state_next <= WAIT4SUM;
---wr_main_next <= '0';
+				wr_main_next <= '0';
 				if(mem_pointer = 50)
 				then
 					mem_pointer_next <= 0;
@@ -233,13 +235,35 @@ begin
 		when WAIT4SUM =>
 			if(decode_ready_old /= decode_ready and decode_ready = '1')		-- BCD - conversion of calculation is DONE --> copy sum into ringbuffer
 			then
+				ram_line_next <= 0;
 				main_state_next <= COPY_SUM;
 			end if;
 
 		when COPY_SUM =>
-			mem_pointer_next <= mem_pointer + 1;
-			lb_enable_next <= '1';
-			main_state_next <= READY;
+			if(ram_line = 0)		-- send <+> or <->
+			then
+				wr_main_next <= '1';
+				ram_line_next <= ram_line + 1;
+				ram_offset_next <= mem_pointer * 81 + ram_line + 70;
+--				if(sign_bcd_main = '0')
+--				then
+					data_in_main_next <= x"3d";				-- '+'
+--				else
+--					data_in_main_next <= x"3d";				-- '-'
+--				end if;
+			elsif(ram_line < 11)
+			then
+				wr_main_next <= '1';
+				ram_line_next <= ram_line + 1;
+				ram_offset_next <= ram_offset + 1;
+				data_in_main_next <= std_logic_vector(unsigned(resize(bcd_buf((ram_line*4-1) downto ((ram_line-1)*4)), 8)) + 48);
+			else
+				lb_enable_next <= '1';			-- wake up linebuffer-module again
+				wr_main_next <= '0';
+				mem_pointer_next <= mem_pointer + 1;
+				ram_line_next <= 0;
+				main_state_next <= READY;
+			end if;
 	
 	end case;
 
@@ -249,19 +273,6 @@ begin
 --	end if;
 
 
---		if(ram_line < 10)
---		then
---			ram_line_next <= ram_line + 1;
---			ram_offset_next <= ram_line;
---	--		data_in_main_next <= bcd_buf(3 downto 0);
---		else
---			lb_enable_next <= '1';			-- wake up linebuffer-module again
---			block_tx_next <= '0';			-- enable TX unit again
---			wr_main_next <= '0';
---			mem_pointer_next <= mem_pointer + 1;
---			copy_sum_next <= '0';
---			ram_line_next <= 0;
---		end if;
 end process;
 
 	uart_inst : uart
