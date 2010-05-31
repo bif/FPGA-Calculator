@@ -24,7 +24,8 @@ architecture sim of parser_tb is
 
   --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
 
-	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "590+ 777 * 4";
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "1           ";
+	--signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "590+ 777 * 4";
 	signal clk : std_logic;
 	signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
@@ -46,7 +47,9 @@ architecture sim of parser_tb is
 
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		operation_end_top	:	std_logic;
-	signal		error_calc_top, negative		:	std_logic;
+	signal		error_calc_top		:	std_logic;
+	signal		error_parser_top		:	std_logic;
+	signal		negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
 
@@ -72,6 +75,7 @@ component calc is
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
+		error_calc		:	out	std_logic;
 		error_parser		:	in	std_logic;
 		decode_ready_calc	:       out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
@@ -100,7 +104,8 @@ begin  -- behav
 		operand		=>	operand_sig,
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_parser	=>	error_calc_top,
+		error_calc	=>	error_calc_top,
+		error_parser	=>	error_parser_top,
 		sign_bcd_calc   =>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
 	);
@@ -171,7 +176,8 @@ begin  -- behav
 		lb_enable	=>	enable_lb_sig,
 		sign_bcd_main	=>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig,
-		error_parser	=>	error_calc_top
+		error_parser	=>	error_parser_top,
+		error_calc	=>	error_calc_top
 	);
 
 

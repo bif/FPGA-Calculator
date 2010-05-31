@@ -24,6 +24,7 @@ entity calc is
 		operator	:	in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		error_parser	:	in	std_logic		-- inputsignal from PARSER
+		error_parser	:	in	std_logic;		-- inputsignal from PARSER
+		error_calc	:	out	std_logic		-- inputsignal from PARSER
 	);
 end entity calc;

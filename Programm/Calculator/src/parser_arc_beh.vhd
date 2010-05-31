@@ -13,6 +13,8 @@ architecture beh of parser is
 	signal old_operator, operator_next : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
 	signal once, once_next, num_and_space, num_and_space_next, spezial, spezial_next, space, space_next, num, num_next, leading_sign_old, leading_sign_next, debug_end_of_op, end_of_op_next, parse_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next : std_logic;
+
+	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
 	
 --	signal debug_sig_next, debug_sig :integer := 0;
 
@@ -204,27 +206,28 @@ architecture beh of parser is
 
 begin
 
-  next_state : process(parser_fsm_state, data_in, read_next_n_o, error_sig, check_op_ready, convert_ready, debug_end_of_op)
+  next_state : process(parser_fsm_state, data_in, read_next_n_o, read_next_n_o_old, error_sig, check_op_ready, convert_ready, debug_end_of_op)
   begin
     parser_fsm_state_next <= parser_fsm_state;	
+read_next_n_o_old_next <= read_next_n_o;
 
     case parser_fsm_state is
 			when READY =>
-				if read_next_n_o = '1' and debug_end_of_op = '0' then
+				if((read_next_n_o /= read_next_n_o_old and read_next_n_o = '1') and (debug_end_of_op = '0')) then
 					parser_fsm_state_next <= CHECK_UNSIGNED;
 				end if;
 
 			when CHECK_UNSIGNED =>
-				if error_sig = '0' then
-					parser_fsm_state_next <= CHECK_OPERAND;
-				elsif error_sig = '1' then
-					parser_fsm_state_next <= ERROR_STATE;
-				end if;
+--				if error_sig = '0' then					-- auskommentiert von harri: die error_sig - bedingung kann doch noch
+					parser_fsm_state_next <= CHECK_OPERAND;		-- gar nicht erfüllt sein?!
+--				elsif error_sig = '1' then			
+--					parser_fsm_state_next <= ERROR_STATE;
+--				end if;
 
 			when ERROR_STATE =>
 				parser_fsm_state_next <= READY;
 
-			when CHECK_OPERAND =>
+			when CHECK_OPERAND =>						-- beim 1. operanden ist noch kein '*' bzw. '/' erlaubt - flag setzen!
 				case data_in(7 downto 0) is
 					when x"2B" =>
 						-- next operator = '+' located 
@@ -335,6 +338,8 @@ begin
 				once_next <= '0';
 				check_op_ready_next <= '0';
 				convert_ready_next <= '0';		
+				addr_lb_next <= "00000000";
+				start_pos_next <= "00000000";
 --debug_sig_next <= 0;
 
 			when CHECK_UNSIGNED =>
@@ -375,7 +380,8 @@ begin
 					if num_and_space = '1' and once = '0' then
 						once_next <= '1';
 						convert_count_next <= std_logic_vector(unsigned(line_count) - 2); 
-						start_pos_next <= std_logic_vector(unsigned(start_pos) - 1); 
+						start_pos_next <= std_logic_vector(unsigned(start_pos)); 
+						--start_pos_next <= std_logic_vector(unsigned(start_pos) - 1); 	-- negative startposition beim 1. operanden...
 					end if;
 				else
 					if space = '0' then
@@ -568,6 +574,7 @@ begin
 			addr_lb_old <= (others => '0');
 			error_sig <= '0';
 			debug_end_of_op <= '0';
+			read_next_n_o_old <= '0';
 --debug_sig <= 0;
 		elsif (sys_clk'event and sys_clk = '1') then
 			check_op_ready <= check_op_ready_next;
@@ -594,6 +601,7 @@ begin
 			leading_sign_old <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
+			read_next_n_o_old <= read_next_n_o_old_next;
 --debug_sig <= debug_sig_next;
 		end if;
   end process sync;

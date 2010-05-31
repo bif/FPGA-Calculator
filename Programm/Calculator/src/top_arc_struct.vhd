@@ -53,6 +53,7 @@ architecture struct of calculator_top is
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		need_input_top		:	std_logic;
 	signal		operation_end_top	:	std_logic;
+	signal		error_parser_top	:	std_logic;
 	signal		error_calc_top		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
@@ -64,26 +65,27 @@ architecture struct of calculator_top is
 component calc is
 	generic
 	(
-		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
-		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
-		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
-		RESULT_MIN      :       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
+		OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
+		OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
+		RESULT_MAX      	:       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+		RESULT_MIN     		:       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
 	);
 	port
 	(
-		sys_clk         :       in	std_logic;
-		sys_res_n       :       in	std_logic;
-		parse_ready	:       in	std_logic;
-		start_calc	:       in	std_logic;
-		operation_end	:       in	std_logic;
-		operand         :       in	signed(31 downto 0);
-		operator        :       in	std_logic_vector(1 downto 0)  := "00";
-		need_input	:	out	std_logic;
-		calc_ready	:	out	std_logic;
-		error_parser	:	in	std_logic;		-- input  calc <-- parser
+		sys_clk         	:       in	std_logic;
+		sys_res_n       	:       in	std_logic;
+		parse_ready		:       in	std_logic;
+		start_calc		:       in	std_logic;
+		operation_end		:       in	std_logic;
+		operand         	:       in	signed(31 downto 0);
+		operator        	:       in	std_logic_vector(1 downto 0)  := "00";
+		need_input		:	out	std_logic;
+		calc_ready		:	out	std_logic;
+		error_parser		:	in	std_logic;		-- input  calc <-- parser
+		error_calc		:	out	std_logic;		-- input  calc <-- parser
 		decode_ready_calc	:       out     std_logic;
-		sign_bcd_calc	:	out     std_logic;
-		bcd_buf		:	out	unsigned(39 downto 0)
+		sign_bcd_calc		:	out     std_logic;
+		bcd_buf			:	out	unsigned(39 downto 0)
 	);
 end component calc;
 
@@ -297,7 +299,8 @@ begin
 		lb_enable	=>	enable_lb_sig,
 		bcd_buf		=>	bcd_buf_sig,
 		sign_bcd_main	=>	sign_bcd_top,
-		error_parser	=>	error_calc_top
+		error_parser	=>	error_parser_top,
+		error_calc	=>	error_calc_top
 	);
 
 	calc_inst : calc
@@ -318,7 +321,8 @@ begin
 		operand			=>	operand_sig,
 		operator		=>	operator_sig,
 		need_input		=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_parser		=>	error_calc_top,
+		error_parser		=>	error_parser_top,
+		error_calc		=>	error_calc_top,
 		decode_ready_calc	=>	decode_ready_sig,
 		bcd_buf			=>	bcd_buf_sig,
 		sign_bcd_calc		=>	sign_bcd_top
