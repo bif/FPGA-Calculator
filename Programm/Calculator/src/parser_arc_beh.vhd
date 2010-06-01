@@ -5,18 +5,18 @@ use work.parser_pkg.all;
 
 architecture beh of parser is
   type SC_H_FSM_STATE_TYPE is
-    (READY, CHECK_UNSIGEND_PREE,  CHECK_UNSIGNED, CHECK_OPERAND,  CHECK_OPERAND_PREE, PLUS, MINUS, MUL, DIV, SPACE_BAR, NUMBER, CONVERT_TO_INT_PREE, CONVERT_TO_INT, ERROR_STATE);
+    (READY, CHECK_UNSIGNED_PREE, CHECK_UNSIGNED, CHECK_OPERAND, CHECK_OPERAND_PREE, CONVERT_TO_INT_PREE, CONVERT_TO_INT, ERROR_STATE);
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig, error_sig_next : std_logic;
 	signal operator_next, last_operator : std_logic_vector(1 downto 0);
 	signal operand_next, last_operand : std_logic_vector(31 downto 0);
-	signal leading_sign_next, end_of_op_next, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next  : std_logic := '0';
+	signal leading_sign_next, leading_sign_old, end_of_op_next, end_of_op_old, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next, convert_ready, convert_ready_next  : std_logic := '0';
 	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
-	signal space, space_next, num, num_next : integer range 3 to 0 := 0;
-	signal mem_ready, mem_ready_next, once, once_next : std_logic := '0';
+	signal space, space_next, num, num_next : std_logic := '0';
+	signal mem_ready, mem_ready_next, once, once_next : std_logic;
 
-	signal addr_lb_next, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal addr_lb_next, addr_lb_old, convert_count, convert_count_next, line_count, line_count_next, start_pos, start_pos_next, end_pos, end_pos_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
 
 	
 --	signal debug_sig_next, debug_sig :integer := 0;
@@ -218,19 +218,23 @@ begin
     case parser_fsm_state is
 			when READY =>
 				mem_ready_next <= '0';
-				if((read_next_n_o /= read_next_n_o_old and read_next_n_o = '1') then
+				if(read_next_n_o /= read_next_n_o_old and read_next_n_o = '1') then
 					parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
 				end if;
 
 			-- the pree state must be executed twice => memory-data valid in the next state
-			when CHECK_UNSIGNED_PREE =>
-				if check_unsigend_ready = '0' then
-					if mem_ready = '1' then
-						parser_fsm_state_next <= CHECK_UNSIGNED;
-						mem_ready_next <= '0';
-					else
-						parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
-						mem_ready_next <= '1';
+			when CHECK_UNSIGNED_PREE => 
+				if error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				else	
+					if check_unsigned_ready = '0' then
+						if mem_ready = '1' then
+							parser_fsm_state_next <= CHECK_UNSIGNED;
+							mem_ready_next <= '0';
+						else
+							parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
+							mem_ready_next <= '1';
+						end if;
 					end if;
 				end if;
 
@@ -238,38 +242,46 @@ begin
 				if check_unsigned_ready = '1' then
 					parser_fsm_state_next <= CHECK_OPERAND_PREE;
 				else 
-					parser_fse_state_next <= CHECK_UNSIGNED_PREE;
+					parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
 				end if;
 
 			-- the pree state must be executed twice => memory-data valid in the next state
-			when CHECK_OPERAND_PREE =>	
-				if check_op_ready = '0' then
-					if mem_ready = '1' then
-						parser_fsm_state_next <= CHECK_OPERAND;
-						mem_ready_next <= '0';
-					else
-						parser_fsm_state_next <= CHECK_OPERAND_PREE;
-						mem_ready_next <= '1';
+			when CHECK_OPERAND_PREE => 
+				if error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				else	
+					if check_op_ready = '0' then
+						if mem_ready = '1' then
+							parser_fsm_state_next <= CHECK_OPERAND;
+							mem_ready_next <= '0';
+						else
+							parser_fsm_state_next <= CHECK_OPERAND_PREE;
+							mem_ready_next <= '1';
+						end if;
 					end if;
 				end if;
 
 			when CHECK_OPERAND =>
-				if check_operand_ready = '1' then
+				if check_op_ready = '1' then
 					parser_fsm_state_next <= CONVERT_TO_INT_PREE;
 				else
-					parse_fsm_state_next <= CHECK_OPERAND_PREE;
+					parser_fsm_state_next <= CHECK_OPERAND_PREE;
 				end if;
 
 			-- the pree state must be executed twice => memory-data valid in the next state
 			when CONVERT_TO_INT_PREE =>
-				if convert_ready = '0' then
-					if mem_ready = '1' then
-						parser_fsm_state_next <= CONVERT_TO_INT;
-						mem_ready_next <= '0';
-					else
-						parser_fsm_state_next <= CONVERT_TO_INT_PREE;
-						mem_ready_next <= '1';
-					end if;		
+				if error_sig = '1' then
+					parser_fsm_state_next <= ERROR_STATE;
+				else	
+					if convert_ready = '0' then
+						if mem_ready = '1' then
+							parser_fsm_state_next <= CONVERT_TO_INT;
+							mem_ready_next <= '0';
+						else
+							parser_fsm_state_next <= CONVERT_TO_INT_PREE;
+							mem_ready_next <= '1';
+						end if;		
+					end if;
 				end if;
 	
 			when CONVERT_TO_INT =>
@@ -287,10 +299,9 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, convert_ready)
+	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, convert_ready, end_of_op_old, start_pos, convert_count, last_operand, num, space, error_sig, addr_lb_old, leading_sign_old)
 
   begin
-		parser_fsm_state_old_next <= parser_fsm_state;
 		start_pos_next <= start_pos;
 		parse_ready_next <= '0';
 		end_of_op_next <= '0';
@@ -306,17 +317,21 @@ begin
 		once_next <= once;
 		num_next <= num;
 		space_next <= space;
+		error_sig_next <= error_sig;
+		addr_lb_next <= addr_lb_old;
+		leading_sign_next <= leading_sign_old;
 
 
     case parser_fsm_state is
 			when READY =>
-					num_next <= 0;
-					space_next <= 0;
+					num_next <= '0';
+					space_next <= '0';
 					once_next <= '0';
-					convert_count <= (others => '0');
-					error_sig <= '0';
+					convert_count_next <= (others => '0');
+					error_sig_next <= '0';
 					end_of_op_next <= '0';
 					parse_ready_next <= '0';
+					leading_sign_next <= '0';
 				--TODO: reset all signals
 				null;
 
@@ -351,7 +366,7 @@ begin
 
 					when others =>
 						--if '/' oer '*' detected => ERROR
-						error_sig <= '1';
+						error_sig_next <= '1';
 
 				end case;
 
@@ -364,54 +379,54 @@ begin
 -- und damit verbudene Fehlererkennungen zu unterscheiden ... ?? welche der 4 zustände sind erlaubt?
 -- vielleicht once nicht zweimal hochzählen aber mit abfragen in der if Verzweigung
 
-				case data_in(7 downto 0) =>
+				case data_in(7 downto 0) is
 					when x"20" =>
-						if num = 1 then
-							space_next <= 1;
+						if num = '1' then
+							space_next <= '1';
 						end if;
 
 					when x"30" | x"31" | x"32" | x"33" | x"34" | x"35" | x"36" | x"37" | x"38" | x"39" =>
-						if once = '0' and space = 0 then
-							once <= '1';
+						if once = '0' and space = '0' then
+							once_next <= '1';
 							start_pos_next <= line_count;
-							num_next = 1;
-						elsif num = 1 and space = 1 then
-							error_sig <= '1';
+							num_next <= '1';
+						elsif num = '1' and space = '1' then
+							error_sig_next <= '1';
 						else
 							convert_count_next <= line_count;
 						end if; 
 
 					when x"2B" =>
 						-- '+' dedected
-						if num = 0 and space = 0 then
-							error_sig <= '1';
+						if num = '0' and space = '0' then
+							error_sig_next <= '1';
 						else 
 							operator_next <= "00";
 							check_op_ready_next <= '1';
 						end if; 
 
-					when x"2B" =>
+					when x"2D" =>
 						-- '-' dedected
-						if num = 0 and space = 0 then
-							error_sig <= '1';
+						if num = '0' and space = '0' then
+							error_sig_next <= '1';
 						else 
 							operator_next <= "01";
 							check_op_ready_next <= '1';
 						end if; 
 
-					when x"2B" =>
+					when x"2A" =>
 						-- '*' dedected
-						if num = 0 and space = 0 then
-							error_sig <= '1';
+						if num = '0' and space = '0' then
+							error_sig_next <= '1';
 						else 
 							operator_next <= "10";
 							check_op_ready_next <= '1';
 						end if; 
 
-					when x"2B" =>
+					when x"2F" =>
 						-- '/' dedected
-						if num = 0 and space = 0 then
-							error_sig <= '1';
+						if num = '0' and space = '0' then
+							error_sig_next <= '1';
 						else 
 							operator_next <= "11";
 							check_op_ready_next <= '1';
@@ -419,24 +434,27 @@ begin
 
 					when x"3D" =>
 						-- seperator '=' dedected
-						if num = 0 then
-							error_sig <= '1';
+						if num = '0' then
+							error_sig_next <= '1';
 						else
 							check_op_ready_next <= '1';
 							end_of_op_next <= '1';
 						end if;
+			
+					when others =>
+						null;
 
 				end case;
 				line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 
 			when CONVERT_TO_INT_PREE =>
-					if end_of_operation = '1' then
+					if end_of_op_old = '1' then
 						end_of_op_next <= '1';
 					end if;
 					addr_lb_next <= start_pos;
 					
 			when CONVERT_TO_INT =>
-				if end_of_opperation = '1' then
+				if end_of_op_old = '1' then
 					end_of_op_next <= '1';
 				end if;
 				if (unsigned(convert_count) - unsigned(start_pos)) >= 1 then
@@ -507,7 +525,7 @@ begin
 					
 					convert_ready_next <= '1';
 				end if;
-				start_pos <= std_logic_vector(unsigned(start_pos) + 1);
+				start_pos_next <= std_logic_vector(unsigned(start_pos) + 1);
 
 			when ERROR_STATE =>
 --TODO: !!!! FIXME!!! noch keine Error Behandlung!
@@ -536,7 +554,7 @@ begin
       parser_fsm_state <= READY;
 			line_count <= (others => '0');
 			convert_count <= (others => '0');
-			last_operand <= (others => '0');;
+			last_operand <= (others => '0');
 			error_sig <= '0';
 			read_next_n_o_old <= '0';
 		elsif (sys_clk'event and sys_clk = '1') then
@@ -548,15 +566,23 @@ begin
 			convert_ready <= convert_ready_next;
 			line_count <= line_count_next;
 			addr_lb <= addr_lb_next;
+			addr_lb_old <= addr_lb_next;
 			end_of_operation <= end_of_op_next;
+			end_of_op_old <= end_of_op_next;
 			parse_ready <= parse_ready_next;
 			operator <= operator_next;
 			operand <= signed(operand_next);	
 			last_operand <= operand_next;
 			leading_sign <= leading_sign_next;
+			leading_sign_old <= leading_sign_next;
 			start_pos <= start_pos_next;
 			convert_count <= convert_count_next;
 			read_next_n_o_old <= read_next_n_o_old_next;
+			space <= space_next;
+			num <= num_next;
+			error_sig <= error_sig_next;
+			mem_ready <= mem_ready_next;
+			once <= once_next;
 		end if;
   end process sync;
 end architecture beh;
