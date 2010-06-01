@@ -76,13 +76,13 @@ F/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/src/itoa_beh
 l29
 L5
 VG4J6jVnEJjfH0S@d8?;QS2
-!s100 0QXU7Ek1R5<=TZhiAcOJc0
 R6
 32
 Z13 Mx2 4 ieee 14 std_logic_1164
 Z14 Mx1 4 ieee 11 numeric_std
 R7
 R8
+!s100 0QXU7Ek1R5<=TZhiAcOJc0
 Pitoa_pkg
 R3
 R4
@@ -264,11 +264,11 @@ F/homes/s0725240/Desktop/hw-mod/FPGA_Calculator/Programm/Calculator/sim/testcase
 l0
 L10
 V[O4h_X9[fXU=BPE0ZnVQ30
-!s100 >]RLVHC16hhHIH[PkmNB:0
 R6
 32
 R7
 R8
+!s100 >]RLVHC16hhHIH[PkmNB:0
 Esp_ram
 R15
 R3
