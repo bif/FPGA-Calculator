@@ -18,35 +18,18 @@ architecture sim of calc_tb is
 	operator        :       in      std_logic_vector(1 downto 0)  := "00";
 	need_input	:	out	std_logic := '0';
 	error_calc      :	out     std_logic;
-	decode_ready    :	out	std_logic;
-	nibble_0        :       out     unsigned(3 downto 0) := "0000";         -- calculation nibble 0 (einerstelle)
-	nibble_1        :       out     unsigned(3 downto 0) := "0000";         -- ...
-	nibble_2        :       out     unsigned(3 downto 0) := "0000";
-	nibble_3        :       out     unsigned(3 downto 0) := "0000";
-	nibble_4        :       out     unsigned(3 downto 0) := "0000";
-	nibble_5        :       out     unsigned(3 downto 0) := "0000";
-	nibble_6        :       out     unsigned(3 downto 0) := "0000";
-	nibble_7        :       out     unsigned(3 downto 0) := "0000";
-	nibble_8        :       out     unsigned(3 downto 0) := "0000";
-	nibble_9        :       out     unsigned(3 downto 0) := "0000"         -- ... most significant nibble
+	error_parser      :	in     std_logic;
+	decode_ready_calc    :	out	std_logic;
+	bcd_buf		:	out	unsigned(39 downto 0)
 
     );
   end component calc;
   
-	signal sys_clk, sys_res_n, start_calc, decode_ready, parse_ready, need_input, error_calc, operation_end : std_logic;
+	signal sys_clk, sys_res_n, start_calc, decode_ready_calc, parse_ready, need_input, error_calc, error_parser, operation_end : std_logic;
 	signal stop : boolean := false;
 	signal operand	:	signed(31 downto 0);
 	signal operator	:	std_logic_vector(1 downto 0);
-	signal nib0	: unsigned(3 downto 0) := "0000";
-	signal nib1	: unsigned(3 downto 0) := "0000";
-	signal nib2	: unsigned(3 downto 0) := "0000";
-	signal nib3	: unsigned(3 downto 0) := "0000";
-	signal nib4	: unsigned(3 downto 0) := "0000";
-	signal nib5	: unsigned(3 downto 0) := "0000";
-	signal nib6	: unsigned(3 downto 0) := "0000";
-	signal nib7	: unsigned(3 downto 0) := "0000";
-	signal nib8	: unsigned(3 downto 0) := "0000";
-	signal nib9	: unsigned(3 downto 0) := "0000";
+	signal bcd_buf	:	 unsigned(39 downto 0);
 begin
   uut : calc
     port map
@@ -59,18 +42,10 @@ begin
 	operand => operand,
 	operator => operator,
 	operation_end	=>	operation_end,
-	decode_ready => decode_ready,
+	decode_ready_calc => decode_ready_calc,
 	error_calc => error_calc,
-	nibble_0 => nib0,
-	nibble_1 => nib1,
-	nibble_2 => nib2,
-	nibble_3 => nib3,
-	nibble_4 => nib4,
-	nibble_5 => nib5,
-	nibble_6 => nib6,
-	nibble_7 => nib7,
-	nibble_8 => nib8,
-	nibble_9 => nib9
+	error_parser => error_parser,
+	bcd_buf => bcd_buf
 	
     );
     
@@ -94,8 +69,8 @@ begin
 	start_calc <= '1';
     wait for 100 ns;
 	start_calc <= '0';
-	operator <= "10";
-	operand <= "00000000000000001000001000000001";		-- 33281 *
+	operator <= "00";
+	operand <= "00000000000000001000001000000001";		-- 33281 +
     wait for 1000 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -118,16 +93,16 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000100001000";		-- 264 * 
+	operator <= "00";
+	operand <= "00000000000000000000000100001000";		-- 264 +
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000000111001";		-- 57 * 
+	operator <= "00";
+	operand <= "00000000000000000000000000111001";		-- 57 + 
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -142,8 +117,8 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000010000111110001";		-- 8689 * 
+	operator <= "01";
+	operand <= "00000000000000000010000111110001";		-- 8689 -
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -158,8 +133,8 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000000111001";		-- 57 *
+	operator <= "01";
+	operand <= "00000000000000000000000000111001";		-- 57 -
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;

@@ -2,9 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.itoa_pkg.all;
+use work.alu_pkg.all;
 
 architecture beh of calc is
-	type CALC_STATE_TYPE is (READY, MANAGE, FINISH, WAIT4PARSER, OP_PUNKT, OP_STRICH, INVALID, WAIT4ALU);
+	type CALC_STATE_TYPE is (READY, MANAGE, FINISH, WAIT4PARSER, OP_PUNKT, OP_STRICH, INVALID, WAIT4ALU, WAIT4ALU_STRICH, WAIT4ALU_PUNKT, WAIT4ALU_TMP);
 	signal calc_state		: CALC_STATE_TYPE;
 	signal calc_state_next		: CALC_STATE_TYPE;
 	signal start_calc_old		: std_logic;
@@ -21,6 +22,19 @@ architecture beh of calc is
 	signal decode_ready_old_next	: std_logic;
 	signal decode_ready_sig		: std_logic;
 	
+	signal operator_calc		: std_logic_vector(1 downto 0) := "00";
+	signal operator_calc_next	: std_logic_vector(1 downto 0) := "00";
+	signal start_operation_calc	: std_logic := '0';
+	signal start_operation_calc_next: std_logic := '0';
+	signal operation_done_sig	: std_logic := '0';
+	signal operation_done_old	: std_logic := '0';
+	signal operation_done_old_next	: std_logic := '0';
+	signal sum_tmp			: signed(62 downto 0);
+	signal sum_tmp_next		: signed(62 downto 0);
+	signal operand_1		: signed(31 downto 0);
+	signal operand_1_next		: signed(31 downto 0);
+	signal operand_2		: signed(31 downto 0);
+	signal operand_2_next		: signed(31 downto 0);
 	signal buffer_strich		: signed(62 downto 0);
 	signal buffer_strich_next	: signed(62 downto 0);
 	signal buffer_punkt		: signed(62 downto 0);
@@ -70,6 +84,10 @@ begin
 			decode_ready_old <= '0';
 			calc_ready <= '0';
 			ready_flag <= '0';
+			operand_1 <= "00000000000000000000000000000000";
+			operand_2 <= "00000000000000000000000000000000";
+			operation_done_old <= '0';
+			operator_calc <= "00";
 		elsif(sys_clk'event and sys_clk = '1')
 		then
 			calc_state <= calc_state_next;
@@ -87,11 +105,15 @@ begin
 			decode_ready_old <= decode_ready_old_next;
 			calc_ready <= calc_ready_next;
 			ready_flag <= ready_flag_next;
+			operand_1 <= operand_1_next;
+			operand_2 <= operand_2_next;
+			operation_done_old <= operation_done_old_next;
+			operator_calc <= operator_calc_next;
 		end if;
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operator, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, error_parser, error_calc_old)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, error_parser, error_calc_old, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, start_operation_calc)
 	variable erg_tmp	:	signed(62 downto 0) := "000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		erg_tmp := "000000000000000000000000000000000000000000000000000000000000000";
@@ -109,8 +131,12 @@ begin
 		ready_flag_next <= ready_flag;
 		calc_ready_next <= '0';
 		error_calc_old_next <= error_parser;
-
-decode_ready_calc <= '0';
+		operand_1_next <= operand_1;
+		operand_2_next <= operand_2;
+		operation_done_old_next <= operation_done_sig;
+		operator_calc_next <= operator_calc;
+		start_operation_calc_next <= start_operation_calc;
+		decode_ready_calc <= '0';
 
 		case calc_state is
 			when READY =>
@@ -129,7 +155,7 @@ decode_ready_calc <= '0';
 					calc_state_next <= MANAGE;
 				end if;
 			when MANAGE =>
-				
+				start_operation_calc_next <= '0';
 				if(buffer_punkt > OPERAND_MAX or buffer_punkt < OPERAND_MIN or buffer_strich > OPERAND_MAX or buffer_strich < OPERAND_MIN)
 				then
 					calc_state_next <= INVALID;	-- overflow
@@ -166,27 +192,30 @@ decode_ready_calc <= '0';
 				if(op_punkt_flag = '0')		-- keine operation vorgemerkt
 				then
 					buffer_punkt_next <= resize(operand, 63);
-					operator_punkt_next <= operator;
 					op_punkt_flag_next <= '1';
---					calc_state_next <= MANAGE;
-					calc_state_next <= WAIT4ALU;
+					calc_state_next <= MANAGE;
 				elsif(op_punkt_flag = '1')
 				then
-					operator_punkt_next <= operator;
 					if(operator_punkt = "10")		-- multiplikation
 					then
-						buffer_punkt_next <= resize(buffer_punkt * operand, 63);
---						calc_state_next <= MANAGE;
-						calc_state_next <= WAIT4ALU;
+--	MUL --> PUNKT				buffer_punkt_next <= resize(buffer_punkt * operand, 63);
+						operand_1_next <= resize(buffer_punkt, 32);
+						operand_2_next <= operand;
+						operator_calc_next <= "10";
+						calc_state_next <= WAIT4ALU_PUNKT;
+						start_operation_calc_next <= '1';
 					elsif(operator_punkt = "11")			-- division
 					then
 						if(operand = 0)
 						then
 							calc_state_next <= INVALID;
 						else
---							buffer_punkt_next <= resize(buffer_punkt / operand, 63);
---							calc_state_next <= MANAGE;
-							calc_state_next <= WAIT4ALU;
+--	DIV --> PUNKT					buffer_punkt_next <= resize(buffer_punkt / operand, 63);
+							operand_1_next <= resize(buffer_punkt, 32);
+							operand_2_next <= operand;	
+							operator_calc_next <= "11";
+							calc_state_next <= WAIT4ALU_PUNKT;
+							start_operation_calc_next <= '1';
 						end if;
 					
 					end if;
@@ -199,8 +228,7 @@ decode_ready_calc <= '0';
 					buffer_strich_next <= resize(operand, 63);
 					operator_punkt_next <= operator;
 					op_strich_flag_next <= '1';
---					calc_state_next <= MANAGE;
-					calc_state_next <= WAIT4ALU;
+					calc_state_next <= MANAGE;
 
 				elsif(op_strich_flag = '0' and op_punkt_flag = '1')	-- punktrechnung vorgemerkt
 				then
@@ -208,9 +236,13 @@ decode_ready_calc <= '0';
 					op_punkt_flag_next <= '0';
 					if(operator_punkt = "10")			-- multiplikation vorgemerkt
 					then
-						buffer_strich_next <= resize(buffer_punkt * operand, 63);
---						calc_state_next <= MANAGE;
-						calc_state_next <= WAIT4ALU;
+--						buffer_strich_next <= resize(buffer_punkt * operand, 63);
+						operand_1_next <= resize(buffer_punkt, 32);
+						operand_2_next <= operand;
+						operator_calc_next <= "10";
+						calc_state_next <= WAIT4ALU_STRICH;
+						start_operation_calc_next <= '1';
+-- MUL --> buffer_strich
 					elsif(operator_punkt = "11")			-- division vorgemerkt
 					then
 						if(operand = 0)
@@ -218,8 +250,12 @@ decode_ready_calc <= '0';
 							calc_state_next <= INVALID;
 						else
 --							buffer_strich_next <= resize(buffer_punkt / operand, 63);
---							calc_state_next <= MANAGE;
-							calc_state_next <= WAIT4ALU;
+-- DIV --> buffer_strich		
+							operand_1_next <= resize(buffeR_punkt, 32);
+							operand_2_next <= operand;
+							operator_calc_next <= "11";
+							calc_state_next <= WAIT4ALU_STRICH;
+							start_operation_calc_next <= '1';
 						end if;
 					end if;
 
@@ -227,20 +263,32 @@ decode_ready_calc <= '0';
 				then
 					if(operator_strich = "00")
 					then
-						buffer_strich_next <= resize(buffer_strich + operand, 63);
+--						buffer_strich_next <= resize(buffer_strich + operand, 63);
+-- ADD --> buffer_strich
+						operand_1_next <= resize(buffer_strich, 32);
+						operand_2_next <= operand;
+						operator_calc_next <= "00";
+						calc_state_next <= WAIT4ALU_STRICH;
+						start_operation_calc_next <= '1';
+
 					elsif(operator_strich = "01")
 					then
-						buffer_strich_next <= resize(buffer_strich - operand, 63);
+--						buffer_strich_next <= resize(buffer_strich - operand, 63);
+-- SUB --> buffer_strich
+						operand_1_next <= resize(buffer_strich, 32);
+						operand_2_next <= operand;
+						operator_calc_next <= "01";
+						calc_state_next <= WAIT4ALU_STRICH;
+						start_operation_calc_next <= '1';
 					end if;
---					calc_state_next <= MANAGE;
-					calc_state_next <= WAIT4ALU;
 
 				elsif(op_strich_flag = '1' and op_punkt_flag = '1')	-- punkt UND strichrechnung vorgemerkt
 				then
 					-- zuerst punktrechnung auflösen...
 					if(operator_punkt = "10")			
 					then					
-						erg_tmp := resize(buffer_punkt, 31) * operand;
+--						erg_tmp := resize(buffer_punkt, 31) * operand;
+-- MUL --> TMP!!
 					elsif(operator_punkt = "11")
 					then
 						if(operand = 0)
@@ -248,6 +296,7 @@ decode_ready_calc <= '0';
 							calc_state_next <= INVALID;		
 						else
 --							erg_tmp := buffer_punkt / operand;
+-- DIV --> TMP!!
 						end if;
 					end if;
 					
@@ -258,19 +307,34 @@ decode_ready_calc <= '0';
 					elsif(operator_strich = "00")
 					then
 						buffer_strich_next <= buffer_strich + erg_tmp;
---						calc_state_next <= MANAGE;
-						calc_state_next <= WAIT4ALU;
+-- ADD --> buffer_strich
+						calc_state_next <= WAIT4ALU_STRICH;
 					elsif(operator_strich = "01")
 					then
 						buffer_strich_next <= buffer_strich - erg_tmp;
---						calc_state_next <= MANAGE;
-						calc_state_next <= WAIT4ALU;
+-- SUB --> BUFFER_STRICH
+						calc_state_next <= WAIT4ALU_STRICH;
 					end if;
 					op_punkt_flag_next <= '0';
 					
 				end if;
 				operator_strich_next <= operator;
-			when WAIT4ALU =>				-- FIXME - bei division warten auf div_ready_signal!
+			when WAIT4ALU_PUNKT =>
+				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
+				then
+					buffer_punkt_next <= sum_tmp;	
+					calc_state_next <= MANAGE;
+				end if;
+
+			when WAIT4ALU_STRICH =>
+				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
+				then
+					buffer_strich_next <= sum_tmp;	
+					calc_state_next <= MANAGE;
+				end if;
+
+			when WAIT4ALU_TMP =>				
+			when WAIT4ALU =>				
 				calc_state_next <= MANAGE;
 
 			when INVALID =>
@@ -286,11 +350,12 @@ decode_ready_calc <= '0';
 		end case;	
 	end process;
 
-	process(calc_state, buffer_strich, ready_flag)
+	process(calc_state, buffer_strich, ready_flag, start_operation_calc_next)
 	begin
 		calculation <= 0;
 		start_decode_bcd <= '0';
 		need_input_next <= '0';
+		start_operation_calc <= '0';
 
 		case calc_state is
 			when READY => 
@@ -303,8 +368,13 @@ decode_ready_calc <= '0';
 				end if;
 			when WAIT4PARSER =>
 				need_input_next <= '0';
+			when WAIT4ALU_STRICH =>
+				start_operation_calc <= start_operation_calc_next;
+			when WAIT4ALU_PUNKT =>
+				start_operation_calc <= start_operation_calc_next;
 			when WAIT4ALU =>
 				need_input_next <= '0';
+			when WAIT4ALU_TMP =>				
 			when OP_PUNKT =>
 				need_input_next <= '0';
 			when OP_STRICH =>
@@ -315,9 +385,21 @@ decode_ready_calc <= '0';
 				need_input_next <= '0';
 				start_decode_bcd <= '1';
 				calculation <= to_integer(buffer_strich);
-				--calculation <= 6671982;	-- test if bcd-conversion works
 		end case;
 	end process;
+
+	alu_in	:	alu
+	port map
+	(
+		sys_clk		=>	sys_clk,
+		sys_res_n	=>	sys_res_n,
+		operand_1	=>	operand_1,
+		operand_2	=>	operand_2,
+		operator	=>	operator,
+		start_operation	=>	start_operation_calc,
+		operation_done	=>	operation_done_sig,
+		sum		=>	sum_tmp
+	);
 
 	itoa_inst :     itoa
 	port map

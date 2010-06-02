@@ -25,6 +25,6 @@ entity calc is
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
 		error_parser	:	in	std_logic;		-- inputsignal from PARSER
-		error_calc	:	out	std_logic		-- inputsignal from PARSER
+		error_calc	:	out	std_logic		-- outputsignal to Main/Linebuffer
 	);
 end entity calc;

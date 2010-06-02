@@ -76,6 +76,9 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/uart_rcv_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/calc.vhd
 	set_global_assignment -name VHDL_FILE ../src/calc_beh.vhd
+	set_global_assignment -name VHDL_FILE ../src/alu.vhd
+	set_global_assignment -name VHDL_FILE ../src/alu_pkg.vhd
+	set_global_assignment -name VHDL_FILE ../src/alu_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa_beh.vhd
 	set_global_assignment -name VHDL_FILE ../src/itoa_pkg.vhd

@@ -209,7 +209,7 @@ begin  -- behav
 			lb_wr_sig <= '1';
 			if i <= TEST_ARRAY_WIDTH then
 				-- Test-String in Speicher schreiben 
-				c := test_string(i);
+				c := test_string1(i);
 				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
 				wait for 200 ns;
 			else
@@ -227,6 +227,23 @@ begin  -- behav
 		start_calc_sig <= '0'; 
 -- wait until calc ready
 		wait for 500 us;
+
+--		for i in 1 to 71 loop
+--			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+--			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+--			lb_wr_sig <= '1';
+--			if i <= TEST_ARRAY_WIDTH then
+--				-- Test-String in Speicher schreiben 
+--				c := test_string2(i);
+--				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+--				wait for 200 ns;
+--			else
+--				lb_data_wr_sig <= x"20";
+--				wait for 200 ns;
+--			end if;
+--		end loop;
+--
+--		wait for 500 us;
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
