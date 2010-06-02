@@ -227,14 +227,12 @@ begin
 				if error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				else	
-					if check_unsigned_ready = '0' then
-						if mem_ready = '1' then
-							parser_fsm_state_next <= CHECK_UNSIGNED;
-							mem_ready_next <= '0';
-						else
-							parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
-							mem_ready_next <= '1';
-						end if;
+					if mem_ready = '1' then
+						parser_fsm_state_next <= CHECK_UNSIGNED;
+						mem_ready_next <= '0';
+					else
+						parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
+						mem_ready_next <= '1';
 					end if;
 				end if;
 
@@ -250,14 +248,12 @@ begin
 				if error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				else	
-					if check_op_ready = '0' then
-						if mem_ready = '1' then
-							parser_fsm_state_next <= CHECK_OPERAND;
-							mem_ready_next <= '0';
-						else
-							parser_fsm_state_next <= CHECK_OPERAND_PREE;
-							mem_ready_next <= '1';
-						end if;
+					if mem_ready = '1' then
+						parser_fsm_state_next <= CHECK_OPERAND;
+						mem_ready_next <= '0';
+					else
+						parser_fsm_state_next <= CHECK_OPERAND_PREE;
+						mem_ready_next <= '1';
 					end if;
 				end if;
 
@@ -273,15 +269,13 @@ begin
 				if error_sig = '1' then
 					parser_fsm_state_next <= ERROR_STATE;
 				else	
-					if convert_ready = '0' then
-						if mem_ready = '1' then
-							parser_fsm_state_next <= CONVERT_TO_INT;
-							mem_ready_next <= '0';
-						else
-							parser_fsm_state_next <= CONVERT_TO_INT_PREE;
-							mem_ready_next <= '1';
-						end if;		
-					end if;
+					if mem_ready = '1' then
+						parser_fsm_state_next <= CONVERT_TO_INT;
+						mem_ready_next <= '0';
+					else
+						parser_fsm_state_next <= CONVERT_TO_INT_PREE;
+						mem_ready_next <= '1';
+					end if;		
 				end if;
 	
 			when CONVERT_TO_INT =>
@@ -299,7 +293,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, convert_ready, end_of_op_old, start_pos, convert_count, last_operand, num, space, error_sig, addr_lb_old, leading_sign_old)
+	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, convert_ready, end_of_op_old, start_pos, convert_count, last_operand, last_operator, num, space, error_sig, addr_lb_old, leading_sign_old)
 
   begin
 		start_pos_next <= start_pos;
@@ -313,7 +307,7 @@ begin
 		convert_count_next <= convert_count;
 		line_count_next <= line_count;
 		operand_next <= last_operand;
-		operator_next <= "00";
+		operator_next <= last_operator;
 		once_next <= once;
 		num_next <= num;
 		space_next <= space;
@@ -324,6 +318,8 @@ begin
 
     case parser_fsm_state is
 			when READY =>
+					operand_next <= (others => '0');
+					operator_next <= "00";
 					num_next <= '0';
 					space_next <= '0';
 					once_next <= '0';
@@ -571,6 +567,7 @@ begin
 			end_of_op_old <= end_of_op_next;
 			parse_ready <= parse_ready_next;
 			operator <= operator_next;
+			last_operator <= operator_next;
 			operand <= signed(operand_next);	
 			last_operand <= operand_next;
 			leading_sign <= leading_sign_next;
