@@ -175,7 +175,7 @@ decode_ready_calc <= '0';
 					operator_punkt_next <= operator;
 					if(operator_punkt = "10")		-- multiplikation
 					then
-						buffer_punkt_next <= resize(buffer_punkt * operand, 63);
+--						buffer_punkt_next <= resize(buffer_punkt * operand, 63);
 --						calc_state_next <= MANAGE;
 						calc_state_next <= WAIT4ALU;
 					elsif(operator_punkt = "11")			-- division
@@ -208,7 +208,7 @@ decode_ready_calc <= '0';
 					op_punkt_flag_next <= '0';
 					if(operator_punkt = "10")			-- multiplikation vorgemerkt
 					then
-						buffer_strich_next <= resize(buffer_punkt * operand, 63);
+--						buffer_strich_next <= resize(buffer_punkt * operand, 63);
 --						calc_state_next <= MANAGE;
 						calc_state_next <= WAIT4ALU;
 					elsif(operator_punkt = "11")			-- division vorgemerkt
@@ -240,7 +240,7 @@ decode_ready_calc <= '0';
 					-- zuerst punktrechnung auflösen...
 					if(operator_punkt = "10")			
 					then					
-						erg_tmp := resize(buffer_punkt, 31) * operand;
+--						erg_tmp := resize(buffer_punkt, 31) * operand;
 					elsif(operator_punkt = "11")
 					then
 						if(operand = 0)

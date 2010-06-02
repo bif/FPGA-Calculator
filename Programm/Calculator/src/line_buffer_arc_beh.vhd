@@ -19,7 +19,6 @@ architecture beh of line_buffer is
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0);
 	signal enable_old, enable_old_next, wr_enable_next, start_calc_next, enter_write_result, enter_write_result_next : std_logic;
 	signal bcd_buf, bcd_buf_next : std_logic_vector(39 downto 0);
-	--signal bcd_result_sig, bcd_result_next, bcd_result_old : std_logic_vector(39 downto 0);
 	signal wait_write, wait_write_next : std_logic;
 
 begin
@@ -135,7 +134,6 @@ begin
 
 
 	output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result, bcd_buf, enter_write_result, wait_write)
-	--output : process(lb_fsm_state, count, reset_count, ascii_sign_in, vga_free, once, bcd_result_sig, bcd_result, enter_write_result, wait_write)
 	
 	begin
 		start_calc_next <= '0';
@@ -150,8 +148,7 @@ begin
 		enter_write_result_next <= enter_write_result;
 		wait_write_next <= wait_write;
 		
-		bcd_buf_next <= bcd_result;
-
+		bcd_buf_next <= bcd_buf;
 
 		case lb_fsm_state is
 
@@ -182,8 +179,7 @@ begin
 				enter_write_result_next <= '0';
 
 			when DISABLE =>
-				--bcd_result_next <= x"0000879614";
---				bcd_result_next <= bcd_result;
+				bcd_buf_next <= bcd_result;
 				wait_write_next <= '0';
 				if once = '0' then
 					start_calc_next <= '1';
@@ -198,17 +194,14 @@ begin
 				once_next <= '0';
 				if wait_write = '0' then
 					if vga_free = '1' and count < x"0A" then
---TODO: führende Nullen enfernent
+--TODO: führende Nullen enfernen / vorzeichen setzen
 						vga_command_data_next(31 downto 8) <= x"FFFFFF";
 						vga_command_next <= COMMAND_SET_CHAR;
 						-- high nibble is always hex 3 => high nibble of offset hex 30
 						vga_command_data_next(7 downto 4) <= x"3";
 						-- low nibble => bcd value
---						vga_command_data_next(3 downto 0) <= bcd_result_sig(3 downto 0);
-						vga_command_data_next(3 downto 0) <= bcd_buf(39 downto 36);
---						bcd_result_next <= std_logic_vector(shift_right(unsigned(bcd_result_sig), 4));
-						bcd_buf_next <= std_logic_vector(shift_left(unsigned(bcd_buf), 4));
-	--					vga_command_data_next(7 downto 0) <= x"31";
+						vga_command_data_next(3 downto 0) <= bcd_buf(3 downto 0);
+						bcd_buf_next <= std_logic_vector(shift_right(unsigned(bcd_buf), 4));
 						count_next <= std_logic_vector(unsigned(count) + 1);
 					end if;
 					wait_write_next <= '1';
@@ -325,6 +318,7 @@ begin
 			reset_count <= (others => '0');	-- x"00"
 			enable_old <= '0';
 			wait_write <= '0';	
+			bcd_buf <= x"0000000000";
 	
 		elsif rising_edge(sys_clk) then
 			wait_write <= wait_write_next;
@@ -342,7 +336,6 @@ begin
 			start_calc <= start_calc_next;
 			enter_write_result <= enter_write_result_next;
 			bcd_buf <= bcd_buf_next;
-			--bcd_result_old <= bcd_result_next;
 		end if;
 	end process sync;
 
