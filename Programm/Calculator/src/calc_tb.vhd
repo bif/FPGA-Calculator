@@ -69,8 +69,8 @@ begin
 	start_calc <= '1';
     wait for 100 ns;
 	start_calc <= '0';
-	operator <= "10";
-	operand <= "00000000000000001000001000000001";		-- 33281 *
+	operator <= "00";
+	operand <= "00000000000000001000001000000001";		-- 33281 +
     wait for 1000 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -93,16 +93,16 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000100001000";		-- 264 * 
+	operator <= "00";
+	operand <= "00000000000000000000000100001000";		-- 264 +
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000000111001";		-- 57 * 
+	operator <= "00";
+	operand <= "00000000000000000000000000111001";		-- 57 + 
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -117,8 +117,8 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000010000111110001";		-- 8689 * 
+	operator <= "01";
+	operand <= "00000000000000000010000111110001";		-- 8689 -
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
@@ -133,8 +133,8 @@ begin
 	parse_ready <= '0';
 
     wait for 100 ns;
-	operator <= "10";
-	operand <= "00000000000000000000000000111001";		-- 57 *
+	operator <= "01";
+	operand <= "00000000000000000000000000111001";		-- 57 -
     wait for 100 ns;
 	parse_ready <= '1';
     wait for 100 ns;
