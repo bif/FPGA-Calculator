@@ -17,15 +17,15 @@ architecture sim of parser_tb is
 	constant LB_ADDR_WIDTH : integer := 8;
 	constant QUARTZ_PERIOD : time := 33 ns;
 	constant QUARTZ_PLL_PERIOD : time := 2*40 ns;
-	constant TEST_ARRAY_WIDTH : integer := 36;
+	constant TEST_ARRAY_WIDTH : integer := 4;
 
 	-- subtype TEST_ARRAY_CELL is std_logic_vector(1 downto 0); -- 8 bit for every ram cell(7 would be enough, but its easier this way(casting...))
 	-- type TEST_ARRAY is array (TEST_ARRAY_WIDTH - 1 downto 0) of TEST_ARRAY_CELL;
 
   --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
 
-	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := " -   889+-47-+7*  +6  9 *25  /  0  =";
-	--signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "590+ 777 * 4";
+	--signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := " -   889+-47-+7*  +6  9 *25  /  0  =";
+	signal test_string : string(1 to (TEST_ARRAY_WIDTH)) := "6+1=";
 	signal clk : std_logic;
 	signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
@@ -209,7 +209,7 @@ begin  -- behav
 			lb_wr_sig <= '1';
 			if i <= TEST_ARRAY_WIDTH then
 				-- Test-String in Speicher schreiben 
-				c := test_string1(i);
+				c := test_string(i);
 				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
 				wait for 200 ns;
 			else
@@ -226,7 +226,7 @@ begin  -- behav
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 500 us;
+		wait for 5 ms;
 
 --		for i in 1 to 71 loop
 --			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -249,7 +249,7 @@ begin  -- behav
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 500 us;
+		wait for 5 ms;
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;

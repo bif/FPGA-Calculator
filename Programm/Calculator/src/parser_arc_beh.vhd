@@ -23,7 +23,7 @@ architecture beh of parser is
 
 begin
 
-  next_state : process(parser_fsm_state, read_next_n_o, read_next_n_o_old, error_sig, check_unsigned_ready, check_op_ready, mem_ready)
+  next_state : process(parser_fsm_state, read_next_n_o, read_next_n_o_old, error_sig, check_unsigned_ready, check_op_ready, mem_ready, ready)
   begin
     parser_fsm_state_next <= parser_fsm_state;	
 		read_next_n_o_old_next <= read_next_n_o;

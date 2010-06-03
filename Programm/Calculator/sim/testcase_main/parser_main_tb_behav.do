@@ -15,6 +15,10 @@ vmap work behav_work
 	vcom -work work ../../src/itoa.vhd
 	vcom -work work ../../src/itoa_beh.vhd
 
+	vcom -work work ../../src/alu_pkg.vhd
+	vcom -work work ../../src/alu.vhd
+	vcom -work work ../../src/alu_beh.vhd
+
 	vcom -work work ../../src/calc.vhd
 	vcom -work work ../../src/calc_beh.vhd
 
@@ -66,8 +70,8 @@ add wave -noupdate -format Literal /parser_tb/tp_parser/num
 add wave -noupdate -format Literal /parser_tb/tp_parser/once
 add wave -noupdate -format Literal /parser_tb/tp_parser/once_next
 add wave -noupdate -format Literal /parser_tb/tp_parser/check_unsigned_ready
-
-
+add wave -noupdate -format Literal /parser_tb/calc_inst/sum_tmp
+add wave -noupdate -format Literal /parser_tb/calc_inst/bcd_buf
 
 
 TreeUpdate [SetDefaultTree]
