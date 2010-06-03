@@ -26,6 +26,7 @@ architecture sim of parser_tb is
 	signal end_parse, end_parse_next, end_of_op_sig, parse_ready_sig, read_next_n_o_sig, get_next : std_logic ;
 	signal continue : std_logic := '0';
 	signal run_always : std_logic := '1';
+	signal error_number : std_logic_vector(1 downto 0) := "00";
 
 --	procedure sim_line_buf(array_width : in integer; test_string : in string) is 
 
@@ -71,7 +72,8 @@ begin
 		operand => operand_sig, 
 		operator => operator_sig,
 		end_of_operation => end_of_op_sig,
-		parse_ready => parse_ready_sig
+		parse_ready => parse_ready_sig,
+		error_sig => error_number
 	);
 
 	tb_line_buf_ram : sp_ram

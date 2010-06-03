@@ -21,6 +21,11 @@ entity parser is
 		operator : out std_logic_vector(1 downto 0);
 		leading_sign : out std_logic;
 		end_of_operation : out std_logic;
-		parse_ready : out std_logic
+		parse_ready : out std_logic;
+		-- error_sig = 00 ... no error
+		-- error_sig = 01 ... dedection of leading sign failed, '/' or '*' were dedected
+		-- error_sig = 10 ... spaces between two signs of the operand were dedected
+		-- error_sig = 11 ... dedecation of leading sign was correct but operator follwoed (next sign after leading sign must be a number)
+		error_sig : out std_logic_vector(1 downto 0)
 	);
 end entity parser;

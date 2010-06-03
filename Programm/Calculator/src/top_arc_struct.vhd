@@ -39,6 +39,8 @@ architecture struct of calculator_top is
 	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
+ 	signal error_number : std_logic_vector(1 downto 0) := "00";
+
 
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
@@ -273,7 +275,8 @@ begin
 		operator => operator_sig,
 		leading_sign => negative,
 		end_of_operation => end_of_op_sig,		-- last operand found - calculation ends here
-		parse_ready => parse_ready_sig			-- 1 unit(operand + operator) is ready
+		parse_ready => parse_ready_sig,			-- 1 unit(operand + operator) is ready
+		errir_sig => error_number
 	);
 
 
