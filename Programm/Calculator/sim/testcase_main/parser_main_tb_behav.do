@@ -15,9 +15,9 @@ vmap work behav_work
 	vcom -work work ../../src/itoa.vhd
 	vcom -work work ../../src/itoa_beh.vhd
 
-	vcom -work work ../../src/alu_pkg.vhd
-	vcom -work work ../../src/alu.vhd
-	vcom -work work ../../src/alu_beh.vhd
+#	vcom -work work ../../src/alu_pkg.vhd
+#	vcom -work work ../../src/alu.vhd
+#	vcom -work work ../../src/alu_beh.vhd
 
 	vcom -work work ../../src/calc.vhd
 	vcom -work work ../../src/calc_beh.vhd
@@ -45,33 +45,55 @@ vmap work behav_work
 #vcom -work work config_behav.vhd
 
 # start simulation
-vsim -coverage work.parser_tb
+vsim -coverage work.parser_main_tb
 
-# start simulation
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -format Logic /parser_tb/clk
-add wave -noupdate -format Logic /parser_tb/parse_ready_sig
-add wave -noupdate -format Logic /parser_tb/read_next_n_o_sig
-add wave -noupdate -format Logic /parser_tb/tp_parser/read_next_n_o
-add wave -noupdate -format Literal -radix ascii /parser_tb/tp_parser/data_in
-add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/operand
-add wave -noupdate -format Literal /parser_tb/tp_parser/operator
-add wave -noupdate -format Logic /parser_tb/tp_parser/leading_sign
-add wave -noupdate -format Logic /parser_tb/tp_parser/parse_ready
-add wave -noupdate -format Logic /parser_tb/tp_parser/end_of_operation
-add wave -noupdate -format Logic /parser_tb/tp_parser/error_sig
-add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/line_count
-add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/addr_lb
-add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/addr_lb_next
-add wave -noupdate -format Literal /parser_tb/tp_parser/parser_fsm_state
-add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready
-add wave -noupdate -format Literal /parser_tb/tp_parser/space
-add wave -noupdate -format Literal /parser_tb/tp_parser/num
-add wave -noupdate -format Literal /parser_tb/tp_parser/once
-add wave -noupdate -format Literal /parser_tb/tp_parser/once_next
-add wave -noupdate -format Literal /parser_tb/tp_parser/check_unsigned_ready
-add wave -noupdate -format Literal /parser_tb/calc_inst/sum_tmp
-add wave -noupdate -format Literal /parser_tb/calc_inst/bcd_buf
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand
+add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
+add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
+add wave -noupdate -format Logic /parser_main_tb/tp_parser/parse_ready
+add wave -noupdate -format Logic /parser_main_tb/tp_parser/end_of_operation
+add wave -noupdate -format Literal /parser_main_tb/test_string
+add wave -noupdate -format Literal /parser_main_tb/tp_parser/parser_fsm_state
+add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig
+
+add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
+add wave -noupdate -format Logic /parser_main_tb/clk
+
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/start_decode_bcd
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/decode_ready_calc
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/calc_ready
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/calc_state
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich_next
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt_next
+
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt_next
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich_next
+
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/calculation
+
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/ready_flag
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/error_calc
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/operation_end
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/sign_bcd_sig
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/bcd_buf
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_0_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_1_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_2_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_3_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_4_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_5_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_6_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_7_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_8_sig
+add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_9_sig
+
+
 
 
 TreeUpdate [SetDefaultTree]
@@ -94,7 +116,7 @@ update
 
 
 # auto-run simulation
-run 500 us
+run 3 ms
 WaveRestoreZoom {14300 ns} {14600 ns}
 #wave zoomfull
 
