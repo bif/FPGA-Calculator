@@ -7,25 +7,19 @@ use work.main_pkg.all;
 
 
 
-entity parser_tb is
+entity parser_main_tb is
 
-end parser_tb;
+end parser_main_tb;
 
-architecture sim of parser_tb is
+architecture sim of parser_main_tb is
 
 	constant LB_DATA_WIDTH : integer := 8;
 	constant LB_ADDR_WIDTH : integer := 8;
 	constant QUARTZ_PERIOD : time := 33 ns;
 	constant QUARTZ_PLL_PERIOD : time := 2*40 ns;
-	constant TEST_ARRAY_WIDTH : integer := 12;
+	
 
-	-- subtype TEST_ARRAY_CELL is std_logic_vector(1 downto 0); -- 8 bit for every ram cell(7 would be enough, but its easier this way(casting...))
-	-- type TEST_ARRAY is array (TEST_ARRAY_WIDTH - 1 downto 0) of TEST_ARRAY_CELL;
-
-  --signal test_array : TEST_ARRAY := (x"00", x"01", others => xW "5+8-3";
-
-	signal test_string1 : string(1 to (TEST_ARRAY_WIDTH)) := "123*1 + 45+0";
-	signal test_string2 : string(1 to (TEST_ARRAY_WIDTH)) := "590+ 777 * 4";
+	signal test_string : string(1 to 71);
 	signal clk : std_logic;
 	signal reset : std_logic;
 	signal lb_addr_out_sig, lb_addr_wr_sig, mem_debug_addr : std_logic_vector(LB_ADDR_WIDTH - 1 downto 0);
@@ -52,7 +46,7 @@ architecture sim of parser_tb is
 	signal		negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
-
+	signal error_number : std_logic_vector(1 downto 0);
 
 
 component calc is
@@ -131,7 +125,8 @@ begin  -- behav
 		operator => operator_sig,
 		leading_sign => negative,
 		end_of_operation => end_of_op_sig,
-		parse_ready => parse_ready_sig
+		parse_ready => parse_ready_sig,
+		error_sig => error_number
 	);
 
 	tb_line_buf_ram : sp_ram
@@ -191,9 +186,8 @@ begin  -- behav
 
 
 	process
-		variable i :  std_logic_vector(LB_ADDR_WIDTH - 1 downto 0) := (others => '0');
+		variable i :  integer range 1 to 80;
 		variable c : character;
---		variable u :  std_logic_vector(4096 - 1 downto 0) := (others => '0');
 
   begin
 
@@ -203,24 +197,42 @@ begin  -- behav
 		get_next <= '0';
     wait for 10 ns;
 
+
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "6+1=                                                                   ";
+		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
 			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
 			lb_wr_sig <= '1';
-			if i <= TEST_ARRAY_WIDTH then
-				-- Test-String in Speicher schreiben 
-				c := test_string1(i);
-				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
-				wait for 200 ns;
-			else
-				lb_data_wr_sig <= x"20";
-				wait for 200 ns;
-			end if;
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
 		end loop;
-
-    i := (others => '0');
 		lb_wr_sig <= '0';
 
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 500 us;
+
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "7-3=                                                                   ";
+		wait for 200 ns;
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
+		end loop;
+		lb_wr_sig <= '0';
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
@@ -228,22 +240,20 @@ begin  -- behav
 -- wait until calc ready
 		wait for 500 us;
 
---		for i in 1 to 71 loop
---			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
---			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
---			lb_wr_sig <= '1';
---			if i <= TEST_ARRAY_WIDTH then
---				-- Test-String in Speicher schreiben 
---				c := test_string2(i);
---				lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
---				wait for 200 ns;
---			else
---				lb_data_wr_sig <= x"20";
---				wait for 200 ns;
---			end if;
---		end loop;
---
---		wait for 500 us;
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "100*2=                                                                 ";
+		wait for 200 ns;
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
+		end loop;
+		lb_wr_sig <= '0';
 
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
@@ -251,64 +261,31 @@ begin  -- behav
 -- wait until calc ready
 		wait for 500 us;
 
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "34 + 546 * 0 -32-0+32                                        =         ";
+		wait for 200 ns;
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
+		end loop;
+		lb_wr_sig <= '0';
+
 		start_calc_sig <= '1';
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
 		wait for 500 us;
 
-
-		
-
-
-
-
---to simulate the calculator 
---		while end_parse = '0' loop
---			mem_debug_addr <= lb_addr_out_sig;
---			get_next <= '1';
---			wait for 100 ns;
---			get_next <= '0';
---			wait for 400 ns;
---		end loop;
-
--- Memarray augeben
-
---		while unsigned(u) < 20 loop
---			wait for 200 ns;
---			mem_debug_addr <= u;
---			u := std_logic_vector(unsigned(u) + 1 );
---			wait for 200 ns;
---		end loop;
 
 
    wait;
   end process;
-
--- to stop simulaton of calculator
---	process(end_of_op_sig)
---	begin
---		if end_of_op_sig = '1' then
---			end_parse_next <= '1';
---		end if;
---	end process;
-
-
---  process(clk)
-
---  begin
-
---   if (clk'event and clk = '1') then
-    -- synchrone part to simulate teh calculator
---		if get_next = '1' then
---			read_next_n_o_sig <= '1';
---		else
---			read_next_n_o_sig <= '0';
---    end if; 
---		end_parse <= end_parse_next;
---	end if;
---  end process;
-
 
 end architecture sim;
 

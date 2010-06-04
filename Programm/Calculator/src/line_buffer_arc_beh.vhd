@@ -147,7 +147,6 @@ begin
 		lb_addr_next <= count;
 		enter_write_result_next <= enter_write_result;
 		wait_write_next <= wait_write;
-		
 		bcd_buf_next <= bcd_buf;
 
 		case lb_fsm_state is
@@ -194,7 +193,6 @@ begin
 				once_next <= '0';
 				if wait_write = '0' then
 					if vga_free = '1' and count < x"0A" then
---TODO: führende Nullen enfernen / vorzeichen setzen
 						vga_command_data_next(31 downto 8) <= x"FFFFFF";
 						vga_command_next <= COMMAND_SET_CHAR;
 						-- high nibble is always hex 3 => high nibble of offset hex 30
@@ -238,12 +236,6 @@ begin
 					vga_command_data_next(7 downto 0) <= x"0A"; 
 					count_next <= (others => '0');
 					lb_addr_next <= (others => '0'); 
---					if enter_write_result = '1' then
---					else
-
-
---						start_calc_next <= '1';
---					end if;
 					once_next <= '0';
 				end if;
 
