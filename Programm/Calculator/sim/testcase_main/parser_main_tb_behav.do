@@ -48,6 +48,7 @@ vmap work behav_work
 vsim -coverage work.parser_main_tb
 
 quietly WaveActivateNextPane {} 0
+add wave -noupdate -divider -height 20 {Parser}
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
@@ -56,45 +57,50 @@ add wave -noupdate -format Logic /parser_main_tb/tp_parser/end_of_operation
 add wave -noupdate -format Literal /parser_main_tb/test_string
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/parser_fsm_state
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig
-
 add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
-add wave -noupdate -format Logic /parser_main_tb/clk
 
+add wave -noupdate -divider -height 30 {Calulator}
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/start_decode_bcd
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/decode_ready_calc
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/calc_ready
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calc_state
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich_next
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt_next
 
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt_next
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich_next
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich_next
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt_next
+
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt_next
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich_next
 
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calculation
-
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/ready_flag
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/error_calc
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/operation_end
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/sign_bcd_sig
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/bcd_buf
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_0_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_1_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_2_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_3_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_4_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_5_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_6_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_7_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_8_sig
-add wave -noupdate -format Logic -radix decimal /parser_main_tb/calc_inst/out_9_sig
 
 
 
+
+
+#add wave -noupdate -format Logic /parser_main_tb/calc_inst/ready_flag
+#add wave -noupdate -format Logic /parser_main_tb/calc_inst/error_calc
+#add wave -noupdate -format Logic /parser_main_tb/calc_inst/sign_bcd_sig
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/bcd_buf
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_0_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_1_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_2_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_3_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_4_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_5_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_6_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_7_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_8_sig
+add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_9_sig
+
+
+
+add wave -noupdate -format Logic /parser_main_tb/clk
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ns} 0}
