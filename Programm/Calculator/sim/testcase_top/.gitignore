@@ -1,0 +1,22 @@
+# => ignore all files.
+
+
+# => ignore file by extension.
+
+behav_work/
+.nfs*
+config_behav.vhd
+config_post.vhd
+modelsim.ini
+transcript
+vsim.wlf
+wave.do
+                                                                         
+# => excludes *.sof from ignoring.
+#!*.sof
+#!*.qpf
+#!*.qsf
+#!*.tcl
+!.gitignore
+
+

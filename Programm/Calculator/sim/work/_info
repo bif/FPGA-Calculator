@@ -17,6 +17,12 @@ R1
 R2
 n@_opt1
 R3
+V5ioFELcf7RZ2jd]>]WZcl0
+Z7 04 7 3 work calc_tb sim 1
+Z8 =8-0015609eceba-4c067b41-84abd-51d5
+R4
+Z9 n@_opt1
+R6
 T_opt2
 V5G7Q]7;57<TB9e?M?Ez2F2
 04 6 3 work alu_tb sim 1
@@ -140,6 +146,33 @@ R4
 R5
 Z17 8/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
 Z18 F/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
+Z50 w1275493170
+Z51 DEx4 work 4 calc 0 22 Gd>z[T?1;=TcVz?C]Te3g3
+Z52 DPx4 work 7 alu_pkg 0 22 90DQ_CECT9BPzmmP[RB9P1
+Z53 DPx4 work 8 itoa_pkg 0 22 545;:g`h<<^3eWLY4ZWGI0
+R15
+R16
+Z54 8/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
+Z55 F/homes/s0727156/GIT/Programm/Calculator/src/calc_beh.vhd
+l67
+L7
+Z56 V97C>mMNCkQIP?bY]i6iR23
+R20
+32
+Z57 Mx4 4 ieee 14 std_logic_1164
+Z58 Mx3 4 ieee 11 numeric_std
+Z59 Mx2 4 work 8 itoa_pkg
+Z60 Mx1 4 work 7 alu_pkg
+R21
+R22
+Z61 !s100 JI9L2Rh4^J=_eN5z0JS2c1
+Ecalc_tb
+Z62 w1275492179
+R15
+R16
+Z63 8/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
+Z64 F/homes/s0727156/GIT/Programm/Calculator/src/calc_tb.vhd
+>>>>>>> 9931863b7b6af4edc4f0f4fee22a2810353d5815:Programm/Calculator/sim/work/_info
 l0
 L5
 Vg:;b3:C@NgiCTaMhoY3F]3
@@ -154,6 +187,7 @@ R5
 DEx4 work 7 calc_tb 0 22 g:;b3:C@NgiCTaMhoY3F]3
 l33
 L8
+<<<<<<< HEAD:Programm/Calculator/sim/work/_info
 VTdMDaiNO?[];9c9;S?GNb2
 R6
 32
@@ -162,6 +196,15 @@ R10
 R7
 R8
 !s100 GA_j=?b>G4EYomSj=120J0
+Z68 V?X@PRM7dGJIN2VRJ@ED3;2
+R20
+32
+R29
+R30
+R21
+R22
+Z69 !s100 ]L>WYE:CKTbY3^?dJ?IdR1
+>>>>>>> 9931863b7b6af4edc4f0f4fee22a2810353d5815:Programm/Calculator/sim/work/_info
 Ecalculator_top
 Z19 w1275398929
 R5
