@@ -15,9 +15,9 @@ vmap work behav_work
 	vcom -work work ../../src/itoa.vhd
 	vcom -work work ../../src/itoa_beh.vhd
 
-#	vcom -work work ../../src/alu_pkg.vhd
-#	vcom -work work ../../src/alu.vhd
-#	vcom -work work ../../src/alu_beh.vhd
+	vcom -work work ../../src/alu_pkg.vhd
+	vcom -work work ../../src/alu.vhd
+	vcom -work work ../../src/alu_beh.vhd
 
 	vcom -work work ../../src/calc.vhd
 	vcom -work work ../../src/calc_beh.vhd

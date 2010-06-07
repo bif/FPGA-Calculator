@@ -276,7 +276,7 @@ begin
 		leading_sign => negative,
 		end_of_operation => end_of_op_sig,		-- last operand found - calculation ends here
 		parse_ready => parse_ready_sig,			-- 1 unit(operand + operator) is ready
-		errir_sig => error_number
+		error_sig => error_number
 	);
 
 

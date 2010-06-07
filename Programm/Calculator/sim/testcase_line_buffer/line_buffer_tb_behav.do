@@ -43,32 +43,25 @@ add wave -noupdate -format Literal /line_buffer_tb/uut/lb_fsm_state
 add wave -noupdate -format Literal /line_buffer_tb/uut/lb_fsm_state_next
 add wave -noupdate -format Logic /line_buffer_tb/clk
 add wave -noupdate -format Logic /line_buffer_tb/vga_free_sig
+add wave -noupdate -format Literal /line_buffer_tb/test_string
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/mem_debug_addr
+add wave -noupdate -format Literal -radix ascii /line_buffer_tb/mem_debug_data
 add wave -noupdate -format Logic /line_buffer_tb/uut/enable
-add wave -noupdate -format Logic /line_buffer_tb/uut/enable_old
-add wave -noupdate -format Logic /line_buffer_tb/uut/enable_old_next
-add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count
-add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/count_next
-add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_count
-add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_count_next
+add wave -noupdate -format Logic /line_buffer_tb/uut/start_calc
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/lb_count
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/lb_count_next
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_lb_count
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/uut/reset_lb_count_next
 add wave -noupdate -format Logic /line_buffer_tb/new_ascii_sig
 add wave -noupdate -format Literal -radix ascii /line_buffer_tb/ascii_sign_sig
+add wave -noupdate -format Literal -radix decimal /line_buffer_tb/tb_line_buf_ram/address_wr
+add wave -noupdate -format Literal -radix ascii /line_buffer_tb/tb_line_buf_ram/data_wr
+add wave -noupdate -format Logic /line_buffer_tb/tb_line_buf_ram/wr
+add wave -noupdate -format Logic /line_buffer_tb/index
+add wave -noupdate -format Logic /line_buffer_tb/uut/once
+add wave -noupdate -format Logic /line_buffer_tb/uut/once_next
 
 
-add wave -noupdate -format Literal -radix hexadecimal /line_buffer_tb/uut/bcd_result
-add wave -noupdate -format Literal -radix hexadecimal /line_buffer_tb/uut/bcd_result_sig
-add wave -noupdate -format Literal /line_buffer_tb/command_sig
-#add wave -noupdate -format Literal -radix ascii /line_buffer_tb/command_data_sig
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(7)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(7)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(6)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(5)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(4)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(3)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(2)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(1)
-add wave -noupdate -format Logic /line_buffer_tb/command_data_sig(0)
-#add wave -noupdate -format Literal -radix decimal /line_buffer_tb/mem_debug_addr
-#add wave -noupdate -format Literal -radix ascii /line_buffer_tb/mem_debug_data
 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ns} 0}
@@ -89,13 +82,10 @@ update
 
 
 # auto-run simulation
-run 50 us
-#simulate save value (first sign ?)
-#WaveRestoreZoom {7200 ns} {7400 ns}
-#simulate enable
-#WaveRestoreZoom {26800 ns} {27000 ns}
-#simulate memmory 
-#WaveRestoreZoom {22950 ns} {25000 ns}
-#siulate bcd_result
-WaveRestoreZoom {22500 ns} {25000 ns}
+#run 50 us
+
+# autorun simulation bis vor clear buffer um speicherinhalt zu vergleichen
+run 18 us
+
+WaveRestoreZoom {13.9 us} {14.5 us}
 #wave zoomfull

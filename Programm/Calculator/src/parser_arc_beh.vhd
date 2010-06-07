@@ -9,15 +9,15 @@ architecture beh of parser is
 
   signal parser_fsm_state, parser_fsm_state_next : SC_H_FSM_STATE_TYPE;
 	signal error_sig_old, error_sig_next : std_logic_vector(1 downto 0) := "00";
-	signal operator_next, last_operator : std_logic_vector(1 downto 0);
-	signal operand_next, last_operand, current_number, current_number_next : signed(31 downto 0);
+	signal operator_next, last_operator : std_logic_vector(1 downto 0) := "00";
+	signal operand_next, last_operand, current_number, current_number_next : signed(31 downto 0) := (others => '0');
 	signal leading_sign_next, leading_sign_old, end_of_op_next, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next : std_logic := '0';
 	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
 	signal space, space_next, num, num_next : std_logic := '0';
-	signal mem_ready, mem_ready_next : std_logic;
-	signal once, once_next, do_convert, do_convert_next, ready, ready_next : std_logic;
+	signal mem_ready, mem_ready_next : std_logic := '0';
+	signal once, once_next, do_convert, do_convert_next, ready, ready_next : std_logic := '0';
 
-	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0);
+	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
 
 
 
