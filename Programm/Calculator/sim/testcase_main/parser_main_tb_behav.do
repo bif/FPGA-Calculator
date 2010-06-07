@@ -97,8 +97,15 @@ add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_6
 add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_7_sig
 add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_8_sig
 add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_9_sig
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/operand_1
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/operand_2
 
 
+add wave -noupdate -divider -height 30 {Devider-ALU}
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/load
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/load_next
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/div_ready
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/quotient
 
 add wave -noupdate -format Logic /parser_main_tb/clk
 

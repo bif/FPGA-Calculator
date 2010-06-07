@@ -18,8 +18,7 @@ architecture beh of alu is
 	signal load, load_next, load_old : std_logic := '0';
 	signal Quotient : signed(31 downto 0) := (others => '0');
 	signal rest : std_logic_vector(31 downto 0) := (others => '0');
-
-
+	signal tmp_var : std_logic_vector(31 downto 0) := (others => '0');
 
 	signal	start_operation_old		:	std_logic := '0';
 	signal	start_operation_old_next	:	std_logic := '0';
@@ -32,10 +31,13 @@ architecture beh of alu is
 
 	begin
 
+
 	process(sys_clk, sys_res_n)
 	begin
 		if(sys_res_n = '0')
 		then
+			counter <= "111111";
+			div_ready <= '0';
 			div_ready <= '0';
 			start_operation_old <= '0';
 			alu_state <= READY;
@@ -45,10 +47,31 @@ architecture beh of alu is
 			start_operation_old <= start_operation_old_next;
 			alu_state <= alu_state_next;
 			sum_tmp <= sum_tmp_next;
+			
+			--devider
+			load <= load_next;
+			load_old <= load_next;
+			if load = '1' then
+				Counter <= (others=>'0');
+				div_ready <= '0';
+			else
+				if counter="011111" then
+					counter <="111111";
+					div_ready <= '1';
+				elsif counter="011110" then
+					counter <= std_Logic_vector(unsigned(counter) + 1);
+					div_ready <= '0';
+				elsif counter="111111" then
+					div_ready <='1';
+				else
+					counter <= std_Logic_vector(unsigned(counter) + 1);
+					div_ready <='0';
+				end if;
+			end if;
 		end if;
 	end process;
 
-	process(div_ready ,start_operation, start_operation_old, alu_state, operand_1, operand_2, operator, sum_tmp)
+	process(div_ready, load ,start_operation, start_operation_old, alu_state, operand_1, operand_2, operator, sum_tmp)
 	begin
 		start_operation_old_next <= start_operation;
 		alu_state_next <= alu_state;
@@ -81,7 +104,9 @@ architecture beh of alu is
 					alu_state_next <= DONE;
 				elsif(operator = "11")
 				then
-					load_next <= '1';					
+					if load = '0' then
+						load_next <= '1';	
+					end if;				
 					if div_ready = '1' then
 						alu_state_next <= DONE;
 						sum_tmp_next <= resize(Quotient, 63);
@@ -103,13 +128,13 @@ architecture beh of alu is
 		if sys_res_n = '1' then
 			sub <= (others=>'0');
 		elsif div_ready = '0' then
-			sub <= std_logic_vector(n - d;
+			sub <= std_logic_vector(signed(n) - signed(d));
 		else
 			sub <= (others=>'0');
 		end if;
 	end process;
 
-	process(sys_clk, reset, div_ready)
+	process(sys_clk, sys_res_n, div_ready)
 	begin
 		if sys_res_n = '1' then
 			n(63 downto 0) <= (others=>'0');
@@ -117,7 +142,7 @@ architecture beh of alu is
 		elsif rising_edge(sys_clk) then
 			if load /= load_old and load = '1' then
 				n(63 downto 0) <= NI(63 downto 0);
-				D_int(31 downto 0) <= (std_Logic_vector(operand_2)(31 downto 0));
+				D_int(31 downto 0) <= std_Logic_vector(operand_2);
 			else
 				if div_ready ='0' then
 					n(63 downto 0) <= I(63 downto 0);
@@ -143,40 +168,13 @@ architecture beh of alu is
 		end if;
 	end process;
 
-	process(sys_clk,reset)
-	begin
-		if sys_res_n = '1' then
-			counter <= "111111";
-			div_ready <= '0';
-		elsif rising_edge(sys_clk) then
-			load <= load_next;
-			load_old <= load_next;
-			if load = '1' then
-				Counter <= (others=>'0');
-				div_ready <= '0';
-			else
-				if counter="011111" then
-					counter <="111111";
-					div_ready <= '1';
-				elsif counter="011110" then
-					counter <=counter+'1';
-					div_ready <= '0';
-				elsif counter="111111" then
-					div_ready <='1';
-				else
-					counter <=counter+'1';
-					div_ready <='0';
-				end if;
-			end if;
-		end if;
-	end process; 
-
 
 	NI(63 downto 0) <= ALL_ZERO & std_logic_vector(operand_1);
 	D(30 downto 0) <= "0000000000000000000000000000000";
 	D(62 downto 31) <= d_int;
 	D(63) <= '0';
-	Quotient <= to_signed(n(31 downto 0), 32);
+	tmp_var <= n(31 downto 0);
+	Quotient <= signed(tmp_var);
 	rest <=n(63 downto 32); 
 
 end architecture beh;
