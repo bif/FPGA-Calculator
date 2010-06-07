@@ -200,7 +200,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "456*58+52*8-65*4=                                                      ";
+			test_string <= "12/3=                                                                  ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -242,7 +242,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "100*2=                                                                 ";
+			test_string <= "13   / 7    =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -263,7 +263,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "34 + 546 * 0 + 32-0 +32                                      =         ";
+			test_string <= "6 / 3   +18    /2                                            =         ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
