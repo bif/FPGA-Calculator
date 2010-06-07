@@ -93,37 +93,35 @@ begin
 					alu_state_next <= DONE;
 				elsif(operator = "11")
 				then
-					if once = '0' then
-						once_next <= '1';
-						case sm is
-							when 0 =>
-								buf1 <= (others => '0');
-								buf2 <= std_logic_vector(operand_1);
-								dbuf_next <= std_logic_vector(operand_2);
-								sm_next <= sm + 1;
-							when others =>
-								if buf((2 * SIZE - 2) downto (SIZE - 1)) >= dbuf then
-									buf1 <= '0' & std_logic_vector(signed(buf((2 * SIZE - 3) downto (SIZE - 1))) - signed(dbuf((SIZE - 2) downto 0)));
-									buf2 <= buf2((SIZE - 2) downto 0) & '1';
-								else
-									buf_next <= std_logic_vector(buf((2 * SIZE - 2) downto 0)) & '0';
-								end if;
-								if sm /= SIZE then
-									sm_next <= sm + 1;
-								else
-									alu_state_next <= DONE_POST;
-									sm_next <= 0;
-								end if;
-						end case;
-					else
-						once_next <= '0';
-					if(operand_2 = 0)
-					then
+					if(operand_2 = 0) then
 						err_div_by_zero_alu <= '1';
 						alu_state_next <= READY;
 					else
-						-- TODO: dividierer:
-						alu_state_next <= DONE;
+						if once = '0' then
+							once_next <= '1';
+							case sm is
+								when 0 =>
+									buf1 <= (others => '0');
+									buf2 <= std_logic_vector(operand_1);
+									dbuf_next <= std_logic_vector(operand_2);
+									sm_next <= sm + 1;
+								when others =>
+									if buf((2 * SIZE - 2) downto (SIZE - 1)) >= dbuf then
+										buf1 <= '0' & std_logic_vector(signed(buf((2 * SIZE - 3) downto (SIZE - 1))) - signed(dbuf((SIZE - 2) downto 0)));
+										buf2 <= buf2((SIZE - 2) downto 0) & '1';
+									else
+										buf_next <= std_logic_vector(buf((2 * SIZE - 2) downto 0)) & '0';
+									end if;
+									if sm /= SIZE then
+										sm_next <= sm + 1;
+									else
+										alu_state_next <= DONE_POST;
+										sm_next <= 0;
+									end if;
+							end case;
+						else
+							once_next <= '0';
+						end if;
 					end if;
 				end if;
 	
