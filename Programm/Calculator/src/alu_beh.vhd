@@ -48,7 +48,7 @@ begin
 		end if;
 	end process;
 
-	process(once, start_operation, start_operation_old, alu_state, operand_1, operand_2, operator, sum_tmp)
+	process(start_operation, start_operation_old, alu_state, operand_1, operand_2, operator, sum_tmp, buf, dbuf, sm, once)
 	begin
 		start_operation_old_next <= start_operation;
 		alu_state_next <= alu_state;
