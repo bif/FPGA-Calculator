@@ -6,16 +6,16 @@ package alu_pkg is
 	component alu is
 		generic
 		(
-			RESULT_MAX		:	signed(62 downto 0) := x"8000";		--	+2^31 - 1
-			RESULT_MIN		:	signed(62 downto 0) := x"8000"		--	-2^31
-		)
+			RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";	-- +2^31 - 1
+			RESULT_MIN		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111"	-- -2^31
+		);
 		port
 		(
 			sys_clk			:	in	std_logic := '0';
 			sys_res_n		:	in	std_logic := '0';
 			start_operation         :	in      std_logic := '0';
 			operation_done          :	out     std_logic := '0';
-			err_div_by_zero		:	out     std_logic := '0';
+			err_div_by_zero_alu	:	out     std_logic := '0';
 			err_overflow		:	out     std_logic := '0';
 			operand_1               :	in      signed(31 downto 0);
 			operand_2               :	in      signed(31 downto 0);

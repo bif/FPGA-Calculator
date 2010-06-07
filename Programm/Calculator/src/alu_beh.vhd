@@ -35,12 +35,14 @@ begin
 		sum_tmp_next <= sum_tmp;
 		sum <= "000000000000000000000000000000000000000000000000000000000000000";
 		operation_done <= '0';
+		err_div_by_zero_alu <= '0';
+		err_overflow <= '0';
 
 		case alu_state is
 		when	READY =>
 		
 			operation_done <= '0';	
-			err_div_by_zero <= '0';
+			err_div_by_zero_alu <= '0';
 			err_overflow <= '0';
 			if(start_operation /= start_operation_old and start_operation = '1')
 			then
@@ -64,15 +66,17 @@ begin
 				then
 					if(operand_2 = 0)
 					then
-						err_div_by_zero <= '1';
+						err_div_by_zero_alu <= '1';
 					else
 						-- TODO: dividierer:
+						alu_state_next <= DONE;
 					end if;
 				end if;
 
 		when	DONE =>	
 			alu_state_next <= READY;
-			if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
+			--if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
+			if(sum_tmp <= RESULT_MAX)
 			then
 				operation_done <= '1';
 				sum <= sum_tmp;

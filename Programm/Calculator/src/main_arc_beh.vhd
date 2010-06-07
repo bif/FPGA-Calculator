@@ -17,7 +17,7 @@ architecture beh of main is
 	signal		btn_a_sig 				: std_logic := '0';
 	signal		sense_old, sense_old_next		: std_logic := '0';
 	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
-	signal		error_calc_main_old, error_calc_main_old_next		: std_logic := '0';
+	signal		err_div_by_zero_main_old, err_div_by_zero_main_old_next		: std_logic := '0';
 	signal		error_parser_main_old, error_parser_main_old_next		: std_logic := '0';
 	signal		error_flag_parser, error_flag_parser_next		: std_logic := '0';
 	signal		error_flag_calc, error_flag_calc_next		: std_logic := '0';
@@ -94,7 +94,7 @@ process(sys_clk, sys_res_n)
 		addr <= "00000000";
 		decode_ready_old <= '0';
 		main_state <= READY;
-		error_calc_main_old <= '0';
+		err_div_by_zero_main_old <= '0';
 		error_parser_main_old <= '0';
 		error_flag_calc <= '0';
 		error_flag_parser <= '0';
@@ -119,7 +119,7 @@ process(sys_clk, sys_res_n)
 		addr <= addr_next;
 		decode_ready_old <= decode_ready_old_next;
 		main_state <= main_state_next;
-		error_calc_main_old <= error_calc_main_old_next;
+		err_div_by_zero_main_old <= err_div_by_zero_main_old_next;
 		error_parser_main_old <= error_parser_main_old_next;
 		error_flag_calc <= error_flag_calc_next;
 		error_flag_parser <= error_flag_parser_next;
@@ -127,7 +127,7 @@ process(sys_clk, sys_res_n)
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, error_parser, error_calc, error_calc_main_old, error_parser_main_old, goto_nextstate, error_flag_calc, error_flag_parser)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, error_parser, err_div_by_zero_main, err_div_by_zero_main_old, error_parser_main_old, goto_nextstate, error_flag_calc, error_flag_parser)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -148,7 +148,7 @@ begin
 	addr_next <= addr;
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
-	error_calc_main_old_next <= error_calc;
+	err_div_by_zero_main_old_next <= err_div_by_zero_main;
 	error_parser_main_old_next <= error_parser;
 	error_flag_parser_next <= error_flag_parser;
 	error_flag_calc_next <= error_flag_calc;
@@ -265,7 +265,7 @@ begin
 				error_flag_parser_next <= '1';
 			end if;
 			
-			if(error_calc_main_old /= error_calc and error_calc = '1')
+			if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
 			then
 				error_flag_calc_next <= '1';
 			end if;
@@ -291,7 +291,7 @@ begin
 				error_flag_parser_next <= '1';
 			end if;
 			
-			if(error_calc_main_old /= error_calc and error_calc = '1')
+			if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
 			then
 				error_flag_calc_next <= '1';
 			end if;

@@ -55,7 +55,8 @@ architecture struct of calculator_top is
 	signal		need_input_top		:	std_logic;
 	signal		operation_end_top	:	std_logic;
 	signal		error_parser_top	:	std_logic;
-	signal		error_calc_top		:	std_logic;
+	signal		err_div_by_zero_top	:	std_logic;
+	signal		err_overflow_top	:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
 
@@ -83,7 +84,8 @@ component calc is
 		need_input		:	out	std_logic;
 		calc_ready		:	out	std_logic;
 		error_parser		:	in	std_logic;		-- input  calc <-- parser
-		error_calc		:	out	std_logic;		-- input  calc <-- parser
+		err_div_by_zero		:	out	std_logic;		-- input  calc <-- parser
+		err_overflow		:	out	std_logic;		-- input  calc <-- parser
 		decode_ready_calc	:       out     std_logic;
 		sign_bcd_calc		:	out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
@@ -289,20 +291,21 @@ begin
 	)
 	port map
 	(
-		sys_clk		=>	sys_clk,
-		sys_res_n	=>	sys_res_n_sync,
-		sense		=>	btn_a_sync,
-		uart_main_rx	=>	uart_top_rx_sig,
-		uart_main_tx	=>	uart_top_tx_sig,
-		start_calc	=>	start_calc_sig,
-		lb_addr		=>	main_lb_addr_sig,
-		lb_data		=>	main_lb_data_sig,
+		sys_clk			=>	sys_clk,
+		sys_res_n		=>	sys_res_n_sync,
+		sense			=>	btn_a_sync,
+		uart_main_rx		=>	uart_top_rx_sig,
+		uart_main_tx		=>	uart_top_tx_sig,
+		start_calc		=>	start_calc_sig,
+		lb_addr			=>	main_lb_addr_sig,
+		lb_data			=>	main_lb_data_sig,
 		decode_ready_main	=>	decode_ready_sig,
-		lb_enable	=>	enable_lb_sig,
-		bcd_buf		=>	bcd_buf_sig,
-		sign_bcd_main	=>	sign_bcd_top,
-		error_parser	=>	error_parser_top,
-		error_calc	=>	error_calc_top
+		lb_enable		=>	enable_lb_sig,
+		bcd_buf			=>	bcd_buf_sig,
+		sign_bcd_main		=>	sign_bcd_top,
+		error_parser		=>	error_parser_top,
+		err_overflow_main	=>	err_overflow_top,
+		err_div_by_zero_main	=>	err_div_by_zero_top
 	);
 
 	calc_inst : calc
@@ -324,7 +327,8 @@ begin
 		operator		=>	operator_sig,
 		need_input		=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		error_parser		=>	error_parser_top,
-		error_calc		=>	error_calc_top,
+		err_div_by_zero		=>	err_div_by_zero_top,
+		err_overflow		=>	err_overflow_top,
 		decode_ready_calc	=>	decode_ready_sig,
 		bcd_buf			=>	bcd_buf_sig,
 		sign_bcd_calc		=>	sign_bcd_top
