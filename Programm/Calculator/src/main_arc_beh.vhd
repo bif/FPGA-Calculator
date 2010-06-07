@@ -18,7 +18,7 @@ architecture beh of main is
 	signal		sense_old, sense_old_next		: std_logic := '0';
 	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
 	signal		err_div_by_zero_main_old, err_div_by_zero_main_old_next		: std_logic := '0';
-	signal		error_parser_main_old, error_parser_main_old_next		: std_logic := '0';
+	signal		error_parser_main_old, error_parser_main_old_next		: std_logic_vector(1 downto 0);
 	signal		error_flag_parser, error_flag_parser_next		: std_logic := '0';
 	signal		error_flag_calc, error_flag_calc_next		: std_logic := '0';
 
@@ -95,7 +95,6 @@ process(sys_clk, sys_res_n)
 		decode_ready_old <= '0';
 		main_state <= READY;
 		err_div_by_zero_main_old <= '0';
-		error_parser_main_old <= '0';
 		error_flag_calc <= '0';
 		error_flag_parser <= '0';
 		goto_nextstate <= '0';
@@ -154,6 +153,11 @@ begin
 	error_flag_calc_next <= error_flag_calc;
 	goto_nextstate_next <= goto_nextstate;
 	
+	if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
+	then
+		error_flag_calc_next <= '1';
+	end if;
+			
 	case main_state is
 		when READY =>
 
@@ -260,16 +264,6 @@ begin
 				goto_nextstate_next <= '1';
 			end if;
 
-			if(error_parser_main_old /= error_parser and error_parser = '1')
-			then
-				error_flag_parser_next <= '1';
-			end if;
-			
-			if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
-			then
-				error_flag_calc_next <= '1';
-			end if;
-			
 		when WAIT4SUM =>
 
 			if((decode_ready_old /= decode_ready_main and decode_ready_main = '1') or(goto_nextstate = '1')) -- or: see FI	
@@ -286,16 +280,6 @@ begin
 				end if;
 			end if;
 			
-			if(error_parser_main_old /= error_parser and error_parser = '1')
-			then
-				error_flag_parser_next <= '1';
-			end if;
-			
-			if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
-			then
-				error_flag_calc_next <= '1';
-			end if;
-			
 		when COPY_SUM =>
 			if(ram_line = 0)		-- send <+> or <->
 			then
@@ -307,15 +291,15 @@ begin
 				wr_main_next <= '1';
 				ram_offset_next <= ram_offset + 1;
 				ram_line_next <= ram_line + 1;
-				if(error_flag_calc= '0')			-- parser found no error
-				then
-					data_in_main_next <= std_logic_vector(unsigned(resize(bcd_buf((ram_line*4-1) downto ((ram_line-1)*4)), 8)) + 48);
-				elsif(error_flag_parser = '1')			-- parser found error
+				
+				if(error_flag_parser = '1')			-- parser found error
 				then
 					data_in_main_next <= x"59";
 				elsif(error_flag_calc= '1')			-- calculator found no error
 				then
 					data_in_main_next <= x"58";
+				else
+					data_in_main_next <= std_logic_vector(unsigned(resize(bcd_buf((ram_line*4-1) downto ((ram_line-1)*4)), 8)) + 48);
 				end if;
 			else
 				lb_enable_next <= '1';			-- wake up linebuffer-module again

@@ -39,7 +39,7 @@ architecture struct of calculator_top is
 	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
- 	signal error_number : std_logic_vector(1 downto 0) := "00";
+ 	signal err_code_parser : std_logic_vector(1 downto 0) := "00";
 
 
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
@@ -54,7 +54,6 @@ architecture struct of calculator_top is
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		need_input_top		:	std_logic;
 	signal		operation_end_top	:	std_logic;
-	signal		error_parser_top	:	std_logic;
 	signal		err_div_by_zero_top	:	std_logic;
 	signal		err_overflow_top	:	std_logic;
 	signal		calc_ready_top		:	std_logic;
@@ -83,9 +82,9 @@ component calc is
 		operator        	:       in	std_logic_vector(1 downto 0)  := "00";
 		need_input		:	out	std_logic;
 		calc_ready		:	out	std_logic;
-		error_parser		:	in	std_logic;		-- input  calc <-- parser
-		err_div_by_zero		:	out	std_logic;		-- input  calc <-- parser
-		err_overflow		:	out	std_logic;		-- input  calc <-- parser
+		error_parser		:	in	std_logic_vector(1 downto 0);		-- input  calc <-- parser
+		err_div_by_zero		:	out	std_logic;				-- input  calc <-- parser
+		err_overflow		:	out	std_logic;				-- input  calc <-- parser
 		decode_ready_calc	:       out     std_logic;
 		sign_bcd_calc		:	out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
@@ -278,7 +277,7 @@ begin
 		leading_sign => negative,
 		end_of_operation => end_of_op_sig,		-- last operand found - calculation ends here
 		parse_ready => parse_ready_sig,			-- 1 unit(operand + operator) is ready
-		error_sig => error_number
+		error_sig => err_code_parser
 	);
 
 
@@ -303,7 +302,7 @@ begin
 		lb_enable		=>	enable_lb_sig,
 		bcd_buf			=>	bcd_buf_sig,
 		sign_bcd_main		=>	sign_bcd_top,
-		error_parser		=>	error_parser_top,
+		error_parser		=>	err_code_parser,
 		err_overflow_main	=>	err_overflow_top,
 		err_div_by_zero_main	=>	err_div_by_zero_top
 	);
@@ -326,7 +325,7 @@ begin
 		operand			=>	operand_sig,
 		operator		=>	operator_sig,
 		need_input		=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_parser		=>	error_parser_top,
+		error_parser		=>	err_code_parser,
 		err_div_by_zero		=>	err_div_by_zero_top,
 		err_overflow		=>	err_overflow_top,
 		decode_ready_calc	=>	decode_ready_sig,

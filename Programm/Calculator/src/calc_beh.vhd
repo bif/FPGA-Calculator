@@ -242,9 +242,7 @@ begin
 					operand_2_next <= operand;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_TMP;					
-
 					op_punkt_flag_next <= '0';
-					
 				end if;
 
 			when WAIT4ALU_PUNKT =>
@@ -256,14 +254,18 @@ begin
 
 				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
 				then
-					calc_state_next <= READY;
+					calc_state_next <= INVALID;
 				end if;
 
 			when WAIT4ALU_STRICH =>
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
 				then
 					buffer_strich_next <= sum_tmp;	
-					calc_state_next <= FINISH;
+					calc_state_next <= MANAGE;
+				end if;
+				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
+				then
+					calc_state_next <= INVALID;
 				end if;
 
 			when WAIT4ALU_TMP =>				
@@ -286,8 +288,9 @@ begin
 				end if;
 				
 			when WAIT4ALU_TMP_2 =>
-				operator_strich_next <= operator;
+--				operator_strich_next <= operator;
 				calc_state_next <= WAIT4ALU_STRICH;
+				operator_strich_next <= operator;
 
 			when INVALID =>
 				calc_state_next <= READY;

@@ -67,6 +67,7 @@ begin
 					if(operand_2 = 0)
 					then
 						err_div_by_zero_alu <= '1';
+						alu_state_next <= READY;
 					else
 						-- TODO: dividierer:
 						alu_state_next <= DONE;
