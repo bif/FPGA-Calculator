@@ -15,7 +15,7 @@ architecture beh of parser is
 	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
 	signal space, space_next, num, num_next : std_logic := '0';
 	signal mem_ready, mem_ready_next : std_logic := '0';
-	signal once, once_next, do_convert, do_convert_next, ready, ready_next : std_logic := '0';
+	signal once, once_next, do_convert, do_convert_next, ready, ready_next, first_round, first_round_next : std_logic := '0';
 
 	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
 
@@ -97,9 +97,10 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign_old, current_number, do_convert, ready)
+	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign_old, current_number, do_convert, ready, first_round)
 
   begin
+		first_round_next <= first_round;
 		parse_ready_next <= '0';
 		end_of_op_next <= '0';
 		check_op_ready_next <= '0';
@@ -120,7 +121,10 @@ begin
 
     case parser_fsm_state is
 			when IDLE =>
-				null;
+				if first_round /= '1' then
+					first_round_next <= '1';
+					addr_lb_next <= (others => '0');
+				end if;
 
 			when RESET_SIGNALS =>
 				operand_next <= to_signed(0, 32);
@@ -354,7 +358,10 @@ begin
 			line_count <= (others => '0');
 			last_operand <= (others => '0');
 			error_sig <= "00";
+			addr_lb_old <= (others => '0');
+			addr_lb <= (others => '0');
 			read_next_n_o_old <= '0';
+			first_round <= '0';
 		elsif (sys_clk'event and sys_clk = '1') then
 			check_unsigned_ready <= check_unsigned_ready_next;
 			parser_fsm_state <= parser_fsm_state_next;
@@ -380,7 +387,8 @@ begin
 			once <= once_next;
 			current_number <= current_number_next;
 			do_convert <= do_convert_next;
-			ready <= ready_next;	
+			ready <= ready_next;
+			first_round <= first_round_next;	
 	end if;
   end process sync;
 end architecture beh;
