@@ -108,12 +108,6 @@ add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
 
-add wave -noupdate -divider -height 30 {Devider-ALU}
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/load
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/load_next
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/div_ready
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/quotient
-
 add wave -noupdate -format Logic /parser_main_tb/clk
 
 TreeUpdate [SetDefaultTree]
