@@ -40,6 +40,8 @@ begin
 		when	READY =>
 		
 			operation_done <= '0';	
+			err_div_by_zero <= '0';
+			err_overflow <= '0';
 			if(start_operation /= start_operation_old and start_operation = '1')
 			then
 				alu_state_next <= BUSY;
@@ -60,13 +62,23 @@ begin
 					alu_state_next <= DONE;
 				elsif(operator = "11")
 				then
-				-- TODO: dividierer
+					if(operand_2 = 0)
+					then
+						err_div_by_zero <= '1';
+					else
+						-- TODO: dividierer:
+					end if;
 				end if;
 
 		when	DONE =>	
 			alu_state_next <= READY;
-			operation_done <= '1';
-			sum <= sum_tmp;
+			if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
+			then
+				operation_done <= '1';
+				sum <= sum_tmp;
+			else					-- result is too big(or too small) --> overflow
+				err_overflow <= '1';
+			end if;
 
 		end case;
 	end process;

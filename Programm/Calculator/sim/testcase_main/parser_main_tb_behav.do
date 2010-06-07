@@ -1,6 +1,6 @@
-if {[file exists behav_work]} {
-  vdel -all -lib behav_work
-}
+#if {[file exists behav_work]} {
+#  vdel -all -lib behav_work
+#}
 
 # create work library directory
 vlib behav_work
