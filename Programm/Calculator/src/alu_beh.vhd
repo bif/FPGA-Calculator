@@ -60,6 +60,8 @@ begin
 		dbuf_next <= dbuf;
 		sm_next <= sm;
 		once_next <= once;
+		err_div_by_zero_alu <= '0';
+		err_overflow <= '0';
 
 		case alu_state is
 		when	READY =>
@@ -69,6 +71,8 @@ begin
 			once_next <= '0';
 	
 			operation_done <= '0';	
+			err_div_by_zero_alu <= '0';
+			err_overflow <= '0';
 			if(start_operation /= start_operation_old and start_operation = '1')
 			then
 				alu_state_next <= BUSY;
@@ -113,6 +117,13 @@ begin
 						end case;
 					else
 						once_next <= '0';
+					if(operand_2 = 0)
+					then
+						err_div_by_zero_alu <= '1';
+						alu_state_next <= READY;
+					else
+						-- TODO: dividierer:
+						alu_state_next <= DONE;
 					end if;
 				end if;
 	
@@ -122,8 +133,14 @@ begin
 
 		when	DONE =>	
 			alu_state_next <= READY;
-			operation_done <= '1';
-			sum <= sum_tmp;
+			--if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
+			if(sum_tmp <= RESULT_MAX)
+			then
+				operation_done <= '1';
+				sum <= sum_tmp;
+			else					-- result is too big(or too small) --> overflow
+				err_overflow <= '1';
+			end if;
 
 		end case;
 	end process;

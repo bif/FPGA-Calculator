@@ -41,8 +41,9 @@ architecture sim of parser_main_tb is
 
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		operation_end_top	:	std_logic;
-	signal		error_calc_top		:	std_logic;
-	signal		error_parser_top		:	std_logic;
+	signal		err_div_by_zero_top		:	std_logic;
+	signal		err_overflow_top		:	std_logic;
+	signal		error_parser_top		:	std_logic_vector(1 downto 0);
 	signal		negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
@@ -69,8 +70,9 @@ component calc is
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		error_calc		:	out	std_logic;
-		error_parser		:	in	std_logic;
+		err_div_by_zero		:	out	std_logic;
+		err_overflow		:	out	std_logic;
+		error_parser		:	in	std_logic_vector(1 downto 0);
 		decode_ready_calc	:       out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
 	);
@@ -98,7 +100,8 @@ begin  -- behav
 		operand		=>	operand_sig,
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		error_calc	=>	error_calc_top,
+		err_overflow	=>	err_overflow_top,
+		err_div_by_zero	=>	err_div_by_zero_top,
 		error_parser	=>	error_parser_top,
 		sign_bcd_calc   =>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig
@@ -172,7 +175,8 @@ begin  -- behav
 		sign_bcd_main	=>	sign_bcd_top,
 		bcd_buf		=>	bcd_buf_sig,
 		error_parser	=>	error_parser_top,
-		error_calc	=>	error_calc_top
+		err_div_by_zero_main	=>	err_div_by_zero_top,
+		err_overflow_main	=>	err_overflow_top
 	);
 
 
@@ -221,7 +225,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "7-3=                                                                   ";
+			test_string <= "7/0=                                                                   ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

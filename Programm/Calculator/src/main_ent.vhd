@@ -25,7 +25,8 @@ entity main is
 		lb_addr			: out	std_logic_vector(ADR_WIDTH - 1 downto 0) := "00000000";
 		bcd_buf			: in	unsigned(39 downto 0);
 		sign_bcd_main		: in	std_logic;
-		error_parser		: in	std_logic;					-- input from parser
-		error_calc		: in	std_logic					-- input from parser
+		error_parser		: in	std_logic_vector(1 downto 0);			-- input from parser
+		err_div_by_zero_main	: in	std_logic;					-- input from parser
+		err_overflow_main	: in	std_logic					-- input from parser
 	);
 end entity main;

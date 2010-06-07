@@ -7,6 +7,7 @@ entity calc is
 	(
 		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
 		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
+		--RESULT_MAX	:	signed(62 downto 0) := x"8000";
 		RESULT_MAX	:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
 		RESULT_MIN	:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
 	);
@@ -24,7 +25,8 @@ entity calc is
 		operator	:	in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		error_parser	:	in	std_logic;		-- inputsignal from PARSER
-		error_calc	:	out	std_logic		-- outputsignal to Main/Linebuffer
+		error_parser	:	in	std_logic_vector(1 downto 0);		-- inputsignal from PARSER
+		err_overflow	:	out	std_logic;				-- outputsignal to Main/Linebuffer
+		err_div_by_zero	:	out	std_logic				-- outputsignal to Main/Linebuffer
 	);
 end entity calc;

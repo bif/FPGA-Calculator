@@ -15,8 +15,6 @@ architecture beh of calc is
 	signal parse_ready_old_next	: std_logic;
 	signal operation_end_old	: std_logic;
 	signal operation_end_old_next	: std_logic;
-	signal error_calc_old		: std_logic;
-	signal error_calc_old_next	: std_logic;
 	signal start_decode_bcd		: std_logic;
 	signal decode_ready_old		: std_logic;
 	signal decode_ready_old_next	: std_logic;
@@ -29,6 +27,12 @@ architecture beh of calc is
 	signal operation_done_sig	: std_logic := '0';
 	signal operation_done_old	: std_logic := '0';
 	signal operation_done_old_next	: std_logic := '0';
+	signal err_div_by_zero_calc	: std_logic := '0';
+	signal err_div_by_zero_calc_old	: std_logic := '0';
+	signal err_div_by_zero_calc_old_next	: std_logic := '0';
+	signal err_overflow_calc	: std_logic := '0';
+	signal err_overflow_old		: std_logic := '0';
+	signal err_overflow_old_next	: std_logic := '0';
 	signal sum_tmp			: signed(62 downto 0);
 	signal sum_tmp_next		: signed(62 downto 0);
 	signal operand_1		: signed(31 downto 0);
@@ -75,7 +79,6 @@ begin
 			need_input <= '0';
 			parse_ready_old <= '0';
 			operation_end_old <= '0';
-			error_calc_old	<= '0';
 			buffer_punkt <= "000000000000000000000000000000000000000000000000000000000000000";
 			buffer_strich <= "000000000000000000000000000000000000000000000000000000000000000";
 			operator_strich <= "00";
@@ -90,6 +93,8 @@ begin
 			operation_done_old <= '0';
 			operator_calc <= "00";
 			start_operation_calc <= '0';
+			err_div_by_zero_calc_old <= '0';
+			err_overflow_old <= '0';
 		elsif(sys_clk'event and sys_clk = '1')
 		then
 			calc_state <= calc_state_next;
@@ -97,7 +102,6 @@ begin
 			need_input <= need_input_next;
 			parse_ready_old <= parse_ready_old_next;
 			operation_end_old <= operation_end_old_next;
-			error_calc_old <= error_calc_old_next;
 			buffer_punkt <= buffer_punkt_next;
 			buffer_strich <= buffer_strich_next;
 			operator_strich <= operator_strich_next;
@@ -112,11 +116,13 @@ begin
 			operation_done_old <= operation_done_old_next;
 			operator_calc <= operator_calc_next;
 			start_operation_calc <= start_operation_calc_next;
+			err_div_by_zero_calc_old <= err_div_by_zero_calc_old_next;
+			err_overflow_old <= err_overflow_old_next;
 		end if;
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, error_parser, error_calc_old, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old)
 	variable erg_tmp	:	signed(62 downto 0) := "000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		erg_tmp := "000000000000000000000000000000000000000000000000000000000000000";
@@ -133,12 +139,13 @@ begin
 		decode_ready_old_next <= decode_ready_sig;
 		ready_flag_next <= ready_flag;
 		calc_ready_next <= '0';
-		error_calc_old_next <= error_parser;
 		operand_1_next <= operand_1;
 		operand_2_next <= operand_2;
 		operation_done_old_next <= operation_done_sig;
 		operator_calc_next <= operator_calc;
 		decode_ready_calc <= '0';
+		err_div_by_zero_calc_old_next <= err_div_by_zero_calc;
+		err_overflow_old_next <= err_overflow_calc;
 
 		case calc_state is
 			when READY =>
@@ -180,11 +187,6 @@ begin
 						calc_state_next <= FINISH;
 				end if;
 			
-				if(error_calc_old /= error_parser and error_parser = '1')		-- syntax error found by parser unit - forget this inputline!
-				then
-					calc_state_next <= INVALID;
-				end if;
-	
 				if(operation_end /= operation_end_old and operation_end = '1')		-- just got the LAST operand - remember it!
 				then
 					ready_flag_next <= '1';
@@ -223,6 +225,7 @@ begin
 					operand_2_next <= operand;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_STRICH;
+					operator_strich_next <= operator;
 
 				elsif(op_strich_flag = '1' and op_punkt_flag = '0')	-- strichrechchnung vorgemerkt
 				then
@@ -230,6 +233,7 @@ begin
 					operand_2_next <= operand;
 					operator_calc_next <= operator_strich;
 					calc_state_next <= WAIT4ALU_STRICH;
+					operator_strich_next <= operator;
 
 
 				elsif(op_strich_flag = '1' and op_punkt_flag = '1')	-- punkt UND strichrechnung vorgemerkt
@@ -238,11 +242,8 @@ begin
 					operand_2_next <= operand;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_TMP;					
-
 					op_punkt_flag_next <= '0';
-					
 				end if;
-				operator_strich_next <= operator;
 
 			when WAIT4ALU_PUNKT =>
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
@@ -251,11 +252,20 @@ begin
 					calc_state_next <= MANAGE;
 				end if;
 
+				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
+				then
+					calc_state_next <= INVALID;
+				end if;
+
 			when WAIT4ALU_STRICH =>
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
 				then
 					buffer_strich_next <= sum_tmp;	
 					calc_state_next <= MANAGE;
+				end if;
+				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
+				then
+					calc_state_next <= INVALID;
 				end if;
 
 			when WAIT4ALU_TMP =>				
@@ -270,15 +280,22 @@ begin
 						operator_calc_next <= operator_strich;
 						calc_state_next <= WAIT4ALU_TMP_2;
 					end if;
---						buffer_strich_next <= buffer_strich + erg_tmp;
---						buffer_strich_next <= buffer_strich - erg_tmp;
+				end if;
+				
+				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
+				then
+					calc_state_next <= INVALID;
 				end if;
 				
 			when WAIT4ALU_TMP_2 =>
-						calc_state_next <= WAIT4ALU_STRICH;
+--				operator_strich_next <= operator;
+				calc_state_next <= WAIT4ALU_STRICH;
+				operator_strich_next <= operator;
 
 			when INVALID =>
 				calc_state_next <= READY;
+				calc_ready_next <= '1';
+				decode_ready_calc <= '1';
 			when FINISH =>
 				if(decode_ready_old /= decode_ready_sig and decode_ready_sig = '1')
 				then
@@ -323,7 +340,7 @@ begin
 				start_operation_calc_next <= '1';
 				need_input_next <= '0';
 			when INVALID =>
-				need_input_next <= '0';
+				
 			when FINISH =>
 				need_input_next <= '0';
 				start_decode_bcd <= '1';
@@ -334,14 +351,16 @@ begin
 	alu_in	:	alu
 	port map
 	(
-		sys_clk		=>	sys_clk,
-		sys_res_n	=>	sys_res_n,
-		operand_1	=>	operand_1,
-		operand_2	=>	operand_2,
-		operator	=>	operator_calc,
-		start_operation	=>	start_operation_calc,
-		operation_done	=>	operation_done_sig,
-		sum		=>	sum_tmp
+		sys_clk			=>	sys_clk,
+		sys_res_n		=>	sys_res_n,
+		operand_1		=>	operand_1,
+		operand_2		=>	operand_2,
+		operator		=>	operator_calc,
+		start_operation		=>	start_operation_calc,
+		operation_done		=>	operation_done_sig,
+		sum			=>	sum_tmp,
+		err_div_by_zero_alu	=>	err_div_by_zero_calc,
+		err_overflow		=>	err_overflow_calc
 	);
 
 	itoa_inst :     itoa
@@ -367,6 +386,10 @@ begin
 	);
 --	decode_ready_calc <= decode_ready_sig;
 	sign_bcd_calc <= sign_bcd_sig;
+
+	err_div_by_zero <= err_div_by_zero_calc;
+	err_overflow <= err_overflow_calc;
+
 	bcd_buf(3 downto 0) <= out_9_sig;		-- ATTENTION: '1er-stelle' steht GANZ LINKS, danach '10er-stelle', danach 100-er-stelle, ...
 	bcd_buf(7 downto 4) <= out_8_sig;
 	bcd_buf(11 downto 8) <= out_7_sig;
