@@ -4,7 +4,6 @@ use ieee.numeric_std.all;
 
 
 architecture beh of alu is
-
 	constant SIZE : integer := 32;
 
 	signal	start_operation_old		:	std_logic := '0';
@@ -31,9 +30,6 @@ begin
 	begin
 		if(sys_res_n = '0')
 		then
-			counter <= "111111";
-			div_ready <= '0';
-			div_ready <= '0';
 			start_operation_old <= '0';
 			alu_state <= READY;
 			sum_tmp <= "000000000000000000000000000000000000000000000000000000000000000";
