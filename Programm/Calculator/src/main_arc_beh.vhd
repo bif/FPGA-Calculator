@@ -84,7 +84,6 @@ process(sys_clk, sys_res_n)
 		ram_line <= 0;
 		line_count <= 0;
 		data_in_main <= "00000000";
-		--lb_addr <= "00000000";
 		lb_enable <= '0';
 		rbuf_overflow <= '0';
 		addr <= "00000000";
@@ -105,7 +104,6 @@ process(sys_clk, sys_res_n)
 		mem_pointer <= mem_pointer_next;
 		ram_line <= ram_line_next;
 		line_count <= line_count_next;
-		--lb_addr <= lb_addr_next;
 		lb_enable <= lb_enable_next;
 		rbuf_overflow <= rbuf_overflow_next;
 		addr <= addr_next;
@@ -115,7 +113,7 @@ process(sys_clk, sys_res_n)
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, goto_nextstate)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, main_lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, goto_nextstate)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -131,8 +129,7 @@ begin
 	line_count_next <= line_count;
 	lb_enable_next <= '0';
 	rbuf_overflow_next <= rbuf_overflow;
-	--lb_addr_next <= lb_addr;
-	lb_addr <= "00000000";
+	main_lb_addr <= "00000000";
 	addr_next <= addr;
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
@@ -195,7 +192,8 @@ begin
 						send_byte_main_next <= '1';
 						line_count_next <= line_count + 1;					
 		
-						if(line_count = 49)				-- there are no more lines to be sent
+						--if(line_count = 49)				-- there are no more lines to be sent
+						if(line_count = 4)				-- DEBUGING - umbruch schon nach 5 zeilen!
 						then
 							send_byte_main_next <= '0';
 							ram_line_next <= 0;
@@ -222,15 +220,16 @@ begin
 			if(unsigned(addr) < 70)
 			then
 				wr_main_next <= '1';		
-				data_in_main_next <= lb_data;		-- .. write actual data to ringbuffer
+				data_in_main_next <= main_lb_data;		-- .. write actual data to ringbuffer
 
 				ram_offset_next <= ram_offset + 1;
-				lb_addr <= addr;
+				main_lb_addr <= addr;
 				addr_next <= std_logic_vector(unsigned(addr) + 1);
 			else
 				main_state_next <= WAIT4SUM;
 				wr_main_next <= '0';
-				if(mem_pointer = 50)
+				--if(mem_pointer = 50)
+				if(mem_pointer = 5)		-- debugging wg. wraparound: IST SO OK, mem-umbruch nach 5 inputlines!
 				then
 					mem_pointer_next <= 0;
 					rbuf_overflow_next <= '1';
@@ -303,10 +302,11 @@ begin
 	
 	end case;
 
---	if(ram_offset = 4050)					-- overflow(mem_pointer /= 0x00)	FIXME
---	then
---		ram_offset_next <= 0;
---	end if;
+	--if(ram_offset = 4050)					-- overflow(mem_pointer /= 0x00)	
+	if(ram_offset >= 405)					-- ZUM TESTEN	
+	then
+		ram_offset_next <= 0;
+	end if;
 
 
 end process;

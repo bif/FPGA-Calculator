@@ -10,6 +10,7 @@ vmap work behav_work
 
 #compile vhdl files
 
+	vcom -work work ../../src/error_msg_pkg.vhd
 
 	vcom -work work ../../src/itoa_pkg.vhd
 	vcom -work work ../../src/itoa.vhd
