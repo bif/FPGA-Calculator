@@ -253,8 +253,8 @@ begin
 		lb_data => lb_data_wr_sig,
 		start_calc => start_calc_sig, 
 		enable => enable_lb_sig,				-- <-- main(rising edge)
-		bcd_result => std_logic_vector(bcd_buf_sig)
-	--	debug => debug_sig
+		bcd_result => std_logic_vector(bcd_buf_sig),
+		bcd_pos_neg	=> sign_bcd_top
 	);
 
 	parser_inst : parser

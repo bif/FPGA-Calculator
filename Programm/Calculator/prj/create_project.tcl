@@ -85,6 +85,7 @@ if {$make_assignments} {
 	set_global_assignment -name VHDL_FILE ../src/parser_arc_beh.vhd
   set_global_assignment -name VHDL_FILE ../src/parser_ent.vhd
   set_global_assignment -name VHDL_FILE ../src/parser_pkg.vhd
+  set_global_assignment -name VHDL_FILE ../src/error_msg_pkg.vhd
 
 	# used ip cores
 	set_global_assignment -name VHDL_FILE ../../ps2/src/ps2_keyboard_controller_beh.vhd

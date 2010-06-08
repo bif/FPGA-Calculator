@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.textmode_vga_pkg.all;
+use work.error_msg_pkg.all;
 
 architecture beh of line_buffer is
 	constant DEFAULT_VGA_DATA : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0) := x"00000000";
@@ -19,7 +20,7 @@ architecture beh of line_buffer is
 	signal lb_data_next : std_logic_vector(DATA_WIDTH - 1 downto 0) := (others => '0');
 	signal enable_old, enable_old_next, wr_enable_next, start_calc_next, enter_write_result, enter_write_result_next : std_logic := '0';
 	signal bcd_buf, bcd_buf_next : std_logic_vector(39 downto 0) := (others => '0');
-	signal wait_write, wait_write_next : std_logic := '0';
+	signal wait_write, wait_write_next, leading_zero, leading_zero_next : std_logic := '0';
 
 begin
 
@@ -74,7 +75,7 @@ begin
 
 			when WRITE_RESULT =>	
 				if vga_free = '0' then
-					if lb_count < x"0A" then 
+					if lb_count <= x"0A" then 
 						lb_fsm_state_next <= WAIT_STATE;
 						save_next_state_next <= WRITE_RESULT;
 					else 
@@ -134,7 +135,7 @@ begin
   end process next_state;
 
 
-	output : process(lb_fsm_state, lb_count, reset_lb_count, ascii_sign_in, vga_free, once, bcd_result, bcd_buf, enter_write_result, wait_write)
+	output : process(lb_fsm_state, lb_count, reset_lb_count, ascii_sign_in, vga_free, once, bcd_result, bcd_buf, enter_write_result, wait_write, bcd_pos_neg, leading_zero)
 	
 	begin
 		start_calc_next <= '0';
@@ -148,8 +149,8 @@ begin
 		lb_addr_next <= lb_count;
 		enter_write_result_next <= enter_write_result;
 		wait_write_next <= wait_write;
-		
 		bcd_buf_next <= bcd_buf;
+		leading_zero_next <= leading_zero;
 
 		case lb_fsm_state is
 
@@ -179,7 +180,8 @@ begin
 				once_next <= '0';
 				enter_write_result_next <= '0';
 				wr_enable_next <= '0';
-
+				leading_zero_next <= '0';
+	
 			when DISABLE =>
 				bcd_buf_next <= bcd_result;
 				wait_write_next <= '0';
@@ -195,15 +197,44 @@ begin
 			when WRITE_RESULT =>
 				once_next <= '0';
 				if wait_write = '0' then
-					if vga_free = '1' and lb_count < x"0A" then
---TODO: führende Nullen enfernen / vorzeichen setzen
-						vga_command_data_next(31 downto 8) <= x"FFFFFF";
+					if vga_free = '1' and lb_count <= x"0A" then
 						vga_command_next <= COMMAND_SET_CHAR;
-						-- high nibble is always hex 3 => high nibble of offset hex 30
-						vga_command_data_next(7 downto 4) <= x"3";
-						-- low nibble => bcd value
-						vga_command_data_next(3 downto 0) <= bcd_buf(3 downto 0);
-						bcd_buf_next <= std_logic_vector(shift_right(unsigned(bcd_buf), 4));
+						if bcd_result(3 downto 0) < x"A" then		-- valid calculation
+							vga_command_data_next(31 downto 8) <= x"00FF00";
+							if bcd_pos_neg = '1' and lb_count = x"00" then
+								vga_command_data_next(7 downto 0) <= x"2D";
+							elsif bcd_pos_neg = '0' and lb_count = x"00" then
+								vga_command_data_next(7 downto 0) <= x"20";
+							else	
+								if bcd_buf(3 downto 0) = x"0" and leading_zero = '0' then
+									-- replace leading zeros with spaces
+									vga_command_data_next(7 downto 0) <= x"20";
+								elsif bcd_buf(3 downto 0) /= x"0" and leading_zero = '0' then
+									leading_zero_next <= '1';
+									-- high nibble is always hex 3 => high nibble of offset hex 30
+									vga_command_data_next(7 downto 4) <= x"3";
+									-- low nibble => bcd value
+									vga_command_data_next(3 downto 0) <= bcd_buf(3 downto 0);
+								else
+										-- high nibble is always hex 3 => high nibble of offset hex 30
+									vga_command_data_next(7 downto 4) <= x"3";
+									-- low nibble => bcd value
+									vga_command_data_next(3 downto 0) <= bcd_buf(3 downto 0);
+								end if;
+								bcd_buf_next <= std_logic_vector(shift_right(unsigned(bcd_buf), 4));
+							end if;
+						else
+							if lb_count > x"00" then
+								vga_command_data_next(31 downto 8) <= x"FF0000";
+								if bcd_result(3 downto 0) = x"C" then		-- invalid calculation: div by zero
+									vga_command_data_next(7 downto 0) <= err_str_divbyzero(to_integer(signed(lb_count) - 1));
+								elsif bcd_result(3 downto 0) = x"E" then		-- invalid calculation: error parser = invalid input
+									vga_command_data_next(7 downto 0) <= err_str_parsererror(to_integer(signed(lb_count) - 1));
+								elsif bcd_result(3 downto 0) = x"F" then		-- invalid calculation: overflow
+									vga_command_data_next(7 downto 0) <= err_str_overflow(to_integer(signed(lb_count) - 1));
+								end if;
+							end if;
+						end if;
 						lb_count_next <= std_logic_vector(unsigned(lb_count) + 1);
 					end if;
 					wait_write_next <= '1';
@@ -340,6 +371,7 @@ begin
 			start_calc <= start_calc_next;
 			enter_write_result <= enter_write_result_next;
 			bcd_buf <= bcd_buf_next;
+			leading_zero <= leading_zero_next;
 		end if;
 	end process sync;
 
