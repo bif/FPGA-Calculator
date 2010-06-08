@@ -24,7 +24,9 @@ architecture struct of calculator_top is
 	constant CHAR_SIZE : integer := 8;
 	constant LB_DATA_WIDTH : integer := 8;
 	constant LB_ADDR_WIDTH : integer := 8;
-	
+	constant RESULT_MAX : signed(62 downto 0) := "000000000000000000000000000000000111111111111111111111111111111"; -- +2^31 - 1
+	constant RESULT_MIN : signed(62 downto 0) := "000000000000000000000000000000010000000000000000000000000000000"; -- -2^31
+
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
 	signal command_data_sig : std_logic_vector(3 * COLOR_SIZE + CHAR_SIZE - 1 downto 0);
@@ -39,38 +41,25 @@ architecture struct of calculator_top is
 	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
 	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
- 	signal err_code_parser : std_logic_vector(1 downto 0) := "00";
+ 	signal err_code_parser : std_logic_vector(2 downto 0) := "000";
 
 
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
 
-	-- calc_inst - signals / constants
---	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
---	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
---	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
---	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
-
---	signal 		operator_top		:	std_logic_vector(1 downto 0);
---	signal		need_input_top		:	std_logic;
---	signal		operation_end_top	:	std_logic;
---	signal		err_div_by_zero_top	:	std_logic;
---	signal		err_overflow_top	:	std_logic;
+	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
 
 
---signal debug_sig : std_logic_vector(2 downto 0);
 
 
 component calc is
---	generic
---	(
---		OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
---		OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
---		RESULT_MAX      	:       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
---		RESULT_MIN     		:       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000000"
---	);
+	generic
+	(
+		RESULT_MAX : signed(62 downto 0);
+		RESULT_MIN : signed(62 downto 0)
+	);
 	port
 	(
 		sys_clk         	:       in	std_logic;
@@ -83,7 +72,7 @@ component calc is
 		operator        	:       in	std_logic_vector(1 downto 0)  := "00";
 		need_input		:	out	std_logic;
 		calc_ready		:	out	std_logic;
-		errcode_parser		:	in	std_logic_vector(1 downto 0);		-- input  calc <-- parser
+		errcode_parser		:	in	std_logic_vector(2 downto 0);		-- input  calc <-- parser
 		decode_ready_calc	:       out     std_logic;
 		sign_bcd_calc		:	out     std_logic;
 		bcd_buf			:	buffer	unsigned(39 downto 0)
@@ -262,7 +251,9 @@ begin
 	(
     RESET_VALUE => '0',
     ADDR_WIDTH => LB_ADDR_WIDTH,
-    DATA_WIDTH => LB_DATA_WIDTH
+    DATA_WIDTH => LB_DATA_WIDTH,
+		OPERAND_MAX	=>	RESULT_MAX,
+		OPERAND_MIN	=>	RESULT_MIN
   )  
 	port map 
 	(
@@ -304,13 +295,11 @@ begin
 	);
 
 	calc_inst : calc
---	generic map
---	(
---		OPERAND_MAX	=>	OPERAND_MAX,
---		OPERAND_MIN	=>	OPERAND_MIN,	
---		RESULT_MAX	=>	RESULT_MAX,
---		RESULT_MIN	=>	RESULT_MIN
---	)
+	generic map
+	(
+		RESULT_MAX	=>	RESULT_MAX,
+		RESULT_MIN	=>	RESULT_MIN
+	)
 	port map
 	(
 		sys_clk			=>	sys_clk,

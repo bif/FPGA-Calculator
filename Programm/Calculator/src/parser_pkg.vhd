@@ -9,8 +9,9 @@ component parser is
   (
     RESET_VALUE : std_logic;
 		ADDR_WIDTH : integer range 1 to integer'high;
-    DATA_WIDTH : integer range 1 to integer'high
-
+    DATA_WIDTH : integer range 1 to integer'high; 
+		OPERAND_MAX : signed(62 downto 0);
+		OPERAND_MIN : signed(62 downto 0)
   );
   port
   (

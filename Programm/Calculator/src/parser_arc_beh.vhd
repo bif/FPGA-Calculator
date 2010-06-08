@@ -78,18 +78,12 @@ begin
 				parser_fsm_state_next <= CONVERT;
 
 			when CONVERT =>
-				if check_op_ready = '1' and ready = '0' then 
-					if operand > xxx or operand < yyy then
-						parser_fsm_state_next <= ERROR_STATE;
-					else;
+				if error_sig_old /= "000" then				
+					parser_fsm_state_next <= ERROR_STATE;
+				elsif check_op_ready = '1' and ready = '0' then 
 						parser_fsm_state_next <= IDLE;
-					end if;
 				elsif check_op_ready = '1' and ready = '1' then 
-					if operand > xxx or operand < yyy then
-						parser_fsm_state_next <= ERROR_STATE;
-					else
 						parser_fsm_state_next <= RESET_LINECOUNT;
-					end if;
 				else
 					parser_fsm_state_next <= CHECK_OPERAND_PREE;
 				end if;
@@ -325,15 +319,12 @@ begin
 				line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 
 			when CONVERT =>
-				if check_op_ready = '1' and ready = '0' then 
-					if operand > xxx or operand < yyy then
-						error_sig_next <= "100";
-					end if;
+			if resize(last_operand, 63) > OPERAND_MAX or resize(last_operand, 63) < OPERAND_MIN then
+				error_sig_next <= "100";
+			end if;
+			if check_op_ready = '1' and ready = '0' then 
 					parse_ready_next <= '1';
 				elsif check_op_ready = '1' and ready = '1' then 
-					if operand > xxx or operand < yyy then
-						error_sig_next <= "100";
-					end if;
 					parse_ready_next <= '1';
 					end_of_op_next <= '1';
 				end if;

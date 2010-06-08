@@ -125,7 +125,7 @@ begin
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
+	nextstate : process(negative, calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
 	begin
 		calc_state_next <= calc_state;
 		start_calc_old_next <= start_calc;		
@@ -168,7 +168,7 @@ begin
 				calc_state_next <= WAIT4PARSER;
 
 			when WAIT4PARSER =>
-				if(errcode_parser = "00")
+				if(errcode_parser = "000")
 				then
 					if(parse_ready /= parse_ready_old and parse_ready = '1')
 					then
@@ -422,6 +422,11 @@ begin
 	end process;
 
 	alu_in	:	alu
+	generic map
+	(
+		RESULT_MAX	=>	RESULT_MAX,
+		RESULT_MIN	=>	RESULT_MIN
+	)
 	port map
 	(
 		sys_clk			=>	sys_clk,
