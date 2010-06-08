@@ -125,7 +125,7 @@ begin
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
 	begin
 		calc_state_next <= calc_state;
 		start_calc_old_next <= start_calc;		
@@ -148,11 +148,6 @@ begin
 		err_div_by_zero_calc_old_next <= err_div_by_zero_calc;
 		err_overflow_old_next <= err_overflow_calc;
 
-		if(err_overflow_calc /= err_overflow_old and err_overflow_calc = '1')
-		then
-			calc_state_next <= ERR_OVERFLOW;
-		end if;
-
 		case calc_state is
 			when READY =>
 				op_punkt_flag_next <= '0';
@@ -170,18 +165,18 @@ begin
 				end if;
 
 			when MANAGE =>
-				if(buffer_punkt > OPERAND_MAX or buffer_punkt < OPERAND_MIN or buffer_strich > OPERAND_MAX or buffer_strich < OPERAND_MIN)
-				then
-					calc_state_next <= ERR_OVERFLOW;	-- overflow
-				else
-					calc_state_next <= WAIT4PARSER;
-				end if;
+				calc_state_next <= WAIT4PARSER;
 
 			when WAIT4PARSER =>
 				if(errcode_parser = "00")
 				then
 					if(parse_ready /= parse_ready_old and parse_ready = '1')
 					then
+						if(negative = '1')
+						then
+							
+						end if;
+						
 						if(operator = "00" or operator = "01")	
 						then
 							calc_state_next <= OP_STRICH;
@@ -261,6 +256,11 @@ begin
 					calc_state_next <= ERR_DIVBYZERO;
 				end if;
 
+				if(err_overflow_calc /= err_overflow_old and err_overflow_calc = '1')
+				then
+					calc_state_next <= ERR_OVERFLOW;
+				end if;
+
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
 				then
 					buffer_punkt_next <= sum_tmp;	
@@ -271,6 +271,11 @@ begin
 				if(err_div_by_zero_calc /= err_div_by_zero_calc_old and err_div_by_zero_calc = '1')
 				then
 					calc_state_next <= ERR_DIVBYZERO;
+				end if;
+
+				if(err_overflow_calc /= err_overflow_old and err_overflow_calc = '1')
+				then
+					calc_state_next <= ERR_OVERFLOW;
 				end if;
 
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
@@ -285,17 +290,23 @@ begin
 					calc_state_next <= ERR_DIVBYZERO;
 				end if;
 
+				if(err_overflow_calc /= err_overflow_old and err_overflow_calc = '1')
+				then
+					calc_state_next <= ERR_OVERFLOW;
+				end if;
+
 				if(operation_done_sig /= operation_done_old and operation_done_sig = '1')
 				then
-					if(sum_tmp < OPERAND_MIN or sum_tmp > OPERAND_MAX)
-					then
-						calc_state_next <= INVALID;
-					else
+					--if(sum_tmp < OPERAND_MIN or sum_tmp > OPERAND_MAX)
+					--if(sum_tmp > OPERAND_MAX)
+					--then
+					--	calc_state_next <= ERR_OVERFLOW;
+					--else
 						operand_1_next <= resize(buffer_strich, 32);
 						operand_2_next <= resize(sum_tmp, 32);
 						operator_calc_next <= operator_strich;
 						calc_state_next <= WAIT4ALU_TMP_2;
-					end if;
+					--end if;
 				end if;
 				
 			when WAIT4ALU_TMP_2 =>

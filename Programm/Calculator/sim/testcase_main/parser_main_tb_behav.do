@@ -52,34 +52,45 @@ add wave -noupdate -divider -height 20 {Parser}
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
+add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/parse_ready
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/end_of_operation
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/start_decode_bcd
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/decode_ready_calc
 add wave -noupdate -format Literal /parser_main_tb/test_string
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/parser_fsm_state
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig
-add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
 
 add wave -noupdate -divider -height 30 {Calulator}
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/start_decode_bcd
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/decode_ready_calc
-add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/calc_ready
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calc_state
 
-#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
 #add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich_next
-#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
 #add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt_next
 
-#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
 #add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt_next
-#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
 #add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich_next
 
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calculation
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/operation_end
 
 
+add wave -noupdate -divider -height 20 {Divider}
+add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/alu_state
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf2
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf1
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/err_overflow
+
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/result_max
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/result_min
 
 
 
@@ -99,14 +110,6 @@ add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_8
 add wave -noupdate -format Logic -radix unsigned /parser_main_tb/calc_inst/out_9_sig
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/operand_1
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/operand_2
-
-add wave -noupdate -divider -height 20 {Divider}
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/alu_state
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf2
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf1
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
 
 add wave -noupdate -format Logic /parser_main_tb/clk
 

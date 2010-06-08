@@ -8,7 +8,6 @@ entity itoa is
 		sys_clk		: in std_logic;
 		sys_res_n	: in std_logic;
 		int_in		: in integer range -2147483647 to 2147483647 := 0;
---		int_in		: in signed(31 downto 0);
 		start_decode	: in std_logic;
 		out_0		: buffer unsigned(3 downto 0) := "0000";
 		out_1		: buffer unsigned(3 downto 0) := "0000";
