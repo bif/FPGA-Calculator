@@ -125,7 +125,7 @@ begin
 
 	end process;
 
-	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
 	begin
 		calc_state_next <= calc_state;
 		start_calc_old_next <= start_calc;		
