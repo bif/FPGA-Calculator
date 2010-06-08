@@ -47,8 +47,8 @@ add wave -noupdate -format Logic /parser_tb/tp_parser/read_next_n_o
 add wave -noupdate -format Literal -radix ascii /parser_tb/tp_parser/data_in
 add wave -noupdate -format Logic /parser_tb/continue
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/line_count
+add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/line_count_next
 add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/addr_lb
-add wave -noupdate -format Literal -radix decimal /parser_tb/tp_parser/addr_lb_next
 add wave -noupdate -format Literal /parser_tb/tp_parser/check_op_ready
 add wave -noupdate -format Literal /parser_tb/tp_parser/space
 add wave -noupdate -format Literal /parser_tb/tp_parser/num

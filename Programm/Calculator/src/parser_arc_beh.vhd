@@ -14,24 +14,21 @@ architecture beh of parser is
 	signal leading_sign_next, leading_sign_old, end_of_op_next, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next : std_logic := '0';
 	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
 	signal space, space_next, num, num_next : std_logic := '0';
-	signal mem_ready, mem_ready_next : std_logic := '0';
 	signal once, once_next, do_convert, do_convert_next, ready, ready_next, first_round, first_round_next : std_logic := '0';
 
-	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
+	signal line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
 
 
 
 begin
 
-  next_state : process(parser_fsm_state, read_next_n_o, read_next_n_o_old, error_sig_old, check_unsigned_ready, check_op_ready, mem_ready, ready)
+  next_state : process(parser_fsm_state, read_next_n_o, read_next_n_o_old, error_sig_old, check_unsigned_ready, check_op_ready, ready)
   begin
     parser_fsm_state_next <= parser_fsm_state;	
 		read_next_n_o_old_next <= read_next_n_o;
-		mem_ready_next <= '0';
 
     case parser_fsm_state is
 			when IDLE =>
-				mem_ready_next <= '0';
 				if(read_next_n_o /= read_next_n_o_old and read_next_n_o = '1') then
 					parser_fsm_state_next <= RESET_SIGNALS;
 				end if;
@@ -44,16 +41,10 @@ begin
 				if error_sig_old /= "00" then
 					parser_fsm_state_next <= ERROR_STATE;
 				else	
-					if mem_ready = '1' then
-						if check_unsigned_ready = '1' then
-							parser_fsm_state_next <= CHECK_OPERAND_PREE;
-						else 
-							parser_fsm_state_next <= CHECK_UNSIGNED;
-						end if;
-						mem_ready_next <= '0';
-					else
-						parser_fsm_state_next <= CHECK_UNSIGNED_PREE;
-						mem_ready_next <= '1';
+					if check_unsigned_ready = '1' then
+						parser_fsm_state_next <= CHECK_OPERAND_PREE;
+					else 
+						parser_fsm_state_next <= CHECK_UNSIGNED;
 					end if;
 				end if;
 
@@ -65,13 +56,7 @@ begin
 				if error_sig_old /= "00" then
 					parser_fsm_state_next <= ERROR_STATE;
 				else	
-					if mem_ready = '1' then
 						parser_fsm_state_next <= CHECK_OPERAND;
-						mem_ready_next <= '0';
-					else
-						parser_fsm_state_next <= CHECK_OPERAND_PREE;
-						mem_ready_next <= '1';
-					end if;
 				end if;
 
 			when CHECK_OPERAND =>		
@@ -97,7 +82,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign_old, current_number, do_convert, ready, first_round)
+	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  leading_sign_old, current_number, do_convert, ready, first_round)
 
   begin
 		first_round_next <= first_round;
@@ -113,7 +98,6 @@ begin
 		num_next <= num;
 		space_next <= space;
 		error_sig_next <= error_sig_old;
-		addr_lb_next <= addr_lb_old;
 		leading_sign_next <= leading_sign_old;
 		current_number_next <= current_number;
 		do_convert_next <= '0';
@@ -123,7 +107,7 @@ begin
 			when IDLE =>
 				if first_round /= '1' then
 					first_round_next <= '1';
-					addr_lb_next <= (others => '0');
+					addr_lb <= (others => '0');
 				end if;
 
 			when RESET_SIGNALS =>
@@ -142,7 +126,7 @@ begin
 				check_unsigned_ready_next <= '0';
 
 			when CHECK_UNSIGNED_PREE =>
-				addr_lb_next <= line_count; 	
+				addr_lb <= line_count; 	
 
 			when CHECK_UNSIGNED =>
 				case data_in(7 downto 0) is
@@ -176,7 +160,7 @@ begin
 				end case;
 
 			when CHECK_OPERAND_PREE =>	
-				addr_lb_next <= line_count; 	
+				addr_lb <= line_count; 	
 
 			when CHECK_OPERAND =>
 				case data_in(7 downto 0) is
@@ -344,7 +328,7 @@ begin
 				num_next <= '0';
 				check_op_ready_next <= '0';
 				end_of_op_next <= '1';
-				addr_lb_next <= (others => '0');
+				addr_lb <= (others => '0');
 				once_next <= '0';
 
 		end case;
@@ -358,8 +342,6 @@ begin
 			line_count <= (others => '0');
 			last_operand <= (others => '0');
 			error_sig <= "00";
-			addr_lb_old <= (others => '0');
-			addr_lb <= (others => '0');
 			read_next_n_o_old <= '0';
 			first_round <= '0';
 		elsif (sys_clk'event and sys_clk = '1') then
@@ -367,8 +349,6 @@ begin
 			parser_fsm_state <= parser_fsm_state_next;
 			check_op_ready <= check_op_ready_next;
 			line_count <= line_count_next;
-			addr_lb <= addr_lb_next;
-			addr_lb_old <= addr_lb_next;
 			ready <= ready_next;
 			end_of_operation <= end_of_op_next;
 			parse_ready <= parse_ready_next;
@@ -383,7 +363,6 @@ begin
 			num <= num_next;
 			error_sig <= error_sig_next;
 			error_sig_old <= error_sig_next;
-			mem_ready <= mem_ready_next;
 			once <= once_next;
 			current_number <= current_number_next;
 			do_convert <= do_convert_next;
