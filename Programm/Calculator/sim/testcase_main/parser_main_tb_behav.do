@@ -50,6 +50,8 @@ vsim -coverage work.parser_main_tb
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -divider -height 20 {Parser}
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand_next
+add wave -noupdate -format Literal -radix ascii /parser_main_tb/tp_parser/data_in
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
 add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
