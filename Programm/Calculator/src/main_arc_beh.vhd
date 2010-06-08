@@ -9,6 +9,43 @@ architecture beh of main is
 	constant	LINES          : integer := 50;
 	constant	LINE_LENGTH    : integer := 81;
 	constant	DATA_WIDTH     : integer := 7;
+	
+	type		ERR_STR	is array(10 downto 0) of std_logic_vector(7 downto 0);
+	constant	err_str_divbyzero : ERR_STR :=	(	0 => x"44",	-- D
+								1 => x"49",	-- I
+								2 => x"56",	-- V
+								3 => x"20",	-- _
+								4 => x"42",	-- B
+								5 => x"59",	-- Y
+								6 => x"20",	-- _
+								7 => x"5A",	-- Z
+								8 => x"45",	-- E
+								9 => x"52",	-- R
+								10 => x"4F");	-- O
+
+	constant	err_str_overflow : ERR_STR := 	(	0 => x"20",	-- _
+								1 => x"4F",	-- O
+								2 => x"56",	-- V
+								3 => x"45",	-- E
+								4 => x"52",	-- R
+								5 => x"46",	-- F
+								6 => x"4C",	-- L
+								7 => x"4F",	-- O
+								8 => x"57",	-- W
+								9 => x"20",	-- _
+								10 => x"20");	-- _
+
+	constant	err_str_parsererror : ERR_STR :=(	0 => x"50",	-- P
+								1 => x"41",	-- A
+								2 => x"52",	-- R
+								3 => x"53",	-- S
+								4 => x"45",	-- E
+								5 => x"52",	-- R
+								6 => x"45",	-- E
+								7 => x"52",	-- R
+								8 => x"52",	-- R
+								9 => x"4F",	-- O
+								10 => x"52");	-- R
 
 	type 		MAIN_STATE_TYPE is (READY, SEND_UART, COPY_LB, COPY_SUM, WAIT4SUM);
         signal		main_state				: MAIN_STATE_TYPE;
@@ -17,10 +54,6 @@ architecture beh of main is
 	signal		btn_a_sig 				: std_logic := '0';
 	signal		sense_old, sense_old_next		: std_logic := '0';
 	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
-	signal		err_div_by_zero_main_old, err_div_by_zero_main_old_next		: std_logic := '0';
-	signal		error_parser_main_old, error_parser_main_old_next		: std_logic_vector(1 downto 0);
-	signal		error_flag_parser, error_flag_parser_next		: std_logic := '0';
-	signal		error_flag_calc, error_flag_calc_next		: std_logic := '0';
 
 	signal		goto_nextstate				: std_logic := '0';
 	signal		goto_nextstate_next			: std_logic := '0';
@@ -94,9 +127,6 @@ process(sys_clk, sys_res_n)
 		addr <= "00000000";
 		decode_ready_old <= '0';
 		main_state <= READY;
-		err_div_by_zero_main_old <= '0';
-		error_flag_calc <= '0';
-		error_flag_parser <= '0';
 		goto_nextstate <= '0';
 	elsif rising_edge(sys_clk)
 	then
@@ -118,15 +148,11 @@ process(sys_clk, sys_res_n)
 		addr <= addr_next;
 		decode_ready_old <= decode_ready_old_next;
 		main_state <= main_state_next;
-		err_div_by_zero_main_old <= err_div_by_zero_main_old_next;
-		error_parser_main_old <= error_parser_main_old_next;
-		error_flag_calc <= error_flag_calc_next;
-		error_flag_parser <= error_flag_parser_next;
 		goto_nextstate <= goto_nextstate_next;
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, error_parser, err_div_by_zero_main, err_div_by_zero_main_old, error_parser_main_old, goto_nextstate, error_flag_calc, error_flag_parser)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, goto_nextstate)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -147,17 +173,8 @@ begin
 	addr_next <= addr;
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
-	err_div_by_zero_main_old_next <= err_div_by_zero_main;
-	error_parser_main_old_next <= error_parser;
-	error_flag_parser_next <= error_flag_parser;
-	error_flag_calc_next <= error_flag_calc;
 	goto_nextstate_next <= goto_nextstate;
 	
-	if(err_div_by_zero_main_old /= err_div_by_zero_main and err_div_by_zero_main = '1')
-	then
-		error_flag_calc_next <= '1';
-	end if;
-			
 	case main_state is
 		when READY =>
 
@@ -185,8 +202,6 @@ begin
 				addr_next <= "00000000";			-- set next adress for reading from linebuffer
 				ram_offset_next <= 81 * mem_pointer;		-- set destination address(ringbuffer)
 				main_state_next <= COPY_LB;
-				error_flag_parser_next <= '0';
-				error_flag_calc_next <= '0';
 			end if;
 
 
@@ -226,11 +241,11 @@ begin
 					else								-- send the rest of the line
 						ram_offset_next <= ram_offset + 1;
 						ram_line_next <= ram_line + 1;
-						if(data_out_main /= x"00")
+						if(data_out_main /= x"00" and data_out_main /= x"3D")
 						then
 							byte_data_next <= data_out_main;
 						else
-							byte_data_next <= x"2E";
+							byte_data_next <= x"20";
 						end if;
 						send_byte_main_next <= '1';
 					end if;
@@ -271,12 +286,23 @@ begin
 				ram_line_next <= 0;
 				main_state_next <= COPY_SUM;
 				goto_nextstate_next <= '0';
-				
-				if(sign_bcd_main = '0')
+		
+				if(bcd_buf(3 downto 0) = "1100")
 				then
-					data_in_main_next <= x"2b";				-- '+'
+					data_in_main_next <= err_str_divbyzero(0);
+				elsif(bcd_buf(3 downto 0) = "1110")
+				then
+					data_in_main_next <= err_str_parsererror(0);
+				elsif(bcd_buf(3 downto 0) = "1111")
+				then
+					data_in_main_next <= err_str_overflow(0);
 				else
-					data_in_main_next <= x"2d";				-- '-'
+					if(sign_bcd_main = '0')
+					then
+						data_in_main_next <= x"2b";				-- '+'
+					else
+						data_in_main_next <= x"2d";				-- '-'
+					end if;
 				end if;
 			end if;
 			
@@ -292,12 +318,15 @@ begin
 				ram_offset_next <= ram_offset + 1;
 				ram_line_next <= ram_line + 1;
 				
-				if(error_flag_parser = '1')			-- parser found error
+				if(bcd_buf(3 downto 0)= "1100")			-- calculator found no error
 				then
-					data_in_main_next <= x"59";
-				elsif(error_flag_calc= '1')			-- calculator found no error
+					data_in_main_next <= err_str_divbyzero(ram_line);
+				elsif(bcd_buf(3 downto 0) = "1110")
 				then
-					data_in_main_next <= x"58";
+					data_in_main_next <= err_str_parsererror(ram_line);
+				elsif(bcd_buf(3 downto 0) = "1111")
+				then
+					data_in_main_next <= err_str_overflow(ram_line);
 				else
 					data_in_main_next <= std_logic_vector(unsigned(resize(bcd_buf((ram_line*4-1) downto ((ram_line-1)*4)), 8)) + 48);
 				end if;

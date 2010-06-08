@@ -63,6 +63,7 @@ component calc is
 		sys_clk         :       in	std_logic;
 		sys_res_n       :       in	std_logic;
 		parse_ready	:       in	std_logic;
+		negative	:       in	std_logic;
 		start_calc	:       in	std_logic;
 		sign_bcd_calc           : out   std_logic;
 		operation_end	:       in	std_logic;
@@ -70,9 +71,7 @@ component calc is
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		err_div_by_zero		:	out	std_logic;
-		err_overflow		:	out	std_logic;
-		error_parser		:	in	std_logic_vector(1 downto 0);
+		errcode_parser		:	in	std_logic_vector(1 downto 0);
 		decode_ready_calc	:       out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
 	);
@@ -100,10 +99,9 @@ begin  -- behav
 		operand		=>	operand_sig,
 		operator	=>	operator_sig,
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
-		err_overflow	=>	err_overflow_top,
-		err_div_by_zero	=>	err_div_by_zero_top,
-		error_parser	=>	error_parser_top,
+		errcode_parser	=>	error_parser_top,
 		sign_bcd_calc   =>	sign_bcd_top,
+		negative	=>	negative,
 		bcd_buf		=>	bcd_buf_sig
 	);
 
@@ -173,10 +171,7 @@ begin  -- behav
 		decode_ready_main	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
 		sign_bcd_main	=>	sign_bcd_top,
-		bcd_buf		=>	bcd_buf_sig,
-		error_parser	=>	error_parser_top,
-		err_div_by_zero_main	=>	err_div_by_zero_top,
-		err_overflow_main	=>	err_overflow_top
+		bcd_buf		=>	bcd_buf_sig
 	);
 
 
@@ -204,7 +199,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "12/3=                                                                  ";
+			test_string <= "12-13=                                                                 ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -246,7 +241,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "13   / 7    =                                                          ";
+			test_string <= "13 + 7 *2   =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
