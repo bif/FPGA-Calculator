@@ -7,6 +7,8 @@ entity alu is
 	(
 		RESULT_MAX              :       signed(62 downto 0) := "000000000000000000000000000000000111111111111111111111111111111";         --      +2^31 - 1
 		RESULT_MIN              :       signed(62 downto 0) := "000000000000000000000000000000010000000000000000000000000000000"          --      -2^31
+	--	RESULT_MAX : signed(62 downto 0);
+	--	RESULT_MIN : signed(62 downto 0)
 	);
 	port
 	(

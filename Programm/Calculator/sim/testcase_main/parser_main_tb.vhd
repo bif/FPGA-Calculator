@@ -17,7 +17,10 @@ architecture sim of parser_main_tb is
 	constant LB_ADDR_WIDTH : integer := 8;
 	constant QUARTZ_PERIOD : time := 33 ns;
 	constant QUARTZ_PLL_PERIOD : time := 2*40 ns;
-	
+	constant RESULT_MAX : signed(62 downto 0) := "000000000000000000000000000000000111111111111111111111111111111"; -- +2^31 - 1
+	constant RESULT_MIN : signed(62 downto 0) := "000000000000000000000000000000010000000000000000000000000000000"; -- -2^31
+
+
 
 	signal test_string : string(1 to 71);
 	signal clk : std_logic;
@@ -33,31 +36,23 @@ architecture sim of parser_main_tb is
 	signal bcd_buf_sig			:	unsigned(39 downto 0);
 	signal decode_ready_sig			:	std_logic := '0';
 
-	-- calc_inst - signals / constants
---	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
---	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
---	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
---	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
-
 	signal 		operator_top		:	std_logic_vector(1 downto 0);
 	signal		operation_end_top	:	std_logic;
 	signal		err_div_by_zero_top		:	std_logic;
 	signal		err_overflow_top		:	std_logic;
-	signal		error_parser_top		:	std_logic_vector(1 downto 0);
+	signal		error_parser_top		:	std_logic_vector(2 downto 0);
 	signal		negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
-	signal error_number : std_logic_vector(1 downto 0);
+	signal error_number : std_logic_vector(2 downto 0);
 
 
 component calc is
---	generic
---	(
---		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
---		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
---		RESULT_MAX      :       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
---		RESULT_MIN      :       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
---	);
+	generic
+	(
+		RESULT_MAX      :       signed(62 downto 0);
+		RESULT_MIN      :       signed(62 downto 0)
+	);
 	port
 	(
 		sys_clk         :       in	std_logic;
@@ -71,7 +66,7 @@ component calc is
 		operator        :       in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		errcode_parser		:	in	std_logic_vector(1 downto 0);
+		errcode_parser		:	in	std_logic_vector(2 downto 0);
 		decode_ready_calc	:       out     std_logic;
 		bcd_buf			:	out	unsigned(39 downto 0)
 	);
@@ -81,13 +76,11 @@ begin  -- behav
 
 
 	calc_inst : calc
---	generic map
---	(
---		OPERAND_MAX	=>	OPERAND_MAX,
---		OPERAND_MIN	=>	OPERAND_MIN,	
---		RESULT_MAX	=>	RESULT_MAX,
---		RESULT_MIN	=>	RESULT_MIN
---	)
+	generic map
+	(
+		RESULT_MAX	=>	RESULT_MAX,
+		RESULT_MIN	=>	RESULT_MIN
+	)
 	port map
 	(
 		sys_clk		=>	clk,
@@ -106,14 +99,15 @@ begin  -- behav
 	);
 
 
-
-
   tp_parser: parser
 	generic map
 	(
     RESET_VALUE => '0',
     ADDR_WIDTH => LB_ADDR_WIDTH,
-    DATA_WIDTH => LB_DATA_WIDTH
+    DATA_WIDTH => LB_DATA_WIDTH,
+		OPERAND_MAX	=>	RESULT_MAX,
+		OPERAND_MIN	=>	RESULT_MIN
+
   )  
 	port map 
 	(
@@ -199,7 +193,8 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "-800*-20    =                                                          ";
+		--	test_string <= "-800*-20    =                                                          ";
+			test_string <= "2+214748364688888888=                                                  ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

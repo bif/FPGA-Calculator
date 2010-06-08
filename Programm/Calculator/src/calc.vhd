@@ -3,13 +3,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity calc is
---	generic
---	(
---		OPERAND_MAX	:	signed(31 downto 0) := "01111111111111111111111111111111";
---		OPERAND_MIN	:	signed(31 downto 0) := "10000000000000000000000000000001";
---		RESULT_MAX	:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
---		RESULT_MIN	:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
---	);
+	generic
+	(
+		RESULT_MAX	:	signed(62 downto 0);
+		RESULT_MIN	:	signed(62 downto 0)
+	);
 	port
 	(
 		sys_clk		:	in	std_logic;
@@ -25,6 +23,6 @@ entity calc is
 		operator	:	in	std_logic_vector(1 downto 0)  := "00";
 		need_input	:	out	std_logic;
 		calc_ready	:	out	std_logic;
-		errcode_parser	:	in	std_logic_vector(1 downto 0)		-- inputsignal from PARSER
+		errcode_parser	:	in	std_logic_vector(2 downto 0)		-- inputsignal from PARSER
 	);
 end entity calc;
