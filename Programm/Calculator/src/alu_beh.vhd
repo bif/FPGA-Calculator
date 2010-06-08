@@ -73,6 +73,8 @@ begin
 			operation_done <= '0';	
 			err_div_by_zero_alu <= '0';
 			err_overflow <= '0';
+			sum_tmp_next <= "000000000000000000000000000000000000000000000000000000000000000";
+			sum <= "000000000000000000000000000000000000000000000000000000000000000";
 			if(start_operation /= start_operation_old and start_operation = '1')
 			then
 				alu_state_next <= BUSY;

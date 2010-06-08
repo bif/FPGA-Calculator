@@ -46,16 +46,16 @@ architecture struct of calculator_top is
 	signal decode_ready_sig			:	std_logic := '0';
 
 	-- calc_inst - signals / constants
-	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
-	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
-	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
-	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
+--	constant	OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
+--	constant	OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
+--	constant	RESULT_MAX		:	signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+--	constant	RESULT_MIN		:	signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001";
 
-	signal 		operator_top		:	std_logic_vector(1 downto 0);
-	signal		need_input_top		:	std_logic;
-	signal		operation_end_top	:	std_logic;
-	signal		err_div_by_zero_top	:	std_logic;
-	signal		err_overflow_top	:	std_logic;
+--	signal 		operator_top		:	std_logic_vector(1 downto 0);
+--	signal		need_input_top		:	std_logic;
+--	signal		operation_end_top	:	std_logic;
+--	signal		err_div_by_zero_top	:	std_logic;
+--	signal		err_overflow_top	:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
 
@@ -64,13 +64,13 @@ architecture struct of calculator_top is
 
 
 component calc is
-	generic
-	(
-		OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
-		OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
-		RESULT_MAX      	:       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
-		RESULT_MIN     		:       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000001"
-	);
+--	generic
+--	(
+--		OPERAND_MAX		:	signed(31 downto 0) := "01111111111111111111111111111111";
+--		OPERAND_MIN		:	signed(31 downto 0) := "10000000000000000000000000000001";
+--		RESULT_MAX      	:       signed(62 downto 0) := "011111111111111111111111111111111111111111111111111111111111111";
+--		RESULT_MIN     		:       signed(62 downto 0) := "100000000000000000000000000000000000000000000000000000000000000"
+--	);
 	port
 	(
 		sys_clk         	:       in	std_logic;
@@ -304,13 +304,13 @@ begin
 	);
 
 	calc_inst : calc
-	generic map
-	(
-		OPERAND_MAX	=>	OPERAND_MAX,
-		OPERAND_MIN	=>	OPERAND_MIN,	
-		RESULT_MAX	=>	RESULT_MAX,
-		RESULT_MIN	=>	RESULT_MIN
-	)
+--	generic map
+--	(
+--		OPERAND_MAX	=>	OPERAND_MAX,
+--		OPERAND_MIN	=>	OPERAND_MIN,	
+--		RESULT_MAX	=>	RESULT_MAX,
+--		RESULT_MIN	=>	RESULT_MIN
+--	)
 	port map
 	(
 		sys_clk			=>	sys_clk,
