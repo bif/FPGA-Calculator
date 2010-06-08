@@ -224,15 +224,13 @@ begin
 								bcd_buf_next <= std_logic_vector(shift_right(unsigned(bcd_buf), 4));
 							end if;
 						else
-							if lb_count > x"00" then
-								vga_command_data_next(31 downto 8) <= x"FF0000";
-								if bcd_result(3 downto 0) = x"C" then		-- invalid calculation: div by zero
-									vga_command_data_next(7 downto 0) <= err_str_divbyzero(to_integer(signed(lb_count) - 1));
-								elsif bcd_result(3 downto 0) = x"E" then		-- invalid calculation: error parser = invalid input
-									vga_command_data_next(7 downto 0) <= err_str_parsererror(to_integer(signed(lb_count) - 1));
-								elsif bcd_result(3 downto 0) = x"F" then		-- invalid calculation: overflow
-									vga_command_data_next(7 downto 0) <= err_str_overflow(to_integer(signed(lb_count) - 1));
-								end if;
+							vga_command_data_next(31 downto 8) <= x"FF0000";
+							if bcd_result(3 downto 0) = x"C" then		-- invalid calculation: div by zero
+								vga_command_data_next(7 downto 0) <= err_str_divbyzero(to_integer(signed(lb_count)));
+							elsif bcd_result(3 downto 0) = x"E" then		-- invalid calculation: error parser = invalid input
+								vga_command_data_next(7 downto 0) <= err_str_parsererror(to_integer(signed(lb_count)));
+							elsif bcd_result(3 downto 0) = x"F" then		-- invalid calculation: overflow
+								vga_command_data_next(7 downto 0) <= err_str_overflow(to_integer(signed(lb_count)));
 							end if;
 						end if;
 						lb_count_next <= std_logic_vector(unsigned(lb_count) + 1);
