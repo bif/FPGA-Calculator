@@ -56,6 +56,9 @@ add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign_old
 add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/itoa_inst/input_min
+add wave -noupdate -format Logic /parser_main_tb/calc_inst/itoa_inst/input_min_next
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/itoa_inst/int_in
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/parse_ready
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/end_of_operation
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/start_decode_bcd
@@ -84,10 +87,10 @@ add wave -noupdate -format Logic /parser_main_tb/calc_inst/operation_end
 
 
 add wave -noupdate -divider -height 20 {Divider}
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/alu_state
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf2
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf1
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/alu_state
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf2
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf1
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/err_overflow

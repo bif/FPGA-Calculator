@@ -14,6 +14,7 @@ architecture beh of itoa is
 	signal start_next		:	std_logic := '0';
 	signal scratch			:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
 	signal scratch_next		:	std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
+	signal input_min, input_min_next : std_logic := '0';
 
 	signal out_0_next		:	unsigned(3 downto 0) := "0000";
 	signal out_1_next		:	unsigned(3 downto 0) := "0000";
@@ -65,11 +66,12 @@ begin
 			out_7 <= out_7_next;
 			out_8 <= out_8_next;
 			out_9 <= out_9_next;
+			input_min <= input_min_next;
 		end if;
 		
 	end process;
 
-	process(count, enable, start, start_decode, int_in, scratch, sign, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7, out_8, out_9)
+	process(count, enable, start, start_decode, int_in, scratch, sign, out_0, out_1, out_2, out_3, out_4, out_5, out_6, out_7, out_8, out_9, input_min)
 	variable scratch_tmp	: std_logic_vector(71 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000";
 	begin
 		start_next <= start_decode;
@@ -78,6 +80,7 @@ begin
 		enable_next <= enable;
 		sign_next <= sign;
 		decode_ready_next <= '0';
+		input_min_next <= input_min;
 
 		out_0_next <= out_0;
 		out_1_next <= out_1;
@@ -96,7 +99,11 @@ begin
 			if(int_in < 0)
 			then
 				sign_next <= '1';       -- set sign - bit
-				scratch_tmp(31 downto 0) := std_logic_vector(resize((int_in * (-1)), 32));
+				if int_in = x"80000000" then
+					input_min_next <= '1';
+				else
+					scratch_tmp(31 downto 0) := std_logic_vector(resize((int_in * (-1)), 32));
+				end if;
 			else
 				sign_next <= '0';
 				scratch_tmp(31 downto 0) := std_logic_vector(int_in);
@@ -119,6 +126,22 @@ begin
 			out_7_next <= "0000";
 			out_8_next <= "0000";
 			out_9_next <= "0000";
+		elsif input_min = '1'
+		then
+			out_9_next(3 downto 0) <= x"2";
+			out_8_next(3 downto 0) <= x"1";
+			out_7_next(3 downto 0) <= x"4";
+			out_6_next(3 downto 0) <= x"7";
+			out_5_next(3 downto 0) <= x"4";
+			out_4_next(3 downto 0) <= x"8";
+			out_3_next(3 downto 0) <= x"3";
+			out_2_next(3 downto 0) <= x"6";
+			out_1_next(3 downto 0) <= x"4";
+			out_0_next(3 downto 0) <= x"8";
+			input_min_next <= '0';
+			enable_next <= '0';
+			count_next <= 0;
+			decode_ready_next <= '1';
 		else
 			if(count = 31)
 			then
@@ -182,16 +205,17 @@ begin
 				end if;
 
 				-- copy nibbles to corresponding bytes	
-		 		out_0_next(3 downto 0) <= unsigned(scratch_tmp(35 downto 32));
-		        	out_1_next(3 downto 0) <= unsigned(scratch_tmp(39 downto 36));
-		        	out_2_next(3 downto 0) <= unsigned(scratch_tmp(43 downto 40));
-		        	out_3_next(3 downto 0) <= unsigned(scratch_tmp(47 downto 44));
-		        	out_4_next(3 downto 0) <= unsigned(scratch_tmp(51 downto 48));
-		        	out_5_next(3 downto 0) <= unsigned(scratch_tmp(55 downto 52));
-		        	out_6_next(3 downto 0) <= unsigned(scratch_tmp(59 downto 56));
-		        	out_7_next(3 downto 0) <= unsigned(scratch_tmp(63 downto 60));
-		        	out_8_next(3 downto 0) <= unsigned(scratch_tmp(67 downto 64));
-		        	out_9_next(3 downto 0) <= unsigned(scratch_tmp(71 downto 68));
+				out_0_next(3 downto 0) <= unsigned(scratch_tmp(35 downto 32));
+				out_1_next(3 downto 0) <= unsigned(scratch_tmp(39 downto 36));
+				out_2_next(3 downto 0) <= unsigned(scratch_tmp(43 downto 40));
+				out_3_next(3 downto 0) <= unsigned(scratch_tmp(47 downto 44));
+				out_4_next(3 downto 0) <= unsigned(scratch_tmp(51 downto 48));
+				out_5_next(3 downto 0) <= unsigned(scratch_tmp(55 downto 52));
+				out_6_next(3 downto 0) <= unsigned(scratch_tmp(59 downto 56));
+				out_7_next(3 downto 0) <= unsigned(scratch_tmp(63 downto 60));
+				out_8_next(3 downto 0) <= unsigned(scratch_tmp(67 downto 64));
+				out_9_next(3 downto 0) <= unsigned(scratch_tmp(71 downto 68));
+
 			--	out_0_next <= "0000";
 			--	out_1_next <= "0001";
 			--	out_2_next <= "0010";
