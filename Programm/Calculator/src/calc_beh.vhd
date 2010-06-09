@@ -177,12 +177,12 @@ begin
 				then
 					if(parse_ready /= parse_ready_old and parse_ready = '1')
 					then
-						if(negative = '1')
-						then
-							operand_tmp_next <= resize(operand * (-1), 32);
-						else
-							operand_tmp_next <= operand;
-						end if;
+--						if(negative = '1')
+--						then
+--							operand_tmp_next <= resize(operand * (-1), 32);
+--						else
+---							operand_tmp_next <= operand;
+--						end if;
 					
 						if(operator = "00" or operator = "01")	
 						then
@@ -200,6 +200,9 @@ begin
 					then
 						ready_flag_next <= '1';
 					end if;
+				elsif(errcode_parser = "100")
+				then
+					calc_state_next <= ERR_OVERFLOW;
 				else
 					calc_state_next <= ERR_PARSER;
 				end if;
@@ -207,16 +210,16 @@ begin
 			when OP_PUNKT =>
 				if(op_punkt_flag = '0')		-- keine operation vorgemerkt
 				then
-			--buffer_punkt_next <= resize(operand, 63);
-			buffer_punkt_next <= resize(operand_tmp, 63);
+			buffer_punkt_next <= resize(operand, 63);
+			--buffer_punkt_next <= resize(operand_tmp, 63);
 					op_punkt_flag_next <= '1';
 					calc_state_next <= MANAGE;
 					operator_punkt_next <= operator;
 				elsif(op_punkt_flag = '1')
 				then
 						operand_1_next <= resize(buffer_punkt, 32);
-			--operand_2_next <= operand;
-			operand_2_next <= operand_tmp;
+			operand_2_next <= operand;
+			--operand_2_next <= operand_tmp;
 						operator_calc_next <= operator_punkt;
 						calc_state_next <= WAIT4ALU_PUNKT;
 				end if;
@@ -225,8 +228,8 @@ begin
 
 				if(op_strich_flag = '0' and op_punkt_flag = '0')	-- nichts vorgemerkt
 				then
-			--buffer_strich_next <= resize(operand, 63);
-			buffer_strich_next <= resize(operand_tmp, 63);
+			buffer_strich_next <= resize(operand, 63);
+			--buffer_strich_next <= resize(operand_tmp, 63);
 					op_strich_flag_next <= '1';
 					operator_strich_next <= operator;
 					calc_state_next <= MANAGE;						-- ACHTUNG, KOENNTE PROBLEME MACHEN WENN START_OPERATION = '1' 
@@ -237,8 +240,8 @@ begin
 					op_punkt_flag_next <= '0';
 
 					operand_1_next <= resize(buffer_punkt, 32);
-			--operand_2_next <= operand;
-			operand_2_next <= operand_tmp;
+			operand_2_next <= operand;
+			--operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_STRICH;
 					operator_strich_next <= operator;
@@ -246,8 +249,8 @@ begin
 				elsif(op_strich_flag = '1' and op_punkt_flag = '0')	-- strichrechchnung vorgemerkt
 				then
 					operand_1_next <= resize(buffer_strich, 32);
-			--operand_2_next <= operand;
-			operand_2_next <= operand_tmp;
+			operand_2_next <= operand;
+			--operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_strich;
 					calc_state_next <= WAIT4ALU_STRICH;
 					operator_strich_next <= operator;
@@ -256,8 +259,8 @@ begin
 				elsif(op_strich_flag = '1' and op_punkt_flag = '1')	-- punkt UND strichrechnung vorgemerkt
 				then
 					operand_1_next <= resize(buffer_punkt, 32);
-			--operand_2_next <= operand;
-			operand_2_next <= operand_tmp;
+			operand_2_next <= operand;
+			--operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_TMP;					
 					op_punkt_flag_next <= '0';
