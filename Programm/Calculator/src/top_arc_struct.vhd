@@ -24,8 +24,8 @@ architecture struct of calculator_top is
 	constant CHAR_SIZE : integer := 8;
 	constant LB_DATA_WIDTH : integer := 8;
 	constant LB_ADDR_WIDTH : integer := 8;
-	constant RESULT_MAX : signed(62 downto 0) := "000000000000000000000000000000000111111111111111111111111111111"; -- +2^31 - 1
-	constant RESULT_MIN : signed(62 downto 0) := "000000000000000000000000000000010000000000000000000000000000000"; -- -2^31
+	constant RESULT_MAX : signed(62 downto 0) := "000000000000000000000000000000001111111111111111111111111111111"; -- +2^31 - 1
+	constant RESULT_MIN : signed(62 downto 0) := "111111111111111111111111111111110000000000000000000000000000000"; -- -2^31
 
 	signal sys_res_n_sync, btn_a_sync, vga_free_sig, pll_clk_sig : std_logic;
 	signal command_sig : std_logic_vector(COMMAND_SIZE - 1 downto 0);
