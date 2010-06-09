@@ -136,7 +136,7 @@ update
 
 
 # auto-run simulation
-run 2 ms
+run 4 ms
 WaveRestoreZoom {14300 ns} {14600 ns}
 #wave zoomfull
 
