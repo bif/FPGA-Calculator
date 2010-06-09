@@ -331,16 +331,17 @@ begin
 						once_next <= '1';
 						operand_next <= current_number;
 					else
-						tmp := (last_operand * 10 + current_number);
+						tmp := (last_operand * 10);
 						if leading_sign_old = '1' then
-							if (OPERAND_MIN - last_operand) < current_number then
+							if (OPERAND_MIN - tmp) < current_number then
 								error_sig_next <= "100";
 							end if;
 						else 
-							if (OPERAND_MAX - last_operand) < current_number then
+							if (OPERAND_MAX - tmp) < current_number then
 								error_sig_next <= "100";
 							end if;
 						end if;
+						tmp := (tmp + current_number); 
 						operand_next <= tmp(31 downto 0);
 					end if;
 				end if;
