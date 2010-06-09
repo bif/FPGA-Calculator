@@ -208,7 +208,11 @@ begin
 							else	
 								if bcd_buf(3 downto 0) = x"0" and leading_zero = '0' then
 									-- replace leading zeros with spaces
-									vga_command_data_next(7 downto 0) <= x"20";
+									if lb_count < x"0A" then
+										vga_command_data_next(7 downto 0) <= x"20";
+									else
+										vga_command_data_next(7 downto 0) <= x"30";
+									end if;
 								elsif bcd_buf(3 downto 0) /= x"0" and leading_zero = '0' then
 									leading_zero_next <= '1';
 									-- high nibble is always hex 3 => high nibble of offset hex 30

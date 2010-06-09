@@ -16,10 +16,7 @@ architecture beh of parser is
 	signal space, space_next, num, num_next : std_logic := '0';
 	signal mem_ready, mem_ready_next : std_logic := '0';
 	signal once, once_next, do_convert, do_convert_next, ready, ready_next, first_round, first_round_next : std_logic := '0';
-
 	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
-
-
 
 begin
 
@@ -78,9 +75,9 @@ begin
 				parser_fsm_state_next <= CONVERT;
 
 			when CONVERT =>
-				if error_sig_old /= "000" then				
-					parser_fsm_state_next <= ERROR_STATE;
-				elsif check_op_ready = '1' and ready = '0' then 
+--				if error_sig_old /= "000" then				
+--					parser_fsm_state_next <= ERROR_STATE;
+				if check_op_ready = '1' and ready = '0' then 
 						parser_fsm_state_next <= IDLE;
 				elsif check_op_ready = '1' and ready = '1' then 
 						parser_fsm_state_next <= RESET_LINECOUNT;
@@ -100,6 +97,8 @@ begin
 
 
 	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign_old, current_number, do_convert, ready, first_round)
+
+	variable tmp  : signed(63 downto 0) := (others => '0');
 
   begin
 		first_round_next <= first_round;
@@ -121,13 +120,14 @@ begin
 		do_convert_next <= '0';
 		ready_next <= '0';
 
+
     case parser_fsm_state is
 			when IDLE =>
 				if first_round /= '1' then
 					first_round_next <= '1';
 					addr_lb_next <= (others => '0');
 				end if;
-
+			
 			when RESET_SIGNALS =>
 				operand_next <= to_signed(0, 32);
 				operator_next <= "00";
@@ -319,10 +319,8 @@ begin
 				line_count_next <= std_logic_vector(unsigned(line_count) + 1);
 
 			when CONVERT =>
-			if resize(last_operand, 63) > OPERAND_MAX or resize(last_operand, 63) < OPERAND_MIN then
-				error_sig_next <= "100";
-			end if;
-			if check_op_ready = '1' and ready = '0' then 
+				tmp := (others => '0');
+				if check_op_ready = '1' and ready = '0' then 
 					parse_ready_next <= '1';
 				elsif check_op_ready = '1' and ready = '1' then 
 					parse_ready_next <= '1';
@@ -333,7 +331,17 @@ begin
 						once_next <= '1';
 						operand_next <= current_number;
 					else
-						operand_next <= resize((last_operand * 10 + current_number), 32);	
+						tmp := (last_operand * 10 + current_number);
+						if leading_sign_old = '1' then
+							if (OPERAND_MIN - last_operand) < current_number then
+								error_sig_next <= "100";
+							end if;
+						else 
+							if (OPERAND_MAX - last_operand) < current_number then
+								error_sig_next <= "100";
+							end if;
+						end if;
+						operand_next <= tmp(31 downto 0);
 					end if;
 				end if;
 
