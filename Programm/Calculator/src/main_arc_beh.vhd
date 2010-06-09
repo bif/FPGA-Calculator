@@ -139,6 +139,7 @@ begin
 		when READY =>
 
 			lb_enable_next <= '0';
+			addr_next <= "00000000";			-- reset adress for reading from linebuffer
 			-- transmit of ringbuffer triggered:
 			if((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1')	
 			then
@@ -159,9 +160,11 @@ begin
 			-- start of calculation triggered(calc will be done by calc_inst): block TX, copy the inputline from linebuffer to memory, enable TX again
 			if(start_calc_old /= start_calc and start_calc = '1')	
 			then
-				addr_next <= "00000000";			-- set next adress for reading from linebuffer
+				addr_next <= "00000001";			-- set next adress for reading from linebuffer
 				ram_offset_next <= 81 * mem_pointer;		-- set destination address(ringbuffer)
 				main_state_next <= COPY_LB;
+				data_in_main_next <= main_lb_data;		-- .. write actual data to ringbuffer
+				wr_main_next <= '1';		
 			end if;
 
 
@@ -233,6 +236,7 @@ begin
 				then
 					mem_pointer_next <= 0;
 					rbuf_overflow_next <= '1';
+					addr_next <= "00000000";
 				end if;
 			end if;
 			
@@ -242,7 +246,6 @@ begin
 			end if;
 
 		when WAIT4SUM =>
-
 			if((decode_ready_old /= decode_ready_main and decode_ready_main = '1') or(goto_nextstate = '1')) -- or: see FI	
 			then
 				ram_line_next <= 0;
