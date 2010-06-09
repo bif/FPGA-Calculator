@@ -94,7 +94,7 @@ begin  -- behav
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		errcode_parser	=>	error_parser_top,
 		sign_bcd_calc   =>	sign_bcd_top,
---		negative	=>	negative,
+		negative	=>	negative,
 		bcd_buf		=>	bcd_buf_sig
 	);
 
@@ -118,7 +118,7 @@ begin  -- behav
 		addr_lb => lb_addr_out_sig,
 		operand => operand_sig, 
 		operator => operator_sig,
---		leading_sign => negative,
+		leading_sign => negative,
 		end_of_operation => end_of_op_sig,
 		parse_ready => parse_ready_sig,
 		error_sig => error_parser_top
@@ -195,9 +195,9 @@ begin  -- behav
 --result_max:  2147483647
 --result_min: -2147483648
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "2147483647 =                                                           ";
+--			test_string <= "2147483647 =                                                           ";
 		--	test_string <= "2+214748364688888888=                                                  ";
-		--	test_string <= "-800*-20    =                                                          ";
+			test_string <= "-800*-20    =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -218,7 +218,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "2147483648  =                                                          ";
+			test_string <= "-2147483649 =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

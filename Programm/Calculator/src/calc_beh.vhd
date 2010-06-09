@@ -56,7 +56,8 @@ architecture beh of calc is
 	signal op_punkt_flag_next	: std_logic;
 	signal calc_ready_next		: std_logic;
 
-	signal calculation		: integer range -2147483647 to 2147483647 := 0;
+--	signal calculation		: integer range -2147483647 to 2147483647 := 0;
+	signal calculation		: integer range -2147483648 to 2147483647 := 0;
 
 	signal out_0_sig		: unsigned(3 downto 0) := "0000";
 	signal out_1_sig		: unsigned(3 downto 0) := "0000";

@@ -11,7 +11,7 @@ architecture beh of parser is
 	signal error_sig_old, error_sig_next : std_logic_vector(2 downto 0) := "000";
 	signal operator_next, last_operator : std_logic_vector(1 downto 0) := "00";
 	signal operand_next, last_operand, current_number, current_number_next : signed(31 downto 0) := (others => '0');
-	signal leading_sign_next, leading_sign, end_of_op_next, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next : std_logic := '0';
+	signal leading_sign_next, leading_sign_old, end_of_op_next, parse_ready_next, check_unsigned_ready, check_unsigned_ready_next, check_op_ready, check_op_ready_next : std_logic := '0';
 	signal	read_next_n_o_old, read_next_n_o_old_next	:	std_logic := '0';
 	signal space, space_next, num, num_next : std_logic := '0';
 	signal mem_ready, mem_ready_next : std_logic := '0';
@@ -94,7 +94,7 @@ begin
 
 
 
-	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign, current_number, do_convert, ready, first_round) --leading_sign_old
+	output : process(parser_fsm_state, data_in, line_count, once, check_unsigned_ready, check_op_ready, last_operand, last_operator, num, space, error_sig_old,  addr_lb_old, leading_sign_old, current_number, do_convert, ready, first_round)
 
 	variable tmp  : signed(63 downto 0) := (others => '0');
 
@@ -113,8 +113,8 @@ begin
 		space_next <= space;
 		error_sig_next <= error_sig_old;
 		addr_lb_next <= addr_lb_old;
---		leading_sign_next <= leading_sign_old;
-		leading_sign_next <= leading_sign;
+		leading_sign_next <= leading_sign_old;
+--		leading_sign_next <= leading_sign;
 		current_number_next <= current_number;
 		do_convert_next <= '0';
 		ready_next <= '0';
@@ -328,15 +328,15 @@ begin
 				if do_convert = '1' then
 					if once = '0' then
 						once_next <= '1';
-						if leading_sign = '1' then
-							operand_next <= (current_number * (-1));
+						if leading_sign_old = '1' then
+							operand_next <= resize((current_number * (-1)), 32);
 						else
 							operand_next <= current_number;
 						end if;
 					else
 						tmp := (last_operand * 10);
-						if leading_sign = '1' then
-							if (OPERAND_MIN - tmp) < current_number then
+						if leading_sign_old = '1' then
+							if resize((OPERAND_MIN - tmp) * (-1), 32) < current_number then
 								error_sig_next <= "100";
 							else
 								tmp := (tmp - current_number); 
@@ -397,7 +397,7 @@ begin
 			operand <= operand_next;	
 			last_operand <= operand_next;
 			leading_sign <= leading_sign_next;
---			leading_sign_old <= leading_sign_next;
+			leading_sign_old <= leading_sign_next;
 			read_next_n_o_old <= read_next_n_o_old_next;
 			space <= space_next;
 			num <= num_next;
