@@ -21,9 +21,6 @@ architecture beh of alu is
 	signal sm , sm_next: integer range 0 to SIZE := 0;
 	signal once, once_next : std_logic := '0';
 
-	alias buf1 is buf_next((2 * SIZE - 1) downto SIZE);
-	alias buf2 is buf_next((SIZE - 1) downto 0); 
-
 begin
 
 	process(sys_clk, sys_res_n)
@@ -103,14 +100,14 @@ begin
 							once_next <= '1';
 							case sm is
 								when 0 =>
-									buf1 <= (others => '0');
-									buf2 <= std_logic_vector(operand_1);
+							buf_next(63 downto 32) <= (others => '0');
+							buf_next(31 downto 0) <= std_logic_vector(operand_1);
 									dbuf_next <= std_logic_vector(operand_2);
 									sm_next <= sm + 1;
 								when others =>
 									if buf((2 * SIZE - 2) downto (SIZE - 1)) >= dbuf then
-										buf1 <= '0' & std_logic_vector(signed(buf((2 * SIZE - 3) downto (SIZE - 1))) - signed(dbuf((SIZE - 2) downto 0)));
-										buf2 <= buf2((SIZE - 2) downto 0) & '1';
+					buf_next(63 downto 32) <= '0' & std_logic_vector(signed(buf((2 * SIZE - 3) downto (SIZE - 1))) - signed(dbuf((SIZE - 2) downto 0)));
+					buf_next(31 downto 0) <= buf(30 downto 0) & '1';
 									else
 										buf_next <= std_logic_vector(buf((2 * SIZE - 2) downto 0)) & '0';
 									end if;
@@ -119,6 +116,7 @@ begin
 									else
 										alu_state_next <= DONE_POST;
 										sm_next <= 0;
+										buf_next(63 downto 32) <= (others => '0');
 									end if;
 							end case;
 						else
@@ -129,7 +127,7 @@ begin
 	
 		when DONE_POST =>
 			alu_state_next <= DONE;
-			sum_tmp_next <= resize(signed(buf2), 63);
+			sum_tmp_next <= resize(signed(buf(31 downto 0)), 63);
 
 		when	DONE =>	
 			alu_state_next <= READY;
