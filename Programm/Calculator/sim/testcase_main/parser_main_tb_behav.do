@@ -68,13 +68,13 @@ add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig_next
 
 add wave -noupdate -divider -height 30 {main <=> memarray}
+add wave -noupdate -format Literal -radix ascii /parser_main_tb/main_inst/rbuf_overflow
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/main_state
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/addr_next
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/addr
 add wave -noupdate -format Literal -radix ascii /parser_main_tb/main_inst/main_lb_data
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/memarray_inst/ram_offset
 add wave -noupdate -format Literal -radix ascii /parser_main_tb/main_inst/memarray_inst/data_in
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/main_state
-
 
 
 add wave -noupdate -divider -height 30 {Calulator}

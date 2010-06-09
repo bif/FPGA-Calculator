@@ -276,7 +276,6 @@ begin
 			then
 				wr_main_next <= '1';
 				ram_line_next <= ram_line + 1;
--- FIXME: die adresse wird beim ersten mal zu spät geschriebne siehe simulation (16.7 us)
 				ram_offset_next <= mem_pointer * 81 + ram_line + 71;
 			elsif(ram_line < 11)
 			then
