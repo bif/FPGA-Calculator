@@ -13,7 +13,6 @@ entity calc is
 		sys_clk		:	in	std_logic;
 		sys_res_n	:	in	std_logic;
 		parse_ready	:	in	std_logic;
-		negative	:	in	std_logic;
 		start_calc	:	in	std_logic;
 		decode_ready_calc	: out	std_logic;
 		sign_bcd_calc		: out	std_logic;

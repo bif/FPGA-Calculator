@@ -40,7 +40,7 @@ architecture struct of calculator_top is
 	signal lb_wr_sig, enable_lb_sig, start_calc_sig : std_logic := '0';
 	signal operand_sig : signed(31 downto 0);
 	signal operator_sig : std_logic_vector(1 downto 0);
-	signal negative, end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
+	signal end_of_op_sig, parse_ready_sig, read_next_n_o_sig : std_logic;
  	signal err_code_parser : std_logic_vector(2 downto 0) := "000";
 
 
@@ -65,7 +65,6 @@ component calc is
 		sys_clk         	:       in	std_logic;
 		sys_res_n       	:       in	std_logic;
 		parse_ready		:       in	std_logic;
-		negative		:       in	std_logic;
 		start_calc		:       in	std_logic;
 		operation_end		:       in	std_logic;
 		operand         	:       in	signed(31 downto 0);
@@ -264,7 +263,6 @@ begin
 		addr_lb => lb_addr_out_sig,
 		operand => operand_sig, 
 		operator => operator_sig,
-		leading_sign => negative,
 		end_of_operation => end_of_op_sig,		-- last operand found - calculation ends here
 		parse_ready => parse_ready_sig,			-- 1 unit(operand + operator) is ready
 		error_sig => err_code_parser
@@ -313,7 +311,6 @@ begin
 		errcode_parser		=>	err_code_parser,
 		decode_ready_calc	=>	decode_ready_sig,
 		bcd_buf			=>	bcd_buf_sig,
-		negative		=>	negative,
 		sign_bcd_calc		=>	sign_bcd_top
 	);	
 

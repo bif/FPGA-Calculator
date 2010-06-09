@@ -84,7 +84,6 @@ begin  -- behav
       sys_clk   => clk,
       sys_res_n => reset,
 			vga_free => vga_free_sig,
---			vga_free => '1',
       vga_command => command_sig,
       vga_command_data => command_data_sig,
       new_ascii_in => new_ascii_sig,

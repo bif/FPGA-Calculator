@@ -41,7 +41,6 @@ architecture sim of parser_main_tb is
 	signal		err_div_by_zero_top		:	std_logic;
 	signal		err_overflow_top		:	std_logic;
 	signal		error_parser_top		:	std_logic_vector(2 downto 0);
-	signal		negative		:	std_logic;
 	signal		calc_ready_top		:	std_logic;
 	signal		sign_bcd_top		:	std_logic;
 	signal error_number : std_logic_vector(2 downto 0);
@@ -58,7 +57,6 @@ component calc is
 		sys_clk         :       in	std_logic;
 		sys_res_n       :       in	std_logic;
 		parse_ready	:       in	std_logic;
-		negative	:       in	std_logic;
 		start_calc	:       in	std_logic;
 		sign_bcd_calc           : out   std_logic;
 		operation_end	:       in	std_logic;
@@ -94,7 +92,6 @@ begin  -- behav
 		need_input	=>	read_next_n_o_sig,	-- OUT: triggers new parse 
 		errcode_parser	=>	error_parser_top,
 		sign_bcd_calc   =>	sign_bcd_top,
-		negative	=>	negative,
 		bcd_buf		=>	bcd_buf_sig
 	);
 
@@ -118,7 +115,6 @@ begin  -- behav
 		addr_lb => lb_addr_out_sig,
 		operand => operand_sig, 
 		operator => operator_sig,
-		leading_sign => negative,
 		end_of_operation => end_of_op_sig,
 		parse_ready => parse_ready_sig,
 		error_sig => error_parser_top

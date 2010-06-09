@@ -53,7 +53,6 @@ add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/oper
 add wave -noupdate -format Literal -radix ascii /parser_main_tb/tp_parser/data_in
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign
-add wave -noupdate -format Logic /parser_main_tb/tp_parser/leading_sign_old
 add wave -noupdate -format Logic /parser_main_tb/start_calc_sig
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/need_input
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/itoa_inst/input_min
