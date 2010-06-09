@@ -193,49 +193,49 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "2+214748364688888888=                                                  ";
-		wait for 200 ns;
-		for i in 1 to 71 loop
-			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
-			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
-			lb_wr_sig <= '1';
-			-- Test-String in Speicher schreiben 
-			c := test_string(i);
-			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
-			wait for 200 ns;
-		end loop;
-		lb_wr_sig <= '0';
-
-		start_calc_sig <= '1';
-		wait for QUARTZ_PERIOD;
-		start_calc_sig <= '0'; 
--- wait until calc ready
-		wait for 500 us;
-
---simulate line buffer
---		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "7/0=                                                                   ";
-		wait for 200 ns;
-		for i in 1 to 71 loop
-			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
-			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
-			lb_wr_sig <= '1';
-			-- Test-String in Speicher schreiben 
-			c := test_string(i);
-			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
-			wait for 200 ns;
-		end loop;
-		lb_wr_sig <= '0';
-
-		start_calc_sig <= '1';
-		wait for QUARTZ_PERIOD;
-		start_calc_sig <= '0'; 
--- wait until calc ready
-		wait for 500 us;
-
---simulate line buffer
---		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
 			test_string <= "13 + 7 *2   =                                                          ";
+		wait for 200 ns;
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
+		end loop;
+		lb_wr_sig <= '0';
+
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 500 us;
+
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "7*99999999999999   =                                                   ";
+		wait for 200 ns;
+		for i in 1 to 71 loop
+			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_addr_wr_sig <= std_logic_vector(to_unsigned((i - 1), 8));
+			lb_wr_sig <= '1';
+			-- Test-String in Speicher schreiben 
+			c := test_string(i);
+			lb_data_wr_sig <= std_logic_vector(to_unsigned(character'pos(c),8));
+			wait for 200 ns;
+		end loop;
+		lb_wr_sig <= '0';
+
+		start_calc_sig <= '1';
+		wait for QUARTZ_PERIOD;
+		start_calc_sig <= '0'; 
+-- wait until calc ready
+		wait for 500 us;
+
+--simulate line buffer
+--		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
+			test_string <= "1000 * 2 / 500 + 2131389122113                                         ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

@@ -16,9 +16,7 @@ architecture beh of parser is
 	signal space, space_next, num, num_next : std_logic := '0';
 	signal mem_ready, mem_ready_next : std_logic := '0';
 	signal once, once_next, do_convert, do_convert_next, ready, ready_next, first_round, first_round_next : std_logic := '0';
-
 	signal addr_lb_next, addr_lb_old, line_count, line_count_next : std_logic_vector(ADDR_WIDTH - 1 downto 0) := (others => '0');
-
 
 begin
 
@@ -334,12 +332,16 @@ begin
 						operand_next <= current_number;
 					else
 						tmp := (last_operand * 10 + current_number);
-						if tmp(62 downto 0) >= OPERAND_MIN and tmp(62 downto 0) <= OPERAND_MAX then
-							operand_next <= tmp(31 downto 0);
-						else
-							error_sig_next <= "100";
+						if leading_sign_old = '1' then
+							if (OPERAND_MIN - last_operand) < current_number then
+								error_sig_next <= "100";
+							end if;
+						else 
+							if (OPERAND_MAX - last_operand) < current_number then
+								error_sig_next <= "100";
+							end if;
 						end if;
-
+						operand_next <= tmp(31 downto 0);
 					end if;
 				end if;
 
