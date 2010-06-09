@@ -57,7 +57,7 @@ architecture beh of calc is
 	signal calc_ready_next		: std_logic;
 
 --	signal calculation		: integer range -2147483647 to 2147483647 := 0;
-	signal calculation		: integer range -2147483648 to 2147483647 := 0;
+	signal calculation		: signed(31 downto 0) := (others => '0');
 
 	signal out_0_sig		: unsigned(3 downto 0) := "0000";
 	signal out_1_sig		: unsigned(3 downto 0) := "0000";
@@ -360,7 +360,8 @@ begin
 
 	process(calc_state, buffer_strich, ready_flag, bcd_buf, out_0_sig, out_1_sig, out_2_sig, out_3_sig, out_4_sig, out_5_sig, out_6_sig, out_7_sig, out_8_sig, out_9_sig, op_punkt_flag)
 	begin
-		calculation <= 0;
+--		calculation <= 0;
+		calculation <= (others => '0');
 		start_decode_bcd <= '0';
 		need_input_next <= '0';
 		start_operation_calc_next <= '0';
@@ -423,7 +424,7 @@ begin
 			when FINISH =>
 				need_input_next <= '0';
 				start_decode_bcd <= '1';
-				calculation <= to_integer(buffer_strich);
+				calculation <= resize(buffer_strich, 32);
 			
 				bcd_buf_next(3 downto 0) <= out_9_sig;		-- ATTENTION: '1er-stelle' steht GANZ LINKS, danach '10er-stelle', danach 100-er-stelle, ...
 				bcd_buf_next(7 downto 4) <= out_8_sig;

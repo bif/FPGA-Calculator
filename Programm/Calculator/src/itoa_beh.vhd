@@ -96,10 +96,10 @@ begin
 			if(int_in < 0)
 			then
 				sign_next <= '1';       -- set sign - bit
-				scratch_tmp(31 downto 0) := std_logic_vector(to_unsigned((int_in * (-1)), 32));
+				scratch_tmp(31 downto 0) := std_logic_vector(resize((int_in * (-1)), 32));
 			else
 				sign_next <= '0';
-				scratch_tmp(31 downto 0) := std_logic_vector(to_unsigned(int_in, 32));
+				scratch_tmp(31 downto 0) := std_logic_vector(int_in);
 			end if;
 		
 --			scratch_tmp(31 downto 0) := std_logic_vector(to_unsigned(int_in, 32));
