@@ -197,7 +197,7 @@ begin  -- behav
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
 --			test_string <= "2147483647 =                                                           ";
 		--	test_string <= "2+214748364688888888=                                                  ";
-			test_string <= "-800*-20    =                                                          ";
+			test_string <= "800 / -20   =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -214,11 +214,11 @@ begin  -- behav
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 500 us;
+		wait for 100 us;
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "-2147483649 =                                                          ";
+			test_string <= "-55 / 5     =                                                          ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -235,11 +235,11 @@ begin  -- behav
 		wait for QUARTZ_PERIOD;
 		start_calc_sig <= '0'; 
 -- wait until calc ready
-		wait for 500 us;
+		wait for 100 us;
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "-2147483647  =                                                         ";
+			test_string <= "-56 /    -2  =                                                         ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));
@@ -260,7 +260,7 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "-2147483648                                                  =         ";
+			test_string <= " 990 / -  9                                                  =         ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

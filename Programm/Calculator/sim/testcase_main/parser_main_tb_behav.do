@@ -86,8 +86,6 @@ add wave -noupdate -format Logic /parser_main_tb/calc_inst/operation_end
 add wave -noupdate -divider -height 20 {Divider}
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/alu_state
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf2
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/buf1
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/err_overflow
