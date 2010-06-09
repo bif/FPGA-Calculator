@@ -48,7 +48,7 @@ vmap work behav_work
 vsim -coverage work.parser_main_tb
 
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -divider -height 20 {Parser}
+add wave -noupdate -divider -height 20 {Parser <=> Calculator}
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/tp_parser/operand
 add wave -noupdate -format Literal -radix ascii /parser_main_tb/tp_parser/data_in
 add wave -noupdate -format Literal /parser_main_tb/tp_parser/operator
@@ -67,18 +67,28 @@ add wave -noupdate -format Literal /parser_main_tb/tp_parser/parser_fsm_state
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig
 add wave -noupdate -format Logic /parser_main_tb/tp_parser/error_sig_next
 
+add wave -noupdate -divider -height 30 {main <=> memarray}
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/addr_next
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/addr
+add wave -noupdate -format Literal -radix ascii /parser_main_tb/main_inst/main_lb_data
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/memarray_inst/ram_offset
+add wave -noupdate -format Literal -radix ascii /parser_main_tb/main_inst/memarray_inst/data_in
+add wave -noupdate -format Literal -radix decimal /parser_main_tb/main_inst/main_state
+
+
+
 add wave -noupdate -divider -height 30 {Calulator}
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/calc_ready
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calc_state
 
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich
 #add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_strich_next
-add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
+#add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt
 #add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/buffer_punkt_next
 
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt
 #add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_punkt_next
-add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
+#add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich
 #add wave -noupdate -format Literal /parser_main_tb/calc_inst/operator_strich_next
 
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/calculation
@@ -91,7 +101,6 @@ add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/sum_tmp
 add wave -noupdate -format Literal /parser_main_tb/calc_inst/alu_in/sm
 add wave -noupdate -format Logic /parser_main_tb/calc_inst/alu_in/err_overflow
-
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/result_max
 add wave -noupdate -format Literal -radix decimal /parser_main_tb/calc_inst/alu_in/result_min
 
@@ -136,7 +145,7 @@ update
 
 
 # auto-run simulation
-run 4 ms
+run 6 ms
 WaveRestoreZoom {14300 ns} {14600 ns}
 #wave zoomfull
 
