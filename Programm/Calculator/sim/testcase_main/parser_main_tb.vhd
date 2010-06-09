@@ -159,8 +159,8 @@ begin  -- behav
 		uart_main_rx	=>	uart_top_rx_sig,
 		uart_main_tx	=>	uart_top_tx_sig,
 		start_calc	=>	start_calc_sig,
-		lb_addr		=>	mem_debug_addr,
-		lb_data		=>	mem_debug_data,
+		main_lb_addr		=>	mem_debug_addr,
+		main_lb_data		=>	mem_debug_data,
 		--decode_ready	=>	calc_ready_top,
 		decode_ready_main	=>	decode_ready_sig,
 		lb_enable	=>	enable_lb_sig,
@@ -193,7 +193,8 @@ begin  -- behav
 
 --simulate line buffer
 --		test_string <= "123456789_123456789_123456789_123456789_123456789_123456789_123456789_1";
-			test_string <= "13 + 7 *2   =                                                          ";
+		--	test_string <= "-800*-20    =                                                          ";
+			test_string <= "2+214748364688888888=                                                  ";
 		wait for 200 ns;
 		for i in 1 to 71 loop
 			mem_debug_addr <= std_logic_vector(to_unsigned((i - 1), 8));

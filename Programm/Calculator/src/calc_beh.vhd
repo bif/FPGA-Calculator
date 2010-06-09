@@ -40,6 +40,8 @@ architecture beh of calc is
 	signal operand_1_next		: signed(31 downto 0);
 	signal operand_2		: signed(31 downto 0);
 	signal operand_2_next		: signed(31 downto 0);
+	signal operand_tmp		: signed(31 downto 0);
+	signal operand_tmp_next		: signed(31 downto 0);
 	signal buffer_strich		: signed(62 downto 0);
 	signal buffer_strich_next	: signed(62 downto 0);
 	signal buffer_punkt		: signed(62 downto 0);
@@ -97,6 +99,7 @@ begin
 			err_div_by_zero_calc_old <= '0';
 			err_overflow_old <= '0';
 			bcd_buf <= (others => '0');
+			operand_tmp <= (others => '0');
 		elsif(sys_clk'event and sys_clk = '1')
 		then
 			calc_state <= calc_state_next;
@@ -121,11 +124,12 @@ begin
 			err_div_by_zero_calc_old <= err_div_by_zero_calc_old_next;
 			err_overflow_old <= err_overflow_old_next;
 			bcd_buf <= bcd_buf_next;
+			operand_tmp <= operand_tmp_next;
 		end if;
 
 	end process;
 
-	nextstate : process(negative, calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
+	nextstate : process(calc_state, start_calc, start_calc_old, parse_ready, parse_ready_old, operation_end, operation_end_old, buffer_punkt, buffer_strich, operator_strich, operator_punkt, op_punkt_flag, op_strich_flag, operand, decode_ready_sig, decode_ready_old, ready_flag, operand_1, operand_2, operation_done_sig, operation_done_old, sum_tmp, operator_calc, operator, err_div_by_zero_calc, err_div_by_zero_calc_old, err_overflow_calc, err_overflow_old, errcode_parser)
 	begin
 		calc_state_next <= calc_state;
 		start_calc_old_next <= start_calc;		
@@ -147,6 +151,7 @@ begin
 		decode_ready_calc <= '0';
 		err_div_by_zero_calc_old_next <= err_div_by_zero_calc;
 		err_overflow_old_next <= err_overflow_calc;
+		operand_tmp_next <= operand_tmp;
 
 		case calc_state is
 			when READY =>
@@ -174,9 +179,11 @@ begin
 					then
 						if(negative = '1')
 						then
-							
+							operand_tmp_next <= resize(operand * (-1), 32);
+						else
+							operand_tmp_next <= operand;
 						end if;
-						
+					
 						if(operator = "00" or operator = "01")	
 						then
 							calc_state_next <= OP_STRICH;
@@ -200,14 +207,16 @@ begin
 			when OP_PUNKT =>
 				if(op_punkt_flag = '0')		-- keine operation vorgemerkt
 				then
-					buffer_punkt_next <= resize(operand, 63);
+			--buffer_punkt_next <= resize(operand, 63);
+			buffer_punkt_next <= resize(operand_tmp, 63);
 					op_punkt_flag_next <= '1';
 					calc_state_next <= MANAGE;
 					operator_punkt_next <= operator;
 				elsif(op_punkt_flag = '1')
 				then
 						operand_1_next <= resize(buffer_punkt, 32);
-						operand_2_next <= operand;
+			--operand_2_next <= operand;
+			operand_2_next <= operand_tmp;
 						operator_calc_next <= operator_punkt;
 						calc_state_next <= WAIT4ALU_PUNKT;
 				end if;
@@ -216,7 +225,8 @@ begin
 
 				if(op_strich_flag = '0' and op_punkt_flag = '0')	-- nichts vorgemerkt
 				then
-					buffer_strich_next <= resize(operand, 63);
+			--buffer_strich_next <= resize(operand, 63);
+			buffer_strich_next <= resize(operand_tmp, 63);
 					op_strich_flag_next <= '1';
 					operator_strich_next <= operator;
 					calc_state_next <= MANAGE;						-- ACHTUNG, KOENNTE PROBLEME MACHEN WENN START_OPERATION = '1' 
@@ -227,7 +237,8 @@ begin
 					op_punkt_flag_next <= '0';
 
 					operand_1_next <= resize(buffer_punkt, 32);
-					operand_2_next <= operand;
+			--operand_2_next <= operand;
+			operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_STRICH;
 					operator_strich_next <= operator;
@@ -235,7 +246,8 @@ begin
 				elsif(op_strich_flag = '1' and op_punkt_flag = '0')	-- strichrechchnung vorgemerkt
 				then
 					operand_1_next <= resize(buffer_strich, 32);
-					operand_2_next <= operand;
+			--operand_2_next <= operand;
+			operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_strich;
 					calc_state_next <= WAIT4ALU_STRICH;
 					operator_strich_next <= operator;
@@ -244,7 +256,8 @@ begin
 				elsif(op_strich_flag = '1' and op_punkt_flag = '1')	-- punkt UND strichrechnung vorgemerkt
 				then
 					operand_1_next <= resize(buffer_punkt, 32);
-					operand_2_next <= operand;
+			--operand_2_next <= operand;
+			operand_2_next <= operand_tmp;
 					operator_calc_next <= operator_punkt;
 					calc_state_next <= WAIT4ALU_TMP;					
 					op_punkt_flag_next <= '0';

@@ -11,43 +11,52 @@ architecture sim of calc_tb is
     (
 	sys_clk		:	in	std_logic;
 	sys_res_n	:	in	std_logic;
-	start_calc	:	in	std_logic;
 	parse_ready	:	in	std_logic;
+	negative	:	in	std_logic;
+	start_calc	:	in	std_logic;
 	operation_end   :	in      std_logic;
 	operand		:	in	signed(31 downto 0);
 	operator        :       in      std_logic_vector(1 downto 0)  := "00";
 	need_input	:	out	std_logic := '0';
-	error_calc      :	out     std_logic;
-	error_parser      :	in     std_logic;
+	calc_ready	:	out	std_logic := '1';
+	errcode_parser      :	in     std_logic_vector(1 downto 0);
 	decode_ready_calc    :	out	std_logic;
-	bcd_buf		:	out	unsigned(39 downto 0)
+	sign_bcd_calc      :	out     std_logic;
+	bcd_buf		:	buffer	unsigned(39 downto 0)
 
     );
   end component calc;
   
-	signal sys_clk, sys_res_n, start_calc, decode_ready_calc, parse_ready, need_input, error_calc, error_parser, operation_end : std_logic;
+	signal sys_clk, sys_res_n, start_calc, decode_ready_calc, parse_ready, need_input, error_calc, operation_end : std_logic;
+	signal start_calc_sig	:	std_logic;
+	signal bcd_buf_sig	:	unsigned(39 downto 0);
+	signal negative	:	std_logic;
+	signal sign_bcd_top	:	std_logic;
 	signal stop : boolean := false;
 	signal operand	:	signed(31 downto 0);
 	signal operator	:	std_logic_vector(1 downto 0);
-	signal bcd_buf	:	 unsigned(39 downto 0);
+	signal operand_sig	:	signed(31 downto 0);
+	signal operator_sig	:	std_logic_vector(1 downto 0);
+	signal error_parser	:	std_logic_vector(1 downto 0);
+--	signal bcd_buf	:	 unsigned(39 downto 0);
 begin
-  uut : calc
-    port map
-    (
-      sys_clk => sys_clk,
-      sys_res_n => sys_res_n,
-      start_calc => start_calc,
-	parse_ready => parse_ready,
-	need_input => need_input,
-	operand => operand,
-	operator => operator,
-	operation_end	=>	operation_end,
-	decode_ready_calc => decode_ready_calc,
-	error_calc => error_calc,
-	error_parser => error_parser,
-	bcd_buf => bcd_buf
-	
-    );
+uut : calc
+	port map
+	(
+		sys_clk			=>	sys_clk,
+		sys_res_n		=>	sys_res_n,
+		parse_ready		=>	parse_ready,
+		start_calc		=>	start_calc_sig,
+		operation_end		=>	operation_end,
+		operand			=>	operand_sig,
+		operator		=>	operator_sig,
+		need_input		=>	need_input,
+		errcode_parser		=>	error_parser,
+		decode_ready_calc	=>	decode_ready_calc,
+		bcd_buf			=>	bcd_buf_sig,
+		negative		=>	negative,
+		sign_bcd_calc		=>	sign_bcd_top
+);
     
   process
   begin

@@ -133,8 +133,7 @@ begin
 
 		when	DONE =>	
 			alu_state_next <= READY;
-			--if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
-			if(sum_tmp <= RESULT_MAX)
+			if(sum_tmp >= RESULT_MIN and sum_tmp <= RESULT_MAX)
 			then
 				operation_done <= '1';
 				sum <= sum_tmp;
