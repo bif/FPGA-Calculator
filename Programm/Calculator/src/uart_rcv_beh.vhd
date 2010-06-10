@@ -54,7 +54,7 @@ begin
 		if(bit_cnt = 9)
 		then
 			enable_rx_next <= '0';
-			if(byte_in = "01010101")		-- ASCII 'U'
+			if(byte_in = x"73")		-- ASCII 's'
 			then
 				trigger_tx <= '1';
 			end if;

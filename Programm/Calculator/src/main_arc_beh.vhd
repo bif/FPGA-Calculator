@@ -145,7 +145,7 @@ begin
 			byte_data_next <= "00000000";
 			ram_offset_next <= 0;
 			send_byte_main_next <= '0';
-			tx_busy_main_old_next <= '1';
+			tx_busy_main_old_next <= '0';
 			init_sent_next <= 0;
 			start_calc_old_next <= '0';
 			wr_main_next <= '0';
@@ -164,8 +164,6 @@ begin
 		when READY =>
 
 			lb_enable_next <= '0';
---			addr_next <= "00000000";			-- reset adress for reading from linebuffer
-			-- transmit of ringbuffer triggered:
 			if((sense_old /= sense and sense = '0') or trigger_main_tx_sig = '1')	
 			then
 				main_state_next <= SEND_UART;
@@ -185,13 +183,10 @@ begin
 			-- start of calculation triggered(calc will be done by calc_inst): block TX, copy the inputline from linebuffer to memory, enable TX again
 			if(start_calc_old /= start_calc and start_calc = '1')	
 			then
---				addr_next <= "00000000";			-- set next adress for reading from linebuffer
-				main_lb_addr <= "00000000";
+				main_lb_addr <= "00000000";	-- set next adress for reading from linebuffer
 				addr_next <= "00000001";
 				ram_offset_next <= 81 * mem_pointer;		-- set destination address(ringbuffer)
 				main_state_next <= COPY_LB;
---				data_in_main_next <= main_lb_data;		-- .. write actual data to ringbuffer
---				wr_main_next <= '1';		
 			end if;
 
 
