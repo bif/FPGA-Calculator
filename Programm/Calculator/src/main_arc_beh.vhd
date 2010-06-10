@@ -10,11 +10,11 @@ architecture beh of main is
 	constant	LINE_LENGTH    : integer := 81;
 	constant	DATA_WIDTH     : integer := 7;
 	
-	type 		MAIN_STATE_TYPE is (READY, SEND_UART, COPY_LB, COPY_SUM, WAIT4SUM);
+	type 		MAIN_STATE_TYPE is (INIT, READY, SEND_UART, COPY_LB, COPY_SUM, WAIT4SUM);
         signal		main_state				: MAIN_STATE_TYPE;
         signal		main_state_next				: MAIN_STATE_TYPE;
 
-	signal		btn_a_sig 				: std_logic := '0';
+--	signal		btn_a_sig 				: std_logic := '0';
 	signal		sense_old, sense_old_next		: std_logic := '0';
 	signal		start_calc_old, start_calc_old_next	: std_logic := '0';
 
@@ -39,18 +39,17 @@ architecture beh of main is
 	signal		byte_data_next				: std_logic_vector(7 downto 0) := "00000000";
 	signal		wr_main					: std_logic := '0';
 	signal		wr_main_next				: std_logic := '0';
-	signal		ram_offset				: integer range 0 to 4095;
-	signal		ram_offset_next				: integer range 0 to 4095;
+	signal		ram_offset				: integer range 0 to 4095 := 0;
+	signal		ram_offset_next				: integer range 0 to 4095 := 0;
 	signal		data_in_main, data_in_main_next		: std_logic_vector(7 downto 0);
 	signal		data_out_main				: std_logic_vector(7 downto 0);
-	signal		mem_pointer, mem_pointer_next		: integer range 0 to 51;
-	signal		ram_line				: integer range 0 to 90;
-	signal		ram_line_next				: integer range 0 to 90;
-	signal		line_count, line_count_next		: integer range 0 to 50;
+	signal		mem_pointer, mem_pointer_next		: integer range 0 to 51 := 0;
+	signal		ram_line				: integer range 0 to 90 := 0;
+	signal		ram_line_next				: integer range 0 to 90 := 0;
+	signal		line_count, line_count_next		: integer range 0 to 50 := 0;
 	signal		rbuf_overflow, rbuf_overflow_next	: std_logic := '0';
 	signal		addr, addr_next				: std_logic_vector(7 downto 0) := "00000000";
 	signal		lb_enable_next				: std_logic := '0';
-
 
 	component uart is
 	port
@@ -88,7 +87,7 @@ process(sys_clk, sys_res_n)
 		rbuf_overflow <= '0';
 		addr <= "00000000";
 		decode_ready_old <= '0';
-		main_state <= READY;
+		main_state <= INIT;
 		goto_nextstate <= '0';
 	elsif rising_edge(sys_clk)
 	then
@@ -136,6 +135,27 @@ begin
 	goto_nextstate_next <= goto_nextstate;
 	
 	case main_state is
+		when INIT =>
+			sense_old_next <= RESET_VALUE;
+			byte_data_next <= "00000000";
+			ram_offset_next <= 0;
+			send_byte_main_next <= '0';
+			tx_busy_main_old_next <= '1';
+			init_sent_next <= 0;
+			start_calc_old_next <= '0';
+			wr_main_next <= '0';
+			data_in_main_next <= x"00";
+			mem_pointer_next <= 0;
+			ram_line_next <= 0;
+			line_count_next <= 0;
+			data_in_main_next <= "00000000";
+			lb_enable_next <= '0';
+			rbuf_overflow_next <= '0';
+			addr_next <= "00000000";
+			decode_ready_old_next <= '0';
+			main_state_next <= READY;
+			goto_nextstate_next <= '0';		
+
 		when READY =>
 
 			lb_enable_next <= '0';
