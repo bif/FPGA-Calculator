@@ -20,6 +20,8 @@ architecture beh of main is
 
 	signal		goto_nextstate				: std_logic := '0';
 	signal		goto_nextstate_next			: std_logic := '0';
+	signal		nl_cr_flag				: std_logic := '0';
+	signal		nl_cr_flag_next				: std_logic := '0';
 	signal		decode_ready_old, decode_ready_old_next	: std_logic := '0';
 
 	-- uart - related:	
@@ -31,8 +33,8 @@ architecture beh of main is
 	signal		send_byte_main				: std_logic := '0';
 	signal		send_byte_main_next			: std_logic := '0';
 	signal		trigger_main_tx_sig			: std_logic := '0';
-	signal		init_sent				: integer range 0 to 5;
-	signal		init_sent_next				: integer range 0 to 5;
+	signal		init_sent				: integer range 0 to 10;
+	signal		init_sent_next				: integer range 0 to 10;
 
 	-- memarray - related:
 	signal		byte_data				: std_logic_vector(7 downto 0) := "00000000";
@@ -89,6 +91,7 @@ process(sys_clk, sys_res_n)
 		decode_ready_old <= '0';
 		main_state <= INIT;
 		goto_nextstate <= '0';
+		nl_cr_flag <= '0';
 	elsif rising_edge(sys_clk)
 	then
 		sense_old <= sense_old_next;
@@ -109,10 +112,11 @@ process(sys_clk, sys_res_n)
 		decode_ready_old <= decode_ready_old_next;
 		main_state <= main_state_next;
 		goto_nextstate <= goto_nextstate_next;
+		nl_cr_flag <= nl_cr_flag_next;
 	end if;
 end process;
 
-process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, main_lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, goto_nextstate)
+process(ram_offset, ram_line, tx_busy_main_old, tx_busy_main, send_byte_main, byte_data, sense, sense_old, trigger_main_tx_sig, init_sent, data_out_main, start_calc, start_calc_old, wr_main, data_in_main, main_lb_data, mem_pointer, line_count, rbuf_overflow, addr, decode_ready_main, decode_ready_old, main_state, bcd_buf, sign_bcd_main, goto_nextstate, nl_cr_flag)
 begin
 	sense_old_next <= sense;
 	ram_offset_next <= ram_offset;
@@ -133,6 +137,7 @@ begin
 	decode_ready_old_next <= decode_ready_main;
 	main_state_next <= main_state;
 	goto_nextstate_next <= goto_nextstate;
+	nl_cr_flag_next <= nl_cr_flag;
 	
 	case main_state is
 		when INIT =>
@@ -193,9 +198,16 @@ begin
 		when SEND_UART =>
 			if(tx_busy_main_old /= tx_busy_main and tx_busy_main = '0')
 			then
-				if(init_sent < 5)					-- send initial newlines
+				if(init_sent < 10)					-- send initial newlines
 				then
-					byte_data_next <= "00001010";
+					if(nl_cr_flag = '0')
+					then
+						byte_data_next <= "00001010";
+						nl_cr_flag_next <= '1';
+					else
+						byte_data_next <= "00001101";
+						nl_cr_flag_next <= '0';
+					end if;
 					send_byte_main_next <= '1';
 					init_sent_next <= init_sent + 1;
 					
@@ -217,8 +229,7 @@ begin
 						send_byte_main_next <= '1';
 						line_count_next <= line_count + 1;					
 		
-						--if(line_count = 49)				-- there are no more lines to be sent
-						if(line_count = 4)				-- DEBUGING - umbruch schon nach 5 zeilen!
+						if(line_count = 49)				-- there are no more lines to be sent
 						then
 							send_byte_main_next <= '0';
 							ram_line_next <= 0;
@@ -253,12 +264,10 @@ begin
 			else
 				main_state_next <= WAIT4SUM;
 				wr_main_next <= '0';
-				--if(mem_pointer = 50)
-				if(mem_pointer = 5)		-- debugging wg. wraparound: IST SO OK, mem-umbruch nach 5 inputlines!
+				if(mem_pointer = 50)
 				then
 					mem_pointer_next <= 0;
 					rbuf_overflow_next <= '1';
---					addr_next <= "00000000";
 				end if;
 			end if;
 			
@@ -328,8 +337,7 @@ begin
 	
 	end case;
 
-	--if(ram_offset = 4050)					-- overflow(mem_pointer /= 0x00)	
-	if(ram_offset >= 405)					-- ZUM TESTEN	
+	if(ram_offset = 4050)					-- overflow(mem_pointer /= 0x00)	
 	then
 		ram_offset_next <= 0;
 	end if;
